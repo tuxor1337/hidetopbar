@@ -68,14 +68,19 @@ function _showTopPanel() {
 }
 
 function init() {
+}
+
+function enable() {
     _hideTopPanel();
 
     Main.overview.connect('shown', _showTopPanel);
     Main.overview.connect('hiding', _hideTopPanel);
 }
 
-function enable() {
+function disable() {
+    _showTopPanel();
+
+    Main.overview.disconnect(_showTopPanel);
+    Main.overview.disconnect(_hideTopPanel);
 }
 
-function disable() {
-}
