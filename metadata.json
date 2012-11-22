@@ -1,0 +1,6 @@
+{
+  "shell-version": ["3.6.1"],
+  "uuid": "hidetopbar@mathieu.bidon.ca",
+  "name": "Hide Top Bar",
+  "description": "Hides the top bar, except for the activities view."
+}
