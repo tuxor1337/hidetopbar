@@ -1,5 +1,6 @@
 //
 // Hides Gnome's topbar except in overview mode.
+// https://github.com/mlutfy/hidetopbar
 // http://www.bidon.ca
 //
 // Based on Finnbarr P. Murphy's extension "autohidetopbar@fpmurphy.com"
