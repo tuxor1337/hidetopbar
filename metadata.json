@@ -2,5 +2,5 @@
   "shell-version": ["3.6"],
   "uuid": "hidetopbar@mathieu.bidon.ca",
   "name": "Hide Top Bar",
-  "description": "Hides the top bar, except in overview mode."
+  "description": "Hides the top bar, except in overview mode. Based on fpmurphy's autohidetopbar: http://www.fpmurphy.com/gnome-shell-extensions/ Source code: https://github.com/mlutfy/hidetopbar"
 }
