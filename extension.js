@@ -12,7 +12,7 @@
 const Main = imports.ui.main;
 const Tweener = imports.ui.tweener;
 
-let PANEL_HEIGHT = 25;
+const PANEL_HEIGHT = Main.panel.actor.get_height();
 const AUTOHIDE_TIME = 0.2;
 
 function HideTopPanel() {
