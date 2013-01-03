@@ -2,17 +2,15 @@ About:
 ------
 
 Hides Gnome's topbar except in overview mode.
-http://www.bidon.ca
+https://extensions.gnome.org/extension/545/hide-top-bar/
 https://github.com/mlutfy/hidetopbar
 
 Based on Finnbarr P. Murphy's extension "autohidetopbar@fpmurphy.com"
 http://www.fpmurphy.com/gnome-shell-extensions/
 
-Tested on Gnome 3.6.1.
+With contributions by Philip Witte and Thomas Vogt.
 
-WARNING: I basically tweaked 2-3 lines from autohidetopbar,
-I do not know much about Gnome 3 extensions, so please do not
-e-mail me for support! Patches welcomed, however :)
+Tested on Gnome 3.6.1.
 
 Installation:
 -------------
@@ -32,7 +30,7 @@ License:
 --------
 
 Copyright (c) 2011 Finnbarr P. Murphy.  All rights reserved.
-Copyright (c) 2012 minor tweaks by Mathieu Lutfy.
+Copyright (c) 2012-2013 minor tweaks by Mathieu Lutfy.
 Copyright (c) 2012 major fix by Philip Witte.
 
 This program is free software; you can redistribute it and/or
