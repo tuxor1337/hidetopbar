@@ -26,13 +26,29 @@ HideTopPanel.prototype = {
     },
 
     _hideTopPanel: function() {
-        Main.panel.actor.set_height(1);
-        Main.panel._leftCorner.actor.set_y(0);
-        Main.panel._rightCorner.actor.set_y(0);
-    
-        Main.panel._leftBox.set_opacity(0);
-        Main.panel._centerBox.hide();
-        Main.panel._rightBox.hide();
+        Tweener.addTween(Main.panel.actor,
+                     { y: -PANEL_HEIGHT,
+                       time: AUTOHIDE_TIME+0.2,
+                       transition: 'easeOutQuad',
+                       onComplete: function() { Main.panel.actor.height=1; Main.panel.actor.y=0; }
+                     });
+
+        let params = { y: 1,
+                       time: AUTOHIDE_TIME+0.2,
+                       transition: 'easeOutQuad'
+                     };
+ 
+        Tweener.addTween(Main.panel._leftCorner.actor, params);
+        Tweener.addTween(Main.panel._rightCorner.actor, params);
+
+        params = { opacity: 0,
+                   time: AUTOHIDE_TIME,
+                   transition: 'easeOutQuad'
+                 };
+
+        Tweener.addTween(Main.panel._leftBox, params);
+        Tweener.addTween(Main.panel._centerBox, params);
+        Tweener.addTween(Main.panel._rightBox, params);
     },
     
     _showTopPanel: function() {
