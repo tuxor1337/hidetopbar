@@ -29,12 +29,12 @@ HideTopPanel.prototype = {
         Main.panel.actor.set_height(1);
         Main.panel._leftCorner.actor.set_y(0);
         Main.panel._rightCorner.actor.set_y(0);
-    
+
         Main.panel._leftBox.set_opacity(0);
         Main.panel._centerBox.hide();
         Main.panel._rightBox.hide();
     },
-    
+
     _showTopPanel: function() {
         Tweener.addTween(Main.panel.actor, {
             height: PANEL_HEIGHT,
@@ -43,39 +43,39 @@ HideTopPanel.prototype = {
             onComplete: function() {
                 Main.panel._centerBox.show();
                 Main.panel._centerBox.set_opacity(0);
-    
+ 
                 Main.panel._rightBox.show();
                 Main.panel._rightBox.set_opacity(0);
-    
+ 
                 let boxParams = {
                     opacity: 255,
                     time: 0.2,
                     transition: 'easeOutQuad'
                 };
-    
+
                 Tweener.addTween(Main.panel._leftBox, boxParams);
                 Tweener.addTween(Main.panel._centerBox, boxParams);
                 Tweener.addTween(Main.panel._rightBox, boxParams);
             }
         });
-    
+
         let params = {
             y: PANEL_HEIGHT - 1,
             time: AUTOHIDE_TIME,
             transition: 'easeOutQuad'
         };
-    
+
         Tweener.addTween(Main.panel._leftCorner.actor, params);
         Tweener.addTween(Main.panel._rightCorner.actor, params);
     },
-    
+
     enable: function() {
         this._hideTopPanel();
-    
+
         this._shownEvent = Main.overview.connect('shown', this._showTopPanel);
         this._hidingEvent = Main.overview.connect('hiding', this._hideTopPanel);
     },
-    
+
     disable: function() {
         this._showTopPanel();
 
@@ -87,7 +87,7 @@ HideTopPanel.prototype = {
             Main.overview.disconnect(this._hidingEvent);
         }
     }
-}
+};
 
 function init() {
     return new HideTopPanel();
