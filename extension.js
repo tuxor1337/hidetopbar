@@ -13,7 +13,7 @@ const Main = imports.ui.main;
 const Tweener = imports.ui.tweener;
 
 const PANEL_HEIGHT = Main.panel.actor.get_height();
-const AUTOHIDE_TIME = 0.2;
+const ANIMATION_TIME = 0.2;
 
 function HideTopPanel() {
     this._init();
@@ -38,7 +38,7 @@ HideTopPanel.prototype = {
     _showTopPanel: function() {
         Tweener.addTween(Main.panel.actor, {
             height: PANEL_HEIGHT,
-            time: AUTOHIDE_TIME,
+            time: ANIMATION_TIME,
             transition: 'easeOutQuad',
             onComplete: function() {
                 Main.panel._centerBox.show();
@@ -61,7 +61,7 @@ HideTopPanel.prototype = {
 
         let params = {
             y: PANEL_HEIGHT - 1,
-            time: AUTOHIDE_TIME,
+            time: ANIMATION_TIME,
             transition: 'easeOutQuad'
         };
 
