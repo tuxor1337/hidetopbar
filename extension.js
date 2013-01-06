@@ -59,12 +59,6 @@ HideTopPanel.prototype = {
             time: AUTOHIDE_TIME,
             transition: 'easeOutQuad'
         });
-        
-        Main.panel._centerBox.show();
-        Main.panel._centerBox.set_opacity(0);
-
-        Main.panel._rightBox.show();
-        Main.panel._rightBox.set_opacity(0);
 
         let boxParams = {
             opacity: 255,
