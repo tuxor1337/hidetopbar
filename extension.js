@@ -21,71 +21,93 @@ function HideTopPanel() {
 
 HideTopPanel.prototype = {
     _init: function() {
-        this._shownEvent = 0;
-        this._hidingEvent = 0;
+        this._showEvent = 0;
+        this._hideEvent = 0;
     },
 
     _hideTopPanel: function() {
-        Main.panel.actor.set_height(1);
-        Main.panel._leftCorner.actor.set_y(0);
-        Main.panel._rightCorner.actor.set_y(0);
+/* see: https://github.com/mlutfy/hidetopbar/pull/3#issuecomment-11931395
+        Tweener.addTween(Main.panel.actor, {
+            y: -PANEL_HEIGHT,
+            time: ANIMATION_TIME + 0.2,
+            transition: 'easeOutQuad',
+            onComplete: function() {
+                Main.panel.actor.height = 1;
+                Main.panel.actor.y = 0;
+            }
+        });
+*/
 
-        Main.panel._leftBox.set_opacity(0);
-        Main.panel._centerBox.hide();
-        Main.panel._rightBox.hide();
+        let params = {
+            y: 1,
+            time: ANIMATION_TIME + 0.2,
+            transition: 'easeOutQuad'
+        };
+ 
+        Tweener.addTween(Main.panel._leftCorner.actor, params);
+        Tweener.addTween(Main.panel._rightCorner.actor, params);
+
+        params = {
+            opacity: 0,
+            time: ANIMATION_TIME,
+            transition: 'easeOutQuad'
+        };
+
+        Tweener.addTween(Main.panel._leftBox, params);
+        Tweener.addTween(Main.panel._centerBox, params);
+        Tweener.addTween(Main.panel._rightBox, params);
     },
 
     _showTopPanel: function() {
-        Tweener.addTween(Main.panel.actor, {
-            height: PANEL_HEIGHT,
+/*
+        Main.panel.actor.y = -PANEL_HEIGHT;
+        Main.panel.actor.height = PANEL_HEIGHT;
+        Tweener.addTween(Main.panel.actor, { 
+            y: 0,
             time: ANIMATION_TIME,
-            transition: 'easeOutQuad',
-            onComplete: function() {
-                Main.panel._centerBox.show();
-                Main.panel._centerBox.set_opacity(0);
- 
-                Main.panel._rightBox.show();
-                Main.panel._rightBox.set_opacity(0);
- 
-                let boxParams = {
-                    opacity: 255,
-                    time: 0.2,
-                    transition: 'easeOutQuad'
-                };
-
-                Tweener.addTween(Main.panel._leftBox, boxParams);
-                Tweener.addTween(Main.panel._centerBox, boxParams);
-                Tweener.addTween(Main.panel._rightBox, boxParams);
-            }
+            transition: 'easeOutQuad'
         });
+*/
 
         let params = {
             y: PANEL_HEIGHT - 1,
-            time: ANIMATION_TIME,
+            time: ANIMATION_TIME + 0.4,
             transition: 'easeOutQuad'
         };
 
         Tweener.addTween(Main.panel._leftCorner.actor, params);
         Tweener.addTween(Main.panel._rightCorner.actor, params);
+
+        params = {
+            opacity: 255,
+            time: ANIMATION_TIME + 0.5,
+            transition: 'easeOutQuad'
+        };
+
+        Tweener.addTween(Main.panel._leftBox, params);
+        Tweener.addTween(Main.panel._centerBox, params);
+        Tweener.addTween(Main.panel._rightBox, params);
+
+        Main.overview._relayout();
     },
 
     enable: function() {
-        this._hideTopPanel();
+        this._showEvent = Main.overview.connect('showing', this._showTopPanel);
+        this._hideEvent = Main.overview.connect('hiding', this._hideTopPanel);
 
-        this._shownEvent = Main.overview.connect('shown', this._showTopPanel);
-        this._hidingEvent = Main.overview.connect('hiding', this._hideTopPanel);
+        this._hideTopPanel();
     },
 
     disable: function() {
+        if (this._showEvent) {
+            Main.overview.disconnect(this._showEvent);
+        }
+
+        if (this._hideEvent) {
+            Main.overview.disconnect(this._hideEvent);
+        }
+
         this._showTopPanel();
-
-        if (this._shownEvent) {
-            Main.overview.disconnect(this._shownEvent);
-        }
-
-        if (this._hidingEvent) {
-            Main.overview.disconnect(this._hidingEvent);
-        }
     }
 };
 
