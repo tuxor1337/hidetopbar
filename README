@@ -21,8 +21,7 @@ Install this in your extensions directory:
 Example:
   cd ~/.local/share/gnome-shell/extensions/
   git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
-
-Then enable using gnome-tweak-tool.
+  gnome-shell-extension-tool -d hidetopbar@mathieu.bidon.ca
 
 You can also manages extensions from https://extensions.gnome.org/local/
 
@@ -30,8 +29,9 @@ License:
 --------
 
 Copyright (c) 2011 Finnbarr P. Murphy.  All rights reserved.
-Copyright (c) 2012-2013 minor tweaks by Mathieu Lutfy.
+Copyright (c) 2012-2013 minor tweaks and maintenance by Mathieu Lutfy.
 Copyright (c) 2012 major fix by Philip Witte.
+Copyright (c) 2013 major fixes by Thomas Vogt.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of VERSION 2 of the GNU General Public
