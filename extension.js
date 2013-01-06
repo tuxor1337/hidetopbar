@@ -26,6 +26,8 @@ HideTopPanel.prototype = {
     },
 
     _hideTopPanel: function() {
+        Main.panel.actor.set_height(1);
+
 /* see: https://github.com/mlutfy/hidetopbar/pull/3#issuecomment-11931395
         Tweener.addTween(Main.panel.actor, {
             y: -PANEL_HEIGHT,
@@ -59,6 +61,7 @@ HideTopPanel.prototype = {
     },
 
     _showTopPanel: function() {
+        Main.panel.actor.set_height(PANEL_HEIGHT);
 /*
         Main.panel.actor.y = -PANEL_HEIGHT;
         Main.panel.actor.height = PANEL_HEIGHT;
