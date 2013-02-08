@@ -26,34 +26,25 @@ HideTopPanel.prototype = {
     },
 
     _hideTopPanel: function() {
-        Main.panel.actor.set_height(1);
+        Tweener.addTween(Main.panel.actor,
+                     { y: -PANEL_HEIGHT,
+                       time: ANIMATION_TIME+0.2,
+                       transition: 'easeOutQuad',
+                       onComplete: function() { Main.panel.actor.height=1; Main.panel.actor.y=0; }
+                     });
 
-/* see: https://github.com/mlutfy/hidetopbar/pull/3#issuecomment-11931395
-        Tweener.addTween(Main.panel.actor, {
-            y: -PANEL_HEIGHT,
-            time: ANIMATION_TIME + 0.2,
-            transition: 'easeOutQuad',
-            onComplete: function() {
-                Main.panel.actor.height = 1;
-                Main.panel.actor.y = 0;
-            }
-        });
-*/
-
-        let params = {
-            y: 1,
-            time: ANIMATION_TIME + 0.2,
-            transition: 'easeOutQuad'
-        };
+        let params = { y: 1,
+                       time: ANIMATION_TIME+0.2,
+                       transition: 'easeOutQuad'
+                     };
  
         Tweener.addTween(Main.panel._leftCorner.actor, params);
         Tweener.addTween(Main.panel._rightCorner.actor, params);
 
-        params = {
-            opacity: 0,
-            time: ANIMATION_TIME,
-            transition: 'easeOutQuad'
-        };
+        params = { opacity: 0,
+                   time: ANIMATION_TIME,
+                   transition: 'easeOutQuad'
+                 };
 
         Tweener.addTween(Main.panel._leftBox, params);
         Tweener.addTween(Main.panel._centerBox, params);
@@ -61,36 +52,33 @@ HideTopPanel.prototype = {
     },
 
     _showTopPanel: function() {
-        Main.panel.actor.set_height(PANEL_HEIGHT);
-/*
-        Main.panel.actor.y = -PANEL_HEIGHT;
-        Main.panel.actor.height = PANEL_HEIGHT;
-        Tweener.addTween(Main.panel.actor, { 
+        Main.panel.actor.y=-PANEL_HEIGHT;
+        Main.panel.actor.height=PANEL_HEIGHT;
+        Tweener.addTween(Main.panel.actor, {
             y: 0,
             time: ANIMATION_TIME,
             transition: 'easeOutQuad'
         });
-*/
 
+        let boxParams = {
+            opacity: 255,
+            time: ANIMATION_TIME + 0.2,
+            transition: 'easeOutQuad'
+        };
+
+        Tweener.addTween(Main.panel._leftBox, boxParams);
+        Tweener.addTween(Main.panel._centerBox, boxParams);
+        Tweener.addTween(Main.panel._rightBox, boxParams);
+    
         let params = {
             y: PANEL_HEIGHT - 1,
-            time: ANIMATION_TIME + 0.4,
+            time: ANIMATION_TIME,
             transition: 'easeOutQuad'
         };
-
+    
         Tweener.addTween(Main.panel._leftCorner.actor, params);
         Tweener.addTween(Main.panel._rightCorner.actor, params);
-
-        params = {
-            opacity: 255,
-            time: ANIMATION_TIME + 0.5,
-            transition: 'easeOutQuad'
-        };
-
-        Tweener.addTween(Main.panel._leftBox, params);
-        Tweener.addTween(Main.panel._centerBox, params);
-        Tweener.addTween(Main.panel._rightBox, params);
-
+        
         Main.overview._relayout();
     },
 
