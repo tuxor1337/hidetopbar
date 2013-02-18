@@ -31,9 +31,13 @@ License:
 --------
 
 Copyright (c) 2011 Finnbarr P. Murphy. All rights reserved.
+
 Copyright (c) 2012-2013 minor tweaks and maintenance by Mathieu Lutfy.
+
 Copyright (c) 2012 major fix by Philip Witte.
+
 Copyright (c) 2013 major fixes by Thomas Vogt.
+
 This program is free software; you can redistribute it and/or
 modify it under the terms of VERSION 2 of the GNU General Public
 License as published by the Free Software Foundation provided
