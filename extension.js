@@ -12,7 +12,8 @@
 const Main = imports.ui.main;
 const Tweener = imports.ui.tweener;
 
-const PANEL_HEIGHT = Main.panel.actor.get_height();
+const PANEL_BOX = Main.panel.actor.get_parent();
+const PANEL_HEIGHT = PANEL_BOX.get_height();
 const ANIMATION_TIME = 0.2;
 
 function HideTopPanel() {
@@ -21,6 +22,7 @@ function HideTopPanel() {
 
 HideTopPanel.prototype = {
     _hideTopPanel: function() {
+        PANEL_BOX.height=0;
         Tweener.addTween(Main.panel.actor, { 
             y: -PANEL_HEIGHT,
             time: ANIMATION_TIME + 0.2,
@@ -52,8 +54,8 @@ HideTopPanel.prototype = {
     },
 
     _showTopPanel: function() {
-        Main.panel.actor.y=-PANEL_HEIGHT;
-        Main.panel.actor.height=PANEL_HEIGHT;
+        Main.panel.actor.y = -PANEL_HEIGHT;
+        Main.panel.actor.height = PANEL_HEIGHT;
         Tweener.addTween(Main.panel.actor, {
             y: 0,
             time: ANIMATION_TIME,
@@ -99,6 +101,7 @@ HideTopPanel.prototype = {
         if(this._hideEvent) Main.overview.disconnect(this._hideEvent);
 
         this._showTopPanel();
+        PANEL_BOX.height = PANEL_HEIGHT;
     }
 };
 
