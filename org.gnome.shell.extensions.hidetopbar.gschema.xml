@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.hidetopbar" path="/org/gnome/shell/extensions/hidetopbar/">
+    <key name="hot-corner" type="b">
+      <default>true</default>
+      <summary>Keep hot corner sensitive or not</summary>
+      <description>
+        Set to "true" to keep hot corner sensitive even when panel is in hidden
+        state. Set to "false" to get rid of the hot corner in hidden state.
+      </description>
+    </key>
+  </schema>
+</schemalist>

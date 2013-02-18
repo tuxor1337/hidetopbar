@@ -15,6 +15,12 @@ Tested on Gnome 3.6.1.
 Installation:
 -------------
 
+Compile the gsettings schema by running
+
+    mkdir ./schemas/
+    glib-compile-schemas --strict --targetdir=./schemas/ .
+
+
 Install this in your extensions directory:
 
     ~/.local/share/gnome-shell/extensions/
