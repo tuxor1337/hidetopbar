@@ -20,31 +20,31 @@ function HideTopPanel() {
 }
 
 HideTopPanel.prototype = {
-    _init: function() {
-        this._showEvent = 0;
-        this._hideEvent = 0;
-    },
-
     _hideTopPanel: function() {
-        Tweener.addTween(Main.panel.actor,
-                     { y: -PANEL_HEIGHT,
-                       time: ANIMATION_TIME+0.2,
-                       transition: 'easeOutQuad',
-                       onComplete: function() { Main.panel.actor.height=1; Main.panel.actor.y=0; }
-                     });
+        Tweener.addTween(Main.panel.actor, { 
+            y: -PANEL_HEIGHT,
+            time: ANIMATION_TIME + 0.2,
+            transition: 'easeOutQuad',
+            onComplete: function() {
+                Main.panel.actor.height = 1;
+                Main.panel.actor.y = 0;
+            }
+        });
 
-        let params = { y: 1,
-                       time: ANIMATION_TIME+0.2,
-                       transition: 'easeOutQuad'
-                     };
+        let params = {
+            y: 1,
+            time: ANIMATION_TIME + 0.2,
+            transition: 'easeOutQuad'
+        };
  
         Tweener.addTween(Main.panel._leftCorner.actor, params);
         Tweener.addTween(Main.panel._rightCorner.actor, params);
 
-        params = { opacity: 0,
-                   time: ANIMATION_TIME,
-                   transition: 'easeOutQuad'
-                 };
+        params = {
+            opacity: 0,
+            time: ANIMATION_TIME,
+            transition: 'easeOutQuad'
+        };
 
         Tweener.addTween(Main.panel._leftBox, params);
         Tweener.addTween(Main.panel._centerBox, params);
@@ -60,17 +60,17 @@ HideTopPanel.prototype = {
             transition: 'easeOutQuad'
         });
 
-        let boxParams = {
+        let params = {
             opacity: 255,
             time: ANIMATION_TIME + 0.2,
             transition: 'easeOutQuad'
         };
 
-        Tweener.addTween(Main.panel._leftBox, boxParams);
-        Tweener.addTween(Main.panel._centerBox, boxParams);
-        Tweener.addTween(Main.panel._rightBox, boxParams);
+        Tweener.addTween(Main.panel._leftBox, params);
+        Tweener.addTween(Main.panel._centerBox, params);
+        Tweener.addTween(Main.panel._rightBox, params);
     
-        let params = {
+        params = {
             y: PANEL_HEIGHT - 1,
             time: ANIMATION_TIME,
             transition: 'easeOutQuad'
@@ -81,6 +81,11 @@ HideTopPanel.prototype = {
         
         Main.overview._relayout();
     },
+    
+    _init: function() {
+        this._showEvent = 0;
+        this._hideEvent = 0;
+    },
 
     enable: function() {
         this._showEvent = Main.overview.connect('showing', this._showTopPanel);
@@ -90,13 +95,8 @@ HideTopPanel.prototype = {
     },
 
     disable: function() {
-        if (this._showEvent) {
-            Main.overview.disconnect(this._showEvent);
-        }
-
-        if (this._hideEvent) {
-            Main.overview.disconnect(this._hideEvent);
-        }
+        if(this._showEvent) Main.overview.disconnect(this._showEvent);
+        if(this._hideEvent) Main.overview.disconnect(this._hideEvent);
 
         this._showTopPanel();
     }
