@@ -2,10 +2,12 @@ About:
 ------
 
 Hides Gnome's topbar except in overview mode.
-https://extensions.gnome.org/extension/545/hide-top-bar/
-https://github.com/mlutfy/hidetopbar
+* https://extensions.gnome.org/extension/545/hide-top-bar/
+* https://github.com/mlutfy/hidetopbar
+* 
 Based on Finnbarr P. Murphy's extension "autohidetopbar@fpmurphy.com"
-http://www.fpmurphy.com/gnome-shell-extensions/
+* http://www.fpmurphy.com/gnome-shell-extensions/
+
 Maintained by Thomas Vogt.
 With contributions by Philip Witte and Mathieu Lutfy.
 Tested on Gnome 3.6.1.
@@ -14,11 +16,11 @@ Installation:
 -------------
 
 Install this in your extensions directory:
-~/.local/share/gnome-shell/extensions/
+    ~/.local/share/gnome-shell/extensions/
 Example:
-cd ~/.local/share/gnome-shell/extensions/
-git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
-gnome-shell-extension-tool -d hidetopbar@mathieu.bidon.ca
+    cd ~/.local/share/gnome-shell/extensions/
+    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
+    gnome-shell-extension-tool -d hidetopbar@mathieu.bidon.ca
 You can also manages extensions from https://extensions.gnome.org/local/
 
 License:
