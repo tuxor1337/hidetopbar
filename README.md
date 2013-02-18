@@ -4,7 +4,7 @@ About:
 Hides Gnome's topbar except in overview mode.
 * https://extensions.gnome.org/extension/545/hide-top-bar/
 * https://github.com/mlutfy/hidetopbar
-* 
+
 Based on Finnbarr P. Murphy's extension "autohidetopbar@fpmurphy.com"
 * http://www.fpmurphy.com/gnome-shell-extensions/
 
