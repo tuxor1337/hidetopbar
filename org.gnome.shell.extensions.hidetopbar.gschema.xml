@@ -9,5 +9,13 @@
         state. Set to "false" to get rid of the hot corner in hidden state.
       </description>
     </key>
+    <key name="mouse-sensitive" type="b">
+      <default>false</default>
+      <summary>Show panel when mouse approaches edge of the screen</summary>
+      <description>
+        Set to "true" to show panel not only in overview but also when the mouse
+        approaches the edge of the screen.
+      </description>
+    </key>
   </schema>
 </schemalist>

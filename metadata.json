@@ -3,5 +3,6 @@
   "uuid": "hidetopbar@mathieu.bidon.ca",
   "name": "Hide Top Bar",
   "settings-schema": "org.gnome.shell.extensions.hidetopbar", 
-  "description": "Hides the top bar, except in overviewmode. Based on fpmurphy's autohidetopbar: http://www.fpmurphy.com/gnome-shell-extensions/ Source code: https://github.com/mlutfy/hidetopbar"
+  "description": "Hides the top bar, except in overview. However, there is an option to show the panel whenever the mouse pointer approaches the edge of the screen.",
+  "url": "https://github.com/mlutfy/hidetopbar"
 }

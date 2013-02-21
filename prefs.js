@@ -4,8 +4,6 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
-const SETTINGS_HOT_CORNER = 'hot-corner';
-
 let settings;
 
 function init() {
@@ -13,28 +11,41 @@ function init() {
 }
 
 function buildPrefsWidget() {
-    let showName = settings.get_boolean(SETTINGS_HOT_CORNER);
+    let frame = new Gtk.VBox({border_width: 10});
+    frame.pack_start(new Gtk.Label({
+        label: "<b>Sensitivity</b>",
+        use_markup: true,
+        xalign: 0
+    }), false, false, 0);
 
-    let frame = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, border_width: 10});
-    let label = new Gtk.Label({label: "<b>Sensitivity</b>", use_markup: true, xalign: 0});
-    frame.add(label);
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
+    let settings_array = [
+        ['mouse-sensitive',"Show panel when mouse approaches edge of the screen"],
+        ['hot-corner',"Keep hot corner sensitive, even in hidden state"]
+    ];
+    settings_array.forEach(function (s) {
+        let hbox = new Gtk.HBox();
+        let onoff = new Gtk.Switch({active: settings.get_boolean(s[0])});
+        
+        hbox.pack_start(new Gtk.Label({
+            label: s[1],
+            use_markup: true,
+            xalign: 0
+        }), true, true, 0);
+        hbox.pack_end(onoff, false, false, 0);
+        
+        settings.connect('changed::'+s[0], function(k,b) {
+            onoff.set_active(settings.get_boolean(b)); });
 
-    let vbox = new Gtk.Box({orientation: Gtk.Orientation.VERTICAL, margin_left: 20, margin_top: 10});
-    let hbox = new Gtk.Box({orientation: Gtk.Orientation.HORIZONTAL});
-    vbox.add(hbox)
-
-    let label = new Gtk.Label({label: "Keep hot corner sensitive, even in hidden state", 
-            use_markup: true, xalign: 0});
-    let onoff = new Gtk.Switch({active: showName});
-
-    hbox.pack_start(label, true, true, 0);
-    hbox.add(onoff);
-
-    onoff.connect('notify::active', function(widget) {
-        settings.set_boolean(SETTINGS_HOT_CORNER, widget.active);
+        onoff.connect('notify::active', function(w) {
+            settings.set_boolean("hot-corner", w.active);
+            settings.set_boolean(s[0], w.active);
+        });
+        
+        settings_vbox.pack_start(hbox, false,false, 0);
     });
 
-    frame.add(vbox);
+    frame.pack_start(settings_vbox, true, true, 0);
     frame.show_all();
     return frame;
 }
