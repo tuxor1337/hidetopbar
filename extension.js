@@ -8,7 +8,6 @@
 
 const Main = imports.ui.main;
 const Tweener = imports.ui.tweener;
-const Lang = imports.lang;
 const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     .imports.convenience.getSettings();
                     
@@ -21,6 +20,7 @@ let _showEvent = 0;
 let _hideEvent = 0;
 let _stgsEvent = 0;
 let _stgsEvent2 = 0;
+
 let _enterEvent = 0;
 let _leaveEvent = 0;
 let _menuEvent = 0;
