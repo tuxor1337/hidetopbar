@@ -23,6 +23,8 @@ let _stgsEvent = 0;
 let _stgsEvent2 = 0;
 let _enterEvent = 0;
 let _leaveEvent = 0;
+let _menuEvent = 0;
+let _blockerMenu = 0;
 
 function _hidePanel(animationTime) {
     let x = Number(Settings.get_boolean('hot-corner'))
@@ -54,8 +56,13 @@ function _toggleMouseSensitive() {
                 if(blocker == null) {
                     _hidePanel(ANIMATION_TIME_AUTOHIDE);
                 } else {
-                    blocker.connect('open-state-changed', function(menu, open){
-                        if(!open) tmpFct();
+                    _blockerMenu = blocker
+                    _menuEvent = _blockerMenu.connect('open-state-changed', function(menu, open){
+                        if(!open) {
+                            _blockerMenu.disconnect(_menuEvent);
+                            _menuEvent = 0; _blockerMenu = 0;
+                            tmpFct();
+                        }
                     });
                 }
             }
