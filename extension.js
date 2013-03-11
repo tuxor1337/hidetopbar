@@ -13,6 +13,7 @@ const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     
 const PANEL_BOX = Main.panel.actor.get_parent();
 const PANEL_HEIGHT = PANEL_BOX.get_height();
+const MY_MONITOR = Main.layoutManager.primaryMonitor;
 const ANIMATION_TIME_OVERVIEW = 0.4;
 const ANIMATION_TIME_AUTOHIDE = 0.2;
 
@@ -29,44 +30,52 @@ let _blockerMenu = 0;
 function _hidePanel(animationTime) {
     let x = Number(Settings.get_boolean('hot-corner'))
     PANEL_BOX.height = x;
+    
     Tweener.addTween(Main.panel.actor, {
         y: x-PANEL_HEIGHT,
         time: animationTime,
-        transition: 'easeOutQuad'
+        transition: 'easeOutQuad',
+        onComplete: function() {
+            PANEL_BOX.set_opacity(0);
+        }
     });
 }
 
 function _showPanel(animationTime) {
+    PANEL_BOX.height = PANEL_HEIGHT;
+    PANEL_BOX.set_opacity(255);
+    
     Tweener.addTween(Main.panel.actor, {
         y: 0,
         time: animationTime,
         transition: 'easeOutQuad'
     });
-    
-    PANEL_BOX.height = PANEL_HEIGHT;
+}
+
+function _handleMenus() {
+    if(!Main.overview.visible) {
+        blocker = (Main.panel._menus || Main.panel.menuManager)._activeMenu
+        if(blocker == null) {
+            _hidePanel(ANIMATION_TIME_AUTOHIDE);
+        } else {
+            _blockerMenu = blocker
+            _menuEvent = _blockerMenu.connect('open-state-changed', function(menu, open){
+                if(!open) {
+                    _blockerMenu.disconnect(_menuEvent);
+                    _menuEvent = 0; _blockerMenu = 0;
+                    _handleMenus();
+                }
+            });
+        }
+    }
 }
 
 function _toggleMouseSensitive() {
     if(Settings.get_boolean('mouse-sensitive')) {
         _enterEvent = Main.panel.actor.connect('enter-event', function() {
-            _showPanel(ANIMATION_TIME_AUTOHIDE); });
-        _leaveEvent = Main.panel.actor.connect('leave-event', function tmpFct() { 
-            if(!Main.overview.visible) {
-                blocker = (Main.panel._menus || Main.panel.menuManager)._activeMenu
-                if(blocker == null) {
-                    _hidePanel(ANIMATION_TIME_AUTOHIDE);
-                } else {
-                    _blockerMenu = blocker
-                    _menuEvent = _blockerMenu.connect('open-state-changed', function(menu, open){
-                        if(!open) {
-                            _blockerMenu.disconnect(_menuEvent);
-                            _menuEvent = 0; _blockerMenu = 0;
-                            tmpFct();
-                        }
-                    });
-                }
-            }
+            _showPanel(ANIMATION_TIME_AUTOHIDE);
         });
+        _leaveEvent = Main.panel.actor.connect('leave-event', _handleMenus);
     } else {
         if(_enterEvent) Main.panel.actor.disconnect(_enterEvent);
         if(_leaveEvent) Main.panel.actor.disconnect(_leaveEvent);
@@ -102,4 +111,3 @@ function disable() {
     
     _showPanel(0.1);
 }
-
