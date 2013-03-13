@@ -27,7 +27,8 @@ let _menuEvent = 0;
 let _blockerMenu = 0;
 
 function _hidePanel(animationTime) {
-    let x = Number(Settings.get_boolean('hot-corner'))
+    let hotCornerSetting = Settings.get_boolean('hot-corner');
+    let x = Number(hotCornerSetting)
     PANEL_BOX.height = x;
     
     Tweener.addTween(Main.panel.actor, {
@@ -35,7 +36,11 @@ function _hidePanel(animationTime) {
         time: animationTime,
         transition: 'easeOutQuad',
         onComplete: function() {
-            PANEL_BOX.set_opacity(0);
+            if(!hotCornerSetting) {
+                PANEL_BOX.set_opacity(0);
+            } else if(PANEL_BOX.get_opacity() == 0) {
+                PANEL_BOX.set_opacity(255);
+            }
         }
     });
 }
