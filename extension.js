@@ -13,7 +13,6 @@ const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     
 const PANEL_BOX = Main.panel.actor.get_parent();
 const PANEL_HEIGHT = PANEL_BOX.get_height();
-const MY_MONITOR = Main.layoutManager.primaryMonitor;
 const ANIMATION_TIME_OVERVIEW = 0.4;
 const ANIMATION_TIME_AUTOHIDE = 0.2;
 
