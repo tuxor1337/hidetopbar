@@ -12,10 +12,11 @@ const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     .imports.convenience.getSettings();
                     
 const PANEL_BOX = Main.panel.actor.get_parent();
-const PANEL_HEIGHT = PANEL_BOX.get_height();
+
 const ANIMATION_TIME_OVERVIEW = 0.4;
 const ANIMATION_TIME_AUTOHIDE = 0.2;
 
+let _panelHeight = Main.panel.actor.get_height();
 let _showEvent = 0;
 let _hideEvent = 0;
 let _stgsEvent = 0;
@@ -27,12 +28,17 @@ let _menuEvent = 0;
 let _blockerMenu = 0;
 
 function _hidePanel(animationTime) {
+    /* Sometimes the panel height changes, e.g. due to user themes.
+       Unfortunately, I can't think of a better place to check for such
+       changes, since there doesn't seem to be a "size-changed" event. */
+    _panelHeight = Main.panel.actor.get_height();
+    
     let hotCornerSetting = Settings.get_boolean('hot-corner');
     let x = Number(hotCornerSetting)
     PANEL_BOX.height = x;
     
     Tweener.addTween(Main.panel.actor, {
-        y: x-PANEL_HEIGHT,
+        y: x - _panelHeight,
         time: animationTime,
         transition: 'easeOutQuad',
         onComplete: function() {
@@ -46,13 +52,13 @@ function _hidePanel(animationTime) {
 }
 
 function _showPanel(animationTime) {
-    PANEL_BOX.height = PANEL_HEIGHT;
+    PANEL_BOX.height = _panelHeight;
     PANEL_BOX.set_opacity(255);
     
     Tweener.addTween(Main.panel.actor, {
         y: 0,
         time: animationTime,
-        transition: 'easeOutQuad'
+        transition: 'easeOutQuad',
     });
 }
 
@@ -88,7 +94,7 @@ function _toggleMouseSensitive() {
 
 function init() { }
 
-function enable() {
+function enable() {    
     Main.layoutManager.removeChrome(PANEL_BOX);
     Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: false });
     
