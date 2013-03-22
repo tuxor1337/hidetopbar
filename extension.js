@@ -11,12 +11,13 @@ const Tweener = imports.ui.tweener;
 const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     .imports.convenience.getSettings();
                     
-const PANEL_BOX = Main.panel.actor.get_parent();
+const PANEL_ACTOR = Main.panel.actor;
+const PANEL_BOX = PANEL_ACTOR.get_parent();
 
 const ANIMATION_TIME_OVERVIEW = 0.4;
 const ANIMATION_TIME_AUTOHIDE = 0.2;
 
-let _panelHeight = Main.panel.actor.get_height();
+let _panelHeight = PANEL_ACTOR.get_height();
 let _showEvent = 0;
 let _hideEvent = 0;
 let _stgsEvent = 0;
@@ -28,34 +29,33 @@ let _menuEvent = 0;
 let _blockerMenu = 0;
 
 function _hidePanel(animationTime) {
-    /* Sometimes the panel height changes, e.g. due to user themes.
-       Unfortunately, I can't think of a better place to check for such
-       changes, since there doesn't seem to be a "size-changed" event. */
-    _panelHeight = Main.panel.actor.get_height();
+    /* Still looking for some kind of "size-changed" event, see issue #12. */
+    _panelHeight = PANEL_ACTOR.get_height();
     
     let hotCornerSetting = Settings.get_boolean('hot-corner');
     let x = Number(hotCornerSetting)
     PANEL_BOX.height = x;
     
-    Tweener.addTween(Main.panel.actor, {
+    Tweener.addTween(PANEL_ACTOR, {
         y: x - _panelHeight,
         time: animationTime,
         transition: 'easeOutQuad',
         onComplete: function() {
-            if(!hotCornerSetting) {
-                PANEL_BOX.set_opacity(0);
-            } else if(PANEL_BOX.get_opacity() == 0) {
-                PANEL_BOX.set_opacity(255);
-            }
+            Main.panel.statusArea.appMenu._container.hide();
+            Main.panel._centerBox.hide();
+            Main.panel._rightBox.hide();
+            PANEL_ACTOR.set_opacity(x*255);
         }
     });
 }
 
 function _showPanel(animationTime) {
     PANEL_BOX.height = _panelHeight;
-    PANEL_BOX.set_opacity(255);
+    PANEL_ACTOR.set_opacity(255);
+    Main.panel._centerBox.show();
+    Main.panel._rightBox.show();
     
-    Tweener.addTween(Main.panel.actor, {
+    Tweener.addTween(PANEL_ACTOR, {
         y: 0,
         time: animationTime,
         transition: 'easeOutQuad',
@@ -82,13 +82,14 @@ function _handleMenus() {
 
 function _toggleMouseSensitive() {
     if(Settings.get_boolean('mouse-sensitive')) {
-        _enterEvent = Main.panel.actor.connect('enter-event', function() {
+        _enterEvent = PANEL_ACTOR.connect('enter-event', function() {
+            Main.panel.statusArea.appMenu._container.show();
             _showPanel(ANIMATION_TIME_AUTOHIDE);
         });
-        _leaveEvent = Main.panel.actor.connect('leave-event', _handleMenus);
+        _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
     } else {
-        if(_enterEvent) Main.panel.actor.disconnect(_enterEvent);
-        if(_leaveEvent) Main.panel.actor.disconnect(_leaveEvent);
+        if(_enterEvent) PANEL_ACTOR.disconnect(_enterEvent);
+        if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
     }
 }
 
@@ -116,8 +117,8 @@ function disable() {
     if(_hideEvent) Main.overview.disconnect(_hideEvent);
     if(_stgsEvent) Settings.disconnect(_stgsEvent);
     if(_stgsEvent2) Settings.disconnect(_stgsEvent2);
-    if(_enterEvent) Main.panel.actor.disconnect(_enterEvent);
-    if(_leaveEvent) Main.panel.actor.disconnect(_leaveEvent);
+    if(_enterEvent) PANEL_ACTOR.disconnect(_enterEvent);
+    if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
     
     _showPanel(0.1);
 }
