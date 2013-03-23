@@ -41,9 +41,15 @@ function _hidePanel(animationTime) {
         time: animationTime,
         transition: 'easeOutQuad',
         onComplete: function() {
-            Main.panel.statusArea.appMenu._container.hide();
             Main.panel._centerBox.hide();
             Main.panel._rightBox.hide();
+        
+            els = Main.panel._leftBox.get_children();
+            for each(el in els.slice(1)) {
+                if(typeof(el._cotainer) == "undefined") el.hide();
+                else el._container.hide();
+            }
+            
             PANEL_ACTOR.set_opacity(x*255);
         }
     });
@@ -54,6 +60,12 @@ function _showPanel(animationTime) {
     PANEL_ACTOR.set_opacity(255);
     Main.panel._centerBox.show();
     Main.panel._rightBox.show();
+    
+    els = Main.panel._leftBox.get_children();
+    for each(el in els.slice(1)) {
+        if(typeof(el._cotainer) == "undefined") el.show();
+        else el._container.show();
+    }
     
     Tweener.addTween(PANEL_ACTOR, {
         y: 0,
@@ -83,7 +95,6 @@ function _handleMenus() {
 function _toggleMouseSensitive() {
     if(Settings.get_boolean('mouse-sensitive')) {
         _enterEvent = PANEL_ACTOR.connect('enter-event', function() {
-            Main.panel.statusArea.appMenu._container.show();
             _showPanel(ANIMATION_TIME_AUTOHIDE);
         });
         _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
