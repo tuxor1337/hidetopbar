@@ -17,5 +17,21 @@
         approaches the edge of the screen.
       </description>
     </key>
+    <key name="animation-time-overview" type="d">
+      <default>0.4</default>
+      <summary>Slide in/out animation time</summary>
+      <description>
+        The time it takes for the tweener to slide the panel in/out when 
+        entering/leaving overview.
+      </description>
+    </key>
+    <key name="animation-time-autohide" type="d">
+      <default>0.2</default>
+      <summary>Slide in/out animation time</summary>
+      <description>
+        The time it takes for the tweener to slide the panel in/out when 
+        the mouse approaches the edge of the screen.
+      </description>
+    </key>
   </schema>
 </schemalist>

@@ -14,9 +14,6 @@ const Settings = imports.misc.extensionUtils.getCurrentExtension()
 const PANEL_ACTOR = Main.panel.actor;
 const PANEL_BOX = PANEL_ACTOR.get_parent();
 
-const ANIMATION_TIME_OVERVIEW = 0.4;
-const ANIMATION_TIME_AUTOHIDE = 0.2;
-
 let _panelHeight = PANEL_ACTOR.get_height();
 let _showEvent = 0;
 let _hideEvent = 0;
@@ -78,7 +75,7 @@ function _handleMenus() {
     if(!Main.overview.visible) {
         blocker = (Main.panel._menus || Main.panel.menuManager)._activeMenu
         if(blocker == null) {
-            _hidePanel(ANIMATION_TIME_AUTOHIDE);
+            _hidePanel(Settings.get_double('animation-time-autohide'));
         } else {
             _blockerMenu = blocker
             _menuEvent = _blockerMenu.connect('open-state-changed', function(menu, open){
@@ -95,7 +92,7 @@ function _handleMenus() {
 function _toggleMouseSensitive() {
     if(Settings.get_boolean('mouse-sensitive')) {
         _enterEvent = PANEL_ACTOR.connect('enter-event', function() {
-            _showPanel(ANIMATION_TIME_AUTOHIDE);
+            _showPanel(Settings.get_double('animation-time-autohide'));
         });
         _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
     } else {
@@ -110,8 +107,12 @@ function enable() {
     Main.layoutManager.removeChrome(PANEL_BOX);
     Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: false });
     
-    _showEvent = Main.overview.connect('showing', function() { _showPanel(ANIMATION_TIME_OVERVIEW); });
-    _hideEvent = Main.overview.connect('hiding', function() { _hidePanel(ANIMATION_TIME_OVERVIEW); });
+    _showEvent = Main.overview.connect('showing', function() {
+        _showPanel(Settings.get_double('animation-time-overview'));
+    });
+    _hideEvent = Main.overview.connect('hiding', function() {
+        _hidePanel(Settings.get_double('animation-time-overview'));
+    });
     _stgsEvent = Settings.connect('changed::hot-corner', function() { _hidePanel(0.1); });
     
     _stgsEvent2 = Settings.connect('changed::mouse-sensitive', _toggleMouseSensitive);
