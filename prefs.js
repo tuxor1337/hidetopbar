@@ -38,7 +38,8 @@ function buildPrefsWidget() {
             onoff.set_active(settings.get_boolean(b)); });
 
         onoff.connect('notify::active', function(w) {
-            settings.set_boolean("hot-corner", w.active);
+            if(!w.active) settings.set_boolean("mouse-sensitive", false);
+            else settings.set_boolean("hot-corner", true);
             settings.set_boolean(s[0], w.active);
         });
         
