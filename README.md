@@ -25,7 +25,7 @@ Example:
 
     cd ~/.local/share/gnome-shell/extensions/
     git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
-    gnome-shell-extension-tool -d hidetopbar@mathieu.bidon.ca
+    gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
     
 You can also manages extensions from https://extensions.gnome.org/local/
 
