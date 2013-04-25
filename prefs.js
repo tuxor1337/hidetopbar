@@ -61,7 +61,7 @@ function buildPrefsWidget() {
     ];
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
-        let spin = new Gtk.SpinButton.new_with_range(0.0,1.0,0.1);
+        let spin = Gtk.SpinButton.new_with_range(0.0,1.0,0.1);
         spin.set_value(settings.get_double(s[0]));
         
         hbox.pack_start(new Gtk.Label({
