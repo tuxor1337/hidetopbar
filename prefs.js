@@ -1,5 +1,8 @@
 const Gtk = imports.gi.Gtk;
 
+const Gettext = imports.gettext.domain('hidetopbar');
+const _ = Gettext.gettext;
+
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
@@ -8,20 +11,21 @@ let settings;
 
 function init() {
     settings = Convenience.getSettings();
+    Convenience.initTranslations("hidetopbar");
 }
 
 function buildPrefsWidget() {
     let frame = new Gtk.VBox({border_width: 10});
     frame.pack_start(new Gtk.Label({
-        label: "<b>Sensitivity</b>",
+        label: _("<b>Sensitivity</b>"),
         use_markup: true,
         xalign: 0
     }), false, false, 0);
 
     let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
     let settings_array = [
-        ['mouse-sensitive',"Show panel when mouse approaches edge of the screen"],
-        ['hot-corner',"Keep hot corner sensitive, even in hidden state"]
+        ['mouse-sensitive',_("Show panel when mouse approaches edge of the screen")],
+        ['hot-corner',_("Keep hot corner sensitive, even in hidden state")]
     ];
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
@@ -49,15 +53,15 @@ function buildPrefsWidget() {
     frame.pack_start(settings_vbox, true, true, 0);
     
     frame.pack_start(new Gtk.Label({
-        label: "<b>Animation</b>",
+        label: _("<b>Animation</b>"),
         use_markup: true,
         xalign: 0
     }), false, false, 0);
 
     let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
     let settings_array = [
-        ['animation-time-overview',"Slide animation time when entering/leaving overview."],
-        ['animation-time-autohide',"Slide animation time when mouse approaches edge of the screen."]
+        ['animation-time-overview',_("Slide animation time when entering/leaving overview.")],
+        ['animation-time-autohide',_("Slide animation time when mouse approaches edge of the screen.")]
     ];
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
