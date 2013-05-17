@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Translation for gnome-shell extension Hide Top Bar.
+# Copyright (C) Jonatan Zeidler
+# This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
+# jonnius <jonatan_zeidler@gmx.de>, 2013.
 #
 msgid ""
 msgstr ""
