@@ -81,7 +81,7 @@ function _showPanel(animationTime) {
 
 function _handleMenus() {
     if(!Main.overview.visible) {
-        blocker = (Main.panel._menus || Main.panel.menuManager)._activeMenu
+        blocker = Main.panel.menuManager.activeMenu;
         if(blocker == null) {
             _hidePanel(_settingsAnimTimeAutoh);
         } else {
