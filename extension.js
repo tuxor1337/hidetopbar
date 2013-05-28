@@ -51,7 +51,7 @@ function _hidePanel(animationTime) {
         
             els = Main.panel._leftBox.get_children();
             for each(el in els.slice(1)) {
-                if(typeof(el._cotainer) == "undefined") el.hide();
+                if(typeof(el._container) == "undefined") el.hide();
                 else el._container.hide();
             }
             
@@ -68,7 +68,7 @@ function _showPanel(animationTime) {
     
     els = Main.panel._leftBox.get_children();
     for each(el in els.slice(1)) {
-        if(typeof(el._cotainer) == "undefined") el.show();
+        if(typeof(el._container) == "undefined") el.show();
         else el._container.show();
     }
     
