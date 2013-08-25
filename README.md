@@ -30,7 +30,7 @@ Example:
     glib-compile-schemas --strict --targetdir=./schemas/ .
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
     
-You can also manages extensions from https://extensions.gnome.org/local/
+You can also manage extensions from https://extensions.gnome.org/local/
 
 License:
 --------
