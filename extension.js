@@ -25,6 +25,7 @@ let _stgsEventAnim = 0;
 let _stgsEventAnim2 = 0;
 let _stgsEventHotCorner = 0;
 let _stgsEventSensitive = 0;
+let _stgsEventOverv = 0;
 let _stgsEventPress = 0;
 
 let _enterEvent = 0;
@@ -45,13 +46,14 @@ if("PressureBarrier" in Layout) {
     _panelPressure.connect('trigger', function(barrier) {
         if (Main.layoutManager.primaryMonitor.inFullscreen)
             return;
-        _showPanel(_settingsAnimTimeAutoh);
+        _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
     });
 }
 
 let _settingsHotCorner = Settings.get_boolean('hot-corner');
 let _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
 let _settingsPress = Settings.get_boolean('use-pressure-barrier');
+let _settingsShowOverview = Settings.get_boolean('mouse-triggers-overview');
 let _settingsAnimTimeOverv = Settings.get_double('animation-time-overview');
 let _settingsAnimTimeAutoh = Settings.get_double('animation-time-autohide');
 
@@ -85,7 +87,9 @@ function _hidePanel(animationTime, trigger) {
     });
 }
 
-function _showPanel(animationTime) {
+function _showPanel(animationTime, trigger) {
+    if(trigger == "mouse-enter" && _settingsShowOverview)
+        Main.overview.show();
     if(PANEL_ACTOR.y > 1-_panelHeight) return;
     PANEL_BOX.height = _panelHeight;
     PANEL_ACTOR.set_opacity(255);
@@ -136,7 +140,7 @@ function _updateMouseSensitive() {
             _panelPressure.addBarrier(_panelBarrier);
         } else {
             _enterEvent = PANEL_ACTOR.connect('enter-event', function() {
-                _showPanel(_settingsAnimTimeAutoh);
+                _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
             });
         }
         _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
@@ -161,6 +165,10 @@ function _setup_settings_handler() {
         function() { 
             _settingsAnimTimeAutoh = Settings.get_double('animation-time-autohide');
     });
+    _stgsEventOverv = Settings.connect('changed::mouse-triggers-overview',
+        function() { 
+            _settingsShowOverview = Settings.get_boolean('mouse-triggers-overview');
+    });
     _stgsEventPress = Settings.connect('changed::use-pressure-barrier', function() { 
         _settingsPress = Settings.get_boolean('use-pressure-barrier');
         _updateMouseSensitive();
@@ -177,6 +185,7 @@ function _disconnect_settings_handler() {
     if(_stgsEventAnim) Settings.disconnect(_stgsEventAnim);
     if(_stgsEventAnim2) Settings.disconnect(_stgsEventAnim2);
     if(_stgsEventPress) Settings.disconnect(_stgsEventPress);
+    if(_stgsEventOverv) Settings.disconnect(_stgsEventOverv);
     if(_stgsEventHotCorner) Settings.disconnect(_stgsEventHotCorner);
     if(_stgsEventSensitive) Settings.disconnect(_stgsEventSensitive);
 }
