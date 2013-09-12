@@ -17,6 +17,23 @@
         approaches the edge of the screen.
       </description>
     </key>
+    <key name="use-pressure-barrier" type="b">
+      <default>false</default>
+      <summary>Use pressure barrier</summary>
+      <description>
+        Set to "true" to force using a pressure barrier instead of a simple
+        enter event (only for GNOME 3.8 and up).
+      </description>
+    </key>
+    <key name="mouse-triggers-overview" type="b">
+      <default>false</default>
+      <summary>Show overview when mouse approaches edge of the screen</summary>
+      <description>
+        When "mouse-sensitive" is set to "true" and this key is activated, not
+        only the panel but also the overview is shown when the mouse approaches
+        the edge of the screen.
+      </description>
+    </key>
     <key name="animation-time-overview" type="d">
       <default>0.4</default>
       <summary>Slide in/out animation time</summary>

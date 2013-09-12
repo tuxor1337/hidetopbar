@@ -25,7 +25,9 @@ function buildPrefsWidget() {
     let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
     let settings_array = [
         ['mouse-sensitive',_("Show panel when mouse approaches edge of the screen")],
-        ['hot-corner',_("Keep hot corner sensitive, even in hidden state")]
+        ['use-pressure-barrier',_("Use a pressure barrier")],
+        ['hot-corner',_("Keep hot corner sensitive, even in hidden state")],
+        ['mouse-triggers-overview',_("In the above case show overview, too")],
     ];
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
@@ -42,8 +44,6 @@ function buildPrefsWidget() {
             onoff.set_active(settings.get_boolean(b)); });
 
         onoff.connect('notify::active', function(w) {
-            if(!w.active) settings.set_boolean("mouse-sensitive", false);
-            else settings.set_boolean("hot-corner", true);
             settings.set_boolean(s[0], w.active);
         });
         

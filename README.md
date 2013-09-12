@@ -24,10 +24,13 @@ Install this in your extensions directory:
 Example:
 
     cd ~/.local/share/gnome-shell/extensions/
-    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
+    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.c
+    cd hidetopbar@mathieu.bidon.ca
+    mkdir ./schemas/
+    glib-compile-schemas --strict --targetdir=./schemas/ .
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
     
-You can also manages extensions from https://extensions.gnome.org/local/
+You can also manage extensions from https://extensions.gnome.org/local/
 
 License:
 --------
