@@ -1,0 +1,46 @@
+# Translation for gnome-shell extension Hide Top Bar.
+# Copyright (C) Lequn Chen (abcdabcd987)
+# This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
+# Lequn Chen (abcdabcd987) <chenlequn22@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hidetopbar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-06 11:09+0800\n"
+"PO-Revision-Date: 2013-10-06 11:40+0800\n"
+"Last-Translator: Lequn Chen <chenlequn22@gmail.com>\n"
+"Language-Team: Lequn Chen <chenlequn22@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Language: zh_Cn\n"
+
+#: prefs.js:19
+msgid "<b>Sensitivity</b>"
+msgstr "<b>敏感性</b>"
+
+#: prefs.js:26
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "鼠标接近屏幕上端时显示面板"
+
+msgid "Use a pressure barrier"
+msgstr "用力推上端才滑出面板"
+
+#: prefs.js:27
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "面板隐藏时“活动”可从左上角呼出"
+
+#: prefs.js:55
+msgid "<b>Animation</b>"
+msgstr "<b>动画效果</b>"
+
+#: prefs.js:62
+msgid "Slide animation time when entering/leaving overview."
+msgstr "“活动”滑入和滑出的动画动画时间"
+
+#: prefs.js:63
+msgid "Slide animation time when mouse approaches edge of the screen."
+msgstr "鼠标接近屏幕上端时面板滑出的动画时间"
