@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-06 11:09+0800\n"
-"PO-Revision-Date: 2013-10-06 11:13+0800\n"
+"PO-Revision-Date: 2013-10-06 11:40+0800\n"
 "Last-Translator: Lequn Chen <chenlequn22@gmail.com>\n"
 "Language-Team: Lequn Chen <chenlequn22@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,9 @@ msgstr "<b>敏感性</b>"
 #: prefs.js:26
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "鼠标接近屏幕上端时显示面板"
+
+msgid "Use a pressure barrier"
+msgstr "用力推上端才滑出面板"
 
 #: prefs.js:27
 msgid "Keep hot corner sensitive, even in hidden state"
