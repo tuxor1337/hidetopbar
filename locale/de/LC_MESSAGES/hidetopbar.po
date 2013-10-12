@@ -18,17 +18,25 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Language: de\n"
 
-#: prefs.js:19
+#: prefs.js:20
 msgid "<b>Sensitivity</b>"
 msgstr "<b>Berührungsempfindlichkeit</b>"
 
-#: prefs.js:26
+#: prefs.js:27
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Panel anzeigen, wenn die Maus den oberen Bildschirmrand berührt"
 
-#: prefs.js:27
+#: prefs.js:28
+msgid "Use a pressure barrier"
+msgstr "Eine \"pressure barrier\" verwenden"
+
+#: prefs.js:29
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "\"Hot Corner\" auch aktiviert lassen, wenn das Panel versteckt ist"
+
+#: prefs.js:30
+msgid "In the above case show overview, too"
+msgstr "Wechsle im obigen Fall in die Übersicht"
 
 #: prefs.js:55
 msgid "<b>Animation</b>"
