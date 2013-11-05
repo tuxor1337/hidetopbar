@@ -17,14 +17,6 @@
         approaches the edge of the screen.
       </description>
     </key>
-    <key name="use-pressure-barrier" type="b">
-      <default>false</default>
-      <summary>Use pressure barrier</summary>
-      <description>
-        Set to "true" to force using a pressure barrier instead of a simple
-        enter event (only for GNOME 3.8 and up).
-      </description>
-    </key>
     <key name="mouse-triggers-overview" type="b">
       <default>false</default>
       <summary>Show overview when mouse approaches edge of the screen</summary>

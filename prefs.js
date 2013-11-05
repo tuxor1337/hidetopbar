@@ -25,7 +25,6 @@ function buildPrefsWidget() {
     let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
     let settings_array = [
         ['mouse-sensitive',_("Show panel when mouse approaches edge of the screen")],
-        ['use-pressure-barrier',_("Use a pressure barrier")],
         ['hot-corner',_("Keep hot corner sensitive, even in hidden state")],
         ['mouse-triggers-overview',_("In the above case show overview, too")],
     ];

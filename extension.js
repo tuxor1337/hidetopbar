@@ -28,37 +28,33 @@ let _stgsEventSensitive = 0;
 let _stgsEventOverv = 0;
 let _stgsEventPress = 0;
 
-let _enterEvent = 0;
 let _leaveEvent = 0;
 let _menuEvent = 0;
 let _blockerMenu = 0;
 
 let _panelPressure = 0;
 let _panelBarrier = 0;
-if("PressureBarrier" in Layout) {
-    _panelPressure = new Layout.PressureBarrier(100,1000,
-                                      imports.gi.Shell.KeyBindingMode.NORMAL);
-    _panelPressure.setEventFilter(function(event) {
-        if (event.grabbed && Main.modalCount == 0)
-            return true;
-        return false;
-    });
-    _panelPressure.connect('trigger', function(barrier) {
-        if (Main.layoutManager.primaryMonitor.inFullscreen)
-            return;
-        _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
-    });
-}
+
+_panelPressure = new Layout.PressureBarrier(100,1000,
+                                  imports.gi.Shell.KeyBindingMode.NORMAL);
+_panelPressure.setEventFilter(function(event) {
+    if (event.grabbed && Main.modalCount == 0)
+        return true;
+    return false;
+});
+_panelPressure.connect('trigger', function(barrier) {
+    if (Main.layoutManager.primaryMonitor.inFullscreen)
+        return;
+    _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
+});
 
 let _settingsHotCorner = Settings.get_boolean('hot-corner');
 let _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
-let _settingsPress = Settings.get_boolean('use-pressure-barrier');
 let _settingsShowOverview = Settings.get_boolean('mouse-triggers-overview');
 let _settingsAnimTimeOverv = Settings.get_double('animation-time-overview');
 let _settingsAnimTimeAutoh = Settings.get_double('animation-time-autohide');
 
 function _hidePanel(animationTime, trigger) {
-    /* Still looking for some kind of "size-changed" event, see issue #12. */
     _panelHeight = PANEL_ACTOR.get_height();
     
     if(global.get_pointer()[1] < _panelHeight && trigger == "mouse-left") {
@@ -68,41 +64,22 @@ function _hidePanel(animationTime, trigger) {
     let x = Number(_settingsHotCorner)
     PANEL_BOX.height = x;
     
-    Tweener.addTween(PANEL_ACTOR, {
+    Tweener.addTween(PANEL_BOX, {
         y: x - _panelHeight,
         time: animationTime,
         transition: 'easeOutQuad',
-        onComplete: function() {
-            Main.panel._centerBox.hide();
-            Main.panel._rightBox.hide();
-        
-            els = Main.panel._leftBox.get_children();
-            for each(el in els.slice(1)) {
-                if(typeof(el._container) == "undefined") el.hide();
-                else el._container.hide();
-            }
-            
-            PANEL_ACTOR.set_opacity(x*255);
-        }
+        onComplete: function() { PANEL_ACTOR.set_opacity(x*255); }
     });
 }
 
 function _showPanel(animationTime, trigger) {
     if(trigger == "mouse-enter" && _settingsShowOverview)
         Main.overview.show();
-    if(PANEL_ACTOR.y > 1-_panelHeight) return;
+    if(PANEL_BOX.y > 1-_panelHeight) return;
     PANEL_BOX.height = _panelHeight;
     PANEL_ACTOR.set_opacity(255);
-    Main.panel._centerBox.show();
-    Main.panel._rightBox.show();
     
-    els = Main.panel._leftBox.get_children();
-    for each(el in els.slice(1)) {
-        if(typeof(el._container) == "undefined") el.show();
-        else el._container.show();
-    }
-    
-    Tweener.addTween(PANEL_ACTOR, {
+    Tweener.addTween(PANEL_BOX, {
         y: 0,
         time: animationTime,
         transition: 'easeOutQuad',
@@ -131,18 +108,12 @@ function _updateMouseSensitive() {
     _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
     if(_settingsMouseSensitive) {
         _disable_mouse_sensitive();
-        if(_panelPressure && _settingsPress) {
-            monitor = Main.layoutManager.primaryMonitor;
-            _panelBarrier = new Meta.Barrier({ display: global.display,
-                                   x1: monitor.x, x2: monitor.x + monitor.width,
-                                   y1: monitor.y, y2: monitor.y,
-                                   directions: Meta.BarrierDirection.POSITIVE_Y });
-            _panelPressure.addBarrier(_panelBarrier);
-        } else {
-            _enterEvent = PANEL_ACTOR.connect('enter-event', function() {
-                _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
-            });
-        }
+        monitor = Main.layoutManager.primaryMonitor;
+        _panelBarrier = new Meta.Barrier({ display: global.display,
+                               x1: monitor.x, x2: monitor.x + monitor.width,
+                               y1: monitor.y, y2: monitor.y,
+                               directions: Meta.BarrierDirection.POSITIVE_Y });
+        _panelPressure.addBarrier(_panelBarrier);
         _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
     } else _disable_mouse_sensitive();
 }
@@ -152,7 +123,6 @@ function _disable_mouse_sensitive() {
             _panelPressure.removeBarrier(_panelBarrier);
             _panelBarrier.destroy();
     }
-    if(_enterEvent) PANEL_ACTOR.disconnect(_enterEvent);
     if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
 }
 
@@ -169,10 +139,6 @@ function _setup_settings_handler() {
         function() { 
             _settingsShowOverview = Settings.get_boolean('mouse-triggers-overview');
     });
-    _stgsEventPress = Settings.connect('changed::use-pressure-barrier', function() { 
-        _settingsPress = Settings.get_boolean('use-pressure-barrier');
-        _updateMouseSensitive();
-    });
     _stgsEventHotCorner = Settings.connect('changed::hot-corner', function() { 
         _settingsHotCorner = Settings.get_boolean('hot-corner');
         _hidePanel(0.1);
@@ -184,7 +150,6 @@ function _setup_settings_handler() {
 function _disconnect_settings_handler() {
     if(_stgsEventAnim) Settings.disconnect(_stgsEventAnim);
     if(_stgsEventAnim2) Settings.disconnect(_stgsEventAnim2);
-    if(_stgsEventPress) Settings.disconnect(_stgsEventPress);
     if(_stgsEventOverv) Settings.disconnect(_stgsEventOverv);
     if(_stgsEventHotCorner) Settings.disconnect(_stgsEventHotCorner);
     if(_stgsEventSensitive) Settings.disconnect(_stgsEventSensitive);
