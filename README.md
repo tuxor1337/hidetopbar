@@ -24,7 +24,7 @@ Install this in your extensions directory:
 Example:
 
     cd ~/.local/share/gnome-shell/extensions/
-    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.c
+    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
     mkdir ./schemas/
     glib-compile-schemas --strict --targetdir=./schemas/ .
