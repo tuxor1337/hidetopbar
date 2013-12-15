@@ -61,7 +61,7 @@ function _hidePanel(animationTime, trigger) {
         return;
     }
     
-    let x = Number(_settingsHotCorner)
+    let x = Number(_settingsHotCorner);
     PANEL_BOX.height = x;
     
     Tweener.addTween(PANEL_BOX, {
@@ -82,17 +82,17 @@ function _showPanel(animationTime, trigger) {
     Tweener.addTween(PANEL_BOX, {
         y: 0,
         time: animationTime,
-        transition: 'easeOutQuad',
+        transition: 'easeOutQuad'
     });
 }
 
 function _handleMenus() {
     if(!Main.overview.visible) {
-        blocker = Main.panel.menuManager.activeMenu;
+        let blocker = Main.panel.menuManager.activeMenu;
         if(blocker == null) {
             _hidePanel(_settingsAnimTimeAutoh, "mouse-left");
         } else {
-            _blockerMenu = blocker
+            _blockerMenu = blocker;
             _menuEvent = _blockerMenu.connect('open-state-changed', function(menu, open){
                 if(!open) {
                     _blockerMenu.disconnect(_menuEvent);
@@ -108,7 +108,7 @@ function _updateMouseSensitive() {
     _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
     if(_settingsMouseSensitive) {
         _disable_mouse_sensitive();
-        monitor = Main.layoutManager.primaryMonitor;
+        let monitor = Main.layoutManager.primaryMonitor;
         _panelBarrier = new Meta.Barrier({ display: global.display,
                                x1: monitor.x, x2: monitor.x + monitor.width,
                                y1: monitor.y, y2: monitor.y,
