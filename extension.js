@@ -160,8 +160,8 @@ function _disconnect_settings_handler() {
     if(_stgsEventAnim2) Settings.disconnect(_stgsEventAnim2);
     if(_stgsEventOverv) Settings.disconnect(_stgsEventOverv);
     if(_stgsEventHotCorner) Settings.disconnect(_stgsEventHotCorner);
-    if(_stgsEventThresh) Settings.disconnect(_stgsEventPressThresh);
-    if(_stgsEventTime) Settings.disconnect(_stgsEventPressTime);
+    if(_stgsEventPressThresh) Settings.disconnect(_stgsEventPressThresh);
+    if(_stgsEventPressTime) Settings.disconnect(_stgsEventPressTime);
     if(_stgsEventSensitive) Settings.disconnect(_stgsEventSensitive);
 }
 
