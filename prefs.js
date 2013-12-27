@@ -48,7 +48,34 @@ function buildPrefsWidget() {
         
         settings_vbox.pack_start(hbox, false,false, 0);
     });
+    frame.pack_start(settings_vbox, true, true, 0);
 
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_bottom: 10});
+    let settings_array = [
+        ['pressure-threshold',_("Pressure barrier's threshold.")],
+        ['pressure-timeout',_("Pressure barrier's timeout.")]
+    ];
+    settings_array.forEach(function (s) {
+        let hbox = new Gtk.HBox();
+        let spin = Gtk.SpinButton.new_with_range(0,10000,1);
+        spin.set_value(settings.get_int(s[0]));
+        
+        hbox.pack_start(new Gtk.Label({
+            label: s[1],
+            use_markup: true,
+            xalign: 0
+        }), true, true, 0);
+        hbox.pack_end(spin, false, false, 0);
+        
+        settings.connect('changed::'+s[0], function(k,b) {
+            spin.set_value(settings.get_int(b)); });
+
+        spin.connect('value-changed', function(w) {
+            settings.set_int(s[0], w.get_value());
+        });
+        
+        settings_vbox.pack_start(hbox, false,false, 0);
+    });
     frame.pack_start(settings_vbox, true, true, 0);
     
     frame.pack_start(new Gtk.Label({
@@ -83,8 +110,8 @@ function buildPrefsWidget() {
         
         settings_vbox.pack_start(hbox, false,false, 0);
     });
-
     frame.pack_start(settings_vbox, true, true, 0);
+    
     frame.show_all();
     return frame;
 }

@@ -2,7 +2,7 @@
 <schemalist>
   <schema id="org.gnome.shell.extensions.hidetopbar" path="/org/gnome/shell/extensions/hidetopbar/">
     <key name="hot-corner" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Keep hot corner sensitive or not</summary>
       <description>
         Set to "true" to keep hot corner sensitive even when panel is in hidden
@@ -30,7 +30,7 @@
       <default>0.4</default>
       <summary>Slide in/out animation time</summary>
       <description>
-        The time it takes for the tweener to slide the panel in/out when 
+        Amount of time it takes for the tweener to slide the panel in/out when 
         entering/leaving overview.
       </description>
     </key>
@@ -38,8 +38,23 @@
       <default>0.2</default>
       <summary>Slide in/out animation time</summary>
       <description>
-        The time it takes for the tweener to slide the panel in/out when 
+        Amount of time it takes for the tweener to slide the panel in/out when 
         the mouse approaches the edge of the screen.
+      </description>
+    </key>
+    <key name="pressure-threshold" type="i">
+      <default>100</default>
+      <summary>Pressure barrier's threshold</summary>
+      <description>
+        Number of pixels the mouse has to overrun in order to trigger the
+        pressure barrier.
+      </description>
+    </key>
+    <key name="pressure-timeout" type="i">
+      <default>1000</default>
+      <summary>Pressure barrier's timeout</summary>
+      <description>
+        Amount of time before pressure barrier is triggered.
       </description>
     </key>
   </schema>

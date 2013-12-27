@@ -26,7 +26,8 @@ let _stgsEventAnim2 = 0;
 let _stgsEventHotCorner = 0;
 let _stgsEventSensitive = 0;
 let _stgsEventOverv = 0;
-let _stgsEventPress = 0;
+let _stgsEventPressTime = 0;
+let _stgsEventPressThresh = 0;
 
 let _leaveEvent = 0;
 let _menuEvent = 0;
@@ -34,19 +35,6 @@ let _blockerMenu = 0;
 
 let _panelPressure = 0;
 let _panelBarrier = 0;
-
-_panelPressure = new Layout.PressureBarrier(100,1000,
-                                  imports.gi.Shell.KeyBindingMode.NORMAL);
-_panelPressure.setEventFilter(function(event) {
-    if (event.grabbed && Main.modalCount == 0)
-        return true;
-    return false;
-});
-_panelPressure.connect('trigger', function(barrier) {
-    if (Main.layoutManager.primaryMonitor.inFullscreen)
-        return;
-    _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
-});
 
 let _settingsHotCorner = Settings.get_boolean('hot-corner');
 let _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
@@ -108,13 +96,8 @@ function _updateMouseSensitive() {
     _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
     if(_settingsMouseSensitive) {
         _disable_mouse_sensitive();
-        let monitor = Main.layoutManager.primaryMonitor;
-        _panelBarrier = new Meta.Barrier({ display: global.display,
-                               x1: monitor.x, x2: monitor.x + monitor.width,
-                               y1: monitor.y, y2: monitor.y,
-                               directions: Meta.BarrierDirection.POSITIVE_Y });
-        _panelPressure.addBarrier(_panelBarrier);
         _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
+        _initPressureBarrier();
     } else _disable_mouse_sensitive();
 }
 
@@ -124,6 +107,30 @@ function _disable_mouse_sensitive() {
             _panelBarrier.destroy();
     }
     if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
+}
+
+function _initPressureBarrier() {
+    _panelPressure = new Layout.PressureBarrier(
+        Settings.get_int('pressure-threshold'),
+        Settings.get_int('pressure-timeout'), 
+        imports.gi.Shell.KeyBindingMode.NORMAL
+    );
+    _panelPressure.setEventFilter(function(event) {
+        if (event.grabbed && Main.modalCount == 0)
+            return true;
+        return false;
+    });
+    _panelPressure.connect('trigger', function(barrier) {
+        if (Main.layoutManager.primaryMonitor.inFullscreen)
+            return;
+        _showPanel(_settingsAnimTimeAutoh, "mouse-enter");
+    });
+    let monitor = Main.layoutManager.primaryMonitor;
+    _panelBarrier = new Meta.Barrier({ display: global.display,
+                           x1: monitor.x, x2: monitor.x + monitor.width,
+                           y1: monitor.y, y2: monitor.y,
+                           directions: Meta.BarrierDirection.POSITIVE_Y });
+    _panelPressure.addBarrier(_panelBarrier);
 }
 
 function _setup_settings_handler() {
@@ -143,7 +150,8 @@ function _setup_settings_handler() {
         _settingsHotCorner = Settings.get_boolean('hot-corner');
         _hidePanel(0.1);
     });
-    
+    _stgsEventPressTime = Settings.connect('changed::pressure-timeout', _updateMouseSensitive);
+    _stgsEventPressThresh = Settings.connect('changed::pressure-threshold', _updateMouseSensitive);
     _stgsEventSensitive = Settings.connect('changed::mouse-sensitive', _updateMouseSensitive);
 }
 
@@ -152,6 +160,8 @@ function _disconnect_settings_handler() {
     if(_stgsEventAnim2) Settings.disconnect(_stgsEventAnim2);
     if(_stgsEventOverv) Settings.disconnect(_stgsEventOverv);
     if(_stgsEventHotCorner) Settings.disconnect(_stgsEventHotCorner);
+    if(_stgsEventThresh) Settings.disconnect(_stgsEventPressThresh);
+    if(_stgsEventTime) Settings.disconnect(_stgsEventPressTime);
     if(_stgsEventSensitive) Settings.disconnect(_stgsEventSensitive);
 }
 
