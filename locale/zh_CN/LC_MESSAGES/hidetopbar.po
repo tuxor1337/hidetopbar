@@ -7,40 +7,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 11:09+0800\n"
+"POT-Creation-Date: 2014-01-18 17:35+0100\n"
 "PO-Revision-Date: 2013-10-06 11:40+0800\n"
 "Last-Translator: Lequn Chen <chenlequn22@gmail.com>\n"
 "Language-Team: Lequn Chen <chenlequn22@gmail.com>\n"
+"Language: zh_Cn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Language: zh_Cn\n"
 
-#: prefs.js:19
+#: prefs.js:20
 msgid "<b>Sensitivity</b>"
 msgstr "<b>敏感性</b>"
 
-#: prefs.js:26
+#: prefs.js:27
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "鼠标接近屏幕上端时显示面板"
 
-msgid "Use a pressure barrier"
-msgstr "用力推上端才滑出面板"
-
-#: prefs.js:27
+#: prefs.js:28
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "面板隐藏时“活动”可从左上角呼出"
 
+#: prefs.js:29
+msgid "In the above case show overview, too"
+msgstr ""
+
 #: prefs.js:55
+msgid "Pressure barrier's threshold."
+msgstr ""
+
+#: prefs.js:56
+msgid "Pressure barrier's timeout."
+msgstr ""
+
+#: prefs.js:82
 msgid "<b>Animation</b>"
 msgstr "<b>动画效果</b>"
 
-#: prefs.js:62
+#: prefs.js:89
 msgid "Slide animation time when entering/leaving overview."
 msgstr "“活动”滑入和滑出的动画动画时间"
 
-#: prefs.js:63
+#: prefs.js:90
 msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr "鼠标接近屏幕上端时面板滑出的动画时间"
