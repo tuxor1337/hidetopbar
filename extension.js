@@ -169,7 +169,7 @@ function init() { }
 
 function enable() {    
     Main.layoutManager.removeChrome(PANEL_BOX);
-    Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: false });
+    Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: false, trackFullscreen: true });
     
     _showEvent = Main.overview.connect('showing', function() {
         _showPanel(_settingsAnimTimeOverv);
@@ -186,7 +186,7 @@ function enable() {
 
 function disable() {
     Main.layoutManager.removeChrome(PANEL_BOX);
-    Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: true });
+    Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: true, trackFullscreen: true });
     
     if(_showEvent) Main.overview.disconnect(_showEvent);
     if(_hideEvent) Main.overview.disconnect(_hideEvent);
