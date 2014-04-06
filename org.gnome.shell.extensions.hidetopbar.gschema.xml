@@ -57,5 +57,19 @@
         Amount of time before pressure barrier is triggered.
       </description>
     </key>
+    <key name="shortcut-keybind" type="as">
+      <default>[]</default>
+      <summary>"show bar" shortcut</summary>
+      <description>
+        Keyboard shortcut that triggers the bar to be shown.
+      </description>
+    </key>
+    <key name="shortcut-delay" type="d">
+      <default>1.0</default>
+      <summary>Delay after key press</summary>
+      <description>
+        Delay before bar rehides automatically after key press.
+      </description>
+    </key>
   </schema>
 </schemalist>

@@ -10,6 +10,8 @@ const Main = imports.ui.main;
 const Layout = imports.ui.layout;
 const Meta = imports.gi.Meta;
 const Tweener = imports.ui.tweener;
+const Shell = imports.gi.Shell;
+const Mainloop = imports.mainloop;
 const Settings = imports.misc.extensionUtils.getCurrentExtension()
                     .imports.convenience.getSettings();
                     
@@ -28,6 +30,8 @@ let _stgsEventSensitive = 0;
 let _stgsEventOverv = 0;
 let _stgsEventPressTime = 0;
 let _stgsEventPressThresh = 0;
+let _stgsEventShortcut = 0;
+let _stgsEventShortcutDelay = 0;
 
 let _leaveEvent = 0;
 let _menuEvent = 0;
@@ -36,11 +40,14 @@ let _blockerMenu = 0;
 let _panelPressure = 0;
 let _panelBarrier = 0;
 
+let _shortcutEvent = 0;
+
 let _settingsHotCorner = Settings.get_boolean('hot-corner');
 let _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
 let _settingsShowOverview = Settings.get_boolean('mouse-triggers-overview');
 let _settingsAnimTimeOverv = Settings.get_double('animation-time-overview');
 let _settingsAnimTimeAutoh = Settings.get_double('animation-time-autohide');
+let _settingsShortcutDelay = Settings.get_double('shortcut-delay');
 
 function _hidePanel(animationTime, trigger) {
     _panelHeight = PANEL_ACTOR.get_height();
@@ -95,25 +102,23 @@ function _handleMenus() {
 function _updateMouseSensitive() {
     _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
     if(_settingsMouseSensitive) {
-        _disable_mouse_sensitive();
-        _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
+        _disablePressureBarrier();
         _initPressureBarrier();
-    } else _disable_mouse_sensitive();
+    } else _disablePressureBarrier();
 }
 
-function _disable_mouse_sensitive() {
+function _disablePressureBarrier() {
     if(_panelBarrier && _panelPressure) {
-            _panelPressure.removeBarrier(_panelBarrier);
-            _panelBarrier.destroy();
+        _panelPressure.removeBarrier(_panelBarrier);
+        _panelBarrier.destroy();
     }
-    if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
 }
 
 function _initPressureBarrier() {
     _panelPressure = new Layout.PressureBarrier(
         Settings.get_int('pressure-threshold'),
         Settings.get_int('pressure-timeout'), 
-        imports.gi.Shell.KeyBindingMode.NORMAL
+        Shell.KeyBindingMode.NORMAL
     );
     _panelPressure.setEventFilter(function(event) {
         if (event.grabbed && Main.modalCount == 0)
@@ -150,6 +155,10 @@ function _setup_settings_handler() {
         _settingsHotCorner = Settings.get_boolean('hot-corner');
         _hidePanel(0.1);
     });
+    _stgsEventShortcutDelay = Settings.connect('changed::shortcut-delay',
+        function() { 
+            _settingsShortcutDelay = Settings.get_double('shortcut-delay');
+    });
     _stgsEventPressTime = Settings.connect('changed::pressure-timeout', _updateMouseSensitive);
     _stgsEventPressThresh = Settings.connect('changed::pressure-threshold', _updateMouseSensitive);
     _stgsEventSensitive = Settings.connect('changed::mouse-sensitive', _updateMouseSensitive);
@@ -163,6 +172,7 @@ function _disconnect_settings_handler() {
     if(_stgsEventPressThresh) Settings.disconnect(_stgsEventPressThresh);
     if(_stgsEventPressTime) Settings.disconnect(_stgsEventPressTime);
     if(_stgsEventSensitive) Settings.disconnect(_stgsEventSensitive);
+    if(_stgsEventShortcutDelay) Settings.disconnect(_stgsEventShortcutDelay);
 }
 
 function init() { }
@@ -178,6 +188,17 @@ function enable() {
         _hidePanel(_settingsAnimTimeOverv);
     });
     
+    Main.wm.addKeybinding('shortcut-keybind',
+        Settings, Meta.KeyBindingFlags.NONE,
+        Shell.KeyBindingMode.NORMAL,
+        function () {
+            _showPanel(_settingsAnimTimeAutoh);
+            Mainloop.timeout_add_seconds(_settingsShortcutDelay, _handleMenus);
+        }
+    );
+
+    _leaveEvent = PANEL_ACTOR.connect('leave-event', _handleMenus);
+    
     _setup_settings_handler();
     _updateMouseSensitive();
     
@@ -190,9 +211,11 @@ function disable() {
     
     if(_showEvent) Main.overview.disconnect(_showEvent);
     if(_hideEvent) Main.overview.disconnect(_hideEvent);
+    if(_shortcutEvent) Main.wm.removeKeybinding(_shortcutEvent);
+    if(_leaveEvent) PANEL_ACTOR.disconnect(_leaveEvent);
     
     _disconnect_settings_handler();
-    _disable_mouse_sensitive();
+    _disablePressureBarrier();
     
     _showPanel(0.1);
 }
