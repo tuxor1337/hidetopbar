@@ -41,6 +41,7 @@ let _panelPressure = 0;
 let _panelBarrier = 0;
 
 let _shortcutEvent = 0;
+let _shortcutTimeout = 0;
 
 let _settingsHotCorner = Settings.get_boolean('hot-corner');
 let _settingsMouseSensitive = Settings.get_boolean('mouse-sensitive');
@@ -193,7 +194,10 @@ function enable() {
         Shell.KeyBindingMode.NORMAL,
         function () {
             _showPanel(_settingsAnimTimeAutoh);
-            Mainloop.timeout_add_seconds(_settingsShortcutDelay, _handleMenus);
+            if(_shortcutTimeout) Mainloop.source_remove(_shortcutTimeout);
+            _shortcutTimeout = Mainloop.timeout_add_seconds(
+                _settingsShortcutDelay, _handleMenus
+            );
         }
     );
 
