@@ -1,8 +1,8 @@
 {
-  "shell-version": ["3.8","3.10"],
+  "shell-version": ["3.8","3.10","3.12"],
   "uuid": "hidetopbar@mathieu.bidon.ca",
   "name": "Hide Top Bar",
-  "settings-schema": "org.gnome.shell.extensions.hidetopbar", 
+  "settings-schema": "org.gnome.shell.extensions.hidetopbar",
   "description": "Hides the top bar, except in overview. However, there is an option to show the panel whenever the mouse pointer approaches the edge of the screen.",
   "url": "https://github.com/mlutfy/hidetopbar"
 }
