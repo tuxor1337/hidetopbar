@@ -75,11 +75,16 @@ function _showPanel(animationTime, trigger) {
     PANEL_BOX.height = _panelHeight;
     PANEL_ACTOR.set_opacity(255);
     
-    Tweener.addTween(PANEL_BOX, {
-        y: 0,
-        time: animationTime,
-        transition: 'easeOutQuad'
-    });
+    if(trigger == "showing-overview"
+        && global.get_pointer()[1] < _panelHeight
+        && _settingsHotCorner) PANEL_BOX.y = 0;
+    else {
+        Tweener.addTween(PANEL_BOX, {
+            y: 0,
+            time: animationTime,
+            transition: 'easeOutQuad'
+        });
+    }
 }
 
 function _handleMenus() {
@@ -183,10 +188,10 @@ function enable() {
     Main.layoutManager.addChrome(PANEL_BOX, { affectsStruts: false, trackFullscreen: true });
     
     _showEvent = Main.overview.connect('showing', function() {
-        _showPanel(_settingsAnimTimeOverv);
+        _showPanel(_settingsAnimTimeOverv, "showing-overview");
     });
     _hideEvent = Main.overview.connect('hiding', function() {
-        _hidePanel(_settingsAnimTimeOverv);
+        _hidePanel(_settingsAnimTimeOverv, "hiding-overview");
     });
     
     Main.wm.addKeybinding('shortcut-keybind',
