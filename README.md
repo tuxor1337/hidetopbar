@@ -7,7 +7,7 @@ Hides Gnome's topbar except in overview mode.
 
 Maintained by Thomas Vogt.
 With contributions by Philip Witte and Mathieu Lutfy.
-Tested on Gnome 3.8.4.
+Tested on Gnome 3.8.4 to 3.14.
 
 Installation:
 -------------
@@ -35,16 +35,17 @@ You can also manage extensions from https://extensions.gnome.org/local/
 License:
 --------
 
-Copyright (c) 2012-2013 minor tweaks and maintenance by Mathieu Lutfy.
+Copyright (c) 2013-2014 Thomas Vogt.
 
-Copyright (c) 2012 major fix by Philip Witte.
+Copyright (c) 2012-2013 Mathieu Lutfy.
 
-Copyright (c) 2013 major fixes by Thomas Vogt.
+Copyright (c) 2012 Philip Witte.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of VERSION 2 of the GNU General Public
 License as published by the Free Software Foundation provided
 that the above copyright notice is included.
+
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
