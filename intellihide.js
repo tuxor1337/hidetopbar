@@ -1,4 +1,11 @@
-// -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*-
+/*
+ * This code is taken from https://github.com/micheleg/dash-to-dock
+ *
+ * Licensing information:
+ * Dash to Dock Gnome Shell extension is distributed under the terms of the
+ * GNU General Public License, version 2 or later.
+ *
+ */
 
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
