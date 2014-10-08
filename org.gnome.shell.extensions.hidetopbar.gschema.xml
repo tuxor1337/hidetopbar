@@ -2,7 +2,7 @@
 <schemalist>
   <schema id="org.gnome.shell.extensions.hidetopbar" path="/org/gnome/shell/extensions/hidetopbar/">
     <key name="hot-corner" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Keep hot corner sensitive or not</summary>
       <description>
         Set to "true" to keep hot corner sensitive even when panel is in hidden
@@ -15,14 +15,6 @@
       <description>
         Set to "true" to show panel not only in overview but also when the mouse
         approaches the edge of the screen.
-      </description>
-    </key>
-    <key name="use-pressure-barrier" type="b">
-      <default>false</default>
-      <summary>Use pressure barrier</summary>
-      <description>
-        Set to "true" to force using a pressure barrier instead of a simple
-        enter event (only for GNOME 3.8 and up).
       </description>
     </key>
     <key name="mouse-triggers-overview" type="b">
@@ -38,7 +30,7 @@
       <default>0.4</default>
       <summary>Slide in/out animation time</summary>
       <description>
-        The time it takes for the tweener to slide the panel in/out when 
+        Amount of time it takes for the tweener to slide the panel in/out when 
         entering/leaving overview.
       </description>
     </key>
@@ -46,8 +38,37 @@
       <default>0.2</default>
       <summary>Slide in/out animation time</summary>
       <description>
-        The time it takes for the tweener to slide the panel in/out when 
+        Amount of time it takes for the tweener to slide the panel in/out when 
         the mouse approaches the edge of the screen.
+      </description>
+    </key>
+    <key name="pressure-threshold" type="i">
+      <default>100</default>
+      <summary>Pressure barrier's threshold</summary>
+      <description>
+        Number of pixels the mouse has to overrun in order to trigger the
+        pressure barrier.
+      </description>
+    </key>
+    <key name="pressure-timeout" type="i">
+      <default>1000</default>
+      <summary>Pressure barrier's timeout</summary>
+      <description>
+        Amount of time before pressure barrier is triggered.
+      </description>
+    </key>
+    <key name="shortcut-keybind" type="as">
+      <default>[]</default>
+      <summary>"show bar" shortcut</summary>
+      <description>
+        Keyboard shortcut that triggers the bar to be shown.
+      </description>
+    </key>
+    <key name="shortcut-delay" type="d">
+      <default>1.0</default>
+      <summary>Delay after key press</summary>
+      <description>
+        Delay before bar rehides automatically after key press.
       </description>
     </key>
   </schema>

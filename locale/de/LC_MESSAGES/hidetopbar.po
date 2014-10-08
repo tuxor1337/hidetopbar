@@ -2,42 +2,70 @@
 # Copyright (C) Jonatan Zeidler
 # This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
 # jonnius <jonatan_zeidler@gmx.de>, 2013.
+# Tobias Frost <tobi@coldtobi.de>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-15 18:56+0200\n"
-"PO-Revision-Date: 2013-05-16 17:46+0100\n"
-"Last-Translator: Jonatan Zeidler <jonatan_zeidler@hotmail.de>\n"
-"Language-Team: Jonatan Zeidler <jonatan_zeidler@gmx.de>\n"
+"POT-Creation-Date: 2014-08-02 10:28+0200\n"
+"PO-Revision-Date: 2014-08-02 11:05+0100\n"
+"Last-Translator: Tobias Frost <tobi@debian.org>\n"
+"Language-Team: German <>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: prefs.js:19
+#: prefs.js:26
 msgid "<b>Sensitivity</b>"
 msgstr "<b>Berührungsempfindlichkeit</b>"
 
-#: prefs.js:26
+#: prefs.js:33
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Panel anzeigen, wenn die Maus den oberen Bildschirmrand berührt"
 
-#: prefs.js:27
+#: prefs.js:34
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "\"Hot Corner\" auch aktiviert lassen, wenn das Panel versteckt ist"
 
-#: prefs.js:55
+#: prefs.js:35
+msgid "In the above case show overview, too"
+msgstr "Wechsle im obigen Fall in die Übersicht"
+
+#: prefs.js:61
+msgid "Pressure barrier's threshold."
+msgstr "Schwellenwert der Druckempfindlichkeit. "
+
+#: prefs.js:62
+msgid "Pressure barrier's timeout."
+msgstr "Time-Out der Druckempfindlichkeit."
+
+#: prefs.js:92
 msgid "<b>Animation</b>"
 msgstr "<b>Animation</b>"
 
-#: prefs.js:62
+#: prefs.js:99
 msgid "Slide animation time when entering/leaving overview."
 msgstr "Animationszeit beim Betreten/Verlassen der Übersicht"
 
-#: prefs.js:63
+#: prefs.js:100
 msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt"
+
+#: prefs.js:130
+msgid "<b>Keyboard shortcuts</b>"
+msgstr "<b>Tastaturkürzel</b>"
+
+#: prefs.js:194
+msgid "Key that triggers the bar to be shown."
+msgstr "Taste um die Leiste anzuzeigen."
+
+#: prefs.js:215
+msgid "Delay before the bar rehides after key press."
+msgstr ""
+"Verzögerung, nachdem die Leiste nach dem Drücken der Taste, wieder "
+"ausgeblendet wird."
