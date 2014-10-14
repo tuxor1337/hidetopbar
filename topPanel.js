@@ -135,11 +135,11 @@ const topPanel = new Lang.Class({
     },
     
     _handleShortcut: function () {
-        this.show(this._settings.get_double('animation-time-autohide'));
+        this.show(this._settings.get_double('shortcut-delay')/5.0);
         if(this._shortcutTimeout)
             Mainloop.source_remove(this._shortcutTimeout);
-        this._shortcutTimeout = Mainloop.timeout_add_seconds(
-            this._settings.get_double('shortcut-delay'),
+        this._shortcutTimeout = Mainloop.timeout_add(
+            this._settings.get_double('shortcut-delay')*1200,
             Lang.bind(this, this._handleMenus)
         );
     },
