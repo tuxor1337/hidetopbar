@@ -229,6 +229,42 @@ function buildPrefsWidget() {
     
     frame.pack_start(settings_vbox, true, true, 0);
     
+/******************************************************************************
+ ************************************** Section Intellihide *******************
+ ******************************************************************************/
+
+    frame.pack_start(new Gtk.Label({
+        label: _("<b>Intellihide</b>"),
+        use_markup: true,
+        xalign: 0
+    }), false, false, 0);
+
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
+    let settings_array = [
+        ['enable-intellihide',_("Only hide panel when a window takes the space")],
+    ];
+    settings_array.forEach(function (s) {
+        let hbox = new Gtk.HBox();
+        let onoff = new Gtk.Switch({active: settings.get_boolean(s[0])});
+        
+        hbox.pack_start(new Gtk.Label({
+            label: s[1],
+            use_markup: true,
+            xalign: 0
+        }), true, true, 0);
+        hbox.pack_end(onoff, false, false, 0);
+        
+        settings.connect('changed::'+s[0], function(k,b) {
+            onoff.set_active(settings.get_boolean(b)); });
+
+        onoff.connect('notify::active', function(w) {
+            settings.set_boolean(s[0], w.active);
+        });
+        
+        settings_vbox.pack_start(hbox, false,false, 0);
+    });
+    frame.pack_start(settings_vbox, true, true, 0);
+    
     frame.show_all();
     return frame;
 }

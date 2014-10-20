@@ -1,11 +1,4 @@
-/*
- * This code is taken from https://github.com/micheleg/dash-to-dock
- *
- * Licensing information:
- * Dash to Dock Gnome Shell extension is distributed under the terms of the
- * GNU General Public License, version 2 or later.
- *
- */
+// -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*-
 
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
@@ -121,7 +114,7 @@ const intellihide = new Lang.Class({
         this._show(true);
 
         // update visibility
-        Mainloop.timeout_add(150,
+        Mainloop.timeout_add(200,
             Lang.bind(this, function(){
                 this._updatePanelVisibility();
                 return false;

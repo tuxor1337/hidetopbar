@@ -71,5 +71,12 @@
         Delay before bar rehides automatically after key press.
       </description>
     </key>
+    <key name="enable-intellihide" type="b">
+      <default>true</default>
+      <summary>Enable intellihide feature</summary>
+      <description>
+        When enabled, the panel will only hide if a window takes the space.
+      </description>
+    </key>
   </schema>
 </schemalist>
