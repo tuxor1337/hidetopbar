@@ -13,6 +13,8 @@ const TopPanel = Me.imports.topPanel;
 
 const Mainloop = imports.mainloop;
 
+let event_intellihide_setting=null;
+
 let settings=null;
 let intellihide=null;
 let panel=null;
@@ -35,12 +37,14 @@ function update_intellihide_status() {
 function enable() {
     settings = Convenience.getSettings();
     panel = new TopPanel.topPanel(settings);
-    settings.connect('changed::enable-intellihide', update_intellihide_status);
+    event_intellihide_setting = settings.connect('changed::enable-intellihide', update_intellihide_status);
     update_intellihide_status();
 }
 
 function disable() {
     if(intellihide !== null) intellihide.destroy();
+    if(event_intellihide_setting !== null) 
+        settings.disconnect(event_intellihide_setting);
     panel.destroy();
     settings.run_dispose();
     
