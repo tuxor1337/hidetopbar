@@ -247,7 +247,7 @@ const topPanel = new Lang.Class({
         this._preventHide = bool;
         if(this._preventHide)
             this.show(this._settings.get_double('animation-time-autohide'));
-        else
+        else if(!Main.overview.visible)
             this.hide(this._settings.get_double('animation-time-autohide'));
     },
 });
