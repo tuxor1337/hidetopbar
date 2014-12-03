@@ -31,7 +31,7 @@ const topPanel = new Lang.Class({
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
         
-        this.staticBox = PANEL_BOX.get_allocation_box();
+        this._updateStaticBox();
        
         this._signalHandler = new Convenience.globalSignalHandler();
         this._signalHandler.push(
@@ -59,6 +59,11 @@ const topPanel = new Lang.Class({
                 Main.panel.actor,
                 'leave-event',
                 Lang.bind(this, this._handleMenus)
+            ],
+            [
+                global.screen,
+                'monitors-changed',
+                Lang.bind(this, this._updateStaticBox)
             ]
         );
         
@@ -104,7 +109,8 @@ const topPanel = new Lang.Class({
             Tweener.addTween(PANEL_BOX, {
                 y: 0,
                 time: animationTime,
-                transition: 'easeOutQuad'
+                transition: 'easeOutQuad',
+                onComplete: this._updateStaticBox
             });
         }
     },
@@ -190,6 +196,10 @@ const topPanel = new Lang.Class({
             directions: Meta.BarrierDirection.POSITIVE_Y
         });
         this._panelPressure.addBarrier(this._panelBarrier);
+    },
+
+    _updateStaticBox: function() {
+        this.staticBox = PANEL_BOX.get_allocation_box();
     },
     
     _updateSettingsHotCorner: function() {
