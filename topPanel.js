@@ -19,6 +19,7 @@ const topPanel = new Lang.Class({
     _init: function(settings) {
         this._panelHeight = Main.panel.actor.get_height();
         this._preventHide = false;
+        this._intellihideBlock = false;
         
         Main.layoutManager.removeChrome(PANEL_BOX);
         Main.layoutManager.addChrome(PANEL_BOX, {
@@ -30,8 +31,6 @@ const topPanel = new Lang.Class({
         this._settings = settings;
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
-        
-        this._updateStaticBox();
        
         this._signalHandler = new Convenience.globalSignalHandler();
         this._signalHandler.push(
@@ -59,11 +58,6 @@ const topPanel = new Lang.Class({
                 Main.panel.actor,
                 'leave-event',
                 Lang.bind(this, this._handleMenus)
-            ],
-            [
-                global.screen,
-                'monitors-changed',
-                Lang.bind(this, this._updateStaticBox)
             ]
         );
         
@@ -76,7 +70,7 @@ const topPanel = new Lang.Class({
     },
 
     hide: function(animationTime, trigger) {
-        if(this._preventHide) return;
+        if(this._preventHide || PANEL_BOX.height <= 1) return;
         
         this._panelHeight = Main.panel.actor.get_height();
         
@@ -109,10 +103,13 @@ const topPanel = new Lang.Class({
             Tweener.addTween(PANEL_BOX, {
                 y: 0,
                 time: animationTime,
-                transition: 'easeOutQuad',
-                onComplete: this._updateStaticBox
+                transition: 'easeOutQuad'
             });
         }
+    },
+
+    get staticBox() {
+        return PANEL_BOX.get_allocation_box();
     },
 
     _handleMenus: function() {
@@ -144,15 +141,27 @@ const topPanel = new Lang.Class({
         if(this._shortcutTimeout) {
             Mainloop.source_remove(this._shortcutTimeout);
             this._shortcutTimeout = null;
+            this._intellihideBlock = false;
             this.hide(this._settings.get_double('animation-time-autohide'));
-        }
-        else {
-            this.show(this._settings.get_double('shortcut-delay')/5.0);
-
-            this._shortcutTimeout = Mainloop.timeout_add(
-                this._settings.get_double('shortcut-delay')*1200,
-                Lang.bind(this, this._handleMenus)
-            );
+        } else {
+            var delay_time = this._settings.get_double('shortcut-delay');
+            this._intellihideBlock = true;
+            this._preventHide = false;
+            
+            if(delay_time > 0.05) {
+                this.show(delay_time/5.0);
+                
+                this._shortcutTimeout = Mainloop.timeout_add(
+                    delay_time*1200,
+                    Lang.bind(this, function () {
+                        this._intellihideBlock = false;
+                        this._handleMenus();
+                    })
+                );
+            } else {
+                this.show(this._settings.get_double('animation-time-autohide'));
+                this._shortcutTimeout = true;
+            }
         }
 
     },
@@ -196,10 +205,6 @@ const topPanel = new Lang.Class({
             directions: Meta.BarrierDirection.POSITIVE_Y
         });
         this._panelPressure.addBarrier(this._panelBarrier);
-    },
-
-    _updateStaticBox: function() {
-        this.staticBox = PANEL_BOX.get_allocation_box();
     },
     
     _updateSettingsHotCorner: function() {
@@ -254,6 +259,8 @@ const topPanel = new Lang.Class({
     },
     
     set_preventHide: function(bool) {
+        if(this._intellihideBlock) return;
+        
         this._preventHide = bool;
         if(this._preventHide)
             this.show(this._settings.get_double('animation-time-autohide'));
