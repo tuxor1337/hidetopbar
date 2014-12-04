@@ -61,6 +61,8 @@ const topPanel = new Lang.Class({
             ]
         );
         
+        this._updateStaticBox();
+        
         this._shortcutTimeout = 0;
         Main.wm.addKeybinding("shortcut-keybind",
             this._settings, Meta.KeyBindingFlags.NONE,
@@ -103,13 +105,10 @@ const topPanel = new Lang.Class({
             Tweener.addTween(PANEL_BOX, {
                 y: 0,
                 time: animationTime,
-                transition: 'easeOutQuad'
+                transition: 'easeOutQuad',
+                onComplete: Lang.bind(this, this._updateStaticBox)
             });
         }
-    },
-
-    get staticBox() {
-        return PANEL_BOX.get_allocation_box();
     },
 
     _handleMenus: function() {
@@ -163,7 +162,6 @@ const topPanel = new Lang.Class({
                 this._shortcutTimeout = true;
             }
         }
-
     },
 
     _disablePressureBarrier: function() {
@@ -205,6 +203,10 @@ const topPanel = new Lang.Class({
             directions: Meta.BarrierDirection.POSITIVE_Y
         });
         this._panelPressure.addBarrier(this._panelBarrier);
+    },
+
+    _updateStaticBox: function() {
+        this.staticBox = PANEL_BOX.get_allocation_box();
     },
     
     _updateSettingsHotCorner: function() {
