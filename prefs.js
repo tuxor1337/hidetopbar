@@ -210,7 +210,7 @@ function buildPrefsWidget() {
 
     let spin = Gtk.SpinButton.new_with_range(0.0,2.0,0.1);
     spin.set_value(settings.get_double('shortcut-delay'));
-        
+
     hbox.pack_start(new Gtk.Label({
         label: _("Delay before the bar rehides after key press."),
         use_markup: true,
@@ -224,9 +224,33 @@ function buildPrefsWidget() {
     spin.connect('value-changed', function(w) {
         settings.set_double('shortcut-delay', w.get_value());
     });
-        
+
     settings_vbox.pack_start(hbox, false,false, 0);
-    
+
+    let settings_array = [
+        ['shortcut-toggles',_("Pressing the shortcut again rehides the panel.")],
+    ];
+    settings_array.forEach(function (s) {
+        let hbox = new Gtk.HBox();
+        let onoff = new Gtk.Switch({active: settings.get_boolean(s[0])});
+
+        hbox.pack_start(new Gtk.Label({
+            label: s[1],
+            use_markup: true,
+            xalign: 0
+        }), true, true, 0);
+        hbox.pack_end(onoff, false, false, 0);
+
+        settings.connect('changed::'+s[0], function(k,b) {
+            onoff.set_active(settings.get_boolean(b)); });
+
+        onoff.connect('notify::active', function(w) {
+            settings.set_boolean(s[0], w.active);
+        });
+
+        settings_vbox.pack_start(hbox, false,false, 0);
+    });
+
     frame.pack_start(settings_vbox, true, true, 0);
     
 /******************************************************************************
@@ -246,14 +270,14 @@ function buildPrefsWidget() {
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
         let onoff = new Gtk.Switch({active: settings.get_boolean(s[0])});
-        
+
         hbox.pack_start(new Gtk.Label({
             label: s[1],
             use_markup: true,
             xalign: 0
         }), true, true, 0);
         hbox.pack_end(onoff, false, false, 0);
-        
+
         settings.connect('changed::'+s[0], function(k,b) {
             onoff.set_active(settings.get_boolean(b)); });
 
@@ -264,7 +288,7 @@ function buildPrefsWidget() {
         settings_vbox.pack_start(hbox, false,false, 0);
     });
     frame.pack_start(settings_vbox, true, true, 0);
-    
+
     frame.show_all();
     return frame;
 }

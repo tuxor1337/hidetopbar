@@ -68,7 +68,15 @@
       <default>1.0</default>
       <summary>Delay after key press</summary>
       <description>
-        Delay before bar rehides automatically after key press.
+        Delay before bar rehides automatically after key press. The value 0.0
+        means unlimited delay.
+      </description>
+    </key>
+    <key name="shortcut-toggles" type="b">
+      <default>true</default>
+      <summary>Enable toggling behaviour</summary>
+      <description>
+        Pressing the shortcut again rehides the panel.
       </description>
     </key>
     <key name="enable-intellihide" type="b">
