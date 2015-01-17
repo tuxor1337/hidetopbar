@@ -20,6 +20,7 @@ const topPanel = new Lang.Class({
         this._panelHeight = Main.panel.actor.get_height();
         this._preventHide = false;
         this._intellihideBlock = false;
+        this._initialY = PANEL_BOX.y;
         
         Main.layoutManager.removeChrome(PANEL_BOX);
         Main.layoutManager.addChrome(PANEL_BOX, {
@@ -58,6 +59,11 @@ const topPanel = new Lang.Class({
                 Main.panel.actor,
                 'leave-event',
                 Lang.bind(this, this._handleMenus)
+            ],
+            [
+                global.screen,
+                'monitors-changed',
+                Lang.bind(this, this._updateStaticBox)
             ]
         );
         
@@ -84,7 +90,7 @@ const topPanel = new Lang.Class({
         PANEL_BOX.height = x;
         
         Tweener.addTween(PANEL_BOX, {
-            y: x - this._panelHeight,
+            y: this.initialY + x - this._panelHeight,
             time: animationTime,
             transition: 'easeOutQuad',
             onComplete: function() { Main.panel.actor.set_opacity(x*255); }
@@ -94,16 +100,16 @@ const topPanel = new Lang.Class({
     show: function(animationTime, trigger) {
         if(trigger == "mouse-enter" && this._settings.get_boolean('mouse-triggers-overview'))
             Main.overview.show();
-        if(PANEL_BOX.y > 1-this._panelHeight) return;
+        if(PANEL_BOX.y - this.initialY > 1-this._panelHeight) return;
         PANEL_BOX.height = this._panelHeight;
         Main.panel.actor.set_opacity(255);
         
         if(trigger == "showing-overview"
             && global.get_pointer()[1] < this._panelHeight
-            && this._settings.get_boolean('hot-corner')) PANEL_BOX.y = 0;
+            && this._settings.get_boolean('hot-corner')) PANEL_BOX.y = this.initialY;
         else {
             Tweener.addTween(PANEL_BOX, {
-                y: 0,
+                y: this.initialY,
                 time: animationTime,
                 transition: 'easeOutQuad',
                 onComplete: Lang.bind(this, this._updateStaticBox)
@@ -212,6 +218,7 @@ const topPanel = new Lang.Class({
 
     _updateStaticBox: function() {
         this.staticBox = PANEL_BOX.get_allocation_box();
+        this.initialY = PANEL_BOX.y;
     },
     
     _updateSettingsHotCorner: function() {
