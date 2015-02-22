@@ -57,6 +57,9 @@ const intellihide = new Lang.Class({
         // Target object
         this._target = target;
 
+        // Set intellihide to use only the active window (or not)
+        this._activeWindow = false;
+
         // Main id of the timeout controlling timeout for updatePanelVisibility function 
         // when windows are dragged around (move and resize)
         this._windowChangedTimeout = 0;
@@ -249,6 +252,15 @@ const intellihide = new Lang.Class({
 
         var wksp = meta_win.get_workspace();
         var wksp_index = wksp.index();
+        let currentApp = this._tracker.get_window_app(meta_win);
+
+        if(this._activeWindow) {
+          if(this._focusApp != currentApp) {
+            return false;
+          } else {
+            return true;
+          }
+        }
 
         // Skip windows of other apps
         // "intellihide-perapp" option is always false
@@ -258,7 +270,7 @@ const intellihide = new Lang.Class({
             if (meta_win.get_wm_class() == 'DropDownTerminalWindow')
                 return true;
 
-            let currentApp = this._tracker.get_window_app(meta_win);
+            //let currentApp = this._tracker.get_window_app(meta_win);
 
             // But consider half maximized windows
             // Useful if one is using two apps side by side
@@ -293,6 +305,10 @@ const intellihide = new Lang.Class({
         }
         return false;
 
+    },
+
+    _onlyActive: function(active) {
+      this._activeWindow = active;
     }
 
 });
