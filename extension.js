@@ -14,6 +14,7 @@ const TopPanel = Me.imports.topPanel;
 const Mainloop = imports.mainloop;
 
 let event_intellihide_setting=null;
+let event_activeWindow_setting=null;
 
 let settings=null;
 let intellihide=null;
@@ -25,19 +26,22 @@ function show() { panel.set_preventHide(true); }
 function hide() { panel.set_preventHide(false); }
 
 function update_intellihide_status() {
-    if(settings.get_boolean('enable-intellihide') && intellihide === null)
+    if(settings.get_boolean('enable-intellihide') && intellihide === null) {
         intellihide = new Intellihide.intellihide(show, hide, panel);
-    else {
+    } else {
         if(intellihide !== null) intellihide.destroy();
         intellihide = null;
         hide();
     }
+    if(intellihide !== null)
+        intellihide._onlyActive(settings.get_boolean('enable-active-window'));
 }
 
 function enable() {
     settings = Convenience.getSettings();
     panel = new TopPanel.topPanel(settings);
     event_intellihide_setting = settings.connect('changed::enable-intellihide', update_intellihide_status);
+    event_activeWindow_setting = settings.connect('changed::enable-active-window', update_intellihide_status);
     update_intellihide_status();
 }
 
@@ -45,6 +49,8 @@ function disable() {
     if(intellihide !== null) intellihide.destroy();
     if(event_intellihide_setting !== null) 
         settings.disconnect(event_intellihide_setting);
+    if(event_activeWindow_setting !== null)
+        settings.disconeect(event_activeWindow_setting);
     panel.destroy();
     settings.run_dispose();
     

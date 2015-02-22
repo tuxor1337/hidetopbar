@@ -266,6 +266,7 @@ function buildPrefsWidget() {
     let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
     let settings_array = [
         ['enable-intellihide',_("Only hide panel when a window takes the space")],
+        ['enable-active-window',_("Only when the active window takes the space")],
     ];
     settings_array.forEach(function (s) {
         let hbox = new Gtk.HBox();
