@@ -50,7 +50,7 @@ function disable() {
     if(event_intellihide_setting !== null) 
         settings.disconnect(event_intellihide_setting);
     if(event_activeWindow_setting !== null)
-        settings.disconeect(event_activeWindow_setting);
+        settings.disconnect(event_activeWindow_setting);
     panel.destroy();
     settings.run_dispose();
     
