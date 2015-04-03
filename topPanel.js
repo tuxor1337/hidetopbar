@@ -72,7 +72,7 @@ const topPanel = new Lang.Class({
         this._shortcutTimeout = 0;
         Main.wm.addKeybinding("shortcut-keybind",
             this._settings, Meta.KeyBindingFlags.NONE,
-            Shell.KeyBindingMode.NORMAL,
+            Shell.ActionMode.NORMAL,
             Lang.bind(this, this._handleShortcut)
         );
     },
@@ -186,7 +186,7 @@ const topPanel = new Lang.Class({
         this._panelPressure = new Layout.PressureBarrier(
             this._settings.get_int('pressure-threshold'),
             this._settings.get_int('pressure-timeout'), 
-            Shell.KeyBindingMode.NORMAL
+            Shell.ActionMode.NORMAL
         );
         this._panelPressure.setEventFilter(function(event) {
             if (event.grabbed && Main.modalCount == 0)
