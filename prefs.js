@@ -182,7 +182,7 @@ function buildPrefsWidget() {
         settings.set_strv('shortcut-keybind', []);
     });
     
-    col = new Gtk.TreeViewColumn({ min_width: 200 });
+    let col = new Gtk.TreeViewColumn({ min_width: 200 });
 
     col.pack_end(cellrend, false);
     col.add_attribute(cellrend, 'accel-mods', 0);
