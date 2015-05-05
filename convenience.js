@@ -93,14 +93,14 @@ function getSettings(schema) {
 }
 
 // try to simplify global signals handling
-const globalSignalHandler = new Lang.Class({
-    Name: 'hideTopPanel.globalSignalHandler',
+const GlobalSignalsHandler = new Lang.Class({
+    Name: 'hideTopPanel.GlobalSignalsHandler',
     
     _init: function(){
         this._signals = new Object();
     },
     
-    push: function(/*unlimited 3-long array arguments*/){
+    add: function(/*unlimited 3-long array arguments*/){
         this._addSignals('generic', arguments);
     },
     
@@ -109,7 +109,7 @@ const globalSignalHandler = new Lang.Class({
             this.disconnectWithLabel(label);
     },
     
-    pushWithLabel: function( label /* plus unlimited 3-long array arguments*/) {
+    addWithLabel: function( label /* plus unlimited 3-long array arguments*/) {
         // skip first element of thearguments array;
         let elements = new Array;
         for(let i = 1 ; i< arguments.length; i++)

@@ -3,6 +3,7 @@ const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Meta = imports.gi.Meta;
 const Shell = imports.gi.Shell;
+const Clutter = imports.gi.Clutter;
 
 const Main = imports.ui.main;
 const Layout = imports.ui.layout;
@@ -10,6 +11,7 @@ const Tweener = imports.ui.tweener;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
+const Intellihide = Me.imports.intellihide;
                     
 const PANEL_BOX = Main.panel.actor.get_parent();
 
@@ -20,6 +22,7 @@ const topPanel = new Lang.Class({
         this._panelHeight = Main.panel.actor.get_height();
         this._preventHide = false;
         this._intellihideBlock = false;
+        this._staticBox = new Clutter.ActorBox();
         this._initialY = PANEL_BOX.y;
         
         Main.layoutManager.removeChrome(PANEL_BOX);
@@ -32,9 +35,11 @@ const topPanel = new Lang.Class({
         this._settings = settings;
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
+
+        this._intellihide = new Intellihide.intellihide(this._settings);
        
-        this._signalHandler = new Convenience.globalSignalHandler();
-        this._signalHandler.push(
+        this._signalsHandler = new Convenience.GlobalSignalsHandler();
+        this._signalsHandler.add(
             [
                 Main.overview,
                 'showing',
@@ -64,6 +69,11 @@ const topPanel = new Lang.Class({
                 global.screen,
                 'monitors-changed',
                 Lang.bind(this, this._updateStaticBox)
+            ],
+            [
+                this._intellihide,
+                'status-changed',
+                Lang.bind(this, this._updatePreventHide)
             ]
         );
         
@@ -90,7 +100,7 @@ const topPanel = new Lang.Class({
         PANEL_BOX.height = x;
         
         Tweener.addTween(PANEL_BOX, {
-            y: this.initialY + x - this._panelHeight,
+            y: this._initialY + x - this._panelHeight,
             time: animationTime,
             transition: 'easeOutQuad',
             onComplete: function() { Main.panel.actor.set_opacity(x*255); }
@@ -100,16 +110,16 @@ const topPanel = new Lang.Class({
     show: function(animationTime, trigger) {
         if(trigger == "mouse-enter" && this._settings.get_boolean('mouse-triggers-overview'))
             Main.overview.show();
-        if(PANEL_BOX.y - this.initialY > 1-this._panelHeight) return;
+        if(PANEL_BOX.y - this._initialY > 1-this._panelHeight) return;
         PANEL_BOX.height = this._panelHeight;
         Main.panel.actor.set_opacity(255);
         
         if(trigger == "showing-overview"
             && global.get_pointer()[1] < this._panelHeight
-            && this._settings.get_boolean('hot-corner')) PANEL_BOX.y = this.initialY;
+            && this._settings.get_boolean('hot-corner')) PANEL_BOX.y = this._initialY;
         else {
             Tweener.addTween(PANEL_BOX, {
-                y: this.initialY,
+                y: this._initialY,
                 time: animationTime,
                 transition: 'easeOutQuad',
                 onComplete: Lang.bind(this, this._updateStaticBox)
@@ -217,8 +227,11 @@ const topPanel = new Lang.Class({
     },
 
     _updateStaticBox: function() {
-        this.staticBox = PANEL_BOX.get_allocation_box();
-        this.initialY = PANEL_BOX.y;
+        this._staticBox.init_rect(
+            PANEL_BOX.x, PANEL_BOX.y, PANEL_BOX.width, PANEL_BOX.height
+        );
+        this._initialY = PANEL_BOX.y;
+        this._intellihide.updateTargetBox(this._staticBox);
     },
     
     _updateSettingsHotCorner: function() {
@@ -231,10 +244,29 @@ const topPanel = new Lang.Class({
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
     },
-    
+
+    _updateIntellihideStatus: function() {
+        if(this._settings.get_boolean('enable-intellihide'))
+            this._intellihide.enable();
+        else
+            this._intellihide.disable();
+
+        this._intellihide._onlyActive(this._settings.get_boolean('enable-active-window'));
+    },
+
+    _updatePreventHide: function() {
+        if(this._intellihideBlock) return;
+
+        this._preventHide = !this._intellihide.getOverlapStatus();
+        if(this._preventHide)
+            this.show(this._settings.get_double('animation-time-autohide'));
+        else if(!Main.overview.visible)
+            this.hide(this._settings.get_double('animation-time-autohide'));
+    },
+
     _bindSettingsChanges: function() {
-        this._signalHandler = new Convenience.globalSignalHandler();
-        this._signalHandler.pushWithLabel("settings",
+        this._signalsHandler = new Convenience.GlobalSignalsHandler();
+        this._signalsHandler.addWithLabel("settings",
             [
                 this._settings,
                 'changed::hot-corner',
@@ -254,6 +286,16 @@ const topPanel = new Lang.Class({
                 this._settings,
                 'changed::pressure-threshold',
                 Lang.bind(this, this._updateSettingsMouseSensitive)
+            ],
+            [
+                this._settings,
+                'changed::enable-intellihide',
+                Lang.bind(this, this._updateIntellihideStatus)
+            ],
+            [
+                this._settings,
+                'changed::enable-active-window',
+                Lang.bind(this, this._updateIntellihideStatus)
             ]
         );
     },
@@ -265,20 +307,11 @@ const topPanel = new Lang.Class({
             trackFullscreen: true
         });
         
-        this._signalHandler.disconnect();
+        this._signalsHandler.disconnect();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
+        this._intellihide.destroy();
     
         this.show(0.1);
-    },
-    
-    set_preventHide: function(bool) {
-        if(this._intellihideBlock) return;
-        
-        this._preventHide = bool;
-        if(this._preventHide)
-            this.show(this._settings.get_double('animation-time-autohide'));
-        else if(!Main.overview.visible)
-            this.hide(this._settings.get_double('animation-time-autohide'));
-    },
+    }
 });
