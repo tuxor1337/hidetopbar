@@ -308,7 +308,7 @@ const topPanel = new Lang.Class({
             trackFullscreen: true
         });
         
-        this._signalsHandler.disconnect();
+        this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
         this._intellihide.destroy();

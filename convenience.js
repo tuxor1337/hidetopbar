@@ -104,7 +104,7 @@ const GlobalSignalsHandler = new Lang.Class({
         this._addSignals('generic', arguments);
     },
     
-    disconnect: function() {
+    destroy: function() {
         for( let label in this._signals )
             this.disconnectWithLabel(label);
     },
