@@ -76,9 +76,10 @@ const topPanel = new Lang.Class({
                 Lang.bind(this, this._updatePreventHide)
             ]
         );
-        
+
         this._updateStaticBox();
-        
+        this._updateIntellihideStatus();
+
         this._shortcutTimeout = 0;
         Main.wm.addKeybinding("shortcut-keybind",
             this._settings, Meta.KeyBindingFlags.NONE,
