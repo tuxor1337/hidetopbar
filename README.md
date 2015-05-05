@@ -14,22 +14,20 @@ Installation:
 
 Compile the gsettings schema by running
 
-    mkdir ./schemas/
-    glib-compile-schemas --strict --targetdir=./schemas/ .
+    make schemas
 
 Install this in your extensions directory:
 
     ~/.local/share/gnome-shell/extensions/
-    
+
 Example:
 
     cd ~/.local/share/gnome-shell/extensions/
     git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
-    mkdir ./schemas/
-    glib-compile-schemas --strict --targetdir=./schemas/ .
+    make schemas
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
-    
+
 You can also manage extensions from https://extensions.gnome.org/local/
 
 License:
