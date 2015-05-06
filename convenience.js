@@ -32,6 +32,11 @@ const Gio = imports.gi.Gio;
 const Config = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
 
+const DEBUG = function (message) {
+    // Enable for debugging purposes.
+    if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
+}
+
 /**
  * initTranslations:
  * @domain: (optional): the gettext domain to use
