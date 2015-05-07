@@ -25,6 +25,7 @@ const topPanel = new Lang.Class({
         this._preventHide = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
+        this._tweenActive = false;
 
         Main.layoutManager.removeChrome(PANEL_BOX);
         Main.layoutManager.addChrome(PANEL_BOX, {
@@ -92,38 +93,47 @@ const topPanel = new Lang.Class({
     },
 
     hide: function(animationTime, trigger) {
+        DEBUG("hide(" + trigger + ")");
         if(this._preventHide || PANEL_BOX.height <= 1) return;
 
         this._panelHeight = Main.panel.actor.get_height();
 
-        if(global.get_pointer()[1] < this._panelHeight && trigger == "mouse-left") {
+        if(trigger == "mouse-left"
+           && global.get_pointer()[1] < this._panelHeight) {
             return;
         }
 
-        DEBUG("hide(" + trigger + ")");
+        if(this._tweenActive) {
+            Tweener.removeTweens(PANEL_BOX, "y");
+            this._tweenActive = false;
+        }
 
         let x = Number(this._settings.get_boolean('hot-corner'));
         PANEL_BOX.height = x;
 
+        this._tweenActive = true;
         Tweener.addTween(PANEL_BOX, {
             y: this._staticBox.y1 + x - this._panelHeight,
             time: animationTime,
             transition: 'easeOutQuad',
-            onComplete: function() { Main.panel.actor.set_opacity(x*255); }
+            onComplete: Lang.bind(this, function() {
+                this._tweenActive = false;
+                Main.panel.actor.set_opacity(x*255);
+            })
         });
     },
 
     show: function(animationTime, trigger) {
+        DEBUG("show(" + trigger + ")");
         if(trigger == "mouse-enter"
            && this._settings.get_boolean('mouse-triggers-overview')) {
             Main.overview.show();
         }
 
-        if(PANEL_BOX.y - this._staticBox.y1 > 1-this._panelHeight) {
-            return;
+        if(this._tweenActive) {
+            Tweener.removeTweens(PANEL_BOX, "y");
+            this._tweenActive = false;
         }
-
-        DEBUG("show(" + trigger + ")");
 
         PANEL_BOX.height = this._panelHeight;
         Main.panel.actor.set_opacity(255);
@@ -137,11 +147,15 @@ const topPanel = new Lang.Class({
           ) {
             PANEL_BOX.y = this._staticBox.y1;
         } else {
+            this._tweenActive = true;
             Tweener.addTween(PANEL_BOX, {
                 y: this._staticBox.y1,
                 time: animationTime,
                 transition: 'easeOutQuad',
-                onComplete: Lang.bind(this, this._updateStaticBox)
+                onComplete: Lang.bind(this, function() {
+                    this._tweenActive = false;
+                    this._updateStaticBox();
+                })
             });
         }
     },
@@ -327,17 +341,17 @@ const topPanel = new Lang.Class({
     },
 
     destroy: function() {
+        this._intellihide.destroy();
+        this._signalsHandler.destroy();
+        Main.wm.removeKeybinding("shortcut-keybind");
+        this._disablePressureBarrier();
+
+        this.show(0, "destroy");
+
         Main.layoutManager.removeChrome(PANEL_BOX);
         Main.layoutManager.addChrome(PANEL_BOX, {
             affectsStruts: true,
             trackFullscreen: true
         });
-
-        this._signalsHandler.destroy();
-        Main.wm.removeKeybinding("shortcut-keybind");
-        this._disablePressureBarrier();
-        this._intellihide.destroy();
-
-        this.show(0.1, "destroy");
     }
 });
