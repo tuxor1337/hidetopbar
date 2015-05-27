@@ -28,7 +28,7 @@ function disable() {
     DEBUG("disable()");
     panel.destroy();
     settings.run_dispose();
-    
+
     panel = null;
     settings = null;
 }
