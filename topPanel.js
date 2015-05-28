@@ -127,7 +127,8 @@ const topPanel = new Lang.Class({
 
     show: function(animationTime, trigger) {
         DEBUG("show(" + trigger + ")");
-        if(Main.panel.actor.height == this._panelHeight) return;
+        if(trigger !== "destroy"
+           && Main.panel.actor.height == this._panelHeight) return;
         if(trigger == "mouse-enter"
            && this._settings.get_boolean('mouse-triggers-overview')) {
             Main.overview.show();
