@@ -118,17 +118,13 @@ const topPanel = new Lang.Class({
             transition: 'easeOutQuad',
             onComplete: Lang.bind(this, function() {
                 this._tweenActive = false;
-                Main.panel.actor.height = x;
-                Main.panel.actor.set_opacity(x*255);
-                PANEL_BOX.y = this._staticBox.y1;
+                Main.panel.actor.set_opacity(0);
             })
         });
     },
 
     show: function(animationTime, trigger) {
         DEBUG("show(" + trigger + ")");
-        if(trigger !== "destroy"
-           && Main.panel.actor.height == this._panelHeight) return;
         if(trigger == "mouse-enter"
            && this._settings.get_boolean('mouse-triggers-overview')) {
             Main.overview.show();
@@ -140,10 +136,8 @@ const topPanel = new Lang.Class({
         }
 
         PANEL_BOX.height = this._panelHeight;
-        PANEL_BOX.y = this._staticBox.y1 - this._panelHeight;
-        Main.panel.actor.height = this._panelHeight;
         Main.panel.actor.set_opacity(255);
-        
+
         if(trigger == "destroy"
            || (
                trigger == "showing-overview"
