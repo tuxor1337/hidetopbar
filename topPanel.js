@@ -173,7 +173,7 @@ const topPanel = new Lang.Class({
                 this._menuEvent = this._blockerMenu.connect(
                     'open-state-changed',
                     Lang.bind(this, function(menu, open) {
-                        if(!open) {
+                        if(!open && this._blockerMenu !== null) {
                             this._blockerMenu.disconnect(this._menuEvent);
                             this._menuEvent=null;
                             this._blockerMenu=null;
