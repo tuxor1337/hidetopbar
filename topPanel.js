@@ -287,8 +287,10 @@ const topPanel = new Lang.Class({
     _updateIntellihideStatus: function() {
         if(this._settings.get_boolean('enable-intellihide'))
             this._intellihide.enable();
-        else
+        else {
             this._intellihide.disable();
+            this.hide(0, "init");
+        }
 
         this._intellihide._onlyActive(this._settings.get_boolean('enable-active-window'));
     },
