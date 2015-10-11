@@ -21,6 +21,9 @@ const Convenience = Me.imports.convenience;
 // A good compromise between reactivity and efficiency; to be tuned.
 const INTELLIHIDE_CHECK_INTERVAL = 100;
 
+const shell_version = parseFloat(
+    imports.misc.config.PACKAGE_VERSION.split('.').slice(0, 2).join('.'));
+
 const OverlapStatus = {
     UNDEFINED: -1,
     FALSE: 0,
@@ -82,17 +85,6 @@ const intellihide = new Lang.Class({
                 'grab-op-end',
                 Lang.bind(this, this._grabOpEnd)
             ],
-            // direct maximize/unmazimize are not included in grab-operations
-            [
-                global.window_manager,
-                'maximize', 
-                Lang.bind(this, this._checkOverlap )
-            ],
-            [
-                global.window_manager,
-                'unmaximize',
-                Lang.bind(this, this._checkOverlap )
-            ],
             // triggered for instance when the window list order changes,
             // included when the workspace is switched
             [
@@ -107,6 +99,31 @@ const intellihide = new Lang.Class({
                 Lang.bind(this, this._checkOverlap )
             ]
         );
+        // direct maximize/unmazimize are not included in grab-operations
+        if (shell_version >= 3.18) {
+          this._signalsHandler.add (
+              [
+                global.window_manager,
+                'size-change',
+                Lang.bind(this, this._checkOverlap)
+              ]
+          );
+        } else {
+          // Since shell version 3.18, maximize and unmaximize do not exist
+          // any  longer. For recent versions, size-change serves this purpose.
+          this._signalsHandler.add (
+              [
+                global.window_manager,
+                'maximize',
+                Lang.bind(this, this._checkOverlap)
+              ],
+              [
+                global.window_manager,
+                'unmaximize',
+                Lang.bind(this, this._checkOverlap)
+              ]
+          );
+        }
 
     },
 
