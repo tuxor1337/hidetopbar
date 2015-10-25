@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 17:49+0100\n"
+"POT-Creation-Date: 2015-10-24 15:24+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,10 +65,18 @@ msgstr ""
 msgid "Delay before the bar rehides after key press."
 msgstr ""
 
-#: prefs.js:237
+#: prefs.js:231
+msgid "Pressing the shortcut again rehides the panel."
+msgstr ""
+
+#: prefs.js:261
 msgid "<b>Intellihide</b>"
 msgstr ""
 
-#: prefs.js:244
+#: prefs.js:268
 msgid "Only hide panel when a window takes the space"
+msgstr ""
+
+#: prefs.js:269
+msgid "Only when the active window takes the space"
 msgstr ""
