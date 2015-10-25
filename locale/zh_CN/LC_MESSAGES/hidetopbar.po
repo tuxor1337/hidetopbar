@@ -2,54 +2,84 @@
 # Copyright (C) Lequn Chen (abcdabcd987)
 # This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
 # Lequn Chen (abcdabcd987) <chenlequn22@gmail.com>, 2013.
+# 绿色圣光 <lishaohui.qd@163.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-18 17:35+0100\n"
-"PO-Revision-Date: 2013-10-06 11:40+0800\n"
-"Last-Translator: Lequn Chen <chenlequn22@gmail.com>\n"
-"Language-Team: Lequn Chen <chenlequn22@gmail.com>\n"
+"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"PO-Revision-Date: 2015-10-25 21:27+0800\n"
+"Last-Translator: 绿色圣光 <lishaohui.qd@163.com>\n"
+"Language-Team: Chinese (Simplified) <>\n"
 "Language: zh_Cn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: prefs.js:20
+#: prefs.js:26
 msgid "<b>Sensitivity</b>"
 msgstr "<b>敏感性</b>"
 
-#: prefs.js:27
+#: prefs.js:33
 msgid "Show panel when mouse approaches edge of the screen"
-msgstr "鼠标接近屏幕上端时显示面板"
+msgstr "当鼠标靠近屏幕上边沿时显示面板"
 
-#: prefs.js:28
+#: prefs.js:34
 msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "面板隐藏时“活动”可从左上角呼出"
+msgstr "面板隐藏时仍然保持热区敏感（可以呼出活动概览）"
 
-#: prefs.js:29
+#: prefs.js:35
 msgid "In the above case show overview, too"
-msgstr ""
+msgstr "上面的情况也显示活动概览"
 
-#: prefs.js:55
+#: prefs.js:61
 msgid "Pressure barrier's threshold."
-msgstr ""
+msgstr "压力屏障阈值"
 
-#: prefs.js:56
+#: prefs.js:62
 msgid "Pressure barrier's timeout."
-msgstr ""
+msgstr "压力屏障超时时间"
 
-#: prefs.js:82
+#: prefs.js:92
 msgid "<b>Animation</b>"
 msgstr "<b>动画效果</b>"
 
-#: prefs.js:89
+#: prefs.js:99
 msgid "Slide animation time when entering/leaving overview."
-msgstr "“活动”滑入和滑出的动画动画时间"
+msgstr "进入/离开活动概览时面板滑动的动画时间"
 
-#: prefs.js:90
+#: prefs.js:100
 msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "鼠标接近屏幕上端时面板滑出的动画时间"
+msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时间"
+
+#: prefs.js:130
+msgid "<b>Keyboard shortcuts</b>"
+msgstr "<b>键盘快捷键</b>"
+
+#: prefs.js:194
+msgid "Key that triggers the bar to be shown."
+msgstr "触发显示面板的快捷键"
+
+#: prefs.js:215
+msgid "Delay before the bar rehides after key press."
+msgstr "面板在按下快捷键后被重新隐藏的延时"
+
+#: prefs.js:231
+msgid "Pressing the shortcut again rehides the panel."
+msgstr "再次按下快捷键时重新隐藏面板"
+
+#: prefs.js:261
+msgid "<b>Intellihide</b>"
+msgstr "<b>智能隐藏</b>"
+
+#: prefs.js:268
+msgid "Only hide panel when a window takes the space"
+msgstr "仅当有窗口占用面板空间时才隐藏面板"
+
+#: prefs.js:269
+msgid "Only when the active window takes the space"
+msgstr "仅当活动窗口占用面板空间时才隐藏面板"
