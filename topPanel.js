@@ -184,26 +184,33 @@ const topPanel = new Lang.Class({
             }
         }
     },
-    
+
     _handleShortcut: function () {
         var delay_time = this._settings.get_double('shortcut-delay');
-        if(this._shortcutTimeout && (delay_time < 0.05
-           || this._settings.get_boolean('shortcut-toggles'))) {
+        if(this._shortcutTimeout) {
             Mainloop.source_remove(this._shortcutTimeout);
             this._shortcutTimeout = null;
-            this._intellihideBlock = false;
-            this._preventHide = false;
-            this.hide(
-                this._settings.get_double('animation-time-autohide'),
-                "shortcut"
-            );
-        } else {
+            if(delay_time < 0.05
+               || this._settings.get_boolean('shortcut-toggles')) {
+                this._intellihideBlock = false;
+                this._preventHide = false;
+                this.hide(
+                    this._settings.get_double('animation-time-autohide'),
+                    "shortcut"
+                );
+                return false;
+            }
+        }
+
+        // If setting 'shortcut-toggles' is false, repeatedly pressing the
+        // shortcut should prevent the bar from hiding
+        if(!this._preventHide || this._intellihideBlock) {
             this._intellihideBlock = true;
             this._preventHide = true;
-            
+
             if(delay_time > 0.05) {
                 this.show(delay_time/5.0, "shortcut");
-                
+
                 this._shortcutTimeout = Mainloop.timeout_add(
                     delay_time*1200,
                     Lang.bind(this, function () {
