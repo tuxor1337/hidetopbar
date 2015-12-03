@@ -215,7 +215,7 @@ const topPanel = new Lang.Class({
                     this._settings.get_double('animation-time-autohide'),
                     "shortcut"
                 );
-                return false;
+                return;
             }
         }
 
