@@ -17,6 +17,16 @@ const DEBUG = Convenience.DEBUG;
 const PANEL_BOX = Main.panel.actor.get_parent();
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
 
+function reallocateTopIcons() {
+    // Dirty hack for TopIcons compatibility:
+    // triggers reallocation of ClickProxy in TopIcons
+    Main.panel._rightBox.emit(
+        "allocation-changed",
+        Main.panel._rightBox.get_allocation_box(),
+        null
+    );
+}
+
 const topPanel = new Lang.Class({
     Name: 'topPanel',
 
@@ -119,13 +129,7 @@ const topPanel = new Lang.Class({
             onComplete: Lang.bind(this, function() {
                 this._tweenActive = false;
                 Main.panel.actor.set_opacity(0);
-                // Dirty hack for TopIcons compatibility:
-                // triggers reallocation of ClickProxy in TopIcons
-                Main.panel._rightBox.emit(
-                    "allocation-changed",
-                    Main.panel._rightBox.get_allocation_box(),
-                    null
-                );
+                reallocateTopIcons();
             })
         });
     },
@@ -153,6 +157,7 @@ const topPanel = new Lang.Class({
               )
           ) {
             PANEL_BOX.y = this._staticBox.y1;
+            reallocateTopIcons();
         } else {
             this._tweenActive = true;
             Tweener.addTween(PANEL_BOX, {
@@ -162,13 +167,7 @@ const topPanel = new Lang.Class({
                 onComplete: Lang.bind(this, function() {
                     this._tweenActive = false;
                     this._updateStaticBox();
-                    // Dirty hack for TopIcons compatibility:
-                    // triggers reallocation of ClickProxy in TopIcons
-                    Main.panel._rightBox.emit(
-                        "allocation-changed",
-                        Main.panel._rightBox.get_allocation_box(),
-                        null
-                    );
+                    reallocateTopIcons();
                 })
             });
         }
