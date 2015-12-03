@@ -80,7 +80,11 @@ const topPanel = new Lang.Class({
             [
                 global.screen,
                 'monitors-changed',
-                Lang.bind(this, this._updateStaticBox)
+                Lang.bind(this, function () {
+                    this._disablePressureBarrier();
+                    this._updateStaticBox();
+                    this._initPressureBarrier();
+                })
             ],
             [
                 this._intellihide,
