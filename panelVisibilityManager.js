@@ -32,7 +32,7 @@ const PanelVisibilityManager = new Lang.Class({
 
     _init: function(settings) {
         this._settings = settings;
-        this._panelHeight = Main.panel.actor.get_height();
+        this._base_y = PanelBox.y;
         this._preventHide = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
@@ -50,38 +50,40 @@ const PanelVisibilityManager = new Lang.Class({
         this._updateSettingsMouseSensitive();
         this._intellihide = new Intellihide.intellihide(this._settings);
 
+        this._updateHotCorner(false);
         this._updateStaticBox();
         Mainloop.timeout_add(100, Lang.bind(this, this._bindUIChanges));
     },
 
     hide: function(animationTime, trigger) {
         DEBUG("hide(" + trigger + ")");
-        if(this._preventHide || PanelBox.height <= 1) return;
+        if(this._preventHide) return;
 
-        this._panelHeight = Main.panel.actor.get_height();
-
-        if(trigger == "mouse-left"
-           && global.get_pointer()[1] < this._staticBox.y1 + this._panelHeight) {
-            return;
-        }
+        let anchor_y = PanelBox.get_anchor_point()[1],
+            delta_y = -PanelBox.height;
+        if(anchor_y < 0) delta_y = -delta_y;
+        let mouse = global.get_pointer(),
+            mouse_is_over = (mouse[1] >= this._staticBox.y1 &&
+                                 mouse[1] <= this._staticBox.y2 &&
+                                 mouse[0] >= this._staticBox.x1 &&
+                                 mouse[0] <= this._staticBox.x2);
+        if(trigger == "mouse-left" && mouse_is_over) return;
 
         if(this._tweenActive) {
             Tweener.removeTweens(PanelBox, "y");
             this._tweenActive = false;
         }
 
-        let x = Number(this._settings.get_boolean('hot-corner'));
-        PanelBox.height = x;
-
         this._tweenActive = true;
         Tweener.addTween(PanelBox, {
-            y: this._staticBox.y1 + x - this._panelHeight,
+            y: this._base_y + delta_y,
             time: animationTime,
             transition: 'easeOutQuad',
             onComplete: Lang.bind(this, function() {
                 this._tweenActive = false;
-                Main.panel.actor.set_opacity(0);
+                PanelBox.hide();
                 reallocateTopIcons();
+                this._updateHotCorner(true);
             })
         });
     },
@@ -98,9 +100,8 @@ const PanelVisibilityManager = new Lang.Class({
             this._tweenActive = false;
         }
 
-        PanelBox.height = this._panelHeight;
-        Main.panel.actor.set_opacity(255);
-
+        this._updateHotCorner(false);
+        PanelBox.show();
         if(trigger == "destroy"
            || (
                trigger == "showing-overview"
@@ -108,12 +109,12 @@ const PanelVisibilityManager = new Lang.Class({
                && this._settings.get_boolean('hot-corner')
               )
           ) {
-            PanelBox.y = this._staticBox.y1;
+            PanelBox.y = this._base_y;
             reallocateTopIcons();
         } else {
             this._tweenActive = true;
             Tweener.addTween(PanelBox, {
-                y: this._staticBox.y1,
+                y: this._base_y,
                 time: animationTime,
                 transition: 'easeOutQuad',
                 onComplete: Lang.bind(this, function() {
@@ -193,6 +194,11 @@ const PanelVisibilityManager = new Lang.Class({
                 );
                 this._shortcutTimeout = true;
             }
+            // Key-focus the "Activities" button
+            //  Currently, this is deactivated because we can't make sure that
+            //  the panel doesn't hide as long as it has the key focus.
+            // Main -> panel -> _leftBox -> (StBin) -> (panel-button)
+            // Main.panel._leftBox.first_child.first_child.grab_key_focus();
         }
     },
 
@@ -225,24 +231,41 @@ const PanelVisibilityManager = new Lang.Class({
                 );
             })
         );
-        let monitor = Main.layoutManager.primaryMonitor;
+        let anchor_y = PanelBox.get_anchor_point()[1],
+            direction = Meta.BarrierDirection.POSITIVE_Y;
+        if(anchor_y < 0) {
+            anchor_y -= PanelBox.height;
+            direction = Meta.BarrierDirection.NEGATIVE_Y;
+        }
         this._panelBarrier = new Meta.Barrier({
             display: global.display,
-            x1: monitor.x,
-            x2: monitor.x + monitor.width,
-            y1: monitor.y,
-            y2: monitor.y,
-            directions: Meta.BarrierDirection.POSITIVE_Y
+            x1: PanelBox.x,
+            x2: PanelBox.x + PanelBox.width,
+            y1: this._base_y - anchor_y,
+            y2: this._base_y - anchor_y,
+            directions: direction
         });
         this._panelPressure.addBarrier(this._panelBarrier);
     },
 
     _updateStaticBox: function() {
         DEBUG("_updateStaticBox()");
+        let anchor_y = PanelBox.get_anchor_point()[1];
         this._staticBox.init_rect(
-            PanelBox.x, PanelBox.y, PanelBox.width, PanelBox.height
+            PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
         );
         this._intellihide.updateTargetBox(this._staticBox);
+    },
+
+    _updateHotCorner: function(panel_hidden) {
+        let HotCorner = Main.layoutManager.hotCorners[0];
+        if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
+            HotCorner.setBarrierSize(PanelBox.height);
+        } else {
+            Mainloop.timeout_add(100, function () {
+                HotCorner.setBarrierSize(0)
+            });
+        }
     },
 
     _updateSettingsHotCorner: function() {
@@ -257,10 +280,14 @@ const PanelVisibilityManager = new Lang.Class({
     },
 
     _updateIntellihideStatus: function() {
-        if(this._settings.get_boolean('enable-intellihide'))
+        if(this._settings.get_boolean('enable-intellihide')) {
+            this._intellihideBlock = false;
+            this._preventHide = false;
             this._intellihide.enable();
-        else {
+        } else {
             this._intellihide.disable();
+            this._intellihideBlock = true;
+            this._preventHide = false;
             this.hide(0, "init");
         }
 
@@ -307,9 +334,18 @@ const PanelVisibilityManager = new Lang.Class({
                 Lang.bind(this, this._handleMenus)
             ],
             [
+                PanelBox,
+                'notify::anchor-y',
+                Lang.bind(this, function () {
+                    this._updateStaticBox();
+                    this._updateSettingsMouseSensitive();
+                })
+            ],
+            [
                 global.screen,
                 'monitors-changed',
                 Lang.bind(this, function () {
+                    this._base_y = PanelBox.y;
                     this._updateStaticBox();
                     this._updateSettingsMouseSensitive();
                 })
