@@ -6,29 +6,27 @@
 // See README for more information.
 //
 
-const Mainloop = imports.mainloop;
-
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
-const TopPanel = Me.imports.topPanel;
+const PanelVisibilityManager = Me.imports.panelVisibilityManager;
 const DEBUG = Convenience.DEBUG;
 
-let settings = null;
-let panel = null;
+let mSettings = null;
+let mPVManager = null;
 
 function init() { }
 
 function enable() {
     DEBUG("enable()");
-    settings = Convenience.getSettings();
-    panel = new TopPanel.topPanel(settings);
+    mSettings = Convenience.getSettings();
+    mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings);
 }
 
 function disable() {
     DEBUG("disable()");
-    panel.destroy();
-    settings.run_dispose();
+    mPVManager.destroy();
+    mSettings.run_dispose();
 
-    panel = null;
-    settings = null;
+    mPVManager = null;
+    mSettings = null;
 }

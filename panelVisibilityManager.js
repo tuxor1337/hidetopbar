@@ -14,7 +14,7 @@ const Convenience = Me.imports.convenience;
 const Intellihide = Me.imports.intellihide;
 const DEBUG = Convenience.DEBUG;
 
-const PANEL_BOX = Main.panel.actor.get_parent();
+const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
 
 function reallocateTopIcons() {
@@ -27,87 +27,36 @@ function reallocateTopIcons() {
     );
 }
 
-const topPanel = new Lang.Class({
-    Name: 'topPanel',
+const PanelVisibilityManager = new Lang.Class({
+    Name: 'PanelVisibilityManager',
 
     _init: function(settings) {
+        this._settings = settings;
         this._panelHeight = Main.panel.actor.get_height();
         this._preventHide = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._tweenActive = false;
+        this._shortcutTimeout = 0;
 
-        Main.layoutManager.removeChrome(PANEL_BOX);
-        Main.layoutManager.addChrome(PANEL_BOX, {
+        Main.layoutManager.removeChrome(PanelBox);
+        Main.layoutManager.addChrome(PanelBox, {
             affectsStruts: false,
             trackFullscreen: true
         });
 
         // Load settings
-        this._settings = settings;
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
-
         this._intellihide = new Intellihide.intellihide(this._settings);
 
-        this._signalsHandler = new Convenience.GlobalSignalsHandler();
-        this._signalsHandler.add(
-            [
-                Main.overview,
-                'showing',
-                Lang.bind(this, function() {
-                    this.show(
-                        this._settings.get_double('animation-time-overview'),
-                        "showing-overview"
-                    );
-                })
-            ],
-            [
-                Main.overview,
-                'hiding',
-                Lang.bind(this, function() {
-                    this.hide(
-                        this._settings.get_double('animation-time-overview'),
-                        "hiding-overview"
-                    );
-                })
-            ],
-            [
-                Main.panel.actor,
-                'leave-event',
-                Lang.bind(this, this._handleMenus)
-            ],
-            [
-                global.screen,
-                'monitors-changed',
-                Lang.bind(this, function () {
-                    this._updateStaticBox();
-                    this._updateSettingsMouseSensitive();
-                })
-            ],
-            [
-                this._intellihide,
-                'status-changed',
-                Lang.bind(this, this._updatePreventHide)
-            ]
-        );
-
         this._updateStaticBox();
-        Mainloop.timeout_add(100,
-            Lang.bind(this, this._updateIntellihideStatus)
-        );
-
-        this._shortcutTimeout = 0;
-        Main.wm.addKeybinding("shortcut-keybind",
-            this._settings, Meta.KeyBindingFlags.NONE,
-            ShellActionMode.NORMAL,
-            Lang.bind(this, this._handleShortcut)
-        );
+        Mainloop.timeout_add(100, Lang.bind(this, this._bindUIChanges));
     },
 
     hide: function(animationTime, trigger) {
         DEBUG("hide(" + trigger + ")");
-        if(this._preventHide || PANEL_BOX.height <= 1) return;
+        if(this._preventHide || PanelBox.height <= 1) return;
 
         this._panelHeight = Main.panel.actor.get_height();
 
@@ -117,15 +66,15 @@ const topPanel = new Lang.Class({
         }
 
         if(this._tweenActive) {
-            Tweener.removeTweens(PANEL_BOX, "y");
+            Tweener.removeTweens(PanelBox, "y");
             this._tweenActive = false;
         }
 
         let x = Number(this._settings.get_boolean('hot-corner'));
-        PANEL_BOX.height = x;
+        PanelBox.height = x;
 
         this._tweenActive = true;
-        Tweener.addTween(PANEL_BOX, {
+        Tweener.addTween(PanelBox, {
             y: this._staticBox.y1 + x - this._panelHeight,
             time: animationTime,
             transition: 'easeOutQuad',
@@ -145,11 +94,11 @@ const topPanel = new Lang.Class({
         }
 
         if(this._tweenActive) {
-            Tweener.removeTweens(PANEL_BOX, "y");
+            Tweener.removeTweens(PanelBox, "y");
             this._tweenActive = false;
         }
 
-        PANEL_BOX.height = this._panelHeight;
+        PanelBox.height = this._panelHeight;
         Main.panel.actor.set_opacity(255);
 
         if(trigger == "destroy"
@@ -159,11 +108,11 @@ const topPanel = new Lang.Class({
                && this._settings.get_boolean('hot-corner')
               )
           ) {
-            PANEL_BOX.y = this._staticBox.y1;
+            PanelBox.y = this._staticBox.y1;
             reallocateTopIcons();
         } else {
             this._tweenActive = true;
-            Tweener.addTween(PANEL_BOX, {
+            Tweener.addTween(PanelBox, {
                 y: this._staticBox.y1,
                 time: animationTime,
                 transition: 'easeOutQuad',
@@ -291,7 +240,7 @@ const topPanel = new Lang.Class({
     _updateStaticBox: function() {
         DEBUG("_updateStaticBox()");
         this._staticBox.init_rect(
-            PANEL_BOX.x, PANEL_BOX.y, PANEL_BOX.width, PANEL_BOX.height
+            PanelBox.x, PanelBox.y, PanelBox.width, PanelBox.height
         );
         this._intellihide.updateTargetBox(this._staticBox);
     },
@@ -327,6 +276,58 @@ const topPanel = new Lang.Class({
             this.show(animTime, "intellihide");
         else if(!Main.overview.visible)
             this.hide(animTime, "intellihide");
+    },
+
+    _bindUIChanges: function () {
+        this._signalsHandler = new Convenience.GlobalSignalsHandler();
+        this._signalsHandler.add(
+            [
+                Main.overview,
+                'showing',
+                Lang.bind(this, function() {
+                    this.show(
+                        this._settings.get_double('animation-time-overview'),
+                        "showing-overview"
+                    );
+                })
+            ],
+            [
+                Main.overview,
+                'hiding',
+                Lang.bind(this, function() {
+                    this.hide(
+                        this._settings.get_double('animation-time-overview'),
+                        "hiding-overview"
+                    );
+                })
+            ],
+            [
+                Main.panel.actor,
+                'leave-event',
+                Lang.bind(this, this._handleMenus)
+            ],
+            [
+                global.screen,
+                'monitors-changed',
+                Lang.bind(this, function () {
+                    this._updateStaticBox();
+                    this._updateSettingsMouseSensitive();
+                })
+            ],
+            [
+                this._intellihide,
+                'status-changed',
+                Lang.bind(this, this._updatePreventHide)
+            ]
+        );
+
+        Main.wm.addKeybinding("shortcut-keybind",
+            this._settings, Meta.KeyBindingFlags.NONE,
+            ShellActionMode.NORMAL,
+            Lang.bind(this, this._handleShortcut)
+        );
+
+        this._updateIntellihideStatus();
     },
 
     _bindSettingsChanges: function() {
@@ -373,8 +374,8 @@ const topPanel = new Lang.Class({
 
         this.show(0, "destroy");
 
-        Main.layoutManager.removeChrome(PANEL_BOX);
-        Main.layoutManager.addChrome(PANEL_BOX, {
+        Main.layoutManager.removeChrome(PanelBox);
+        Main.layoutManager.addChrome(PanelBox, {
             affectsStruts: true,
             trackFullscreen: true
         });
