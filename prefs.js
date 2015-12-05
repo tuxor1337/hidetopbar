@@ -208,7 +208,7 @@ function buildPrefsWidget() {
 
     let hbox = new Gtk.HBox();
 
-    let spin = Gtk.SpinButton.new_with_range(0.0,2.0,0.1);
+    let spin = Gtk.SpinButton.new_with_range(0.0,10.0,0.1);
     spin.set_value(settings.get_double('shortcut-delay'));
 
     hbox.pack_start(new Gtk.Label({
