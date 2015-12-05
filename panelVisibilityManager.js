@@ -215,11 +215,6 @@ const PanelVisibilityManager = new Lang.Class({
             this._settings.get_int('pressure-timeout'), 
             ShellActionMode.NORMAL
         );
-        this._panelPressure.setEventFilter(function(event) {
-            if (event.grabbed && Main.modalCount == 0)
-                return true;
-            return false;
-        });
         this._panelPressure.connect(
             'trigger',
             Lang.bind(this, function(barrier) {
