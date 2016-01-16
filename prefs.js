@@ -16,7 +16,7 @@ function init() {
 }
 
 function buildPrefsWidget() {
-    let frame = new Gtk.VBox({border_width: 10});
+    let frame = new Gtk.VBox({border_width: 10, spacing: 6});
     
 /******************************************************************************
  ************************************** Section Sensitivity *******************
@@ -28,7 +28,7 @@ function buildPrefsWidget() {
         xalign: 0
     }), false, false, 0);
 
-    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10, spacing: 6});
     let settings_array = [
         ['mouse-sensitive',_("Show panel when mouse approaches edge of the screen")],
         ['hot-corner',_("Keep hot corner sensitive, even in hidden state")],
@@ -56,7 +56,7 @@ function buildPrefsWidget() {
     });
     frame.pack_start(settings_vbox, true, true, 0);
 
-    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_bottom: 10});
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_bottom: 10, spacing: 6});
     let settings_array = [
         ['pressure-threshold',_("Pressure barrier's threshold.")],
         ['pressure-timeout',_("Pressure barrier's timeout.")]
@@ -94,7 +94,7 @@ function buildPrefsWidget() {
         xalign: 0
     }), false, false, 0);
 
-    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10, margin_bottom: 10});
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10, margin_bottom: 10, spacing: 6});
     let settings_array = [
         ['animation-time-overview',_("Slide animation time when entering/leaving overview.")],
         ['animation-time-autohide',_("Slide animation time when mouse approaches edge of the screen.")]
@@ -132,7 +132,7 @@ function buildPrefsWidget() {
         xalign: 0
     }), false, false, 0);
 
-    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10, spacing: 6});
     
 /* ++++++++++++++++++++++++++++++++++++ Keyboard accelerator +++++ */
 
@@ -263,7 +263,7 @@ function buildPrefsWidget() {
         xalign: 0
     }), false, false, 0);
 
-    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10});
+    let settings_vbox = new Gtk.VBox({margin_left: 20, margin_top: 10, spacing: 6});
     let settings_array = [
         ['enable-intellihide',_("Only hide panel when a window takes the space")],
         ['enable-active-window',_("Only when the active window takes the space")],
