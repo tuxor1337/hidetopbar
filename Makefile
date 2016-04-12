@@ -1,5 +1,5 @@
 
-JS_FILES = {extension,convenience,intellihide,topPanel,prefs}.js
+JS_FILES = {extension,convenience,intellihide,panelVisibilityManager,prefs}.js
 
 .PHONY: clean all
 
