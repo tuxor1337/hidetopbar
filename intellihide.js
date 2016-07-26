@@ -47,7 +47,7 @@ const handledWindowTypes = [
  * A rough and ugly implementation of the intellihide behaviour.
  * Intallihide object: emit 'status-changed' signal when the overlap of windows
  * with the provided targetBoxClutter.ActorBox changes;
- * 
+ *
 */
 
 const intellihide = new Lang.Class({
@@ -69,7 +69,7 @@ const intellihide = new Lang.Class({
         // Set intellihide to use only the active window (or not)
         this._activeWindow = false;
 
-        // Main id of the timeout controlling timeout for updateDockVisibility function 
+        // Main id of the timeout controlling timeout for updateDockVisibility function
         // when windows are dragged around (move and resize)
         this._windowChangedTimeout = 0;
         this._filterkeybindingId = 0;
@@ -306,7 +306,7 @@ const intellihide = new Lang.Class({
         let currentApp = this._tracker.get_window_app(meta_win);
 
         if(this._activeWindow) {
-            if(this._focusApp != currentApp) {
+            if(wksp_index != currentWorkspace || this._focusApp != currentApp) {
                 return false;
             } else {
                 return true;
