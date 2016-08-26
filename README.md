@@ -16,17 +16,20 @@ Compile the gsettings schema by running
 
     make schemas
 
-Install this in your extensions directory:
+Install this in your extensions directory
 
     ~/.local/share/gnome-shell/extensions/
 
-Example:
+ and restart GNOME Shell. Example:
 
     cd ~/.local/share/gnome-shell/extensions/
     git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
     make schemas
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
+    gnome-shell --replace &
+    
+The last commandline restarts GNOME Shell.
 
 You can also manage extensions from https://extensions.gnome.org/local/
 
