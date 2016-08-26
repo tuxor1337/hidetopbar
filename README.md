@@ -27,6 +27,12 @@ Example:
     cd hidetopbar@mathieu.bidon.ca
     make schemas
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
+    
+Final Step (to reload Shell):
+
+<code>Alt+F2 r {Enter}</code>
+
+Then chose extension from <code>gnome-tweak-tool</code>
 
 You can also manage extensions from https://extensions.gnome.org/local/
 
