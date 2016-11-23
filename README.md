@@ -7,7 +7,6 @@ Hides Gnome's topbar except in overview mode.
 
 Maintained by Thomas Vogt.
 With contributions by Philip Witte and Mathieu Lutfy.
-Tested on Gnome 3.14 and 3.16.
 
 Installation:
 -------------
