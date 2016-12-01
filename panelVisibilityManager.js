@@ -285,8 +285,6 @@ const PanelVisibilityManager = new Lang.Class({
             this._preventHide = false;
             this.hide(0, "init");
         }
-
-        this._intellihide._onlyActive(this._settings.get_boolean('enable-active-window'));
     },
 
     _updatePreventHide: function() {
