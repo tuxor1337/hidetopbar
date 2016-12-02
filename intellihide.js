@@ -76,6 +76,15 @@ const intellihide = new Lang.Class({
 
         // Connect global signals
         this._signalsHandler.add([
+            // Listen for notification banners to appear or disappear
+            Main.messageTray.actor,
+            'show',
+            Lang.bind(this, this._checkOverlap)
+        ], [
+            Main.messageTray.actor,
+            'hide',
+            Lang.bind(this, this._checkOverlap)
+        ], [
             // Add signals on windows created from now on
             global.display,
             'window-created',
@@ -248,6 +257,17 @@ const intellihide = new Lang.Class({
                     }
                 }
             }
+        }
+
+        // Check if notification banner overlaps
+        if(Main.messageTray.actor.visible) {
+            let rect = Main.messageTray.actor.get_allocation_box(),
+                test = ( rect.x1 < this._targetBox.x2) &&
+                       ( rect.x2 > this._targetBox.x1 ) &&
+                       ( rect.y1 < this._targetBox.y2 ) &&
+                       ( rect.y2 > this._targetBox.y1 );
+
+            if(test) overlaps = OverlapStatus.TRUE;
         }
 
         if ( this._status !== overlaps ) {
