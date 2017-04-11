@@ -35,7 +35,7 @@ You can also manage extensions from https://extensions.gnome.org/local/
 License:
 --------
 
-Copyright (c) 2013-2015 Thomas Vogt.
+Copyright (c) 2013-2017 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
