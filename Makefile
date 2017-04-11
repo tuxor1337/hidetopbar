@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 
 JS_FILES = {extension,convenience,intellihide,panelVisibilityManager,prefs}.js
 
