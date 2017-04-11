@@ -1,2 +1,4 @@
 hidetopbar.zip
 schemas
+.idea/*
+*.iml
