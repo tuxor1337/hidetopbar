@@ -253,13 +253,22 @@ const PanelVisibilityManager = new Lang.Class({
     },
 
     _updateHotCorner: function(panel_hidden) {
-        let HotCorner = Main.layoutManager.hotCorners[0];
-        if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
-            HotCorner.setBarrierSize(PanelBox.height);
-        } else {
-            Mainloop.timeout_add(100, function () {
-                HotCorner.setBarrierSize(0)
-            });
+        let HotCorner = null;
+        for(var i = 0; i < Main.layoutManager.hotCorners.length; i++){
+          let hc = Main.layoutManager.hotCorners[i];
+          if(hc){
+            let HotCorner = hc;
+            break;
+          }
+        }
+        if(HotCorner){
+          if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
+              HotCorner.setBarrierSize(PanelBox.height);
+          } else {
+              Mainloop.timeout_add(100, function () {
+                  HotCorner.setBarrierSize(0)
+              });
+          }
         }
     },
 
