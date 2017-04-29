@@ -257,7 +257,7 @@ const PanelVisibilityManager = new Lang.Class({
         for(var i = 0; i < Main.layoutManager.hotCorners.length; i++){
           let hc = Main.layoutManager.hotCorners[i];
           if(hc){
-            let HotCorner = hc;
+            HotCorner = hc;
             break;
           }
         }
