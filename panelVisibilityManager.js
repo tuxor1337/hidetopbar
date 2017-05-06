@@ -30,8 +30,9 @@ function reallocateTopIcons() {
 const PanelVisibilityManager = new Lang.Class({
     Name: 'PanelVisibilityManager',
 
-    _init: function(settings) {
+    _init: function(settings, monitorIndex) {
         this._settings = settings;
+        this._monitorIndex = monitorIndex;
         this._base_y = PanelBox.y;
         this._preventHide = false;
         this._intellihideBlock = false;
@@ -48,7 +49,7 @@ const PanelVisibilityManager = new Lang.Class({
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
-        this._intellihide = new Intellihide.intellihide(this._settings);
+        this._intellihide = new Intellihide.intellihide(this._settings, this._monitorIndex);
 
         this._updateHotCorner(false);
         this._updateStaticBox();

@@ -6,6 +6,8 @@
 // See README for more information.
 //
 
+const Main = imports.ui.main;
+
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 const PanelVisibilityManager = Me.imports.panelVisibilityManager;
@@ -13,13 +15,15 @@ const DEBUG = Convenience.DEBUG;
 
 let mSettings = null;
 let mPVManager = null;
+let monitorIndex = null;
 
 function init() { }
 
 function enable() {
     DEBUG("enable()");
     mSettings = Convenience.getSettings();
-    mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings);
+    monitorIndex = Main.layoutManager.primaryIndex;
+    mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings, monitorIndex);
 }
 
 function disable() {

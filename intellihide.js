@@ -57,10 +57,11 @@ const handledWindowTypes = [
 const intellihide = new Lang.Class({
     Name: 'intellihide',
 
-    _init: function(settings) {
+    _init: function(settings, monitorIndex) {
 
         // Load settings
         this._settings = settings;
+        this._monitorIndex = monitorIndex;
 
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._tracker = Shell.WindowTracker.get_default();
@@ -217,16 +218,10 @@ const intellihide = new Lang.Class({
              * select a window in the secondary monitor.
              */
 
-            let monitorIndex = -1; //this._settings.get_int('preferred-monitor');
-
-            if ((monitorIndex < 0) || (monitorIndex > Main.layoutManager.monitors.length -1))
-
-                monitorIndex = Main.layoutManager.primaryIndex;
-
             let topWindow = null;
             for (let i = windows.length - 1; i >= 0; i--) {
                 let meta_win = windows[i].get_meta_window();
-                if (this._handledWindow(meta_win) && (meta_win.get_monitor() == monitorIndex)) {
+                if (this._handledWindow(meta_win) && (meta_win.get_monitor() == this._monitorIndex)) {
                     topWindow = meta_win;
                     break;
                 }
