@@ -35,8 +35,9 @@ You can also manage extensions from https://extensions.gnome.org/local/
 Installing from gnome.org:
 --------------------------
 
-If you install this extension via https://extensions.gnome.org/extension/545/hide-top-bar/,
-make sure that you install the extension with FireFox. It may not work with Chrome.
+You can install the extension directly from [gnome.org/.../hide-top-bar/](https://extensions.gnome.org/extension/545/hide-top-bar/).
+
+If you're installing via a Chrome browser, make sure you read the [GNOME Shell integration for Chrome Installation Guide](https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation).
 
 License:
 --------
