@@ -8,8 +8,8 @@ Hides Gnome's topbar except in overview mode.
 Maintained by Thomas Vogt.
 With contributions by Philip Witte and Mathieu Lutfy.
 
-Installation:
--------------
+Local installation:
+-------------------
 
 Compile the gsettings schema by running
 
@@ -31,6 +31,16 @@ Install this in your extensions directory
 The last commandline restarts GNOME Shell.
 
 You can also manage extensions from https://extensions.gnome.org/local/
+
+Installing from gnome.org:
+--------------------------
+
+You can install the extension directly from
+[gnome.org/.../hide-top-bar/](https://extensions.gnome.org/extension/545/hide-top-bar/).
+
+If you're installing via a Chrome browser, make sure you read the
+[GNOME Shell integration for Chrome Installation
+Guide](https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation).
 
 License:
 --------
