@@ -14,6 +14,7 @@ const Convenience = Me.imports.convenience;
 const Intellihide = Me.imports.intellihide;
 const DEBUG = Convenience.DEBUG;
 
+const MessageTray = Main.messageTray;
 const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
 
@@ -45,6 +46,15 @@ const PanelVisibilityManager = new Lang.Class({
             affectsStruts: false,
             trackFullscreen: true
         });
+
+        // We lost the original notification's position because of PanelBox->affectsStruts = false
+        // and now it appears beneath the top bar, fix it
+        this._oldTween = MessageTray._tween;
+        MessageTray._tween = function(actor, statevar, value, params)
+        {
+            params.y += (PanelBox.y < 0 ? 0 : PanelBox.height);
+            this._oldTween.apply(MessageTray, arguments);
+        }.bind(this);
 
         // Load settings
         this._bindSettingsChanges();
@@ -411,6 +421,7 @@ const PanelVisibilityManager = new Lang.Class({
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
 
+        MessageTray._tween = this._oldTween;
         this.show(0, "destroy");
 
         Main.layoutManager.removeChrome(PanelBox);
