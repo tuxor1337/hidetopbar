@@ -28,7 +28,7 @@ function reallocateTopIcons() {
     );
 }
 
-const PanelVisibilityManager = new Lang.Class({
+var PanelVisibilityManager = new Lang.Class({
     Name: 'PanelVisibilityManager',
 
     _init: function(settings, monitorIndex) {

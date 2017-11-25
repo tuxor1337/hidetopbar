@@ -32,7 +32,7 @@ const Gio = imports.gi.Gio;
 const Config = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
 
-const DEBUG = function (message) {
+var DEBUG = function (message) {
     // Enable for debugging purposes.
     if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
 }
@@ -98,7 +98,7 @@ function getSettings(schema) {
 }
 
 // try to simplify global signals handling
-const GlobalSignalsHandler = new Lang.Class({
+var GlobalSignalsHandler = new Lang.Class({
     Name: 'hideTopPanel.GlobalSignalsHandler',
     
     _init: function(){

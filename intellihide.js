@@ -54,7 +54,7 @@ const handledWindowTypes = [
  *
 */
 
-const intellihide = new Lang.Class({
+var intellihide = new Lang.Class({
     Name: 'intellihide',
 
     _init: function(settings, monitorIndex) {
