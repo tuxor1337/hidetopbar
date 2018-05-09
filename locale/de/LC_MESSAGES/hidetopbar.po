@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
 # jonnius <jonatan_zeidler@gmx.de>, 2013.
 # Tobias Frost <tobi@coldtobi.de>, 2014.
-#
+# Vinzenz Vietzke <vinz@vinzv.de>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 17:49+0100\n"
-"PO-Revision-Date: 2014-10-31 17:51+0100\n"
-"Last-Translator: Jonatan Zeidler <jonatan_zeidler@gmx.de>\n"
+"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"PO-Revision-Date: 2018-05-09 22:58+0200\n"
+"Last-Translator: Vinzenz Vietzke <vinz@vinzv.de>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -38,7 +38,7 @@ msgstr "Wechsle im obigen Fall in die Übersicht"
 
 #: prefs.js:61
 msgid "Pressure barrier's threshold."
-msgstr "Schwellenwert der Druckempfindlichkeit. "
+msgstr "Schwellenwert der Druckempfindlichkeit."
 
 #: prefs.js:62
 msgid "Pressure barrier's timeout."
@@ -50,11 +50,11 @@ msgstr "<b>Animation</b>"
 
 #: prefs.js:99
 msgid "Slide animation time when entering/leaving overview."
-msgstr "Animationszeit beim Betreten/Verlassen der Übersicht"
+msgstr "Animationszeit beim Betreten/Verlassen der Übersicht."
 
 #: prefs.js:100
 msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt"
+msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt."
 
 #: prefs.js:130
 msgid "<b>Keyboard shortcuts</b>"
@@ -70,10 +70,18 @@ msgstr ""
 "Verzögerung, nachdem die Leiste nach dem Drücken der Taste, wieder "
 "ausgeblendet wird."
 
-#: prefs.js:237
+#: prefs.js:231
+msgid "Pressing the shortcut again rehides the panel."
+msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leister wieder."
+
+#: prefs.js:261
 msgid "<b>Intellihide</b>"
 msgstr "<b>Intelligentes Ausblenden</b>"
 
-#: prefs.js:244
+#: prefs.js:268
 msgid "Only hide panel when a window takes the space"
 msgstr "Panel nur verstecken, wenn Fenster im Weg ist"
+
+#: prefs.js:269
+msgid "Only when the active window takes the space"
+msgstr "Nur wenn ein aktives Fenster im Weg ist"
