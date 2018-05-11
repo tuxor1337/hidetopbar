@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-24 15:24+0800\n"
-"PO-Revision-Date: 2018-05-09 22:58+0200\n"
+"PO-Revision-Date: 2018-05-11 20:32+0200\n"
 "Last-Translator: Vinzenz Vietzke <vinz@vinzv.de>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
@@ -72,7 +72,7 @@ msgstr ""
 
 #: prefs.js:231
 msgid "Pressing the shortcut again rehides the panel."
-msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leister wieder."
+msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leiste wieder."
 
 #: prefs.js:261
 msgid "<b>Intellihide</b>"
