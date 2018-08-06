@@ -75,6 +75,18 @@ var intellihide = new Lang.Class({
         this._checkOverlapTimeoutContinue = false;
         this._checkOverlapTimeoutId = 0;
 
+        let stackingManager;
+        if (global.screen)
+            stackingManager = global.screen;    // mutter < 3.29
+        else
+            stackingManager = global.display;   // mutter >= 3.29
+
+        let monitorManager;
+        if (global.screen)
+            monitorManager = global.screen;         // mutter < 3.29
+        else
+            monitorManager = Main.layoutManager;    // mutter >= 3.29
+
         // Connect global signals
         this._signalsHandler.add([
             // Listen for notification banners to appear or disappear
@@ -93,7 +105,7 @@ var intellihide = new Lang.Class({
         ], [
             // triggered for instance when the window list order changes,
             // included when the workspace is switched
-            global.screen,
+            stackingManager,
             'restacked',
             Lang.bind(this, this._checkOverlap)
         ], [
@@ -104,7 +116,7 @@ var intellihide = new Lang.Class({
             Lang.bind(this, this._checkOverlap)
         ], [
             // update wne monitor changes, for instance in multimonitor when monitor are attached
-            global.screen,
+            monitorManager,
             'monitors-changed',
             Lang.bind(this, this._checkOverlap )
         ]);
@@ -270,7 +282,13 @@ var intellihide = new Lang.Class({
             return false;
         }
 
-        let currentWorkspace = global.screen.get_active_workspace_index();
+        let workspaceManager;
+        if (global.screen)
+            workspaceManager = global.screen;               // mutter < 3.29
+        else
+            workspaceManager = global.workspace_manager;    // mutter >= 3.29
+
+        let currentWorkspace = workspaceManager.get_active_workspace_index();
         let wksp = meta_win.get_workspace();
         let wksp_index = wksp.index();
 
