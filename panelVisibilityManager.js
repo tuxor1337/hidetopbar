@@ -319,6 +319,12 @@ var PanelVisibilityManager = new Lang.Class({
     },
 
     _bindUIChanges: function () {
+        let monitorManager;
+        if (global.screen)
+            monitorManager = global.screen;         // mutter < 3.29
+        else
+            monitorManager = Main.layoutManager;    // mutter >= 3.29
+
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.add(
             [
@@ -355,7 +361,7 @@ var PanelVisibilityManager = new Lang.Class({
                 })
             ],
             [
-                global.screen,
+                monitorManager,
                 'monitors-changed',
                 Lang.bind(this, function () {
                     this._base_y = PanelBox.y;
