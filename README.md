@@ -25,6 +25,7 @@ Install this in your extensions directory
     git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
     make schemas
+    cd ..
     gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
     gnome-shell --replace &
     
