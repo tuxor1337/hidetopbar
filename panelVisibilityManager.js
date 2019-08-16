@@ -229,8 +229,9 @@ var PanelVisibilityManager = new Lang.Class({
         this._panelPressure.connect(
             'trigger',
             Lang.bind(this, function(barrier) {
-                if (Main.layoutManager.primaryMonitor.inFullscreen)
+                if ( (Main.layoutManager.primaryMonitor.inFullscreen) && (!this._settings.get_boolean('mouse-sensitive-fullscreen-window')) ) {
                     return;
+                }
                 this.show(
                     this._settings.get_double('animation-time-autohide'),
                     "mouse-enter"
