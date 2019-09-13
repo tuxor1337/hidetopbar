@@ -17,6 +17,13 @@
         approaches the edge of the screen.
       </description>
     </key>
+    <key name="mouse-sensitive-fullscreen-window" type="b">
+      <default>true</default>
+      <summary>Also show panel when mouse approaches edge of the screen when fullscreen.</summary>
+      <description>
+        Set to "true" to also show panel when mouse approaches edge of the screen when windows are in fullscreen mode.
+      </description>
+    </key>
     <key name="mouse-triggers-overview" type="b">
       <default>false</default>
       <summary>Show overview when mouse approaches edge of the screen</summary>
