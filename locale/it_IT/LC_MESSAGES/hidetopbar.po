@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"PO-Revision-Date: 2019-10-21 01:01+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: it_IT\n"
+
+#: prefs.js:26
+msgid "<b>Sensitivity</b>"
+msgstr "<b>Sensibilità</b>"
+
+#: prefs.js:33
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Mostra il pannello quando il mouse si avvicina al bordo dello schermo"
+
+#: prefs.js:34
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Mantieni l'hot corner sensibile, anche da nascosto"
+
+#: prefs.js:35
+msgid "In the above case show overview, too"
+msgstr "Nel caso superiore mostra anche la panoramica"
+
+#: prefs.js:61
+msgid "Pressure barrier's threshold."
+msgstr "Soglia di pressione della barriera."
+
+#: prefs.js:62
+msgid "Pressure barrier's timeout."
+msgstr "Timeout di pressione della barriera."
+
+#: prefs.js:92
+msgid "<b>Animation</b>"
+msgstr "<b>Animazione</b>"
+
+#: prefs.js:99
+msgid "Slide animation time when entering/leaving overview."
+msgstr "Tempo di animazione quando entri/esci dalla panoramica."
+
+#: prefs.js:100
+msgid "Slide animation time when mouse approaches edge of the screen."
+msgstr "Tempo di animazione quando il mouse si avvicina al bordo dello schermo."
+
+#: prefs.js:130
+msgid "<b>Keyboard shortcuts</b>"
+msgstr "<b>Scorciatoie da Tastiera</b>"
+
+#: prefs.js:194
+msgid "Key that triggers the bar to be shown."
+msgstr "Tasto che rende visibile la barra."
+
+#: prefs.js:215
+msgid "Delay before the bar rehides after key press."
+msgstr "Ritardo prima che la barra ritorni nascosta dopo la pressione del tasto."
+
+#: prefs.js:231
+msgid "Pressing the shortcut again rehides the panel."
+msgstr "Premere la scorciatoia nuovamente ri-nasconde il pannello."
+
+#: prefs.js:261
+msgid "<b>Intellihide</b>"
+msgstr "<b>Nascondi Automaticamente</b>"
+
+#: prefs.js:268
+msgid "Only hide panel when a window takes the space"
+msgstr "Nascondi il pannello solo quando una finestra ne occupa lo spazio"
+
+#: prefs.js:269
+msgid "Only when the active window takes the space"
+msgstr "Solo quando la finestra attiva occupa lo spazio"
