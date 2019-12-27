@@ -70,7 +70,7 @@ var PanelVisibilityManager = new Lang.Class({
         DEBUG("hide(" + trigger + ")");
         if(this._preventHide) return;
 
-        let anchor_y = PanelBox.get_anchor_point()[1],
+        let anchor_y = PanelBox.get_pivot_point()[1],
             delta_y = -PanelBox.height;
         if(anchor_y < 0) delta_y = -delta_y;
         let mouse = global.get_pointer(),
@@ -238,7 +238,7 @@ var PanelVisibilityManager = new Lang.Class({
                 );
             })
         );
-        let anchor_y = PanelBox.get_anchor_point()[1],
+        let anchor_y = PanelBox.get_pivot_point()[1],
             direction = Meta.BarrierDirection.POSITIVE_Y;
         if(anchor_y < 0) {
             anchor_y -= PanelBox.height;
@@ -257,7 +257,7 @@ var PanelVisibilityManager = new Lang.Class({
 
     _updateStaticBox: function() {
         DEBUG("_updateStaticBox()");
-        let anchor_y = PanelBox.get_anchor_point()[1];
+        let anchor_y = PanelBox.get_pivot_point()[1];
         this._staticBox.init_rect(
             PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
         );
