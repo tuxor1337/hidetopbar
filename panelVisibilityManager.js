@@ -75,9 +75,9 @@ var PanelVisibilityManager = new Lang.Class({
         if(anchor_y < 0) delta_y = -delta_y;
         let mouse = global.get_pointer(),
             mouse_is_over = (mouse[1] >= this._staticBox.y1 &&
-                                 mouse[1] <= this._staticBox.y2 &&
+                                 mouse[1] < this._staticBox.y2 &&
                                  mouse[0] >= this._staticBox.x1 &&
-                                 mouse[0] <= this._staticBox.x2);
+                                 mouse[0] < this._staticBox.x2);
         if(trigger == "mouse-left" && mouse_is_over) return;
 
         if(this._tweenActive) {
