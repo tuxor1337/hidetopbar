@@ -63,7 +63,7 @@ var PanelVisibilityManager = new Lang.Class({
 
         this._updateHotCorner(false);
         this._updateStaticBox();
-        Mainloop.timeout_add(100, Lang.bind(this, this._bindUIChanges));
+        this._bindTimeoutId = Mainloop.timeout_add(100, Lang.bind(this, this._bindUIChanges));
     },
 
     hide: function(animationTime, trigger) {
@@ -423,6 +423,7 @@ var PanelVisibilityManager = new Lang.Class({
     },
 
     destroy: function() {
+        Mainloop.source_remove(this._bindTimeoutId);
         this._intellihide.destroy();
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
