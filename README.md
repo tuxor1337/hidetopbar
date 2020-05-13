@@ -26,7 +26,7 @@ Install this in your extensions directory
     cd hidetopbar@mathieu.bidon.ca
     make schemas
     cd ..
-    gnome-shell-extension-tool -e hidetopbar@mathieu.bidon.ca
+    gnome-extensions enable hidetopbar@mathieu.bidon.ca
     gnome-shell --replace &
     
 The last commandline restarts GNOME Shell.
