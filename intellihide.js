@@ -266,7 +266,18 @@ var intellihide = new Lang.Class({
             }
         }
 
-        if ( this._status !== overlaps ) {
+        // Check if notification banner overlaps
+        if (Main.messageTray.actor.visible) {
+            let rect = Main.messageTray.actor.get_allocation_box(),
+                test = (rect.x1 < this._targetBox.x2) &&
+                    (rect.x2 > this._targetBox.x1) &&
+                    (rect.y1 < this._targetBox.y2) &&
+                    (rect.y2 > this._targetBox.y1);
+
+            if (test) overlaps = OverlapStatus.TRUE;
+        }
+
+        if (this._status !== overlaps) {
             this._status = overlaps;
             this.emit('status-changed', this._status);
         }
