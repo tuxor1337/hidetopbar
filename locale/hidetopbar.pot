@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"POT-Creation-Date: 2020-05-22 10:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,66 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:26
+#: prefs.js:39
 msgid "<b>Sensitivity</b>"
 msgstr ""
 
-#: prefs.js:33
+#: prefs.js:46
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 
-#: prefs.js:34
+#: prefs.js:47
+msgid "In the above case, also show panel when fullscreen."
+msgstr ""
+
+#: prefs.js:48
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 
-#: prefs.js:35
+#: prefs.js:49
 msgid "In the above case show overview, too"
 msgstr ""
 
-#: prefs.js:61
+#: prefs.js:74
 msgid "Pressure barrier's threshold."
 msgstr ""
 
-#: prefs.js:62
+#: prefs.js:75
 msgid "Pressure barrier's timeout."
 msgstr ""
 
-#: prefs.js:92
+#: prefs.js:104
 msgid "<b>Animation</b>"
 msgstr ""
 
-#: prefs.js:99
+#: prefs.js:111
 msgid "Slide animation time when entering/leaving overview."
 msgstr ""
 
-#: prefs.js:100
+#: prefs.js:112
 msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr ""
 
-#: prefs.js:130
+#: prefs.js:141
 msgid "<b>Keyboard shortcuts</b>"
 msgstr ""
 
-#: prefs.js:194
+#: prefs.js:203
 msgid "Key that triggers the bar to be shown."
 msgstr ""
 
-#: prefs.js:215
+#: prefs.js:223
 msgid "Delay before the bar rehides after key press."
 msgstr ""
 
-#: prefs.js:231
+#: prefs.js:239
 msgid "Pressing the shortcut again rehides the panel."
 msgstr ""
 
-#: prefs.js:261
+#: prefs.js:268
 msgid "<b>Intellihide</b>"
 msgstr ""
 
-#: prefs.js:268
+#: prefs.js:275
 msgid "Only hide panel when a window takes the space"
 msgstr ""
 
-#: prefs.js:269
+#: prefs.js:276
 msgid "Only when the active window takes the space"
 msgstr ""
