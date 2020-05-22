@@ -43,6 +43,15 @@ If you're installing via a Chrome browser, make sure you read the
 [GNOME Shell integration for Chrome Installation
 Guide](https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation).
 
+Updating the language strings:
+------------------------------
+
+Whenever you notice that there are localizable strings in Hide Top Bar that are not
+covered by the strings in `./locale/`, you can regenerate the `*.pot`-file using the
+following command:
+
+    xgettext --output=./locale/hidetopbar.pot --language=JavaScript *.js
+
 License:
 --------
 
