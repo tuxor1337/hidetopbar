@@ -1,83 +1,87 @@
 # HIDETOPBAR.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# David Medina <rbndavid@gmail.com>, 2017.
+# David Medina <rbndavid@gmail.com>, 2017, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-27 18:54+0200\n"
-"PO-Revision-Date: 2017-07-27 19:22+0200\n"
+"POT-Creation-Date: 2020-05-22 10:57+0200\n"
+"PO-Revision-Date: 2020-05-27 18:51+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Last-Translator: \n"
+"X-Generator: Poedit 2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: ca\n"
 
-#: prefs.js:26
+#: prefs.js:39
 msgid "<b>Sensitivity</b>"
 msgstr "<b>Sensibilitat</b>"
 
-#: prefs.js:33
+#: prefs.js:46
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Mostra la barra quan el ratolí s'apropi a la vora de la pantalla."
 
-#: prefs.js:34
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "Mantén el cantó actiu sensible, tot i en mode ocult."
+#: prefs.js:47
+msgid "In the above case, also show panel when fullscreen."
+msgstr "En el cas anterior, mostra també la barra en pantalla completa."
 
-#: prefs.js:35
+#: prefs.js:48
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Mantén el cantó actiu sensible, fins i tot en mode ocult."
+
+#: prefs.js:49
 msgid "In the above case show overview, too"
 msgstr "En el cas anterior, mostra també la vista general."
 
-#: prefs.js:61
+#: prefs.js:74
 msgid "Pressure barrier's threshold."
-msgstr "Llindar de pressió al ratolí."
+msgstr "Llindar de la pressió "
 
-#: prefs.js:62
+#: prefs.js:75
 msgid "Pressure barrier's timeout."
-msgstr "Retard de la pressió."
+msgstr "Temps d'espera de la pressió"
 
-#: prefs.js:92
+#: prefs.js:104
 msgid "<b>Animation</b>"
 msgstr "<b>Animació</b>"
 
-#: prefs.js:99
+#: prefs.js:111
 msgid "Slide animation time when entering/leaving overview."
-msgstr "Durada de l'animació en entrar o sortir de la vista general."
+msgstr "Durada de l'animació lliscant en entrar o sortir de la vista general:"
 
-#: prefs.js:100
+#: prefs.js:112
 msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "Durada de l'animació quan el ratolí s'apropi a la vora de la pantalla."
+msgstr "Durada de l'animació quan el ratolí s'apropi a la vora de la pantalla:"
 
-#: prefs.js:130
+#: prefs.js:141
 msgid "<b>Keyboard shortcuts</b>"
 msgstr "<b>Dreceres del teclat</b>"
 
-#: prefs.js:194
+#: prefs.js:203
 msgid "Key that triggers the bar to be shown."
-msgstr "Tecla que fa que es mostri la barra."
+msgstr "Tecla que fa que la barra es mostri:"
 
-#: prefs.js:215
+#: prefs.js:223
 msgid "Delay before the bar rehides after key press."
-msgstr "Retard de l'ocultació de la barra després de prémer una tecla."
+msgstr "Retard de la reocultació de la barra després de prémer una tecla:"
 
-#: prefs.js:231
+#: prefs.js:239
 msgid "Pressing the shortcut again rehides the panel."
-msgstr "Tornar a prémer la drecera fa que la barra s'oculti."
+msgstr "Tornar a prémer la drecera torna a ocultar la barra."
 
-#: prefs.js:261
+#: prefs.js:268
 msgid "<b>Intellihide</b>"
 msgstr "<b>Ocultació intel·ligent</b>"
 
-#: prefs.js:268
+#: prefs.js:275
 msgid "Only hide panel when a window takes the space"
 msgstr "Oculta la barra només quan una finestra n'ocupi l'espai."
 
-#: prefs.js:269
+#: prefs.js:276
 msgid "Only when the active window takes the space"
 msgstr "Oculta la barra només quan la finestra activa n'ocupi l'espai."
