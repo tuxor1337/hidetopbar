@@ -6,12 +6,11 @@ JS_FILES = {extension,convenience,intellihide,panelVisibilityManager,prefs}.js
 
 all: hidetopbar.zip
 
-schemas:
-	mkdir ./schemas/
-	glib-compile-schemas --strict --targetdir=./schemas/ .
+schemas/gschemas.compiled:
+	glib-compile-schemas --strict ./schemas/
 
-hidetopbar.zip: schemas
+hidetopbar.zip: schemas/gschemas.compiled
 	zip hidetopbar.zip -r $(JS_FILES) metadata.json locale/*/*/*.mo schemas
 
 clean:
-	rm -rf hidetopbar.zip schemas
+	rm -rf hidetopbar.zip schemas/gschemas.compiled
