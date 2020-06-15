@@ -116,7 +116,7 @@ var PanelVisibilityManager = new Lang.Class({
         if(trigger == "destroy"
            || (
                trigger == "showing-overview"
-               && global.get_pointer()[1] < this._panelHeight
+               && global.get_pointer()[1] < PanelBox.height
                && this._settings.get_boolean('hot-corner')
               )
           ) {
@@ -349,7 +349,7 @@ var PanelVisibilityManager = new Lang.Class({
                 })
             ],
             [
-                Main.panel.actor,
+                Main.panel,
                 'leave-event',
                 Lang.bind(this, this._handleMenus)
             ],

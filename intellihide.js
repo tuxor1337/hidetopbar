@@ -90,11 +90,11 @@ var intellihide = new Lang.Class({
         // Connect global signals
         this._signalsHandler.add([
             // Listen for notification banners to appear or disappear
-            Main.messageTray.actor,
+            Main.messageTray,
             'show',
             Lang.bind(this, this._checkOverlap)
         ], [
-            Main.messageTray.actor,
+            Main.messageTray,
             'hide',
             Lang.bind(this, this._checkOverlap)
         ], [
@@ -267,8 +267,8 @@ var intellihide = new Lang.Class({
         }
 
         // Check if notification banner overlaps
-        if (Main.messageTray.actor.visible) {
-            let rect = Main.messageTray.actor.get_allocation_box(),
+        if (Main.messageTray.visible) {
+            let rect = Main.messageTray.get_allocation_box(),
                 test = (rect.x1 < this._targetBox.x2) &&
                     (rect.x2 > this._targetBox.x1) &&
                     (rect.y1 < this._targetBox.y2) &&
