@@ -6,7 +6,6 @@ const Clutter = imports.gi.Clutter;
 
 const Main = imports.ui.main;
 const Layout = imports.ui.layout;
-const Tweener = imports.ui.tweener;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
@@ -36,7 +35,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._preventHide = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
-        this._tweenActive = false;
+        this._animationActive = false;
         this._shortcutTimeout = 0;
 
         Main.layoutManager.removeChrome(PanelBox);
@@ -79,18 +78,18 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                                  mouse[0] < this._staticBox.x2);
         if(trigger == "mouse-left" && mouse_is_over) return;
 
-        if(this._tweenActive) {
-            Tweener.removeTweens(PanelBox, "y");
-            this._tweenActive = false;
+        if(this._animationActive) {
+            PanelBox.remove_all_transitions();
+            this._animationActive = false;
         }
 
-        this._tweenActive = true;
-        Tweener.addTween(PanelBox, {
+        this._animationActive = true;
+        PanelBox.ease({
             y: this._base_y + delta_y,
-            time: animationTime,
-            transition: 'easeOutQuad',
+            duration: animationTime * 1000,
+            mode: Clutter.AnimationMode.EASE_OUT_QUAD,
             onComplete: () => {
-                this._tweenActive = false;
+                this._animationActive = false;
                 PanelBox.hide();
                 reallocateTopIcons();
                 this._updateHotCorner(true);
@@ -105,9 +104,9 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             Main.overview.show();
         }
 
-        if(this._tweenActive) {
-            Tweener.removeTweens(PanelBox, "y");
-            this._tweenActive = false;
+        if(this._animationActive) {
+            PanelBox.remove_all_transitions();
+            this._animationActive = false;
         }
 
         this._updateHotCorner(false);
@@ -122,13 +121,13 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             PanelBox.y = this._base_y;
             reallocateTopIcons();
         } else {
-            this._tweenActive = true;
-            Tweener.addTween(PanelBox, {
+            this._animationActive = true;
+            PanelBox.ease({
                 y: this._base_y,
-                time: animationTime,
-                transition: 'easeOutQuad',
+                duration: animationTime * 1000,
+                mode: Clutter.AnimationMode.EASE_OUT_QUAD,
                 onComplete: () => {
-                    this._tweenActive = false;
+                    this._animationActive = false;
                     this._updateStaticBox();
                     reallocateTopIcons();
                 }
