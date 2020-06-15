@@ -1,6 +1,5 @@
 
-const Lang = imports.lang;
-const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
 const Meta = imports.gi.Meta;
 const Shell = imports.gi.Shell;
 const Clutter = imports.gi.Clutter;
@@ -28,13 +27,12 @@ function reallocateTopIcons() {
     );
 }
 
-var PanelVisibilityManager = new Lang.Class({
-    Name: 'PanelVisibilityManager',
+var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
-    _init: function(settings, monitorIndex) {
-        this._settings = settings;
+    constructor(settings, monitorIndex) {
         this._monitorIndex = monitorIndex;
         this._base_y = PanelBox.y;
+        this._settings = settings;
         this._preventHide = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
@@ -59,14 +57,15 @@ var PanelVisibilityManager = new Lang.Class({
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
-        this._intellihide = new Intellihide.intellihide(this._settings, this._monitorIndex);
+        this._intellihide = new Intellihide.Intellihide(this._settings, this._monitorIndex);
 
         this._updateHotCorner(false);
         this._updateStaticBox();
-        this._bindTimeoutId = Mainloop.timeout_add(100, Lang.bind(this, this._bindUIChanges));
-    },
+        this._bindTimeoutId = GLib.timeout_add(
+            GLib.PRIORITY_DEFAULT, 100, this._bindUIChanges.bind(this));
+    }
 
-    hide: function(animationTime, trigger) {
+    hide(animationTime, trigger) {
         DEBUG("hide(" + trigger + ")");
         if(this._preventHide) return;
 
@@ -90,16 +89,16 @@ var PanelVisibilityManager = new Lang.Class({
             y: this._base_y + delta_y,
             time: animationTime,
             transition: 'easeOutQuad',
-            onComplete: Lang.bind(this, function() {
+            onComplete: () => {
                 this._tweenActive = false;
                 PanelBox.hide();
                 reallocateTopIcons();
                 this._updateHotCorner(true);
-            })
+            }
         });
-    },
+    }
 
-    show: function(animationTime, trigger) {
+    show(animationTime, trigger) {
         DEBUG("show(" + trigger + ")");
         if(trigger == "mouse-enter"
            && this._settings.get_boolean('mouse-triggers-overview')) {
@@ -128,16 +127,16 @@ var PanelVisibilityManager = new Lang.Class({
                 y: this._base_y,
                 time: animationTime,
                 transition: 'easeOutQuad',
-                onComplete: Lang.bind(this, function() {
+                onComplete: () => {
                     this._tweenActive = false;
                     this._updateStaticBox();
                     reallocateTopIcons();
-                })
+                }
             });
         }
-    },
+    }
 
-    _handleMenus: function() {
+    _handleMenus() {
         if(!Main.overview.visible) {
             let blocker = Main.panel.menuManager.activeMenu;
             if(blocker == null) {
@@ -149,23 +148,23 @@ var PanelVisibilityManager = new Lang.Class({
                 this._blockerMenu = blocker;
                 this._menuEvent = this._blockerMenu.connect(
                     'open-state-changed',
-                    Lang.bind(this, function(menu, open) {
+                    (menu, open) => {
                         if(!open && this._blockerMenu !== null) {
                             this._blockerMenu.disconnect(this._menuEvent);
                             this._menuEvent=null;
                             this._blockerMenu=null;
                             this._handleMenus();
                         }
-                    })
+                    }
                 );
             }
         }
-    },
+    }
 
-    _handleShortcut: function () {
+    _handleShortcut() {
         var delay_time = this._settings.get_double('shortcut-delay');
         if(this._shortcutTimeout) {
-            Mainloop.source_remove(this._shortcutTimeout);
+            GLib.source_remove(this._shortcutTimeout);
             this._shortcutTimeout = null;
             if(delay_time < 0.05
                || this._settings.get_boolean('shortcut-toggles')) {
@@ -188,15 +187,15 @@ var PanelVisibilityManager = new Lang.Class({
             if(delay_time > 0.05) {
                 this.show(delay_time/5.0, "shortcut");
 
-                this._shortcutTimeout = Mainloop.timeout_add(
-                    delay_time*1200,
-                    Lang.bind(this, function () {
+                this._shortcutTimeout = GLib.timeout_add(
+                    GLib.PRIORITY_DEFAULT, delay_time*1200,
+                    () => {
                         this._preventHide = false;
                         this._intellihideBlock = false;
                         this._handleMenus();
                         this._shortcutTimeout = null;
                         return false;
-                    })
+                    }
                 );
             } else {
                 this.show(
@@ -211,24 +210,24 @@ var PanelVisibilityManager = new Lang.Class({
             // Main -> panel -> _leftBox -> (StBin) -> (panel-button)
             // Main.panel._leftBox.first_child.first_child.grab_key_focus();
         }
-    },
+    }
 
-    _disablePressureBarrier: function() {
+    _disablePressureBarrier() {
         if(this._panelBarrier && this._panelPressure) {
             this._panelPressure.removeBarrier(this._panelBarrier);
             this._panelBarrier.destroy();
         }
-    },
+    }
 
-    _initPressureBarrier: function() {
+    _initPressureBarrier() {
         this._panelPressure = new Layout.PressureBarrier(
             this._settings.get_int('pressure-threshold'),
-            this._settings.get_int('pressure-timeout'), 
+            this._settings.get_int('pressure-timeout'),
             ShellActionMode.NORMAL
         );
         this._panelPressure.connect(
             'trigger',
-            Lang.bind(this, function(barrier) {
+            (barrier) => {
                 if ( (Main.layoutManager.primaryMonitor.inFullscreen) && (!this._settings.get_boolean('mouse-sensitive-fullscreen-window')) ) {
                     return;
                 }
@@ -236,7 +235,7 @@ var PanelVisibilityManager = new Lang.Class({
                     this._settings.get_double('animation-time-autohide'),
                     "mouse-enter"
                 );
-            })
+            }
         );
         let anchor_y = PanelBox.get_pivot_point()[1],
             direction = Meta.BarrierDirection.POSITIVE_Y;
@@ -253,18 +252,18 @@ var PanelVisibilityManager = new Lang.Class({
             directions: direction
         });
         this._panelPressure.addBarrier(this._panelBarrier);
-    },
+    }
 
-    _updateStaticBox: function() {
+    _updateStaticBox() {
         DEBUG("_updateStaticBox()");
         let anchor_y = PanelBox.get_pivot_point()[1];
         this._staticBox.init_rect(
             PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
         );
         this._intellihide.updateTargetBox(this._staticBox);
-    },
+    }
 
-    _updateHotCorner: function(panel_hidden) {
+    _updateHotCorner(panel_hidden) {
         let HotCorner = null;
         for(var i = 0; i < Main.layoutManager.hotCorners.length; i++){
           let hc = Main.layoutManager.hotCorners[i];
@@ -277,25 +276,25 @@ var PanelVisibilityManager = new Lang.Class({
           if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
               HotCorner.setBarrierSize(PanelBox.height);
           } else {
-              Mainloop.timeout_add(100, function () {
+              GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, function () {
                   HotCorner.setBarrierSize(0)
               });
           }
         }
-    },
+    }
 
-    _updateSettingsHotCorner: function() {
+    _updateSettingsHotCorner() {
         this.hide(0.1, "hot-corner-setting-changed");
-    },
+    }
 
-    _updateSettingsMouseSensitive: function() {
+    _updateSettingsMouseSensitive() {
         if(this._settings.get_boolean('mouse-sensitive')) {
             this._disablePressureBarrier();
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
-    },
+    }
 
-    _updateIntellihideStatus: function() {
+    _updateIntellihideStatus() {
         if(this._settings.get_boolean('enable-intellihide')) {
             this._intellihideBlock = false;
             this._preventHide = false;
@@ -306,9 +305,9 @@ var PanelVisibilityManager = new Lang.Class({
             this._preventHide = false;
             this.hide(0, "init");
         }
-    },
+    }
 
-    _updatePreventHide: function() {
+    _updatePreventHide() {
         if(this._intellihideBlock) return;
 
         this._preventHide = !this._intellihide.getOverlapStatus();
@@ -317,9 +316,9 @@ var PanelVisibilityManager = new Lang.Class({
             this.show(animTime, "intellihide");
         else if(!Main.overview.visible)
             this.hide(animTime, "intellihide");
-    },
+    }
 
-    _bindUIChanges: function () {
+    _bindUIChanges() {
         let monitorManager;
         if (global.screen)
             monitorManager = global.screen;         // mutter < 3.29
@@ -331,99 +330,99 @@ var PanelVisibilityManager = new Lang.Class({
             [
                 Main.overview,
                 'showing',
-                Lang.bind(this, function() {
+                () => {
                     this.show(
                         this._settings.get_double('animation-time-overview'),
                         "showing-overview"
                     );
-                })
+                }
             ],
             [
                 Main.overview,
                 'hiding',
-                Lang.bind(this, function() {
+                () => {
                     this.hide(
                         this._settings.get_double('animation-time-overview'),
                         "hiding-overview"
                     );
-                })
+                }
             ],
             [
                 Main.panel,
                 'leave-event',
-                Lang.bind(this, this._handleMenus)
+                this._handleMenus.bind(this)
             ],
             [
                 PanelBox,
                 'notify::anchor-y',
-                Lang.bind(this, function () {
+                () => {
                     this._updateStaticBox();
                     this._updateSettingsMouseSensitive();
-                })
+                }
             ],
             [
                 monitorManager,
                 'monitors-changed',
-                Lang.bind(this, function () {
+                () => {
                     this._base_y = PanelBox.y;
                     this._updateStaticBox();
                     this._updateSettingsMouseSensitive();
-                })
+                }
             ],
             [
                 this._intellihide,
                 'status-changed',
-                Lang.bind(this, this._updatePreventHide)
+                this._updatePreventHide.bind(this)
             ]
         );
 
         Main.wm.addKeybinding("shortcut-keybind",
             this._settings, Meta.KeyBindingFlags.NONE,
             ShellActionMode.NORMAL,
-            Lang.bind(this, this._handleShortcut)
+            this._handleShortcut.bind(this)
         );
 
         this._updateIntellihideStatus();
-    },
+    }
 
-    _bindSettingsChanges: function() {
+    _bindSettingsChanges() {
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.addWithLabel("settings",
             [
                 this._settings,
                 'changed::hot-corner',
-                Lang.bind(this, this._updateSettingsHotCorner)
+                this._updateSettingsHotCorner.bind(this)
             ],
             [
                 this._settings,
                 'changed::mouse-sensitive',
-                Lang.bind(this, this._updateSettingsMouseSensitive)
+                this._updateSettingsMouseSensitive.bind(this)
             ],
             [
                 this._settings,
                 'changed::pressure-timeout',
-                Lang.bind(this, this._updateSettingsMouseSensitive)
+                this._updateSettingsMouseSensitive.bind(this)
             ],
             [
                 this._settings,
                 'changed::pressure-threshold',
-                Lang.bind(this, this._updateSettingsMouseSensitive)
+                this._updateSettingsMouseSensitive.bind(this)
             ],
             [
                 this._settings,
                 'changed::enable-intellihide',
-                Lang.bind(this, this._updateIntellihideStatus)
+                this._updateIntellihideStatus.bind(this)
             ],
             [
                 this._settings,
                 'changed::enable-active-window',
-                Lang.bind(this, this._updateIntellihideStatus)
+                this._updateIntellihideStatus.bind(this)
             ]
         );
-    },
+    }
 
-    destroy: function() {
-        Mainloop.source_remove(this._bindTimeoutId);
+    destroy() {
+        GLib.source_remove(this._bindTimeoutId);
         this._intellihide.destroy();
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
@@ -438,4 +437,4 @@ var PanelVisibilityManager = new Lang.Class({
             trackFullscreen: true
         });
     }
-});
+};
