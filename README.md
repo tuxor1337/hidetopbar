@@ -8,40 +8,30 @@ Hides Gnome's topbar except in overview mode.
 Maintained by Thomas Vogt.
 With contributions by Philip Witte and Mathieu Lutfy.
 
-Local installation:
--------------------
-
-Compile the gsettings schema by running
-
-    make schemas
-
-Install this in your extensions directory
-
-    ~/.local/share/gnome-shell/extensions/
-
- and restart GNOME Shell. Example:
-
-    cd ~/.local/share/gnome-shell/extensions/
-    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
-    cd hidetopbar@mathieu.bidon.ca
-    make schemas
-    cd ..
-    gnome-extensions enable hidetopbar@mathieu.bidon.ca
-    gnome-shell --replace &
-    
-The last commandline restarts GNOME Shell.
-
-You can also manage extensions from https://extensions.gnome.org/local/
-
 Installing from gnome.org:
 --------------------------
 
-You can install the extension directly from
+The recommended way of installing Hide Top Bar is via the official builds on
 [gnome.org/.../hide-top-bar/](https://extensions.gnome.org/extension/545/hide-top-bar/).
 
 If you're installing via a Chrome browser, make sure you read the
 [GNOME Shell integration for Chrome Installation
 Guide](https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation).
+
+Local installation:
+-------------------
+
+If you insist on installing from source, check out the source code into your local extensions directory, compile by running `make`, install and restart GNOME Shell. Example:
+
+    cd ~/.local/share/gnome-shell/extensions/
+    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
+    cd hidetopbar@mathieu.bidon.ca
+    make
+    cd ..
+    gnome-extensions enable hidetopbar@mathieu.bidon.ca
+    gnome-shell --replace &
+    
+The last commandline restarts GNOME Shell.
 
 Updating the language strings:
 ------------------------------
@@ -55,7 +45,7 @@ following command:
 License:
 --------
 
-Copyright (c) 2013-2017 Thomas Vogt.
+Copyright (c) 2013-2020 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
