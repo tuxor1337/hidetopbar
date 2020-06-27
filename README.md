@@ -18,6 +18,18 @@ If you're installing via a Chrome browser, make sure you read the
 [GNOME Shell integration for Chrome Installation
 Guide](https://wiki.gnome.org/Projects/GnomeShellIntegrationForChrome/Installation).
 
+
+[Debian](https://packages.debian.org/unstable/gnome-shell-extension-autohidetopbar)/[Ubuntu](https://launchpad.net/ubuntu/+source/gnome-shell-extension-autohidetopbar)
+---------------
+
+If you are using a Debian based distribution, the preferred installation method is to use 
+the packaged version. By this, problems by incompatibilites caused by different gnome-shell versions in
+your distribution can be avoided. You can install the package with:
+
+    sudo apt install gnome-shell-extension-autohidetopbar
+
+If you find problems with the _Debian packaged version_, please file bugs at the [Debian Bugtracking system](https://www.debian.org/Bugs/Reporting).
+
 Local installation:
 -------------------
 
