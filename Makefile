@@ -10,7 +10,7 @@ schemas/gschemas.compiled:
 	glib-compile-schemas --strict ./schemas/
 
 hidetopbar.zip: schemas/gschemas.compiled
-	zip hidetopbar.zip -r $(JS_FILES) metadata.json locale/*/*/*.mo schemas
+	zip hidetopbar.zip -r COPYING.txt $(JS_FILES) metadata.json locale/*/*/*.mo schemas
 
 clean:
 	rm -rf hidetopbar.zip schemas/gschemas.compiled
