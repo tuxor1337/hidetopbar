@@ -19,10 +19,11 @@
 
 const Main = imports.ui.main;
 
-const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
+const ExtensionUtils = imports.misc.extensionUtils;
+
+const Me = ExtensionUtils.getCurrentExtension();
 const PanelVisibilityManager = Me.imports.panelVisibilityManager;
-const DEBUG = Convenience.DEBUG;
+const DEBUG = Me.imports.convenience.DEBUG;
 
 let mSettings = null;
 let mPVManager = null;
@@ -32,7 +33,7 @@ function init() { }
 
 function enable() {
     DEBUG("enable()");
-    mSettings = Convenience.getSettings();
+    mSettings = ExtensionUtils.getSettings();
     monitorIndex = Main.layoutManager.primaryIndex;
     mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings, monitorIndex);
 }

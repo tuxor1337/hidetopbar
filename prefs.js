@@ -25,13 +25,12 @@ const _ = Gettext.gettext;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 
 let settings;
 
 function init() {
-    settings = Convenience.getSettings();
-    Convenience.initTranslations("hidetopbar");
+    settings = ExtensionUtils.getSettings();
+    ExtensionUtils.initTranslations("hidetopbar");
 }
 
 function buildPrefsWidget() {
