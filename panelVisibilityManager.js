@@ -54,7 +54,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
-        this._shortcutTimeout = 0;
+        this._shortcutTimeout = null;
 
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
@@ -181,7 +181,9 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     _handleShortcut() {
         var delay_time = this._settings.get_double('shortcut-delay');
         if(this._shortcutTimeout) {
-            GLib.source_remove(this._shortcutTimeout);
+            if(this._shortcutTimeout !== true) {
+                GLib.source_remove(this._shortcutTimeout);
+            }
             this._shortcutTimeout = null;
             if(delay_time < 0.05
                || this._settings.get_boolean('shortcut-toggles')) {
