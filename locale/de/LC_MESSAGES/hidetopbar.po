@@ -8,80 +8,118 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 15:24+0800\n"
-"PO-Revision-Date: 2018-05-11 20:32+0200\n"
+"POT-Creation-Date: 2020-09-20 01:01+0200\n"
+"PO-Revision-Date: 2020-09-20 01:07+0200\n"
 "Last-Translator: Vinzenz Vietzke <vinz@vinzv.de>\n"
 "Language-Team: German <>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: prefs.js:26
+#: prefs.js:39 prefs.js:57
 msgid "<b>Sensitivity</b>"
 msgstr "<b>Berührungsempfindlichkeit</b>"
 
-#: prefs.js:33
+#: prefs.js:46 prefs.js:64
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Panel anzeigen, wenn die Maus den oberen Bildschirmrand berührt"
 
-#: prefs.js:34
+#: prefs.js:47
+msgid "In the above case, also show panel when fullscreen."
+msgstr "In diesem Fall auch das Panel im Vollbildmodus aneigen."
+
+#: prefs.js:48 prefs.js:66
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "\"Hot Corner\" auch aktiviert lassen, wenn das Panel versteckt ist"
 
-#: prefs.js:35
+#: prefs.js:49 prefs.js:67
 msgid "In the above case show overview, too"
 msgstr "Wechsle im obigen Fall in die Übersicht"
 
-#: prefs.js:61
+#: prefs.js:74
 msgid "Pressure barrier's threshold."
 msgstr "Schwellenwert der Druckempfindlichkeit."
 
-#: prefs.js:62
+#: prefs.js:75
 msgid "Pressure barrier's timeout."
 msgstr "Time-Out der Druckempfindlichkeit."
 
-#: prefs.js:92
+#: prefs.js:104 prefs.js:122
 msgid "<b>Animation</b>"
 msgstr "<b>Animation</b>"
 
-#: prefs.js:99
+#: prefs.js:111
 msgid "Slide animation time when entering/leaving overview."
 msgstr "Animationszeit beim Betreten/Verlassen der Übersicht."
 
-#: prefs.js:100
+#: prefs.js:112
 msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt."
 
-#: prefs.js:130
+#: prefs.js:141 prefs.js:159
 msgid "<b>Keyboard shortcuts</b>"
 msgstr "<b>Tastaturkürzel</b>"
 
-#: prefs.js:194
+#: prefs.js:203
 msgid "Key that triggers the bar to be shown."
 msgstr "Taste um die Leiste anzuzeigen."
 
-#: prefs.js:215
+#: prefs.js:223
 msgid "Delay before the bar rehides after key press."
 msgstr ""
 "Verzögerung, nachdem die Leiste nach dem Drücken der Taste, wieder "
 "ausgeblendet wird."
 
-#: prefs.js:231
+#: prefs.js:239
 msgid "Pressing the shortcut again rehides the panel."
 msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leiste wieder."
 
-#: prefs.js:261
+#: prefs.js:268 prefs.js:286
 msgid "<b>Intellihide</b>"
 msgstr "<b>Intelligentes Ausblenden</b>"
 
-#: prefs.js:268
+#: prefs.js:275 prefs.js:293
 msgid "Only hide panel when a window takes the space"
 msgstr "Panel nur verstecken, wenn Fenster im Weg ist"
 
-#: prefs.js:269
+#: prefs.js:276 prefs.js:294
 msgid "Only when the active window takes the space"
 msgstr "Nur wenn ein aktives Fenster im Weg ist"
+
+#: prefs.js:65
+msgid "In the above case, also show panel when fullscreen"
+msgstr "In diesem Fall auch Panel im Vollbildmodus anzeigen"
+
+#: prefs.js:92
+msgid "Pressure barrier's threshold:"
+msgstr "Schwellenwert der Druckempfindlichkeit:"
+
+#: prefs.js:93
+msgid "Pressure barrier's timeout:"
+msgstr "Time-Out der Druckempfindlichkeit:"
+
+#: prefs.js:129
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Animationszeit beim Betreten/Verlassen der Übersicht:"
+
+#: prefs.js:130
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt:"
+
+#: prefs.js:221
+msgid "Key that triggers the bar to be shown:"
+msgstr "Taste um die Leiste anzuzeigen:"
+
+#: prefs.js:241
+msgid "Delay before the bar rehides after key press:"
+msgstr ""
+"Verzögerung, nachdem die Leiste nach dem Drücken der Taste, wieder "
+"ausgeblendet wird:"
+
+#: prefs.js:257
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leiste wieder."
