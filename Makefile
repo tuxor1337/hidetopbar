@@ -14,3 +14,6 @@ hidetopbar.zip: schemas/gschemas.compiled
 
 clean:
 	rm -rf hidetopbar.zip schemas/gschemas.compiled
+
+%.mo: %.po locale/hidetopbar.pot
+	msgfmt -c -o $@ $<
