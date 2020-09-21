@@ -20,3 +20,7 @@ clean:
 
 %.mo: %.po locale/hidetopbar.pot
 	msgfmt -c -o $@ $<
+
+locale/hidetopbar.pot locale/hidetop.pot-stamp : $(JS_FILES)
+	xgettext --output=./locale/hidetopbar.pot --language=JavaScript $^
+	touch locale/hidetop.pot
