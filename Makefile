@@ -5,7 +5,7 @@ JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManage
 LOCALES_PO = $(wildcard locale/*/*/*.po)
 LOCALES_MO = $(patsubst %.po,%.mo,$(LOCALES_PO))
 
-.PHONY: clean all
+.PHONY: distclean clean all
 
 all: hidetopbar.zip
 
@@ -17,6 +17,9 @@ hidetopbar.zip: schemas/gschemas.compiled $(LOCALES_MO)
 
 clean:
 	rm -rf hidetopbar.zip schemas/gschemas.compiled ${LOCALES_MO}
+
+distclean: clean
+	rm -rf hidetopbar.zip locale/locale/hidetop.pot-stamp
 
 %.mo: %.po locale/hidetopbar.pot
 	msgfmt -c -o $@ $<
