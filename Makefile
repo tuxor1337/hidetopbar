@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-JS_FILES = {extension,convenience,intellihide,panelVisibilityManager,prefs}.js
+JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManager,prefs}.js)
 
 .PHONY: clean all
 
