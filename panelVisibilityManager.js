@@ -38,9 +38,8 @@ function reallocateTopIcons() {
     // Dirty hack for TopIcons compatibility:
     // triggers reallocation of ClickProxy in TopIcons
     Main.panel._rightBox.emit(
-        "allocation-changed",
-        Main.panel._rightBox.get_allocation_box(),
-        null
+        "notify::allocation",
+        Main.panel._rightBox.get_allocation_box()
     );
 }
 
