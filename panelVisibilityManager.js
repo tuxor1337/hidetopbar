@@ -34,15 +34,6 @@ const MessageTray = Main.messageTray;
 const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
 
-function reallocateTopIcons() {
-    // Dirty hack for TopIcons compatibility:
-    // triggers reallocation of ClickProxy in TopIcons
-    Main.panel._rightBox.emit(
-        "notify::allocation",
-        Main.panel._rightBox.get_allocation_box()
-    );
-}
-
 var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
     constructor(settings, monitorIndex) {
@@ -108,7 +99,6 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             onComplete: () => {
                 this._animationActive = false;
                 PanelBox.hide();
-                reallocateTopIcons();
                 this._updateHotCorner(true);
             }
         });
@@ -136,7 +126,6 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
               )
           ) {
             PanelBox.y = this._base_y;
-            reallocateTopIcons();
         } else {
             this._animationActive = true;
             PanelBox.ease({
@@ -146,7 +135,6 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 onComplete: () => {
                     this._animationActive = false;
                     this._updateStaticBox();
-                    reallocateTopIcons();
                 }
             });
         }
