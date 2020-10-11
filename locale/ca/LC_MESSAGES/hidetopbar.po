@@ -40,11 +40,11 @@ msgstr "En el cas anterior, mostra també la vista general."
 
 #: prefs.js:74
 msgid "Pressure barrier's threshold."
-msgstr "Llindar de la pressió "
+msgstr "Llindar de la pressió:"
 
 #: prefs.js:75
 msgid "Pressure barrier's timeout."
-msgstr "Temps d'espera de la pressió"
+msgstr "Temps d'espera de la pressió:"
 
 #: prefs.js:104
 msgid "<b>Animation</b>"
