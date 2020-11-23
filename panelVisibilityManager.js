@@ -302,7 +302,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
     
     _updateSettingsHideAlways() {
-        this._hideAlways = (this._settings.get_boolean('show-in-overview') ? false : true);
+        this._hideAlways = (this._settings.get_boolean('show-in-overview')) ? false : true;
     }
 
     _updateIntellihideStatus() {
