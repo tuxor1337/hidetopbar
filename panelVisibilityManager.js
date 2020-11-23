@@ -41,6 +41,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._base_y = PanelBox.y;
         this._settings = settings;
         this._preventHide = false;
+        this._hideAlways = false;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
@@ -299,6 +300,10 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
     }
+    
+    _updateSettingsHideAlways() {
+        this._hideAlways = (this._settings.get_boolean('show-in-overview') ? false : true);
+    }
 
     _updateIntellihideStatus() {
         if(this._settings.get_boolean('enable-intellihide')) {
@@ -337,10 +342,12 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 Main.overview,
                 'showing',
                 () => {
-                    this.show(
-                        this._settings.get_double('animation-time-overview'),
-                        "showing-overview"
-                    );
+                    if(!_hideAlways) {
+                        this.show(
+                            this._settings.get_double('animation-time-overview'),
+                            "showing-overview"
+                        );
+                    }
                 }
             ],
             [
@@ -413,6 +420,11 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 this._settings,
                 'changed::pressure-threshold',
                 this._updateSettingsMouseSensitive.bind(this)
+            ],
+            [ 
+                this._settings,
+                'changed::show-in-overview',
+                this._updateSettingsHideAlways.bind(this)
             ],
             [
                 this._settings,
