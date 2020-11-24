@@ -41,7 +41,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._base_y = PanelBox.y;
         this._settings = settings;
         this._preventHide = false;
-        this._hideAlways = false;
+        this._showInOverview = true;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
@@ -65,7 +65,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
-        this._updateSettingsHideAlways();
+        this._updateSettingsShowInOverview();
         this._intellihide = new Intellihide.Intellihide(this._settings, this._monitorIndex);
 
         this._updateHotCorner(false);
@@ -302,8 +302,8 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         } else this._disablePressureBarrier();
     }
     
-    _updateSettingsHideAlways() {
-        this._hideAlways = (this._settings.get_boolean('show-in-overview')) ? false : true;
+    _updateSettingsShowInOverview() {
+        this._showInOverview = this._settings.get_boolean('show-in-overview');
     }
 
     _updateIntellihideStatus() {
@@ -343,7 +343,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 Main.overview,
                 'showing',
                 () => {
-                    if(!this._hideAlways) {
+                    if(this._showInOverview) {
                         this.show(
                             this._settings.get_double('animation-time-overview'),
                             "showing-overview"
@@ -425,7 +425,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             [ 
                 this._settings,
                 'changed::show-in-overview',
-                this._updateSettingsHideAlways.bind(this)
+                this._updateSettingsShowInOverview.bind(this)
             ],
             [
                 this._settings,
