@@ -65,6 +65,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
+        this._updateSettingsHideAlways();
         this._intellihide = new Intellihide.Intellihide(this._settings, this._monitorIndex);
 
         this._updateHotCorner(false);
@@ -342,7 +343,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 Main.overview,
                 'showing',
                 () => {
-                    if(!_hideAlways) {
+                    if(!this._hideAlways) {
                         this.show(
                             this._settings.get_double('animation-time-overview'),
                             "showing-overview"
