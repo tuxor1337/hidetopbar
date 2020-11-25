@@ -41,6 +41,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._base_y = PanelBox.y;
         this._settings = settings;
         this._preventHide = false;
+        this._showInOverview = true;
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
@@ -64,6 +65,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
+        this._updateSettingsShowInOverview();
         this._intellihide = new Intellihide.Intellihide(this._settings, this._monitorIndex);
 
         this._updateHotCorner(false);
@@ -299,6 +301,10 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
     }
+    
+    _updateSettingsShowInOverview() {
+        this._showInOverview = this._settings.get_boolean('show-in-overview');
+    }
 
     _updateIntellihideStatus() {
         if(this._settings.get_boolean('enable-intellihide')) {
@@ -337,10 +343,12 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 Main.overview,
                 'showing',
                 () => {
-                    this.show(
-                        this._settings.get_double('animation-time-overview'),
-                        "showing-overview"
-                    );
+                    if(this._showInOverview) {
+                        this.show(
+                            this._settings.get_double('animation-time-overview'),
+                            "showing-overview"
+                        );
+                    }
                 }
             ],
             [
@@ -413,6 +421,11 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 this._settings,
                 'changed::pressure-threshold',
                 this._updateSettingsMouseSensitive.bind(this)
+            ],
+            [ 
+                this._settings,
+                'changed::show-in-overview',
+                this._updateSettingsShowInOverview.bind(this)
             ],
             [
                 this._settings,

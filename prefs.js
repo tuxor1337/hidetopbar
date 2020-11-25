@@ -63,6 +63,7 @@ function buildPrefsWidget() {
     settings_array = [
         ['mouse-sensitive',_("Show panel when mouse approaches edge of the screen")],
         ['mouse-sensitive-fullscreen-window',_("In the above case, also show panel when fullscreen")],
+        ['show-in-overview',_("Show panel in overview")],
         ['hot-corner',_("Keep hot corner sensitive, even in hidden state")],
         ['mouse-triggers-overview',_("In the above case show overview, too")],
     ];

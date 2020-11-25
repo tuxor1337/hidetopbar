@@ -101,5 +101,12 @@
         takes the space.
       </description>
     </key>
+    <key name="show-in-overview" type="b">
+      <default>true</default>
+      <summary>Show panel in overview</summary>
+      <description>
+        When enabled, the panel will be visible in overview.
+      </description>
+    </key>
   </schema>
 </schemalist>
