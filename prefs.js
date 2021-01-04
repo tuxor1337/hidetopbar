@@ -226,8 +226,12 @@ function buildPrefsWidget() {
     settings_hbox.pack_end(treeview, false, true, 0);
 
     settings.connect('changed::shortcut-keybind', function(k, b) {
-        let model_row = model.get(0);
-        model.set(model_row, [0, 1], settings.get_strv(b));
+        let binding = settings.get_strv('shortcut-keybind')[0];
+        let binding_key = binding_mods = 0;
+        if (binding) {
+            [binding_key, binding_mods] = Gtk.accelerator_parse(binding);
+        }
+        model.set(model_row, [0, 1], [binding_mods, binding_key]);
     });
 
     settings_vbox.pack_start(settings_hbox, false, false, 3);
