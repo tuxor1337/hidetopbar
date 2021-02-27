@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-21 18:39+0200\n"
+"POT-Creation-Date: 2021-02-27 20:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,74 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:57
-msgid "Sensitivity"
-msgstr ""
-
-#: prefs.js:64
+#: Settings.ui.h:1
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 
-#: prefs.js:65
+#: Settings.ui.h:2
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 
-#: prefs.js:66
+#: Settings.ui.h:3
+msgid "Show panel in overview"
+msgstr ""
+
+#: Settings.ui.h:4
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 
-#: prefs.js:67
+#: Settings.ui.h:5
 msgid "In the above case show overview, too"
 msgstr ""
 
-#: prefs.js:92
+#: Settings.ui.h:6
 msgid "Pressure barrier's threshold:"
 msgstr ""
 
-#: prefs.js:93
+#: Settings.ui.h:7
 msgid "Pressure barrier's timeout:"
 msgstr ""
 
-#: prefs.js:122
-msgid "Animation"
+#: Settings.ui.h:8
+msgid "Sensitivity"
 msgstr ""
 
-#: prefs.js:129
+#: Settings.ui.h:9
 msgid "Slide animation time when entering/leaving overview:"
 msgstr ""
 
-#: prefs.js:130
+#: Settings.ui.h:10
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 
-#: prefs.js:159
-msgid "Keyboard shortcuts"
+#: Settings.ui.h:11
+msgid "Animation"
 msgstr ""
 
-#: prefs.js:221
+#: Settings.ui.h:12
 msgid "Key that triggers the bar to be shown:"
 msgstr ""
 
-#: prefs.js:241
+#: Settings.ui.h:13
 msgid "Delay before the bar rehides after key press:"
 msgstr ""
 
-#: prefs.js:257
+#: Settings.ui.h:14
 msgid "Pressing the shortcut again rehides the panel"
 msgstr ""
 
-#: prefs.js:286
-msgid "Intellihide"
+#: Settings.ui.h:15
+msgid "Keyboard shortcuts"
 msgstr ""
 
-#: prefs.js:293
+#: Settings.ui.h:16
 msgid "Only hide panel when a window takes the space"
 msgstr ""
 
-#: prefs.js:294
+#: Settings.ui.h:17
 msgid "Only when the active window takes the space"
+msgstr ""
+
+#: Settings.ui.h:18
+msgid "Intellihide"
 msgstr ""

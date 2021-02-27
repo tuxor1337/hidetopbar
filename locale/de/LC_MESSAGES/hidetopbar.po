@@ -32,6 +32,10 @@ msgstr "Panel anzeigen, wenn die Maus den oberen Bildschirmrand berührt"
 msgid "In the above case, also show panel when fullscreen."
 msgstr "In diesem Fall auch das Panel im Vollbildmodus aneigen."
 
+#: Settings.ui.h:3
+msgid "Show panel in overview"
+msgstr "Panel in der Übersicht anzeigen"
+
 #: prefs.js:48 prefs.js:66
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "\"Hot Corner\" auch aktiviert lassen, wenn das Panel versteckt ist"

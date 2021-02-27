@@ -397,7 +397,7 @@
             <child>
               <object class="GtkTreeViewColumn">
                 <property name="min-width">200</property>
-                <property name="title" translatable="yes">column</property>
+                <property name="title" translatable="no">column</property>
                 <property name="sort-column-id">0</property>
                 <child>
                   <object class="GtkCellRendererAccel" id="accel_shortcut_keybind">

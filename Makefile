@@ -24,6 +24,10 @@ distclean: clean
 %.mo: %.po locale/hidetopbar.pot locale/hidetopbar.pot-stamp
 	msgfmt -c -o $@ $<
 
-locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(JS_FILES)
-	xgettext --output=./locale/hidetopbar.pot --language=JavaScript $^
+locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(JS_FILES) Settings.ui
+	xgettext --output=./locale/hidetopbar.pot --language=JavaScript $(JS_FILES)
+	intltool-extract --type=gettext/glade Settings.ui
+	xgettext -k --keyword=_ --keyword=N_ --join-existing \
+	         -o ./locale/hidetopbar.pot Settings.ui.h
+	rm Settings.ui.h
 	touch locale/hidetopbar.pot-stamp
