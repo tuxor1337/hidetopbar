@@ -19,8 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: prefs.js:39
-msgid "<b>Sensitivity</b>"
-msgstr "<b>Sensibilitat</b>"
+msgid "Sensitivity"
+msgstr "Sensibilitat"
 
 #: prefs.js:46
 msgid "Show panel when mouse approaches edge of the screen"
@@ -47,8 +47,8 @@ msgid "Pressure barrier's timeout."
 msgstr "Temps d'espera de la pressió:"
 
 #: prefs.js:104
-msgid "<b>Animation</b>"
-msgstr "<b>Animació</b>"
+msgid "Animation"
+msgstr "Animació"
 
 #: prefs.js:111
 msgid "Slide animation time when entering/leaving overview."
@@ -59,8 +59,8 @@ msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr "Durada de l'animació quan el ratolí s'apropi a la vora de la pantalla:"
 
 #: prefs.js:141
-msgid "<b>Keyboard shortcuts</b>"
-msgstr "<b>Dreceres del teclat</b>"
+msgid "Keyboard shortcuts"
+msgstr "Dreceres del teclat"
 
 #: prefs.js:203
 msgid "Key that triggers the bar to be shown."
@@ -75,8 +75,8 @@ msgid "Pressing the shortcut again rehides the panel."
 msgstr "Tornar a prémer la drecera torna a ocultar la barra."
 
 #: prefs.js:268
-msgid "<b>Intellihide</b>"
-msgstr "<b>Ocultació intel·ligent</b>"
+msgid "Intellihide"
+msgstr "Ocultació intel·ligent"
 
 #: prefs.js:275
 msgid "Only hide panel when a window takes the space"

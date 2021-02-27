@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: prefs.js:57
-msgid "<b>Sensitivity</b>"
+msgid "Sensitivity"
 msgstr ""
 
 #: prefs.js:64
@@ -46,7 +46,7 @@ msgid "Pressure barrier's timeout:"
 msgstr ""
 
 #: prefs.js:122
-msgid "<b>Animation</b>"
+msgid "Animation"
 msgstr ""
 
 #: prefs.js:129
@@ -58,7 +58,7 @@ msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 
 #: prefs.js:159
-msgid "<b>Keyboard shortcuts</b>"
+msgid "Keyboard shortcuts"
 msgstr ""
 
 #: prefs.js:221
@@ -74,7 +74,7 @@ msgid "Pressing the shortcut again rehides the panel"
 msgstr ""
 
 #: prefs.js:286
-msgid "<b>Intellihide</b>"
+msgid "Intellihide"
 msgstr ""
 
 #: prefs.js:293

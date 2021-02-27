@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.7\n"
 
 #: prefs.js:26
-msgid "<b>Sensitivity</b>"
-msgstr "<b>Czułość</b>"
+msgid "Sensitivity"
+msgstr "Czułość"
 
 #: prefs.js:33
 msgid "Show panel when mouse approaches edge of the screen"
@@ -44,8 +44,8 @@ msgid "Pressure barrier's timeout."
 msgstr "Czas nacisku"
 
 #: prefs.js:92
-msgid "<b>Animation</b>"
-msgstr "<b>Animacja</b>"
+msgid "Animation"
+msgstr "Animacja"
 
 #: prefs.js:99
 msgid "Slide animation time when entering/leaving overview."
@@ -56,8 +56,8 @@ msgid "Slide animation time when mouse approaches edge of the screen."
 msgstr "Czas animacji wysuwania przenosząc wskaźnik do krawędzi ekranu"
 
 #: prefs.js:130
-msgid "<b>Keyboard shortcuts</b>"
-msgstr "<b>Skróty klawiszowe</b>"
+msgid "Keyboard shortcuts"
+msgstr "Skróty klawiszowe"
 
 #: prefs.js:194
 msgid "Key that triggers the bar to be shown."
@@ -72,8 +72,8 @@ msgid "Pressing the shortcut again rehides the panel."
 msgstr "Ponowne ukrywanie panelu wciśnięciem skrótu"
 
 #: prefs.js:261
-msgid "<b>Intellihide</b>"
-msgstr "<b>Inteligentne ukrywanie</b>"
+msgid "Intellihide"
+msgstr "Inteligentne ukrywanie"
 
 #: prefs.js:268
 msgid "Only hide panel when a window takes the space"
