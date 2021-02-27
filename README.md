@@ -50,12 +50,12 @@ Whenever you notice that there are localizable strings in Hide Top Bar that are 
 covered by the strings in `./locale/`, you can regenerate the `*.pot`-file using the
 following command:
 
-    xgettext --output=./locale/hidetopbar.pot --language=JavaScript *.js
+    make ./locale/hidetopbar.pot
 
 License
 -------
 
-Copyright (c) 2013-2020 Thomas Vogt.
+Copyright (c) 2013-2021 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
