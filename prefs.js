@@ -66,7 +66,7 @@ function buildPrefsWidget() {
         'mouse-triggers-overview',
     ];
     settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replaceAll("-", "_"));
+        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s));
         settings_onoff.connect('notify::active', function(w) {
             settings.set_boolean(s, w.active);
@@ -81,7 +81,7 @@ function buildPrefsWidget() {
         'pressure-timeout',
     ];
     settings_array.forEach(function (s) {
-        settings_spin = builder.get_object("spin_" + s.replaceAll("-", "_"));
+        settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
         settings_spin.set_value(settings.get_int(s));
         settings_spin.connect('value-changed', function(w) {
             settings.set_int(s, w.get_value());
@@ -100,7 +100,7 @@ function buildPrefsWidget() {
         'animation-time-autohide',
     ];
     settings_array.forEach(function (s) {
-        settings_spin = builder.get_object("spin_" + s.replaceAll("-", "_"));
+        settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
         settings_spin.set_value(settings.get_double(s));
         settings_spin.connect('value-changed', function(w) {
             settings.set_double(s, w.get_value());
@@ -175,7 +175,7 @@ function buildPrefsWidget() {
         'shortcut-toggles',
     ];
     settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replaceAll("-", "_"));
+        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s))
         settings_onoff.connect('notify::active', function(w) {
             settings.set_boolean(s, w.active);
@@ -194,7 +194,7 @@ function buildPrefsWidget() {
         'enable-active-window',
     ];
     settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replaceAll("-", "_"));
+        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s))
         settings_onoff.connect('notify::active', function(w) {
             settings.set_boolean(s, w.active);
