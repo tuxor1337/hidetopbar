@@ -1,88 +1,93 @@
 # Brazilian Portuguese translation for hidetopbar
-# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the hidetopbar package.
-# Marcos Nascimento <wstlmn@uol.com.br>, 2017.
+# Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcos M Nascimento <wstl@bol.com.br>, 2017.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2020.
+# Marcos M Nascimento <wstl@bol.com.br>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: https://github.com/mlutfy/hidetopbar/issues\n"
-"POT-Creation-Date: 2020-06-27 21:18-0300\n"
-"PO-Revision-Date: 2020-06-27 21:24-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
-"Language-Team: Brazilian Portuguese\n"
+"POT-Creation-Date: 2021-02-27 20:17+0100\n"
+"PO-Revision-Date: 2021-03-07 22:29-0300\n"
+"Last-Translator: Marcos M Nascimento <wstl@bol.com.br>\n"
+"Language-Team: Portuguese <wstl@bol.com.br>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 3.36.0\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2;plural=(n>1);\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
-#: prefs.js:57
-msgid "Sensitivity"
-msgstr "Sensibilidade"
-
-#: prefs.js:64
+#: Settings.ui.h:1
 msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Mostrar painel quando o mouse se aproximar da borda da tela"
+msgstr "Mostrar o painel quando o mouse aproximar da borda da tela"
 
-#: prefs.js:65
+#: Settings.ui.h:2
 msgid "In the above case, also show panel when fullscreen"
 msgstr "No caso acima, também mostrar o painel quando em tela cheia"
 
-#: prefs.js:66
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "Manter o canto responsivo, mesmo no estado oculto"
+#: Settings.ui.h:3
+msgid "Show panel in overview"
+msgstr "Mostrar o painel em visão geral"
 
-#: prefs.js:67
+#: Settings.ui.h:4
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Manter o canto responsivo, mesmo quando oculto"
+
+#: Settings.ui.h:5
 msgid "In the above case show overview, too"
 msgstr "No caso acima, também mostrar o panorama de atividades"
 
-#: prefs.js:92
+#: Settings.ui.h:6
 msgid "Pressure barrier's threshold:"
 msgstr "Limiar da barreira de pressão:"
 
-#: prefs.js:93
+#: Settings.ui.h:7
 msgid "Pressure barrier's timeout:"
 msgstr "Tempo limite da barreira de pressão:"
 
-#: prefs.js:122
-msgid "Animation"
-msgstr "Animação"
+#: Settings.ui.h:8
+msgid "Sensitivity"
+msgstr "Sensibilidade"
 
-#: prefs.js:129
+#: Settings.ui.h:9
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Tempo de animação ao entrar/sair do panorama de atividades:"
 
-#: prefs.js:130
+#: Settings.ui.h:10
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Tempo de animação quando o mouse se aproximar da borda da tela:"
 
-#: prefs.js:159
-msgid "Keyboard shortcuts"
-msgstr "Atalhos de teclado"
+#: Settings.ui.h:11
+msgid "Animation"
+msgstr "Animação"
 
-#: prefs.js:221
+#: Settings.ui.h:12
 msgid "Key that triggers the bar to be shown:"
-msgstr "Tecla que aciona a barra a ser mostrada:"
+msgstr "Atalho para mostrar o painel:"
 
-#: prefs.js:241
+#: Settings.ui.h:13
 msgid "Delay before the bar rehides after key press:"
-msgstr "Atraso até a barra ocultar novamente após pressionar tecla:"
+msgstr "Tempo até a barra ocultar após pressionar o atalho:"
 
-#: prefs.js:257
+#: Settings.ui.h:14
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Pressionar o atalho novamente oculta o painel"
 
-#: prefs.js:286
-msgid "Intellihide"
-msgstr "Ação inteligente"
+#: Settings.ui.h:15
+msgid "Keyboard shortcuts"
+msgstr "Atalhos do teclado"
 
-#: prefs.js:293
+#: Settings.ui.h:16
 msgid "Only hide panel when a window takes the space"
 msgstr "Somente ocultar quando a janela ocupar o espaço"
 
-#: prefs.js:294
+#: Settings.ui.h:17
 msgid "Only when the active window takes the space"
-msgstr "Somente ocultar quando a janela ativa ocupar o espaço"
+msgstr "omente ocultar quando a janela ativa ocupar o espaço"
+
+#: Settings.ui.h:18
+msgid "Intellihide"
+msgstr "Ação inteligente"
