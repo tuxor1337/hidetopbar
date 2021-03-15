@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# nz, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hidetopbar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-27 20:17+0100\n"
+"PO-Revision-Date: 2021-03-15 13:57+0300\n"
+"Last-Translator: nz\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 3.38.0\n"
+
+#: Settings.ui.h:1
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Показывать панель, когда мышь приближается к краю экрана"
+
+#: Settings.ui.h:2
+msgid "In the above case, also show panel when fullscreen"
+msgstr ""
+"В приведенном выше случае также показывать панель в полноэкранном режиме"
+
+#: Settings.ui.h:3
+msgid "Show panel in overview"
+msgstr "Показать панель в обзоре"
+
+#: Settings.ui.h:4
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr ""
+"Сохранять чувствительность к \"горячему углу\", даже в скрытом состоянии"
+
+#: Settings.ui.h:5
+msgid "In the above case show overview, too"
+msgstr "В приведенном выше случае также покажите обзор"
+
+#: Settings.ui.h:6
+msgid "Pressure barrier's threshold:"
+msgstr "Порог барьера давления:"
+
+#: Settings.ui.h:7
+msgid "Pressure barrier's timeout:"
+msgstr "Интервал барьера давления:"
+
+#: Settings.ui.h:8
+msgid "Sensitivity"
+msgstr "Чувствительность"
+
+#: Settings.ui.h:9
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Время анимации слайда при входе/выходе из обзора:"
+
+#: Settings.ui.h:10
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Время анимации слайда, когда мышь приближается к краю экрана:"
+
+#: Settings.ui.h:11
+msgid "Animation"
+msgstr "Анимация"
+
+#: Settings.ui.h:12
+msgid "Key that triggers the bar to be shown:"
+msgstr "Ключ, запускающий отображение бара:"
+
+#: Settings.ui.h:13
+msgid "Delay before the bar rehides after key press:"
+msgstr "Задержка перед повторным скрытием бара после нажатия клавиши:"
+
+#: Settings.ui.h:14
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Нажатие клавиш скрывает панель заново"
+
+#: Settings.ui.h:15
+msgid "Keyboard shortcuts"
+msgstr "Горячие клавиши"
+
+#: Settings.ui.h:16
+msgid "Only hide panel when a window takes the space"
+msgstr "Скрывать панель только тогда, когда окно занимает пространство"
+
+#: Settings.ui.h:17
+msgid "Only when the active window takes the space"
+msgstr "Только когда активное окно занимает пространство"
+
+#: Settings.ui.h:18
+msgid "Intellihide"
+msgstr "Интеллектуальное скрытие"
