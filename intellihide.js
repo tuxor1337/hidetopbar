@@ -83,7 +83,7 @@ var Intellihide = class HideTopBar_Intellihide {
 
         this._checkOverlapTimeoutContinue = false;
         this._checkOverlapTimeoutId = 0;
-        
+
         this._trackedWindows = new Map();
 
         // Connect global signals
@@ -264,12 +264,11 @@ var Intellihide = class HideTopBar_Intellihide {
 
         // Check if notification banner overlaps
         if (Main.messageTray.visible) {
-            let rect = Main.messageTray.get_allocation_box(),
-                test = (rect.x1 < this._targetBox.x2) &&
+            let rect = Main.messageTray._bannerBin.get_allocation_box();
+            let test = (rect.x1 < this._targetBox.x2) &&
                     (rect.x2 > this._targetBox.x1) &&
                     (rect.y1 < this._targetBox.y2) &&
                     (rect.y2 > this._targetBox.y1);
-
             if (test) overlaps = OverlapStatus.TRUE;
         }
 
