@@ -34,20 +34,9 @@ function init() {
 }
 
 function buildPrefsWidget() {
-    let frame,
-        settings_array,
-        settings_onoff,
-        settings_spin,
-        model,
-        model_row,
-        binding,
-        binding_key,
-        binding_mods,
-        cellrend,
-        builder;
-
-    frame = new Gtk.ScrolledWindow({ hscrollbar_policy: Gtk.PolicyType.NEVER });
-    builder = new Gtk.Builder();
+    let frame = new Gtk.ScrolledWindow(
+        { hscrollbar_policy: Gtk.PolicyType.NEVER });
+    let builder = new Gtk.Builder();
     builder.set_translation_domain("hidetopbar");
     builder.add_from_file(Me.path + '/Settings.ui');
 
@@ -58,35 +47,31 @@ function buildPrefsWidget() {
  ************************************** Section Sensitivity *******************
  ******************************************************************************/
 
-    settings_array = [
-        'mouse-sensitive',
-        'mouse-sensitive-fullscreen-window',
-        'show-in-overview',
-        'hot-corner',
-        'mouse-triggers-overview',
-    ];
-    settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+    ['mouse-sensitive',
+     'mouse-sensitive-fullscreen-window',
+     'show-in-overview',
+     'hot-corner',
+     'mouse-triggers-overview'
+    ].forEach(function (s) {
+        let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s));
-        settings_onoff.connect('notify::active', function(w) {
+        settings_onoff.connect('notify::active', function (w) {
             settings.set_boolean(s, w.active);
         });
-        settings.connect('changed::' + s, function(k,b) {
+        settings.connect('changed::' + s, function (k,b) {
             settings_onoff.set_active(settings.get_boolean(b));
         });
     });
 
-    settings_array = [
-        'pressure-threshold',
-        'pressure-timeout',
-    ];
-    settings_array.forEach(function (s) {
-        settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+    ['pressure-threshold',
+     'pressure-timeout'
+    ].forEach(function (s) {
+        let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
         settings_spin.set_value(settings.get_int(s));
-        settings_spin.connect('value-changed', function(w) {
+        settings_spin.connect('value-changed', function (w) {
             settings.set_int(s, w.get_value());
         });
-        settings.connect('changed::' + s, function(k,b) {
+        settings.connect('changed::' + s, function (k,b) {
             settings_spin.set_value(settings.get_int(b));
         });
     });
@@ -95,17 +80,15 @@ function buildPrefsWidget() {
  ************************************** Section Animation *********************
  ******************************************************************************/
 
-    settings_array = [
-        'animation-time-overview',
-        'animation-time-autohide',
-    ];
-    settings_array.forEach(function (s) {
-        settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+    ['animation-time-overview',
+     'animation-time-autohide',
+    ].forEach(function (s) {
+        let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
         settings_spin.set_value(settings.get_double(s));
-        settings_spin.connect('value-changed', function(w) {
+        settings_spin.connect('value-changed', function (w) {
             settings.set_double(s, w.get_value());
         });
-        settings.connect('changed::' + s, function(k,b) {
+        settings.connect('changed::' + s, function (k,b) {
             settings_spin.set_value(settings.get_double(b));
         });
     });
@@ -116,9 +99,11 @@ function buildPrefsWidget() {
 
 /* ++++++++++++++++++++++++++++++++++++ Keyboard accelerator +++++ */
 
-    model = builder.get_object("store_shortcut_keybind");
-    model_row = model.get_iter_first()[1];
-    binding = settings.get_strv('shortcut-keybind')[0];
+    let model = builder.get_object("store_shortcut_keybind");
+    let model_row = model.get_iter_first()[1];
+    let binding = settings.get_strv('shortcut-keybind')[0],
+        binding_key,
+        binding_mods;
     if (binding) {
         [binding_key, binding_mods] = Gtk.accelerator_parse(binding);
     } else {
@@ -126,9 +111,10 @@ function buildPrefsWidget() {
     }
     model.set(model_row, [0, 1], [binding_mods, binding_key]);
 
-    cellrend = builder.get_object("accel_shortcut_keybind");
+    let cellrend = builder.get_object("accel_shortcut_keybind");
 
-    cellrend.connect('accel-edited', function(rend, iter, binding_key, binding_mods) {
+    cellrend.connect('accel-edited',
+      function (rend, iter, binding_key, binding_mods) {
         let value = Gtk.accelerator_name(binding_key, binding_mods);
         let [succ, iterator] = model.get_iter_from_string(iter);
 
@@ -138,9 +124,10 @@ function buildPrefsWidget() {
 
         model.set(iterator, [0, 1], [binding_mods, binding_key]);
         settings.set_strv('shortcut-keybind', [value]);
-    });
+      });
 
-    cellrend.connect('accel-cleared', function(rend, iter, binding_key, binding_mods) {
+    cellrend.connect('accel-cleared',
+      function (rend, iter, binding_key, binding_mods) {
         let [succ, iterator] = model.get_iter_from_string(iter);
 
         if (!succ) {
@@ -149,9 +136,9 @@ function buildPrefsWidget() {
 
         model.set(iterator, [0, 1], [0, 0]);
         settings.set_strv('shortcut-keybind', []);
-    });
+      });
 
-    settings.connect('changed::shortcut-keybind', function(k, b) {
+    settings.connect('changed::shortcut-keybind', function (k, b) {
         let binding = settings.get_strv('shortcut-keybind')[0];
         let binding_key = binding_mods = 0;
         if (binding) {
@@ -162,25 +149,26 @@ function buildPrefsWidget() {
 
 /* ++++++++++++++++++++++++++++++++++++ End: Keyboard accelerator +++++ */
 
-    settings_spin = builder.get_object("spin_shortcut_delay");
-    settings_spin.set_value(settings.get_double('shortcut-delay'));
-    settings.connect('changed::shortcut-delay', function(k,b) {
-        settings_spin.set_value(settings.get_double(b));
-    });
-    settings_spin.connect('value-changed', function(w) {
-        settings.set_double('shortcut-delay', w.get_value());
+    ['shortcut-delay',
+    ].forEach(function (s) {
+        let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+        settings_spin.set_value(settings.get_double(s));
+        settings_spin.connect('value-changed', function (w) {
+            settings.set_double(s, w.get_value());
+        });
+        settings.connect('changed::' + s, function (k,b) {
+            settings_spin.set_value(settings.get_double(b));
+        });
     });
 
-    settings_array = [
-        'shortcut-toggles',
-    ];
-    settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+    ['shortcut-toggles',
+    ].forEach(function (s) {
+        let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s))
-        settings_onoff.connect('notify::active', function(w) {
+        settings_onoff.connect('notify::active', function (w) {
             settings.set_boolean(s, w.active);
         });
-        settings.connect('changed::' + s, function(k,b) {
+        settings.connect('changed::' + s, function (k,b) {
             settings_onoff.set_active(settings.get_boolean(b));
         });
     });
@@ -189,17 +177,15 @@ function buildPrefsWidget() {
  ************************************** Section Intellihide *******************
  ******************************************************************************/
 
-    settings_array = [
-        'enable-intellihide',
-        'enable-active-window',
-    ];
-    settings_array.forEach(function (s) {
-        settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+    ['enable-intellihide',
+     'enable-active-window',
+    ].forEach(function (s) {
+        let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s))
-        settings_onoff.connect('notify::active', function(w) {
+        settings_onoff.connect('notify::active', function (w) {
             settings.set_boolean(s, w.active);
         });
-        settings.connect('changed::' + s, function(k,b) {
+        settings.connect('changed::' + s, function (k,b) {
             settings_onoff.set_active(settings.get_boolean(b));
         });
     });
