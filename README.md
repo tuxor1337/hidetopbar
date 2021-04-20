@@ -5,6 +5,8 @@ This GNOME extension helps to hide GNOME's top bar when it gets into your way.
 
 In the extension's preferences, different behaviors can be specified: unhiding on mouse-over or on pressing a keyboard shortcut, or when no window requires the space.
 
+![clip](https://user-images.githubusercontent.com/1518387/115446545-a6201500-a217-11eb-84f9-abbcd3251a10.gif)
+
 Installation from extensions.gnome.org
 --------------------------------------
 
@@ -42,6 +44,7 @@ directory, compile by running `make`, install and restart GNOME Shell. For examp
     gnome-shell --replace &
 
 The last commandline restarts GNOME Shell.
+
 
 Updating the language strings
 -----------------------------
