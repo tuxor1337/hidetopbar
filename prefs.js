@@ -34,14 +34,21 @@ function init() {
 }
 
 function buildPrefsWidget() {
+    const isGtk4 = Gtk.get_major_version() >= '4';
+
     let frame = new Gtk.ScrolledWindow(
         { hscrollbar_policy: Gtk.PolicyType.NEVER });
     let builder = new Gtk.Builder();
     builder.set_translation_domain("hidetopbar");
-    builder.add_from_file(Me.path + '/Settings.ui');
+    settingsPath = isGtk4 ? '/Settings-40.ui' : '/Settings.ui'
+    builder.add_from_file(Me.path + settingsPath);
 
     let notebook = builder.get_object("settings_notebook");
-    frame.add(notebook);
+    if (isGtk4) {
+        frame.set_child(notebook);
+    } else {
+        frame.add(notebook);
+    }
 
 /******************************************************************************
  ************************************** Section Sensitivity *******************
@@ -190,6 +197,8 @@ function buildPrefsWidget() {
         });
     });
 
-    frame.show_all();
+    if (!isGtk4) {
+        frame.show_all();
+    }
     return frame;
 }
