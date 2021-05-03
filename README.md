@@ -32,8 +32,12 @@ the [Debian Bugtracking system](https://www.debian.org/Bugs/Reporting).
 Installation from source
 ------------------------
 
-If you insist on installing from source, check out the source code into your local extensions
-directory, compile by running `make`, install and restart GNOME Shell. For example:
+If you insist on installing from source, the commands `intltool-extract`, `xgettext` and `msgfmt`
+from the packages `intltool` and `gettext` (package names may vary depending on your
+distribution) are required.
+
+The procedure to install from source is as follows: Check out the source code into your local
+extensions directory, compile by running `make`, install and restart GNOME Shell. For example:
 
     cd ~/.local/share/gnome-shell/extensions/
     git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
@@ -54,6 +58,9 @@ covered by the strings in `./locale/`, you can regenerate the `*.pot`-file using
 following command:
 
     make ./locale/hidetopbar.pot
+
+As mentioned in the previous section, running `make` requires the packages `intltool`
+and `gettext` (the package names may vary depending on your distribution).
 
 License
 -------
