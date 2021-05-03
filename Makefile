@@ -13,7 +13,7 @@ schemas/gschemas.compiled:
 	glib-compile-schemas --strict ./schemas/
 
 hidetopbar.zip: schemas/gschemas.compiled $(LOCALES_MO)
-	zip hidetopbar.zip -r COPYING.txt $(JS_FILES) metadata.json $(LOCALES_MO) schemas Settings.ui
+	zip hidetopbar.zip -r COPYING.txt $(JS_FILES) metadata.json $(LOCALES_MO) schemas Settings.ui Settings-40.ui
 
 clean:
 	rm -rf hidetopbar.zip schemas/gschemas.compiled ${LOCALES_MO}
