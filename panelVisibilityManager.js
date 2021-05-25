@@ -324,9 +324,10 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
         this._preventHide = !this._intellihide.getOverlapStatus();
         let animTime = this._settings.get_double('animation-time-autohide');
-        if(this._preventHide)
-            this.show(animTime, "intellihide");
-        else if(!Main.overview.visible)
+        if(this._preventHide) {
+            if (this._showInOverview || !Main.overview.visible)
+                this.show(animTime, "intellihide");
+        } else if(!Main.overview.visible)
             this.hide(animTime, "intellihide");
     }
 
