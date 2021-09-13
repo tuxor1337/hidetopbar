@@ -306,7 +306,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     _updateSettingsShowInOverview() {
         this._showInOverview = this._settings.get_boolean('show-in-overview');
         if (this._showInOverview) {
-            _searchEntryBin.set_style("margin-top: 24px;");
+            _searchEntryBin.set_style(`margin-top: ${PanelBox.height}px;`);
         } else {
             _searchEntryBin.style = null;
         }
