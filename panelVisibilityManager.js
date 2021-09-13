@@ -33,6 +33,7 @@ const DEBUG = Convenience.DEBUG;
 const MessageTray = Main.messageTray;
 const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
+const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
 
 var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
@@ -304,6 +305,11 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     
     _updateSettingsShowInOverview() {
         this._showInOverview = this._settings.get_boolean('show-in-overview');
+        if (this._showInOverview) {
+            _searchEntryBin.set_style(`margin-top: ${PanelBox.height}px;`);
+        } else {
+            _searchEntryBin.style = null;
+        }
     }
 
     _updateIntellihideStatus() {
@@ -447,6 +453,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
+        _searchEntryBin.style = null;
 
         MessageTray._tween = this._oldTween;
         this.show(0, "destroy");
