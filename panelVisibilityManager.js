@@ -453,6 +453,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
+        _searchEntryBin.style = null;
 
         MessageTray._tween = this._oldTween;
         this.show(0, "destroy");
