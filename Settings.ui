@@ -61,7 +61,7 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel when mouse approaches edge of the screen</property>
+            <property name="label" translatable="yes">Show panel when mouse approaches top edge of the screen</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -397,7 +397,7 @@
             <child>
               <object class="GtkTreeViewColumn">
                 <property name="min-width">200</property>
-                <property name="title" translatable="no">column</property>
+                <property name="title">column</property>
                 <property name="sort-column-id">0</property>
                 <child>
                   <object class="GtkCellRendererAccel" id="accel_shortcut_keybind">
