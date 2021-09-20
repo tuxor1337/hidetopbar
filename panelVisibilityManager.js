@@ -382,9 +382,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             [
                 PanelBox,
                 'notify::height',
-                () => {
-                    this._updateSearchEntryMargin();
-                }
+                this._updateSearchEntryMargin.bind(this)
             ],
             [
                 Main.layoutManager,
@@ -408,7 +406,15 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._handleShortcut.bind(this)
         );
 
-        this._updateIntellihideStatus();
+        if (!PanelBox.has_allocation()) {
+          // after login, allocating the panel can take a second or two
+          let tmp_handle = PanelBox.connect("notify::allocation", () => {
+            this._updateIntellihideStatus();
+            PanelBox.disconnect(tmp_handle);
+          });
+        } else {
+          this._updateIntellihideStatus();
+        }
     }
 
     _bindSettingsChanges() {
