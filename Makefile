@@ -6,7 +6,7 @@ UI_FILES = $(shell echo {Settings-40,Settings}.ui)
 LOCALES_PO = $(wildcard locale/*/*/*.po)
 LOCALES_MO = $(patsubst %.po,%.mo,$(LOCALES_PO))
 
-.PHONY: distclean clean all
+.PHONY: distclean clean all all-po
 
 all: hidetopbar.zip
 
@@ -24,6 +24,12 @@ distclean: clean
 
 %.mo: %.po locale/hidetopbar.pot locale/hidetopbar.pot-stamp
 	msgfmt -c -o $@ $<
+
+%.po: locale/hidetopbar.pot locale/hidetopbar.pot-stamp
+	@echo "Updating $@"
+	@msgmerge --previous --update $@ $<
+
+all-po: $(LOCALES_PO)
 
 locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(UI_FILES)
 	xgettext --copyright-holder="Thomas Vogt" \
