@@ -1,13 +1,13 @@
-# Polish translation for hidetopbar extension
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Polish translation for the Hide Top Bar extension.
+# Copyright (C) 2021 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
 # Piotr Sokół <psokol.l10n@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"POT-Creation-Date: 2021-09-22 03:02+0200\n"
 "PO-Revision-Date: 2017-01-15 17:21+0100\n"
 "Last-Translator: Piotr Sokół <psokol.l10n@gmail.com>\n"
 "Language-Team: polski <>\n"
@@ -19,66 +19,96 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: prefs.js:26
-msgid "Sensitivity"
-msgstr "Czułość"
-
-#: prefs.js:33
+#: Settings-40.ui:64
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Wyświetlenie panelu przenosząc wskaźnik myszy do krawędzi ekranu"
 
-#: prefs.js:34
+#: Settings-40.ui:77 Settings.ui:77
+#, fuzzy
+#| msgid "In the above case show overview, too"
+msgid "In the above case, also show panel when fullscreen"
+msgstr "Wyświetlanie ekranu podglądu"
+
+#: Settings-40.ui:90 Settings.ui:90
+msgid "Show panel in overview"
+msgstr ""
+
+#: Settings-40.ui:103 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Utrzymanie czułości naroża nawet przy ukrytym panelu"
 
-#: prefs.js:35
+#: Settings-40.ui:116 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "Wyświetlanie ekranu podglądu"
 
-#: prefs.js:61
-msgid "Pressure barrier's threshold."
+#: Settings-40.ui:129 Settings.ui:129
+#, fuzzy
+#| msgid "Pressure barrier's threshold."
+msgid "Pressure barrier's threshold:"
 msgstr "Próg nacisku"
 
-#: prefs.js:62
-msgid "Pressure barrier's timeout."
+#: Settings-40.ui:142 Settings.ui:142
+#, fuzzy
+#| msgid "Pressure barrier's timeout."
+msgid "Pressure barrier's timeout:"
 msgstr "Czas nacisku"
 
-#: prefs.js:92
+#: Settings-40.ui:242 Settings.ui:245
+msgid "Sensitivity"
+msgstr "Czułość"
+
+#: Settings-40.ui:262 Settings.ui:268
+#, fuzzy
+#| msgid "Slide animation time when entering/leaving overview."
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Czas animacji wysuwania przełączając ekran podglądu"
+
+#: Settings-40.ui:275 Settings.ui:281
+#, fuzzy
+#| msgid "Slide animation time when mouse approaches edge of the screen."
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Czas animacji wysuwania przenosząc wskaźnik do krawędzi ekranu"
+
+#: Settings-40.ui:315 Settings.ui:326
 msgid "Animation"
 msgstr "Animacja"
 
-#: prefs.js:99
-msgid "Slide animation time when entering/leaving overview."
-msgstr "Czas animacji wysuwania przełączając ekran podglądu"
+#: Settings-40.ui:336 Settings.ui:351
+#, fuzzy
+#| msgid "Key that triggers the bar to be shown."
+msgid "Key that triggers the bar to be shown:"
+msgstr "Przełączenie wyświetlania paska"
 
-#: prefs.js:100
-msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "Czas animacji wysuwania przenosząc wskaźnik do krawędzi ekranu"
+#: Settings-40.ui:350 Settings.ui:365
+#, fuzzy
+#| msgid "Delay before the bar rehides after key press."
+msgid "Delay before the bar rehides after key press:"
+msgstr "Opóźnienie ponownego ukrycia po wciśnięciu skrótu"
 
-#: prefs.js:130
+#: Settings-40.ui:364 Settings.ui:379
+#, fuzzy
+#| msgid "Pressing the shortcut again rehides the panel."
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Ponowne ukrywanie panelu wciśnięciem skrótu"
+
+#: Settings-40.ui:436 Settings.ui:454
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: prefs.js:194
-msgid "Key that triggers the bar to be shown."
-msgstr "Przełączenie wyświetlania paska"
-
-#: prefs.js:215
-msgid "Delay before the bar rehides after key press."
-msgstr "Opóźnienie ponownego ukrycia po wciśnięciu skrótu"
-
-#: prefs.js:231
-msgid "Pressing the shortcut again rehides the panel."
-msgstr "Ponowne ukrywanie panelu wciśnięciem skrótu"
-
-#: prefs.js:261
-msgid "Intellihide"
-msgstr "Inteligentne ukrywanie"
-
-#: prefs.js:268
+#: Settings-40.ui:457 Settings.ui:479
 msgid "Only hide panel when a window takes the space"
 msgstr "Ukrywanie tylko przed oknami"
 
-#: prefs.js:269
+#: Settings-40.ui:471 Settings.ui:493
 msgid "Only when the active window takes the space"
 msgstr "Ukrywanie tylko przed uaktywnionymi oknami"
+
+#: Settings-40.ui:508 Settings.ui:533
+msgid "Intellihide"
+msgstr "Inteligentne ukrywanie"
+
+#: Settings.ui:64
+#, fuzzy
+#| msgid "Show panel when mouse approaches edge of the screen"
+msgid "Show panel when mouse approaches top edge of the screen"
+msgstr "Wyświetlenie panelu przenosząc wskaźnik myszy do krawędzi ekranu"
