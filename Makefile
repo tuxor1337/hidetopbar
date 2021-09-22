@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManager,prefs}.js)
+UI_FILES = $(shell echo {Settings-40,Settings}.ui)
 
 LOCALES_PO = $(wildcard locale/*/*/*.po)
 LOCALES_MO = $(patsubst %.po,%.mo,$(LOCALES_PO))
@@ -24,10 +25,9 @@ distclean: clean
 %.mo: %.po locale/hidetopbar.pot locale/hidetopbar.pot-stamp
 	msgfmt -c -o $@ $<
 
-locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(JS_FILES) Settings.ui
-	xgettext --output=./locale/hidetopbar.pot --language=JavaScript $(JS_FILES)
-	intltool-extract --type=gettext/glade Settings.ui
-	xgettext -k --keyword=_ --keyword=N_ --join-existing \
-	         -o ./locale/hidetopbar.pot Settings.ui.h
-	rm Settings.ui.h
+locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(UI_FILES)
+	xgettext --copyright-holder="Thomas Vogt" \
+			 --package-name="Hide Top Bar" \
+			 --output=locale/hidetopbar.pot \
+			 $(JS_FILES) $(UI_FILES)
 	touch locale/hidetopbar.pot-stamp
