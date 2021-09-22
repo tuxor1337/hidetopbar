@@ -1,94 +1,94 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# <LANGUAGE> translation for the Hide Top Bar extension.
+# Copyright (C) 2021 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Hide Top Bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-14 11:47+0200\n"
+"POT-Creation-Date: 2021-09-22 03:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Settings.ui.h:1
+#: Settings-40.ui:64
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 
-#: Settings.ui.h:2
+#: Settings-40.ui:77 Settings.ui:77
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 
-#: Settings.ui.h:3
+#: Settings-40.ui:90 Settings.ui:90
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings.ui.h:4
+#: Settings-40.ui:103 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 
-#: Settings.ui.h:5
+#: Settings-40.ui:116 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr ""
 
-#: Settings.ui.h:6
+#: Settings-40.ui:129 Settings.ui:129
 msgid "Pressure barrier's threshold:"
 msgstr ""
 
-#: Settings.ui.h:7
+#: Settings-40.ui:142 Settings.ui:142
 msgid "Pressure barrier's timeout:"
 msgstr ""
 
-#: Settings.ui.h:8
+#: Settings-40.ui:242 Settings.ui:245
 msgid "Sensitivity"
 msgstr ""
 
-#: Settings.ui.h:9
+#: Settings-40.ui:262 Settings.ui:268
 msgid "Slide animation time when entering/leaving overview:"
 msgstr ""
 
-#: Settings.ui.h:10
+#: Settings-40.ui:275 Settings.ui:281
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 
-#: Settings.ui.h:11
+#: Settings-40.ui:315 Settings.ui:326
 msgid "Animation"
 msgstr ""
 
-#: Settings.ui.h:12
+#: Settings-40.ui:336 Settings.ui:351
 msgid "Key that triggers the bar to be shown:"
 msgstr ""
 
-#: Settings.ui.h:13
+#: Settings-40.ui:350 Settings.ui:365
 msgid "Delay before the bar rehides after key press:"
 msgstr ""
 
-#: Settings.ui.h:14
+#: Settings-40.ui:364 Settings.ui:379
 msgid "Pressing the shortcut again rehides the panel"
 msgstr ""
 
-#: Settings.ui.h:15
+#: Settings-40.ui:436 Settings.ui:454
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: Settings.ui.h:16
+#: Settings-40.ui:457 Settings.ui:479
 msgid "Only hide panel when a window takes the space"
 msgstr ""
 
-#: Settings.ui.h:17
+#: Settings-40.ui:471 Settings.ui:493
 msgid "Only when the active window takes the space"
 msgstr ""
 
-#: Settings.ui.h:18
+#: Settings-40.ui:508 Settings.ui:533
 msgid "Intellihide"
 msgstr ""
 
-#: Settings.ui.h:1
+#: Settings.ui:64
 msgid "Show panel when mouse approaches top edge of the screen"
 msgstr ""

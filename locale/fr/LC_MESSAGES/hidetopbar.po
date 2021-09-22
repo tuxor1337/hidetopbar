@@ -1,13 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# French translation for the Hide Top Bar extension.
+# Copyright (C) 2021 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-30 17:35+0100\n"
+"POT-Creation-Date: 2021-09-22 03:02+0200\n"
 "PO-Revision-Date: 2015-12-30 20:22+0100\n"
 "Last-Translator: QD\n"
 "Language-Team: \n"
@@ -18,67 +18,101 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: prefs.js:20
-msgid "Sensitivity"
-msgstr "Comportement, Sensibilité"
-
-#: prefs.js:27
+#: Settings-40.ui:64
 msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Afficher la barre supérieure quand la souris approche le bord de l'écran"
+msgstr ""
+"Afficher la barre supérieure quand la souris approche le bord de l'écran"
 
-#: prefs.js:28
+#: Settings-40.ui:77 Settings.ui:77
+#, fuzzy
+#| msgid "In the above case show overview, too"
+msgid "In the above case, also show panel when fullscreen"
+msgstr ""
+"Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
+
+#: Settings-40.ui:90 Settings.ui:90
+msgid "Show panel in overview"
+msgstr ""
+
+#: Settings-40.ui:103 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Conserver le coin actif, même si la barre supérieure est masquée"
 
-#: prefs.js:29
+#: Settings-40.ui:116 Settings.ui:116
 msgid "In the above case show overview, too"
-msgstr "Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
+msgstr ""
+"Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
 
-#: prefs.js:55
-msgid "Pressure barrier's threshold."
+#: Settings-40.ui:129 Settings.ui:129
+#, fuzzy
+#| msgid "Pressure barrier's threshold."
+msgid "Pressure barrier's threshold:"
 msgstr "Seuil de pression (force nécessaire à la souris pour déclencher)"
 
-#: prefs.js:56
-msgid "Pressure barrier's timeout."
+#: Settings-40.ui:142 Settings.ui:142
+#, fuzzy
+#| msgid "Pressure barrier's timeout."
+msgid "Pressure barrier's timeout:"
 msgstr "Délai de pression "
 
-#: prefs.js:82
+#: Settings-40.ui:242 Settings.ui:245
+msgid "Sensitivity"
+msgstr "Comportement, Sensibilité"
+
+#: Settings-40.ui:262 Settings.ui:268
+#, fuzzy
+#| msgid "Slide animation time when entering/leaving overview."
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Durée d'animation en entrant ou sortant de l'apercu"
+
+#: Settings-40.ui:275 Settings.ui:281
+#, fuzzy
+#| msgid "Slide animation time when mouse approaches edge of the screen."
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Durée d'animation du masquage de la barre supérieure"
+
+#: Settings-40.ui:315 Settings.ui:326
 msgid "Animation"
 msgstr "Animation"
 
-#: prefs.js:89
-msgid "Slide animation time when entering/leaving overview."
-msgstr "Durée d'animation en entrant ou sortant de l'apercu"
+#: Settings-40.ui:336 Settings.ui:351
+#, fuzzy
+#| msgid "Key that triggers the bar to be shown."
+msgid "Key that triggers the bar to be shown:"
+msgstr "Touche déclenchant l'affichage de la barre supérieure"
 
-#: prefs.js:90
-msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "Durée d'animation du masquage de la barre supérieure"
+#: Settings-40.ui:350 Settings.ui:365
+#, fuzzy
+#| msgid "Delay before the bar rehides after key press."
+msgid "Delay before the bar rehides after key press:"
+msgstr ""
+"Délai avant remasquage de la barre supérieure après appui sur la touche"
 
+#: Settings-40.ui:364 Settings.ui:379
+#, fuzzy
+#| msgid "Pressing the shortcut again rehides the panel."
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure"
 
-#: prefs.js:130
+#: Settings-40.ui:436 Settings.ui:454
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
 
-#: prefs.js:194
-msgid "Key that triggers the bar to be shown."
-msgstr "Touche déclenchant l'affichage de la barre supérieure"
-
-#: prefs.js:215
-msgid "Delay before the bar rehides after key press."
-msgstr "Délai avant remasquage de la barre supérieure après appui sur la touche"
-
-#: prefs.js:231
-msgid "Pressing the shortcut again rehides the panel."
-msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure"
-
-#: prefs.js:261
-msgid "Intellihide"
-msgstr "Masquage intelligent"
-
-#: prefs.js:268
+#: Settings-40.ui:457 Settings.ui:479
 msgid "Only hide panel when a window takes the space"
 msgstr "Masque uniquement quand une fenêtre couvre sa place"
 
-#: prefs.js:269
+#: Settings-40.ui:471 Settings.ui:493
 msgid "Only when the active window takes the space"
 msgstr "Masque uniquement quand la fenêtre active couvre la barre supérieure"
+
+#: Settings-40.ui:508 Settings.ui:533
+msgid "Intellihide"
+msgstr "Masquage intelligent"
+
+#: Settings.ui:64
+#, fuzzy
+#| msgid "Show panel when mouse approaches edge of the screen"
+msgid "Show panel when mouse approaches top edge of the screen"
+msgstr ""
+"Afficher la barre supérieure quand la souris approche le bord de l'écran"

@@ -1,11 +1,12 @@
 SHELL := /bin/bash
 
 JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManager,prefs}.js)
+UI_FILES = $(shell echo {Settings-40,Settings}.ui)
 
 LOCALES_PO = $(wildcard locale/*/*/*.po)
 LOCALES_MO = $(patsubst %.po,%.mo,$(LOCALES_PO))
 
-.PHONY: distclean clean all
+.PHONY: distclean clean all all-po
 
 all: hidetopbar.zip
 
@@ -24,10 +25,18 @@ distclean: clean
 %.mo: %.po locale/hidetopbar.pot locale/hidetopbar.pot-stamp
 	msgfmt -c -o $@ $<
 
-locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(JS_FILES) Settings.ui
-	xgettext --output=./locale/hidetopbar.pot --language=JavaScript $(JS_FILES)
-	intltool-extract --type=gettext/glade Settings.ui
-	xgettext -k --keyword=_ --keyword=N_ --join-existing \
-	         -o ./locale/hidetopbar.pot Settings.ui.h
-	rm Settings.ui.h
+%.po: locale/hidetopbar.pot locale/hidetopbar.pot-stamp
+	@echo "Updating $@"
+	@msgmerge --previous --update $@ $<
+
+all-po: $(LOCALES_PO)
+
+locale/hidetopbar.pot locale/hidetopbar.pot-stamp : $(UI_FILES)
+	xgettext --copyright-holder="Thomas Vogt" \
+			 --package-name="Hide Top Bar" \
+			 --output=locale/hidetopbar.pot \
+			 $(JS_FILES) $(UI_FILES)
+	sed -i '1s/.*/# <LANGUAGE> translation for the Hide Top Bar extension./' locale/hidetopbar.pot
+	sed -i "2s/.*/# Copyright (C) $$(date +%Y) Thomas Vogt/" locale/hidetopbar.pot
+	sed -i '17s/CHARSET/UTF-8/' locale/hidetopbar.pot
 	touch locale/hidetopbar.pot-stamp

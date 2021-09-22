@@ -1,6 +1,6 @@
-# Translation for gnome-shell extension Hide Top Bar.
-# Copyright (C) Lequn Chen (abcdabcd987)
-# This file is distributed under the same license as the gnome-shell extension Hide Top Bar.
+# Chinese (Simplified) translation for the Hide Top Bar extension.
+# Copyright (C) 2021 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
 # Lequn Chen (abcdabcd987) <chenlequn22@gmail.com>, 2013.
 # 绿色圣光 <lishaohui.qd@163.com>, 2015.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-24 15:24+0800\n"
+"POT-Creation-Date: 2021-09-22 03:02+0200\n"
 "PO-Revision-Date: 2015-10-25 21:27+0800\n"
 "Last-Translator: 绿色圣光 <lishaohui.qd@163.com>\n"
 "Language-Team: Chinese (Simplified) <>\n"
@@ -20,66 +20,96 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: prefs.js:26
-msgid "Sensitivity"
-msgstr "敏感性"
-
-#: prefs.js:33
+#: Settings-40.ui:64
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "当鼠标靠近屏幕上边沿时显示面板"
 
-#: prefs.js:34
+#: Settings-40.ui:77 Settings.ui:77
+#, fuzzy
+#| msgid "In the above case show overview, too"
+msgid "In the above case, also show panel when fullscreen"
+msgstr "上面的情况也显示活动概览"
+
+#: Settings-40.ui:90 Settings.ui:90
+msgid "Show panel in overview"
+msgstr ""
+
+#: Settings-40.ui:103 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "面板隐藏时仍然保持热区敏感（可以呼出活动概览）"
 
-#: prefs.js:35
+#: Settings-40.ui:116 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "上面的情况也显示活动概览"
 
-#: prefs.js:61
-msgid "Pressure barrier's threshold."
+#: Settings-40.ui:129 Settings.ui:129
+#, fuzzy
+#| msgid "Pressure barrier's threshold."
+msgid "Pressure barrier's threshold:"
 msgstr "压力屏障阈值"
 
-#: prefs.js:62
-msgid "Pressure barrier's timeout."
+#: Settings-40.ui:142 Settings.ui:142
+#, fuzzy
+#| msgid "Pressure barrier's timeout."
+msgid "Pressure barrier's timeout:"
 msgstr "压力屏障超时时间"
 
-#: prefs.js:92
+#: Settings-40.ui:242 Settings.ui:245
+msgid "Sensitivity"
+msgstr "敏感性"
+
+#: Settings-40.ui:262 Settings.ui:268
+#, fuzzy
+#| msgid "Slide animation time when entering/leaving overview."
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "进入/离开活动概览时面板滑动的动画时间"
+
+#: Settings-40.ui:275 Settings.ui:281
+#, fuzzy
+#| msgid "Slide animation time when mouse approaches edge of the screen."
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时间"
+
+#: Settings-40.ui:315 Settings.ui:326
 msgid "Animation"
 msgstr "动画效果"
 
-#: prefs.js:99
-msgid "Slide animation time when entering/leaving overview."
-msgstr "进入/离开活动概览时面板滑动的动画时间"
+#: Settings-40.ui:336 Settings.ui:351
+#, fuzzy
+#| msgid "Key that triggers the bar to be shown."
+msgid "Key that triggers the bar to be shown:"
+msgstr "触发显示面板的快捷键"
 
-#: prefs.js:100
-msgid "Slide animation time when mouse approaches edge of the screen."
-msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时间"
+#: Settings-40.ui:350 Settings.ui:365
+#, fuzzy
+#| msgid "Delay before the bar rehides after key press."
+msgid "Delay before the bar rehides after key press:"
+msgstr "面板在按下快捷键后被重新隐藏的延时"
 
-#: prefs.js:130
+#: Settings-40.ui:364 Settings.ui:379
+#, fuzzy
+#| msgid "Pressing the shortcut again rehides the panel."
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "再次按下快捷键时重新隐藏面板"
+
+#: Settings-40.ui:436 Settings.ui:454
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
-#: prefs.js:194
-msgid "Key that triggers the bar to be shown."
-msgstr "触发显示面板的快捷键"
-
-#: prefs.js:215
-msgid "Delay before the bar rehides after key press."
-msgstr "面板在按下快捷键后被重新隐藏的延时"
-
-#: prefs.js:231
-msgid "Pressing the shortcut again rehides the panel."
-msgstr "再次按下快捷键时重新隐藏面板"
-
-#: prefs.js:261
-msgid "Intellihide"
-msgstr "智能隐藏"
-
-#: prefs.js:268
+#: Settings-40.ui:457 Settings.ui:479
 msgid "Only hide panel when a window takes the space"
 msgstr "仅当有窗口占用面板空间时才隐藏面板"
 
-#: prefs.js:269
+#: Settings-40.ui:471 Settings.ui:493
 msgid "Only when the active window takes the space"
 msgstr "仅当活动窗口占用面板空间时才隐藏面板"
+
+#: Settings-40.ui:508 Settings.ui:533
+msgid "Intellihide"
+msgstr "智能隐藏"
+
+#: Settings.ui:64
+#, fuzzy
+#| msgid "Show panel when mouse approaches edge of the screen"
+msgid "Show panel when mouse approaches top edge of the screen"
+msgstr "当鼠标靠近屏幕上边沿时显示面板"

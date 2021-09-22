@@ -32,8 +32,8 @@ the [Debian Bugtracking system](https://www.debian.org/Bugs/Reporting).
 Installation from source
 ------------------------
 
-If you insist on installing from source, the commands `intltool-extract`, `xgettext` and `msgfmt`
-from the packages `intltool` and `gettext` (package names may vary depending on your
+If you insist on installing from source, the commands `xgettext` and `msgfmt`
+from the `gettext` package (package name may vary depending on your
 distribution) are required.
 
 The procedure to install from source is as follows: Check out the source code into your local
@@ -59,8 +59,14 @@ following command:
 
     make ./locale/hidetopbar.pot
 
-As mentioned in the previous section, running `make` requires the packages `intltool`
-and `gettext` (the package names may vary depending on your distribution).
+To then incorporate the changes to the actual translation files for each language,
+run one of the following commands:
+
+    make all-po                                 # For updating the files for all languages
+    make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one speific po file, where 'XX' is the language code
+
+As mentioned in the previous section, running `make` requires the `gettext` package
+ to be installed (the package names may vary depending on your distribution).
 
 License
 -------
