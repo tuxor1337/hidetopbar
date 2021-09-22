@@ -59,6 +59,12 @@ following command:
 
     make ./locale/hidetopbar.pot
 
+To then incorporate the changes to the actual translation files for each language,
+run one of the following commands:
+
+    make all-po                                 # For updating the files for all languages
+    make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one speific po file, where 'XX' is the language code
+
 As mentioned in the previous section, running `make` requires the `gettext` package
  to be installed (the package names may vary depending on your distribution).
 
