@@ -1,4 +1,5 @@
 hidetopbar.zip
 schemas
+*.po~
 *.mo
 locale/hidetopbar.pot-stamp
