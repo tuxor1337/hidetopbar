@@ -194,7 +194,10 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._preventHide = true;
 
             if(delay_time > 0.05) {
-                this.show(delay_time/5.0, "shortcut");
+                let show_time = Math.min(
+                  this._settings.get_double('animation-time-autohide'),
+                  Math.max(0.1, delay_time/5.0));
+                this.show(show_time, "shortcut");
 
                 this._shortcutTimeout = GLib.timeout_add(
                     GLib.PRIORITY_DEFAULT, delay_time*1200,

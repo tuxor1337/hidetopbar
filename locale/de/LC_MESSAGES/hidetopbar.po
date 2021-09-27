@@ -69,10 +69,10 @@ msgid "Key that triggers the bar to be shown:"
 msgstr "Taste, um die Leiste anzuzeigen:"
 
 #: Settings-40.ui:350 Settings.ui:365
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr ""
 "Zeit, nach der die Leiste nach dem Drücken der Taste wieder ausgeblendet "
-"wird:"
+"wird (beim Wert 0 wird nicht automatisch ausgeblendet):"
 
 #: Settings-40.ui:364 Settings.ui:379
 msgid "Pressing the shortcut again rehides the panel"

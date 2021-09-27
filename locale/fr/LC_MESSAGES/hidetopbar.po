@@ -84,7 +84,7 @@ msgstr "Touche déclenchant l'affichage de la barre supérieure"
 #: Settings-40.ui:350 Settings.ui:365
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr ""
 "Délai avant remasquage de la barre supérieure après appui sur la touche"
 

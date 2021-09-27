@@ -67,7 +67,7 @@ msgid "Key that triggers the bar to be shown:"
 msgstr "Tecla que fa que la barra es mostri:"
 
 #: Settings-40.ui:350 Settings.ui:365
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr "Retard de l'ocultació de la barra després de prémer una tecla:"
 
 #: Settings-40.ui:364 Settings.ui:379

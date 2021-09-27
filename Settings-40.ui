@@ -347,7 +347,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Delay before the bar rehides after key press:</property>
+            <property name="wrap">True</property>
+            <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>

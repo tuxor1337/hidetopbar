@@ -83,7 +83,7 @@ msgstr "触发显示面板的快捷键"
 #: Settings-40.ui:350 Settings.ui:365
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr "面板在按下快捷键后被重新隐藏的延时"
 
 #: Settings-40.ui:364 Settings.ui:379

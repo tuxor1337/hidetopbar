@@ -82,7 +82,7 @@ msgstr "Tasto che rende visibile la barra."
 #: Settings-40.ui:350 Settings.ui:365
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr ""
 "Ritardo prima che la barra ritorni nascosta dopo la pressione del tasto."
 

@@ -82,7 +82,7 @@ msgstr "Przełączenie wyświetlania paska"
 #: Settings-40.ui:350 Settings.ui:365
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press:"
+msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
 msgstr "Opóźnienie ponownego ukrycia po wciśnięciu skrótu"
 
 #: Settings-40.ui:364 Settings.ui:379
