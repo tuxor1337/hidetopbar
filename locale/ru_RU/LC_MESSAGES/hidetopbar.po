@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 03:02+0200\n"
+"POT-Creation-Date: 2021-09-27 09:16+0200\n"
 "PO-Revision-Date: 2021-03-15 13:57+0300\n"
 "Last-Translator: nz\n"
 "Language-Team: \n"
@@ -65,31 +65,35 @@ msgstr "Время анимации слайда, когда мышь прибл
 msgid "Animation"
 msgstr "Анимация"
 
-#: Settings-40.ui:336 Settings.ui:351
-msgid "Key that triggers the bar to be shown:"
+#: Settings-40.ui:338 Settings.ui:352
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
 msgstr "Ключ, запускающий отображение бара:"
 
-#: Settings-40.ui:350 Settings.ui:365
-msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
+#: Settings-40.ui:354 Settings.ui:367
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
 msgstr "Задержка перед повторным скрытием бара после нажатия клавиши:"
 
-#: Settings-40.ui:364 Settings.ui:379
+#: Settings-40.ui:370 Settings.ui:383
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Нажатие клавиш скрывает панель заново"
 
-#: Settings-40.ui:436 Settings.ui:454
+#: Settings-40.ui:442 Settings.ui:458
 msgid "Keyboard shortcuts"
 msgstr "Горячие клавиши"
 
-#: Settings-40.ui:457 Settings.ui:479
+#: Settings-40.ui:465 Settings.ui:485
 msgid "Only hide panel when a window takes the space"
 msgstr "Скрывать панель только тогда, когда окно занимает пространство"
 
-#: Settings-40.ui:471 Settings.ui:493
+#: Settings-40.ui:481 Settings.ui:501
 msgid "Only when the active window takes the space"
 msgstr "Только когда активное окно занимает пространство"
 
-#: Settings-40.ui:508 Settings.ui:533
+#: Settings-40.ui:518 Settings.ui:541
 msgid "Intellihide"
 msgstr "Интеллектуальное скрытие"
 

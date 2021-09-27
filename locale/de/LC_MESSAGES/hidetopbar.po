@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 03:02+0200\n"
+"POT-Creation-Date: 2021-09-27 09:16+0200\n"
 "PO-Revision-Date: 2021-09-14 11:49+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <>\n"
@@ -64,33 +64,38 @@ msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt:"
 msgid "Animation"
 msgstr "Animation"
 
-#: Settings-40.ui:336 Settings.ui:351
-msgid "Key that triggers the bar to be shown:"
-msgstr "Taste, um die Leiste anzuzeigen:"
+#: Settings-40.ui:338 Settings.ui:352
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
+msgstr ""
+"Taste, um die Leiste anzuzeigen (Rücktaste drücken um zu deaktivieren):"
 
-#: Settings-40.ui:350 Settings.ui:365
-msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
+#: Settings-40.ui:354 Settings.ui:367
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
 msgstr ""
 "Zeit, nach der die Leiste nach dem Drücken der Taste wieder ausgeblendet "
 "wird (beim Wert 0 wird nicht automatisch ausgeblendet):"
 
-#: Settings-40.ui:364 Settings.ui:379
+#: Settings-40.ui:370 Settings.ui:383
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leiste wieder"
 
-#: Settings-40.ui:436 Settings.ui:454
+#: Settings-40.ui:442 Settings.ui:458
 msgid "Keyboard shortcuts"
 msgstr "Tastaturkürzel"
 
-#: Settings-40.ui:457 Settings.ui:479
+#: Settings-40.ui:465 Settings.ui:485
 msgid "Only hide panel when a window takes the space"
 msgstr "Panel nur verstecken, wenn ein Fenster im Weg ist"
 
-#: Settings-40.ui:471 Settings.ui:493
+#: Settings-40.ui:481 Settings.ui:501
 msgid "Only when the active window takes the space"
 msgstr "Nur wenn das aktive Fenster im Weg ist"
 
-#: Settings-40.ui:508 Settings.ui:533
+#: Settings-40.ui:518 Settings.ui:541
 msgid "Intellihide"
 msgstr "Intelligentes Ausblenden"
 

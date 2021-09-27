@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 03:02+0200\n"
+"POT-Creation-Date: 2021-09-27 09:16+0200\n"
 "PO-Revision-Date: 2015-10-25 21:27+0800\n"
 "Last-Translator: 绿色圣光 <lishaohui.qd@163.com>\n"
 "Language-Team: Chinese (Simplified) <>\n"
@@ -74,37 +74,41 @@ msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时间"
 msgid "Animation"
 msgstr "动画效果"
 
-#: Settings-40.ui:336 Settings.ui:351
+#: Settings-40.ui:338 Settings.ui:352
 #, fuzzy
 #| msgid "Key that triggers the bar to be shown."
-msgid "Key that triggers the bar to be shown:"
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
 msgstr "触发显示面板的快捷键"
 
-#: Settings-40.ui:350 Settings.ui:365
+#: Settings-40.ui:354 Settings.ui:367
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
 msgstr "面板在按下快捷键后被重新隐藏的延时"
 
-#: Settings-40.ui:364 Settings.ui:379
+#: Settings-40.ui:370 Settings.ui:383
 #, fuzzy
 #| msgid "Pressing the shortcut again rehides the panel."
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "再次按下快捷键时重新隐藏面板"
 
-#: Settings-40.ui:436 Settings.ui:454
+#: Settings-40.ui:442 Settings.ui:458
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
-#: Settings-40.ui:457 Settings.ui:479
+#: Settings-40.ui:465 Settings.ui:485
 msgid "Only hide panel when a window takes the space"
 msgstr "仅当有窗口占用面板空间时才隐藏面板"
 
-#: Settings-40.ui:471 Settings.ui:493
+#: Settings-40.ui:481 Settings.ui:501
 msgid "Only when the active window takes the space"
 msgstr "仅当活动窗口占用面板空间时才隐藏面板"
 
-#: Settings-40.ui:508 Settings.ui:533
+#: Settings-40.ui:518 Settings.ui:541
 msgid "Intellihide"
 msgstr "智能隐藏"
 

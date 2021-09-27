@@ -333,7 +333,9 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Key that triggers the bar to be shown:</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
+            <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -348,6 +350,7 @@
             <property name="valign">center</property>
             <property name="hexpand">True</property>
             <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
             <layout>
               <property name="column">0</property>
@@ -362,6 +365,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
             <layout>
               <property name="column">0</property>
@@ -455,6 +460,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
             <layout>
               <property name="column">0</property>
@@ -469,6 +476,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Only when the active window takes the space</property>
             <layout>
               <property name="column">0</property>

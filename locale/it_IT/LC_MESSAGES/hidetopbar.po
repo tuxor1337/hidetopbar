@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-22 03:02+0200\n"
+"POT-Creation-Date: 2021-09-27 09:16+0200\n"
 "PO-Revision-Date: 2019-10-21 01:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -73,38 +73,42 @@ msgstr ""
 msgid "Animation"
 msgstr "Animazione"
 
-#: Settings-40.ui:336 Settings.ui:351
+#: Settings-40.ui:338 Settings.ui:352
 #, fuzzy
 #| msgid "Key that triggers the bar to be shown."
-msgid "Key that triggers the bar to be shown:"
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
 msgstr "Tasto che rende visibile la barra."
 
-#: Settings-40.ui:350 Settings.ui:365
+#: Settings-40.ui:354 Settings.ui:367
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
-msgid "Delay before the bar rehides after key press (a value of 0 disables the rehiding):"
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
 msgstr ""
 "Ritardo prima che la barra ritorni nascosta dopo la pressione del tasto."
 
-#: Settings-40.ui:364 Settings.ui:379
+#: Settings-40.ui:370 Settings.ui:383
 #, fuzzy
 #| msgid "Pressing the shortcut again rehides the panel."
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Premere la scorciatoia nuovamente ri-nasconde il pannello."
 
-#: Settings-40.ui:436 Settings.ui:454
+#: Settings-40.ui:442 Settings.ui:458
 msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da Tastiera"
 
-#: Settings-40.ui:457 Settings.ui:479
+#: Settings-40.ui:465 Settings.ui:485
 msgid "Only hide panel when a window takes the space"
 msgstr "Nascondi il pannello solo quando una finestra ne occupa lo spazio"
 
-#: Settings-40.ui:471 Settings.ui:493
+#: Settings-40.ui:481 Settings.ui:501
 msgid "Only when the active window takes the space"
 msgstr "Solo quando la finestra attiva occupa lo spazio"
 
-#: Settings-40.ui:508 Settings.ui:533
+#: Settings-40.ui:518 Settings.ui:541
 msgid "Intellihide"
 msgstr "Nascondi Automaticamente"
 

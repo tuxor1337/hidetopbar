@@ -348,7 +348,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Key that triggers the bar to be shown:</property>
+            <property name="wrap">True</property>
+            <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -377,6 +378,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
           </object>
           <packing>
@@ -477,6 +480,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
           </object>
           <packing>
@@ -491,6 +496,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Only when the active window takes the space</property>
           </object>
           <packing>
