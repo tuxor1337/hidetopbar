@@ -47,7 +47,7 @@ extensions directory, compile by running `make`, install and restart GNOME Shell
     gnome-extensions enable hidetopbar@mathieu.bidon.ca
     gnome-shell --replace &
 
-The last commandline restarts GNOME Shell.
+The last command restarts GNOME Shell.
 
 
 Updating the language strings
@@ -63,7 +63,7 @@ To then incorporate the changes to the actual translation files for each languag
 run one of the following commands:
 
     make all-po                                 # For updating the files for all languages
-    make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one speific po file, where 'XX' is the language code
+    make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one specific po file, where 'XX' is the language code
 
 As mentioned in the previous section, running `make` requires the `gettext` package
  to be installed (the package names may vary depending on your distribution).
