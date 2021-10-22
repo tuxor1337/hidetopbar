@@ -91,6 +91,8 @@ var DesktopIconsUsableAreaClass = class {
      */
     constructor(container) {
         this._version = 1;
+        // This UUID allows to ensure that the object is really a DesktopIconsIntegration object
+        this._uuid = "21a63db8-e654-4fea-9ab3-acd49e427834";
         if (container) {
             this._container = container;
         } else {
@@ -141,6 +143,9 @@ var DesktopIconsUsableAreaClass = class {
         return this._version;
     }
 
+    get uuid() {
+        return this._uuid;
+    }
     destroy() {
         this.emit('destroy');
         this._container.DesktopIconsUsableArea = null;
