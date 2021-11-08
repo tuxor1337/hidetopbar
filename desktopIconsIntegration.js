@@ -35,86 +35,58 @@
  * DON'T SEND PATCHES TO THIS FILE TO THE EXTENSION MAINTAINER. SEND THEM TO
  * DESKTOP ICONS NG MAINTAINER: https://gitlab.com/rastersoft/desktop-icons-ng
  *
- * To use it in your own extension, you must declare a global variable in the
- * extension.js file as:
- *
- *     const DesktopIconsIntegration = Me.imports.desktopIconsIntegration;
- *     var DesktopIconsUsableArea;
- *
- * That global variable MUST have that specific name, because DING (or other
- * programs using this method) will search for that, unless your init() function
- * returns a class, in which case you can avoid creating that variable.
- *
- * Then, in the *enable()* function, create a *DesktopIconsUsableAreaClass()*
+ * In the *enable()* function, create a *DesktopIconsUsableAreaClass()*
  * object with
  *
  *     new DesktopIconsIntegration.DesktopIconsUsableAreaClass(object);
  *
- * (it will automagically assign itself to the previous variable, so you can
- * just call to *new()* without assigning it to any variable). The object
- * parameter must be the extension object ("this") if your init function returns
- * an object, or NULL if your *enable()* and *disable()* functions are in the
- * extension.js file.
- *
- * Now, in the *disable()* function just call to
- *
- *     DesktopIconsUsableArea.destroy();
- *
- * if *init()* doesn't return an object, or
- *
- *     this.DesktopIconsUsableArea.destroy();
- *
- * if it does return an object with the extension and *disable()* is a method.
+ * Now, in the *disable()* function just call to the *destroy()* method before
+ * nullifying the pointer. You must create a new object in enable() the next
+ * time the extension is enabled.
  *
  * In your code, every time you change the margins, you should call first to
+ * *resetMargins()* method to clear the current margins, and then call to
+ * *setMargins(...)* method as many times as you need to set the margins in each
+ * monitor. You don't need to call it for all the monitors, only for those where
+ * you are painting something. If you don't set values for a monitor, they will
+ * be considered zero.
  *
- *     Me.imports.extension.DesktopIconsUsableArea.resetMargins();
- *
- * to clear the current margins, and then call to
- *
- *     Me.imports.extension.DesktopIconsUsableArea.setMargins(...);
- *
- * (with *Me* defined with *const Me = ExtensionUtils.getCurrentExtension();*)
- * as many times as you need to set the margins in each monitor. You don't need
- * to call it for all the monitors, only for those where you paint something.
- * If you don't set values for a monitor, they will be considered zero.
- *
- * Of course, if your *init()* function returns an object, you should call
- * instead to
- *
- *     this.DesktopIconsUsableArea.resetMargins();
- *     this.DesktopIconsUsableArea.setMargins(...);
+ * The margins values are relative to the monitor border.
  *
  *******************************************************************************/
 
-const Signals = imports.signals;
+const Mainloop = imports.mainloop;
+const GLib = imports.gi.GLib;
+const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 var DesktopIconsUsableAreaClass = class {
-    /**
-     *
-     * @param {Object} container The extension object if init() returns an object,
-     *                           or NULL if the enable() and disable() methods
-     *                           are functions in the extension.js file.
-     */
-    constructor(container) {
-        this._version = 1;
-        // This UUID allows to ensure that the object is really a DesktopIconsIntegration object
-        this._uuid = "21a63db8-e654-4fea-9ab3-acd49e427834";
-        if (container) {
-            this._container = container;
-        } else {
-            this._container = Me.imports.extension;
-        }
-        this._container.DesktopIconsUsableArea = this;
+    constructor() {
+        this._extensionManager = Main.extensionManager;
+        this._extensionUUID = "130cbc66-235c-4bd6-8571-98d2d8bba5e2";
+        this._timedMarginsID = 0;
         this._margins = {};
+        this._emID = this._extensionManager.connect('extension-state-changed', (obj, extension) => {
+            if (!extension) {
+                return;
+            }
+            // If an extension is being enabled and lacks the DesktopIconsUsableArea object, we can avoid launching a refresh
+            if (extension.state == ExtensionUtils.ExtensionState.ENABLED) {
+                this._sendMarginsToExtension(extension);
+                return;
+            }
+            // if the extension is being disabled, we must do a full refresh, because if there were other extensions originally
+            // loaded after that extension, those extensions will be disabled and enabled again without notification
+            this._changedMargins();
+        });
     }
 
     /**
      * Sets or updates the top, bottom, left and right margins for a
-     * monitor.
+     * monitor. Values are measured from the monitor border (and NOT from
+     * the workspace border).
      *
      * @param {int} monitor Monitor number to which set the margins.
      *                      A negative value means "the primary monitor".
@@ -130,10 +102,7 @@ var DesktopIconsUsableAreaClass = class {
             'left': left,
             'right': right
         };
-        // it doesn't matter that this signal gets emitted several times,
-        // because the receiver does a time-filtering: if it receives several
-        // signals in a short time interval, it will ignore all but the last one.
-        this.emit('margins-changed');
+        this._changedMargins();
     }
 
     /**
@@ -142,23 +111,53 @@ var DesktopIconsUsableAreaClass = class {
      */
     resetMargins() {
         this._margins = {};
-        this.emit('margins-changed');
+        this._changedMargins();
     }
 
-    get margins() {
-        return this._margins;
-    }
-
-    get version() {
-        return this._version;
-    }
-
-    get uuid() {
-        return this._uuid;
-    }
+    /**
+     * Disconnects all the signals and removes the margins.
+     */
     destroy() {
-        this.emit('destroy');
-        this._container.DesktopIconsUsableArea = null;
+        if (this._emID) {
+            this._extensionManager.disconnect(this._emID);
+            this._emID = 0;
+        }
+        if (this._timedMarginsID) {
+            GLib.source_remove(this._timedMarginsID);
+            this._timedMarginsID = 0;
+        }
+        this._margins = null;
+        this._changedMargins();
+    }
+
+    _changedMargins() {
+        if (this._timedMarginsID) {
+            GLib.source_remove(this._timedMarginsID);
+        }
+        this._timedMarginsID = Mainloop.timeout_add(250, ()=> {
+            this._sendMarginsToAll();
+            this._timedMarginsID = 0;
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    _sendMarginsToAll() {
+        for (let uuid of this._extensionManager.getUuids()) {
+            let extension = this._extensionManager.lookup(uuid);
+            this._sendMarginsToExtension(extension);
+        }
+    }
+
+    _sendMarginsToExtension(extension) {
+        // check that the extension is an extension that has the logic to accept
+        // working margins
+        if ((!extension) ||
+            (extension.state != ExtensionUtils.ExtensionState.ENABLED) ||
+            (!extension.stateObj) ||
+            (!extension.stateObj.DesktopIconsUsableArea) ||
+            (extension.stateObj.DesktopIconsUsableArea.uuid != this._extensionUUID)) {
+                return;
+        }
+        extension.stateObj.DesktopIconsUsableArea.setMarginsForExtension(Me.uuid, this._margins);
     }
 }
-Signals.addSignalMethods(DesktopIconsUsableAreaClass.prototype);

@@ -36,7 +36,7 @@ function init() { }
 
 function enable() {
     DEBUG("enable()");
-    new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null);
+    DesktopIconsUsableArea = new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null);
     mSettings = ExtensionUtils.getSettings();
     monitorIndex = Main.layoutManager.primaryIndex;
     mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings, monitorIndex);
@@ -47,6 +47,7 @@ function disable() {
     mPVManager.destroy();
     mSettings.run_dispose();
     DesktopIconsUsableArea.destroy();
+    DesktopIconsUsableArea = null;
 
     mPVManager = null;
     mSettings = null;
