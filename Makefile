@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManager,prefs}.js)
+JS_FILES = $(shell echo {extension,convenience,intellihide,panelVisibilityManager,prefs,desktopIconsIntegration}.js)
 UI_FILES = $(shell echo {Settings-40,Settings}.ui)
 
 LOCALES_PO = $(wildcard locale/*/*/*.po)

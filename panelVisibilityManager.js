@@ -274,6 +274,8 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
         );
         this._intellihide.updateTargetBox(this._staticBox);
+        Me.imports.extension.DesktopIconsUsableArea.resetMargins();
+        Me.imports.extension.DesktopIconsUsableArea.setMargins(-1, PanelBox.height, 0, 0, 0);
     }
 
     _updateHotCorner(panel_hidden) {
