@@ -55,25 +55,25 @@
  *
  *******************************************************************************/
 
-const Mainloop = imports.mainloop;
 const GLib = imports.gi.GLib;
 const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
+const IDENTIFIER_UUID = "130cbc66-235c-4bd6-8571-98d2d8bba5e2";
+
 var DesktopIconsUsableAreaClass = class {
     constructor() {
         this._extensionManager = Main.extensionManager;
-        this._extensionUUID = "130cbc66-235c-4bd6-8571-98d2d8bba5e2";
         this._timedMarginsID = 0;
         this._margins = {};
-        this._emID = this._extensionManager.connect('extension-state-changed', (obj, extension) => {
-            if (!extension) {
+        this._emID = this._extensionManager.connect('extension-state-changed', (_obj, extension) => {
+            if (!extension)
                 return;
-            }
+
             // If an extension is being enabled and lacks the DesktopIconsUsableArea object, we can avoid launching a refresh
-            if (extension.state == ExtensionUtils.ExtensionState.ENABLED) {
+            if (extension.state === ExtensionUtils.ExtensionState.ENABLED) {
                 this._sendMarginsToExtension(extension);
                 return;
             }
@@ -134,7 +134,7 @@ var DesktopIconsUsableAreaClass = class {
         if (this._timedMarginsID) {
             GLib.source_remove(this._timedMarginsID);
         }
-        this._timedMarginsID = Mainloop.timeout_add(250, ()=> {
+        this._timedMarginsID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, ()=> {
             this._sendMarginsToAll();
             this._timedMarginsID = 0;
             return GLib.SOURCE_REMOVE;
@@ -142,22 +142,18 @@ var DesktopIconsUsableAreaClass = class {
     }
 
     _sendMarginsToAll() {
-        for (let uuid of this._extensionManager.getUuids()) {
-            let extension = this._extensionManager.lookup(uuid);
-            this._sendMarginsToExtension(extension);
-        }
+        this._extensionManager.getUuids().forEach(uuid =>
+            this._sendMarginsToExtension(this._extensionManager.lookup(uuid)));
     }
 
     _sendMarginsToExtension(extension) {
         // check that the extension is an extension that has the logic to accept
         // working margins
-        if ((!extension) ||
-            (extension.state != ExtensionUtils.ExtensionState.ENABLED) ||
-            (!extension.stateObj) ||
-            (!extension.stateObj.DesktopIconsUsableArea) ||
-            (extension.stateObj.DesktopIconsUsableArea.uuid != this._extensionUUID)) {
-                return;
-        }
-        extension.stateObj.DesktopIconsUsableArea.setMarginsForExtension(Me.uuid, this._margins);
+        if (extension?.state !== ExtensionUtils.ExtensionState.ENABLED)
+            return;
+
+        const usableArea = extension?.stateObj?.DesktopIconsUsableArea;
+         if (usableArea?.uuid === IDENTIFIER_UUID)
+            usableArea.setMarginsForExtension(Me.uuid, this._margins);
     }
 }

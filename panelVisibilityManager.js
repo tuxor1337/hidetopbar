@@ -28,6 +28,7 @@ const Layout = imports.ui.layout;
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 const Intellihide = Me.imports.intellihide;
+const DesktopIconsIntegration = Me.imports.desktopIconsIntegration;
 const DEBUG = Convenience.DEBUG;
 
 const MessageTray = Main.messageTray;
@@ -48,6 +49,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._animationActive = false;
         this._shortcutTimeout = null;
 
+        this._desktopIconsUsableArea = new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null);
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
             affectsStruts: false,
@@ -274,8 +276,8 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
         );
         this._intellihide.updateTargetBox(this._staticBox);
-        Me.imports.extension.DesktopIconsUsableArea.resetMargins();
-        Me.imports.extension.DesktopIconsUsableArea.setMargins(-1, PanelBox.height, 0, 0, 0);
+        this._desktopIconsUsableArea.resetMargins();
+        this._desktopIconsUsableArea.setMargins(-1, PanelBox.height, 0, 0, 0);
     }
 
     _updateHotCorner(panel_hidden) {
@@ -481,5 +483,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             affectsStruts: true,
             trackFullscreen: true
         });
+        this._desktopIconsUsableArea.destroy();
+        this._desktopIconsUsableArea = null;
     }
 };
