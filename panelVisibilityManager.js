@@ -422,6 +422,9 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         } else {
           this._updateIntellihideStatus();
         }
+
+        this._bindTimeoutId = 0;
+        return false;
     }
 
     _bindSettingsChanges() {
@@ -466,7 +469,10 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     destroy() {
-        GLib.source_remove(this._bindTimeoutId);
+        if (this._bindTimeoutId) {
+            GLib.source_remove(this._bindTimeoutId);
+            this._bindTimeoutId = 0;
+        }
         this._intellihide.destroy();
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
