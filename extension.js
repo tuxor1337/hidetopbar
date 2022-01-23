@@ -24,9 +24,6 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const PanelVisibilityManager = Me.imports.panelVisibilityManager;
 const DEBUG = Me.imports.convenience.DEBUG;
-const DesktopIconsIntegration = Me.imports.desktopIconsIntegration;
-
-var DesktopIconsUsableArea;
 
 let mSettings = null;
 let mPVManager = null;
@@ -36,7 +33,6 @@ function init() { }
 
 function enable() {
     DEBUG("enable()");
-    DesktopIconsUsableArea = new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null);
     mSettings = ExtensionUtils.getSettings();
     monitorIndex = Main.layoutManager.primaryIndex;
     mPVManager = new PanelVisibilityManager.PanelVisibilityManager(mSettings, monitorIndex);
@@ -46,8 +42,6 @@ function disable() {
     DEBUG("disable()");
     mPVManager.destroy();
     mSettings.run_dispose();
-    DesktopIconsUsableArea.destroy();
-    DesktopIconsUsableArea = null;
 
     mPVManager = null;
     mSettings = null;
