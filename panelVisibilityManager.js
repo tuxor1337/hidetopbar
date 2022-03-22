@@ -103,7 +103,8 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             mode: Clutter.AnimationMode.EASE_OUT_QUAD,
             onComplete: () => {
                 this._animationActive = false;
-                if (!self._settings.get_boolean('keep-round-corners')) {
+                print("Round corners " + this._settings.get_boolean('keep-round-corners'));
+                if (!this._settings.get_boolean('keep-round-corners')) {
                     PanelBox.hide();
                 }
                 this._updateHotCorner(true);
