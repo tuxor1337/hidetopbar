@@ -58,7 +58,8 @@ function buildPrefsWidget() {
      'mouse-sensitive-fullscreen-window',
      'show-in-overview',
      'hot-corner',
-     'mouse-triggers-overview'
+     'mouse-triggers-overview',
+     'keep-round-corners'
     ].forEach(function (s) {
         let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
         settings_onoff.set_active(settings.get_boolean(s));

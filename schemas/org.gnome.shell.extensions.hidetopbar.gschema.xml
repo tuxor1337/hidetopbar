@@ -33,6 +33,13 @@
         the edge of the screen.
       </description>
     </key>
+    <key name="keep-round-corners" type="b">
+      <default>false</default>
+      <summary>Keep round corners on the top</summary>
+      <description>
+        Set to "true" to keep the round corners on the top even when the panel is hidden.
+      </description>
+    </key>
     <key name="animation-time-overview" type="d">
       <default>0.4</default>
       <summary>Slide in/out animation time</summary>
