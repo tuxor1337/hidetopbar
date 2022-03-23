@@ -43,6 +43,7 @@
   </object>
   <object class="GtkNotebook" id="settings_notebook">
     <property name="visible">True</property>
+    <property name="vexpand">True</property>
     <property name="can-focus">True</property>
     <child>
       <!-- n-columns=2 n-rows=8 -->
