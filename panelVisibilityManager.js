@@ -24,6 +24,7 @@ const Clutter = imports.gi.Clutter;
 
 const Main = imports.ui.main;
 const Layout = imports.ui.layout;
+const PointerWatcher = imports.ui.pointerWatcher;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
@@ -65,6 +66,9 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._oldTween.apply(MessageTray, arguments);
         }.bind(this);
 
+        this._pointerWatcher = PointerWatcher.getPointerWatcher();
+        this._pointerListener = null;
+
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
@@ -84,12 +88,13 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         let anchor_y = PanelBox.get_pivot_point()[1],
             delta_y = -PanelBox.height;
         if(anchor_y < 0) delta_y = -delta_y;
-        let mouse = global.get_pointer(),
-            mouse_is_over = (mouse[1] >= this._staticBox.y1 &&
-                                 mouse[1] < this._staticBox.y2 &&
-                                 mouse[0] >= this._staticBox.x1 &&
-                                 mouse[0] < this._staticBox.x2);
-        if(trigger == "mouse-left" && mouse_is_over) return;
+        let mouse = global.get_pointer();
+        if(trigger == "mouse-left" && this._isHovering(...mouse)) return;
+
+        if(this._pointerListener) {
+            this._pointerWatcher._removeWatch(this._pointerListener);
+            this._pointerListener = null;
+        }
 
         if(this._animationActive) {
             PanelBox.remove_all_transitions();
@@ -142,8 +147,38 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 onComplete: () => {
                     this._animationActive = false;
                     this._updateStaticBox();
+
+                    const mouse = global.get_pointer();
+
+                    if(!this._isHovering(...mouse))
+                    {
+                        // The cursor has already left the panel, so we can
+                        // start hiding the panel immediately.
+                        this._handleMenus();
+                    }
+                    else if(!this._pointerListener)
+                    {
+                        // The cursor is still on the panel. Start watching the
+                        // pointer so we know when it leaves the panel.
+                        this._pointerListener =
+                            this._pointerWatcher.addWatch
+                                (10, this._handlePointer.bind(this));
+                    }
                 }
             });
+        }
+    }
+
+    _isHovering(x, y) {
+        return (    y >= this._staticBox.y1 &&
+                    y < this._staticBox.y2 &&
+                    x >= this._staticBox.x1 &&
+                    x < this._staticBox.x2 );
+    }
+
+    _handlePointer(x, y) {
+        if(!this._animationActive && !this._isHovering(x, y)) {
+            this._handleMenus();
         }
     }
 
@@ -229,6 +264,11 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _disablePressureBarrier() {
+        if(this._pointerListener) {
+            this._pointerWatcher._removeWatch(this._pointerListener);
+            this._pointerListener = null;
+        }
+
         if(this._panelBarrier && this._panelPressure) {
             this._panelPressure.removeBarrier(this._panelBarrier);
             this._panelBarrier.destroy();
