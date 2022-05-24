@@ -66,7 +66,22 @@ run one of the following commands:
     make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one specific po file, where 'XX' is the language code
 
 As mentioned in the previous section, running `make` requires the `gettext` package
- to be installed (the package names may vary depending on your distribution).
+to be installed (the package names may vary depending on your distribution).
+
+Troubleshooting
+---------------
+
+### Can I assign a shortcut to temporally disable the autohiding altogether?
+
+Follow the [instructions to assign a system-wide shortcut that disables/enables the extension](https://github.com/mlutfy/hidetopbar/issues/43#issuecomment-796583424).
+
+### Notification pop-ups cause the top bar to hide.
+
+Using the extension [Panel OSD](https://extensions.gnome.org/extension/708/panel-osd/), you can configure notification pop-ups to show up in a different position (e.g. a few pixels down) where they won't overlap with the top bar.
+
+### The panel overlaps with the dash/dock.
+
+This is an issue of the extension [Dash to Dock](https://github.com/micheleg/dash-to-dock), see also [this comment](https://github.com/mlutfy/hidetopbar/issues/149#issuecomment-964419677).
 
 License
 -------
