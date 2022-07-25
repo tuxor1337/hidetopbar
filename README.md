@@ -40,7 +40,7 @@ The procedure to install from source is as follows: Check out the source code in
 extensions directory, compile by running `make`, install and restart GNOME Shell. For example:
 
     cd ~/.local/share/gnome-shell/extensions/
-    git clone https://github.com/mlutfy/hidetopbar.git hidetopbar@mathieu.bidon.ca
+    git clone https://github.com/tuxor1337/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
     make
     cd ..
@@ -73,7 +73,7 @@ Troubleshooting
 
 ### Can I assign a shortcut to temporally disable the autohiding altogether?
 
-Follow the [instructions to assign a system-wide shortcut that disables/enables the extension](https://github.com/mlutfy/hidetopbar/issues/43#issuecomment-796583424).
+Follow the [instructions to assign a system-wide shortcut that disables/enables the extension](https://github.com/tuxor1337/hidetopbar/issues/43#issuecomment-796583424).
 
 ### Notification pop-ups cause the top bar to hide.
 
@@ -81,12 +81,12 @@ Using the extension [Panel OSD](https://extensions.gnome.org/extension/708/panel
 
 ### The panel overlaps with the dash/dock.
 
-This is an issue of the extension [Dash to Dock](https://github.com/micheleg/dash-to-dock), see also [this comment](https://github.com/mlutfy/hidetopbar/issues/149#issuecomment-964419677).
+This is an issue of the extension [Dash to Dock](https://github.com/micheleg/dash-to-dock), see also [this comment](https://github.com/tuxor1337/hidetopbar/issues/149#issuecomment-964419677).
 
 License
 -------
 
-Copyright (c) 2013-2021 Thomas Vogt.
+Copyright (c) 2013-2022 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
