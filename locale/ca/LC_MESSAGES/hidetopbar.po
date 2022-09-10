@@ -38,6 +38,10 @@ msgstr "Mantén el cantó actiu sensible, fins i tot en mode ocult."
 msgid "In the above case show overview, too"
 msgstr "En el cas anterior, mostra també la vista general."
 
+#: Settings-40.ui:130 Settings.ui:129
+msgid "Keep round corners when top bar is hidden"
+msgstr "Mantén els cantons arrodonits quan la barra estigui oculta."
+
 #: Settings-40.ui:129 Settings.ui:129
 msgid "Pressure barrier's threshold:"
 msgstr "Llindar de la pressió:"
