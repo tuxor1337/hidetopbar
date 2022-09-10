@@ -1,7 +1,7 @@
 # Catalan translation for the Hide Top Bar extension.
 # Copyright (C) 2021 Thomas Vogt
 # This file is distributed under the same license as the Hide Top Bar package.
-# David Medina <rbndavid@gmail.com>, 2017, 2020.
+# David Medina <rbndavid@gmail.com>, 2017, 2020, 2022.
 #
 msgid ""
 msgstr ""
