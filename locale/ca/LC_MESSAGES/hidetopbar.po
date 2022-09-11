@@ -1,7 +1,7 @@
 # Catalan translation for the Hide Top Bar extension.
 # Copyright (C) 2021 Thomas Vogt
 # This file is distributed under the same license as the Hide Top Bar package.
-# David Medina <rbndavid@gmail.com>, 2017, 2020.
+# David Medina <rbndavid@gmail.com>, 2017, 2020, 2022.
 #
 msgid ""
 msgstr ""
@@ -37,6 +37,10 @@ msgstr "Mantén el cantó actiu sensible, fins i tot en mode ocult."
 #: Settings-40.ui:116 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "En el cas anterior, mostra també la vista general."
+
+#: Settings-40.ui:130 Settings.ui:129
+msgid "Keep round corners when top bar is hidden"
+msgstr "Mantén els cantons arrodonits quan la barra estigui oculta."
 
 #: Settings-40.ui:129 Settings.ui:129
 msgid "Pressure barrier's threshold:"
