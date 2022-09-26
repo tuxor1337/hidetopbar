@@ -1,5 +1,5 @@
 {
-  "shell-version": ["3.38","40","41","42"],
+  "shell-version": ["3.38","40","41","42","43"],
   "uuid": "hidetopbar@mathieu.bidon.ca",
   "name": "Hide Top Bar",
   "settings-schema": "org.gnome.shell.extensions.hidetopbar",
