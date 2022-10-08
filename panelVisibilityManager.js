@@ -31,6 +31,7 @@ const Convenience = Me.imports.convenience;
 const Intellihide = Me.imports.intellihide;
 const DesktopIconsIntegration = Me.imports.desktopIconsIntegration;
 const DEBUG = Convenience.DEBUG;
+const SERIALIZE = Convenience.SERIALIZE;
 
 const MessageTray = Main.messageTray;
 const PanelBox = Main.layoutManager.panelBox;
@@ -40,6 +41,7 @@ const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
 var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
     constructor(settings, monitorIndex) {
+        DEBUG("PanelVisibilityManager constructor(...)");
         this._monitorIndex = monitorIndex;
         this._base_y = PanelBox.y;
         this._settings = settings;
@@ -82,7 +84,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     hide(animationTime, trigger) {
-        DEBUG("hide(" + trigger + ")");
+        DEBUG("PanelVisibilityManager hide(" + trigger + ")");
         if(this._preventHide) return;
 
         let anchor_y = PanelBox.get_pivot_point()[1],
@@ -117,7 +119,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     show(animationTime, trigger) {
-        DEBUG("show(" + trigger + ")");
+        DEBUG("PanelVisibilityManager show(" + trigger + ")");
         if(trigger == "mouse-enter"
            && this._settings.get_boolean('mouse-triggers-overview')) {
             Main.overview.show();
@@ -170,27 +172,36 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _isHovering(x, y) {
-        return (    y >= this._staticBox.y1 &&
-                    y < this._staticBox.y2 &&
-                    x >= this._staticBox.x1 &&
-                    x < this._staticBox.x2 );
+        DEBUG("PanelVisibilityManager _isHovering(" + x + ", " + y + ")");
+        const result = (y >= this._staticBox.y1 &&
+                        y < this._staticBox.y2 &&
+                        x >= this._staticBox.x1 &&
+                        x < this._staticBox.x2);
+        DEBUG("PanelVisibilityManager _isHovering => " + result);
+        return result;
     }
 
     _handlePointer(x, y) {
+        DEBUG("PanelVisibilityManager _handlePointer(" + x + ", " + y + ")");
         if(!this._animationActive && !this._isHovering(x, y)) {
+            DEBUG("PanelVisibilityManager _handlePointer(" + x + ", " + y + "): if");
             this._handleMenus();
         }
     }
 
     _handleMenus() {
+        DEBUG("PanelVisibilityManager _handleMenus()");
         if(!Main.overview.visible) {
+            DEBUG("PanelVisibilityManager _handleMenus(): overview not visible");
             let blocker = Main.panel.menuManager.activeMenu;
             if(blocker == null) {
+                DEBUG("PanelVisibilityManager _handleMenus(): blocker == null");
                 this.hide(
                     this._settings.get_double('animation-time-autohide'),
                     "mouse-left"
                 );
             } else {
+                DEBUG("PanelVisibilityManager _handleMenus(): blocker not null");
                 this._blockerMenu = blocker;
                 this._menuEvent = this._blockerMenu.connect(
                     'open-state-changed',
@@ -208,6 +219,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _handleShortcut() {
+        DEBUG("PanelVisibilityManager _handleShortcut()");
         var delay_time = this._settings.get_double('shortcut-delay');
         if(this._shortcutTimeout) {
             if(this._shortcutTimeout !== true) {
@@ -264,6 +276,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _disablePressureBarrier() {
+        DEBUG("PanelVisibilityManager _disablePressureBarrier()");
         if(this._pointerListener) {
             this._pointerWatcher._removeWatch(this._pointerListener);
             this._pointerListener = null;
@@ -276,6 +289,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _initPressureBarrier() {
+        DEBUG("PanelVisibilityManager _initPressureBarrier()");
         this._panelPressure = new Layout.PressureBarrier(
             this._settings.get_int('pressure-threshold'),
             this._settings.get_int('pressure-timeout'),
@@ -312,7 +326,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _updateStaticBox() {
-        DEBUG("_updateStaticBox()");
+        DEBUG("PanelVisibilityManager _updateStaticBox()");
         let anchor_y = PanelBox.get_pivot_point()[1];
         this._staticBox.init_rect(
             PanelBox.x, PanelBox.y-anchor_y, PanelBox.width, PanelBox.height
@@ -323,6 +337,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _updateHotCorner(panel_hidden) {
+        DEBUG("PanelVisibilityManager _updateHotCorner(" + panel_hidden + ")");
         let HotCorner = null;
         for(var i = 0; i < Main.layoutManager.hotCorners.length; i++){
           let hc = Main.layoutManager.hotCorners[i];
@@ -343,22 +358,26 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _updateSettingsHotCorner() {
+        DEBUG("PanelVisibilityManager _updateSettingsHotCorner()");
         this.hide(0.1, "hot-corner-setting-changed");
     }
 
     _updateSettingsMouseSensitive() {
+        DEBUG("PanelVisibilityManager _updateSettingsMouseSensitive()");
         if(this._settings.get_boolean('mouse-sensitive')) {
             this._disablePressureBarrier();
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
     }
-    
+
     _updateSettingsShowInOverview() {
+        DEBUG("PanelVisibilityManager _updateSettingsShowInOverview()");
         this._showInOverview = this._settings.get_boolean('show-in-overview');
         this._updateSearchEntryMargin();
     }
 
     _updateSearchEntryMargin() {
+        DEBUG("PanelVisibilityManager _updateSearchEntryMargin()");
         if (!_searchEntryBin) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
         const margin = PanelBox.height / scale;
@@ -366,6 +385,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _updateIntellihideStatus() {
+        DEBUG("PanelVisibilityManager _updateIntellihideStatus()");
         if(this._settings.get_boolean('enable-intellihide')) {
             this._intellihideBlock = false;
             this._preventHide = false;
@@ -379,6 +399,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _updatePreventHide() {
+        DEBUG("PanelVisibilityManager _updatePreventHide()");
         if(this._intellihideBlock) return;
 
         this._preventHide = !this._intellihide.getOverlapStatus();
@@ -391,6 +412,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _bindUIChanges() {
+        DEBUG("PanelVisibilityManager _bindUIChanges()");
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.add(
             [
@@ -470,6 +492,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _bindSettingsChanges() {
+        DEBUG("PanelVisibilityManager _bindSettingsChanges()");
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.addWithLabel("settings",
             [
@@ -511,6 +534,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     destroy() {
+        DEBUG("PanelVisibilityManager destroy()");
         if (this._bindTimeoutId) {
             GLib.source_remove(this._bindTimeoutId);
             this._bindTimeoutId = 0;

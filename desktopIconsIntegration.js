@@ -60,11 +60,15 @@ const Main = imports.ui.main;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+const Convenience = Me.imports.convenience;
+const DEBUG = Convenience.DEBUG;
 
 const IDENTIFIER_UUID = "130cbc66-235c-4bd6-8571-98d2d8bba5e2";
 
 var DesktopIconsUsableAreaClass = class {
     constructor() {
+        DEBUG("DesktopIconsUsableAreaClass constructor()");
+
         this._extensionManager = Main.extensionManager;
         this._timedMarginsID = 0;
         this._margins = {};
@@ -96,6 +100,8 @@ var DesktopIconsUsableAreaClass = class {
      * @param {int} right Right margin in pixels
      */
     setMargins(monitor, top, bottom, left, right) {
+        DEBUG("DesktopIconsUsableAreaClass setMargins()");
+
         this._margins[monitor] = {
             'top': top,
             'bottom': bottom,
@@ -110,6 +116,8 @@ var DesktopIconsUsableAreaClass = class {
      * margins with setMargins().
      */
     resetMargins() {
+        DEBUG("DesktopIconsUsableAreaClass resetMargins()");
+
         this._margins = {};
         this._changedMargins();
     }
@@ -118,6 +126,8 @@ var DesktopIconsUsableAreaClass = class {
      * Disconnects all the signals and removes the margins.
      */
     destroy() {
+        DEBUG("DesktopIconsUsableAreaClass destroy()");
+
         if (this._emID) {
             this._extensionManager.disconnect(this._emID);
             this._emID = 0;
@@ -131,6 +141,8 @@ var DesktopIconsUsableAreaClass = class {
     }
 
     _changedMargins() {
+        DEBUG("DesktopIconsUsableAreaClass _changedMargins()");
+
         if (this._timedMarginsID) {
             GLib.source_remove(this._timedMarginsID);
         }
@@ -142,11 +154,15 @@ var DesktopIconsUsableAreaClass = class {
     }
 
     _sendMarginsToAll() {
+        DEBUG("DesktopIconsUsableAreaClass _sendMarginsToAll()");
+
         this._extensionManager.getUuids().forEach(uuid =>
             this._sendMarginsToExtension(this._extensionManager.lookup(uuid)));
     }
 
     _sendMarginsToExtension(extension) {
+        DEBUG("DesktopIconsUsableAreaClass _sendMarginsToExtension()");
+
         // check that the extension is an extension that has the logic to accept
         // working margins
         if (extension?.state !== ExtensionUtils.ExtensionState.ENABLED)

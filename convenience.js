@@ -22,6 +22,29 @@ var DEBUG = function (message) {
     if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
 }
 
+var getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (_key, value) => {
+        if (typeof value === "object" && value !== null) {
+            if (seen.has(value)) {
+                return;
+            }
+                seen.add(value);
+        }
+        return value;
+    };
+}
+
+var SERIALIZE = function (value) {
+    if (value === undefined) {
+        return 'undefined';
+    } else if (value instanceof Function) {
+        return value.toString();
+    }
+
+    return JSON.stringify(value, getCircularReplacer());
+}
+
 // try to simplify global signals handling
 var GlobalSignalsHandler = class HideTopBar_GlobalSignalsHandler {
     constructor() {

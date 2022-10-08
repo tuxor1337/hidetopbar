@@ -31,6 +31,8 @@ const Signals = imports.signals;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
+const DEBUG = Convenience.DEBUG;
+const SERIALIZE = Convenience.SERIALIZE;
 
 // A good compromise between reactivity and efficiency; to be tuned.
 const INTELLIHIDE_CHECK_INTERVAL = 100;
@@ -68,6 +70,8 @@ const handledWindowTypes = [
 var Intellihide = class HideTopBar_Intellihide {
 
     constructor(settings, monitorIndex) {
+        DEBUG("Intellihide constructor(...)");
+
         // Load settings
         this._settings = settings;
         this._monitorIndex = monitorIndex;
@@ -91,37 +95,39 @@ var Intellihide = class HideTopBar_Intellihide {
             // Listen for notification banners to appear or disappear
             Main.messageTray,
             'show',
-            this._checkOverlap.bind(this)
+            this._checkOverlapSignal('show').bind(this)
         ], [
             Main.messageTray,
             'hide',
-            this._checkOverlap.bind(this)
+            this._checkOverlapSignal('hide').bind(this)
         ], [
             // Add signals on windows created from now on
             global.display,
             'window-created',
-            this._windowCreated.bind(this)
+            this._windowCreatedSignal('window-created').bind(this)
         ], [
             // triggered for instance when the window list order changes,
             // included when the workspace is switched
             global.display,
             'restacked',
-            this._checkOverlap.bind(this)
+            this._checkOverlapSignal('restacked').bind(this)
         ], [
             // when windows are alwasy on top, the focus window can change
             // without the windows being restacked. Thus monitor window focus change.
             this._tracker,
             'notify::focus-app',
-            this._checkOverlap.bind(this)
+            this._checkOverlapSignal('notify::focus-app').bind(this)
         ], [
             // update wne monitor changes, for instance in multimonitor when monitor are attached
             Meta.MonitorManager.get(),
             'monitors-changed',
-            this._checkOverlap.bind(this)
+            this._checkOverlapSignal('monitors-changed').bind(this)
         ]);
     }
 
     destroy() {
+        DEBUG("Intellihide destroy()");
+
         // Disconnect global signals
         this._signalsHandler.destroy();
 
@@ -130,6 +136,8 @@ var Intellihide = class HideTopBar_Intellihide {
     }
 
     enable() {
+        DEBUG("Intellihide enable()");
+
         this._isEnabled = true;
         this._status = OverlapStatus.UNDEFINED;
         global.get_window_actors().forEach(function(wa) {
@@ -139,6 +147,8 @@ var Intellihide = class HideTopBar_Intellihide {
     }
 
     disable() {
+        DEBUG("Intellihide disable()");
+
         this._isEnabled = false;
 
         for (let wa of this._trackedWindows.keys()) {
@@ -152,19 +162,35 @@ var Intellihide = class HideTopBar_Intellihide {
         }
     }
 
+    _windowCreatedSignal(name) {
+        DEBUG("Intellihide _windowCreatedSignal(): name = " + SERIALIZE(name));
+
+        return function(...args) {
+          DEBUG("Intellihide _windowCreated function(): name = " + SERIALIZE(name) + " | args = " + SERIALIZE(args));
+
+          this._windowCreated(...args)
+        }
+    }
+
     _windowCreated(display, metaWindow) {
+        DEBUG("Intellihide _windowCreate()");
+
         this._addWindowSignals(metaWindow.get_compositor_private());
     }
 
     _addWindowSignals(wa) {
+        DEBUG("Intellihide _addWindowSignals()");
+
         if (!this._handledWindow(wa))
             return;
-        let signalId = wa.connect('notify::allocation', this._checkOverlap.bind(this));
+        let signalId = wa.connect('notify::allocation', this._checkOverlapSignal('notify::allocation').bind(this));
         this._trackedWindows.set(wa, signalId);
         wa.connect('destroy', this._removeWindowSignals.bind(this));
     }
 
     _removeWindowSignals(wa) {
+        DEBUG("Intellihide _removeWindowSignals()");
+
         if (this._trackedWindows.get(wa)) {
            wa.disconnect(this._trackedWindows.get(wa));
            this._trackedWindows.delete(wa);
@@ -172,20 +198,38 @@ var Intellihide = class HideTopBar_Intellihide {
     }
 
     updateTargetBox(box) {
+        DEBUG("Intellihide updateTargetBox()");
+
         this._targetBox = box;
         this._checkOverlap();
     }
 
     forceUpdate() {
+        DEBUG("Intellihide forceUpdate()");
+
         this._status = OverlapStatus.UNDEFINED;
         this._doCheckOverlap();
     }
 
     getOverlapStatus() {
+        DEBUG("Intellihide getOverlapStatus()");
+
         return (this._status == OverlapStatus.TRUE);
     }
 
+    _checkOverlapSignal(name) {
+      DEBUG("Intellihide _checkOverlapSignal(): name = " + SERIALIZE(name));
+
+      return function(...args) {
+        DEBUG("Intellihide _checkOverlapSignal function(): name = " + SERIALIZE(name) + " | args = " + SERIALIZE(args));
+
+        this._checkOverlap()
+      }
+    }
+
     _checkOverlap() {
+        DEBUG("Intellihide _checkOverlap(): args = " + SERIALIZE(arguments));
+
         if (!this._isEnabled || (this._targetBox == null))
             return;
 
@@ -211,6 +255,7 @@ var Intellihide = class HideTopBar_Intellihide {
     }
 
     _doCheckOverlap() {
+        DEBUG("Intellihide _doCheckOverlap()");
 
         if (!this._isEnabled || (this._targetBox == null))
             return;
@@ -272,17 +317,23 @@ var Intellihide = class HideTopBar_Intellihide {
             if (test) overlaps = OverlapStatus.TRUE;
         }
 
+        DEBUG("Intellihide _doCheckOverlap() this._status = " + SERIALIZE(this._status));
+        DEBUG("Intellihide _doCheckOverlap() overlaps = " + SERIALIZE(overlaps));
+
         if (this._status !== overlaps) {
             this._status = overlaps;
+
+            DEBUG("Intellihide _doCheckOverlap() emitting 'status-changed' with " + SERIALIZE(this._status));
             this.emit('status-changed', this._status);
         }
-
     }
 
     // Filter interesting windows to be considered for intellihide.
     // Consider all windows visible on the current workspace.
     // Optionally skip windows of other applications
     _intellihideFilterInteresting(wa) {
+        DEBUG("Intellihide _intellihideFilterInteresting()");
+
         let meta_win = wa.get_meta_window();
         if (!this._handledWindow(wa))
             return false;
@@ -324,6 +375,8 @@ var Intellihide = class HideTopBar_Intellihide {
     // Filter windows by type
     // inspired by Opacify@gnome-shell.localdomain.pl
     _handledWindow(wa) {
+        DEBUG("Intellihide _handledWindow()");
+
         let metaWindow = wa.get_meta_window();
 
         if (!metaWindow)
