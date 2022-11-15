@@ -324,7 +324,7 @@ var Intellihide = class HideTopBar_Intellihide {
     // Filter windows by type
     // inspired by Opacify@gnome-shell.localdomain.pl
     _handledWindow(wa) {
-        let metaWindow = wa.get_meta_window();
+        let metaWindow = this._getMetaWindowIfInPrimaryMonitor(wa);
 
         if (!metaWindow)
             return false;
@@ -343,6 +343,16 @@ var Intellihide = class HideTopBar_Intellihide {
                 return false;
         }
         return false;
+    }
+
+    _getMetaWindowIfPrimaryMonitor(wa) {
+        let metaWindow = wa.get_meta_window();
+
+        // Returns window only if it is in the primary monitor
+        if (metaWindow.get_monitor() === 0) {
+            return metaWindow;
+        }
+        return null;
     }
 };
 
