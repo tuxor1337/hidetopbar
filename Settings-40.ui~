@@ -44,8 +44,9 @@
   <object class="GtkNotebook" id="settings_notebook">
     <property name="visible">True</property>
     <property name="can-focus">True</property>
+    <property name="vexpand">True</property>
     <child>
-      <!-- n-columns=2 n-rows=12 -->
+      <!-- n-columns=22 n-rows=8 -->
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -61,7 +62,7 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel when mouse approaches top edge of the screen</property>
+            <property name="label" translatable="yes">Show panel when mouse approaches edge of the screen</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -77,8 +78,8 @@
             <property name="label" translatable="yes">In the above case, also show panel when fullscreen</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -90,8 +91,8 @@
             <property name="label" translatable="yes">Show panel in overview</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">3</property>
+            <property name="left-attach">3</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -103,8 +104,8 @@
             <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">6</property>
+            <property name="left-attach">5</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -116,8 +117,8 @@
             <property name="label" translatable="yes">In the above case show overview, too</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">7</property>
+            <property name="left-attach">6</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -129,8 +130,8 @@
             <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">9</property>
+            <property name="left-attach">8</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -142,8 +143,8 @@
             <property name="label" translatable="yes">Pressure barrier's threshold:</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">10</property>
+            <property name="left-attach">9</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -155,8 +156,8 @@
             <property name="label" translatable="yes">Pressure barrier's timeout:</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">11</property>
+            <property name="left-attach">10</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -165,10 +166,9 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
-            <signal name="notify::active" handler="toggle_setting" swapped="no"/>
           </object>
           <packing>
-            <property name="left-attach">1</property>
+            <property name="left-attach">11</property>
             <property name="top-attach">0</property>
           </packing>
         </child>
@@ -180,8 +180,8 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">12</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -192,8 +192,8 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">3</property>
+            <property name="left-attach">14</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -204,8 +204,8 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">6</property>
+            <property name="left-attach">16</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -216,8 +216,8 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">7</property>
+            <property name="left-attach">17</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -228,8 +228,8 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">9</property>
+            <property name="left-attach">19</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -241,8 +241,8 @@
             <property name="adjustment">adjust_pressure_threshold</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">10</property>
+            <property name="left-attach">20</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -254,8 +254,8 @@
             <property name="adjustment">adjust_pressure_timeout</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">11</property>
+            <property name="left-attach">21</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -264,8 +264,8 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
+            <property name="left-attach">2</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -274,8 +274,8 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
+            <property name="left-attach">4</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -284,8 +284,8 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">5</property>
+            <property name="left-attach">7</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -294,8 +294,8 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">5</property>
+            <property name="left-attach">13</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -304,8 +304,8 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">8</property>
+            <property name="left-attach">15</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -314,66 +314,473 @@
             <property name="can-focus">False</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">8</property>
+            <property name="left-attach">18</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
-          <!-- n-columns=1 n-rows=2 -->
-          <object class="GtkGrid">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <child>
-              <object class="GtkRadioButton" id="check_show_padding">
-                <property name="label" translatable="yes">use padding</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
-                <property name="active">True</property>
-                <property name="draw-indicator">True</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkRadioButton" id="check_show_margin">
-                <property name="label" translatable="yes">use margin</property>
-                <property name="visible">True</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">False</property>
-                <property name="draw-indicator">True</property>
-                <property name="group">check_show_padding</property>
-              </object>
-              <packing>
-                <property name="left-attach">0</property>
-                <property name="top-attach">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">4</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">In the above case, use padding or margin offset</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">4</property>
-          </packing>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
-      <packing>
-        <property name="tab-expand">True</property>
-      </packing>
     </child>
     <child type="tab">
       <object class="GtkLabel">
@@ -386,7 +793,7 @@
       </packing>
     </child>
     <child>
-      <!-- n-columns=2 n-rows=2 -->
+      <!-- n-columns=4 n-rows=2 -->
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -418,8 +825,8 @@
             <property name="label" translatable="yes">Slide animation time when mouse approaches edge of the screen:</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -432,7 +839,7 @@
             <property name="digits">1</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
+            <property name="left-attach">2</property>
             <property name="top-attach">0</property>
           </packing>
         </child>
@@ -446,14 +853,25 @@
             <property name="digits">1</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">3</property>
+            <property name="top-attach">0</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
       <packing>
         <property name="position">1</property>
-        <property name="tab-expand">True</property>
       </packing>
     </child>
     <child type="tab">
@@ -468,7 +886,7 @@
       </packing>
     </child>
     <child>
-      <!-- n-columns=2 n-rows=3 -->
+      <!-- n-columns=6 n-rows=3 -->
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -487,6 +905,7 @@
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
             <property name="wrap">True</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -502,10 +921,11 @@
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
             <property name="wrap">True</property>
+            <property name="xalign">0</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -520,8 +940,8 @@
             <property name="xalign">0</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
+            <property name="left-attach">2</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -553,7 +973,7 @@
             </child>
           </object>
           <packing>
-            <property name="left-attach">1</property>
+            <property name="left-attach">3</property>
             <property name="top-attach">0</property>
           </packing>
         </child>
@@ -567,8 +987,8 @@
             <property name="digits">1</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">4</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -579,9 +999,45 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
+            <property name="left-attach">5</property>
+            <property name="top-attach">0</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
       <packing>
@@ -595,12 +1051,12 @@
         <property name="label" translatable="yes">Keyboard shortcuts</property>
       </object>
       <packing>
-        <property name="position">3</property>
+        <property name="position">2</property>
         <property name="tab-fill">False</property>
       </packing>
     </child>
     <child>
-      <!-- n-columns=2 n-rows=2 -->
+      <!-- n-columns=4 n-rows=2 -->
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -638,8 +1094,8 @@
             <property name="xalign">0</property>
           </object>
           <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">1</property>
+            <property name="top-attach">0</property>
           </packing>
         </child>
         <child>
@@ -650,7 +1106,7 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
+            <property name="left-attach">2</property>
             <property name="top-attach">0</property>
           </packing>
         </child>
@@ -662,9 +1118,21 @@
             <property name="valign">center</property>
           </object>
           <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
+            <property name="left-attach">3</property>
+            <property name="top-attach">0</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
       <packing>

@@ -83,12 +83,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel in overview</property>
             <layout>
               <property name="column">0</property>
               <property name="row">2</property>
@@ -101,7 +98,7 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
+            <property name="label" translatable="yes">Show panel in overview</property>
             <layout>
               <property name="column">0</property>
               <property name="row">3</property>
@@ -114,7 +111,7 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">In the above case show overview, too</property>
+            <property name="label" translatable="yes">In the above case, use padding or margin offset</property>
             <layout>
               <property name="column">0</property>
               <property name="row">4</property>
@@ -122,12 +119,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
             <layout>
               <property name="column">0</property>
               <property name="row">5</property>
@@ -140,7 +134,7 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Pressure barrier's threshold:</property>
+            <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
             <layout>
               <property name="column">0</property>
               <property name="row">6</property>
@@ -153,10 +147,59 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Pressure barrier's timeout:</property>
+            <property name="label" translatable="yes">In the above case show overview, too</property>
             <layout>
               <property name="column">0</property>
               <property name="row">7</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">8</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">9</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Pressure barrier's threshold:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">10</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Pressure barrier's timeout:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">11</property>
             </layout>
           </object>
         </child>
@@ -186,11 +229,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkSwitch" id="toggle_show_in_overview">
+          <object class="GtkSeparator">
             <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
+            <property name="can-focus">False</property>
             <layout>
               <property name="column">1</property>
               <property name="row">2</property>
@@ -198,7 +239,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkSwitch" id="toggle_hot_corner">
+          <object class="GtkSwitch" id="toggle_show_in_overview">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="halign">end</property>
@@ -210,6 +251,69 @@
           </object>
         </child>
         <child>
+          n-columns=1 n-rows=2
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkCheckButton" id="check_show_padding">
+                <property name="label" translatable="yes">use padding</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="active">True</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="GtkCheckButton" id="check_show_margin">
+                <property name="label" translatable="yes">use margin</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">False</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="group">check_show_padding</property>
+                <layout>
+                  <property name="column">0</property>
+                  <property name="row">1</property>
+                </layout>
+              </object>
+            </child>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">4</property>
+            </layout>
+         </object>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">5</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSwitch" id="toggle_hot_corner">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">6</property>
+            </layout>
+          </object>
+        </child>
+        <child>
           <object class="GtkSwitch" id="toggle_mouse_triggers_overview">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -217,7 +321,17 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">4</property>
+              <property name="row">7</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSeparator">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">8</property>
             </layout>
           </object>
         </child>
@@ -229,7 +343,7 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">5</property>
+              <property name="row">9</property>
             </layout>
           </object>
         </child>
@@ -242,7 +356,7 @@
             <property name="adjustment">adjust_pressure_threshold</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">6</property>
+              <property name="row">10</property>
             </layout>
           </object>
         </child>
@@ -255,7 +369,7 @@
             <property name="adjustment">adjust_pressure_timeout</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">7</property>
+              <property name="row">11</property>
             </layout>
           </object>
         </child>
