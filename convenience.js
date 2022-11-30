@@ -19,7 +19,7 @@
 
 var DEBUG = function (message) {
     // Enable for debugging purposes.
-    if(true) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
+    if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
 }
 
 // try to simplify global signals handling
