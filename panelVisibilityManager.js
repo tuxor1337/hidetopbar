@@ -514,11 +514,6 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             ],
             [
                 this._settings,
-                'changed::hot-corner',
-                this._updateSettingsHotCorner.bind(this)
-            ],
-            [
-                this._settings,
                 'changed::show-padding',
                 this._updateSearchEntryPaddingOrMargin.bind(this)
             ]
