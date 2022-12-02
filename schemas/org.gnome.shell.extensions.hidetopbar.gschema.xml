@@ -115,19 +115,5 @@
         When enabled, the panel will be visible in overview.
       </description>
     </key>
-    <key name="show-padding" type="b">
-      <default>true</default>
-      <summary>Enable toggling overview padding</summary>
-      <description>
-        Enable this to use padding as the spacing when the panel is visible in overview
-      </description>
-    </key>
-    <key name="show-margin" type="b">
-      <default>false</default>
-      <summary>Enable toggling overview margin</summary>
-      <description>
-        Enable this to use margin as the spacing when the panel is visible in overview
-      </description>
-    </key>
   </schema>
 </schemalist>
