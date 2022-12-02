@@ -355,19 +355,14 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     
     _updateSettingsShowInOverview() {
         this._showInOverview = this._settings.get_boolean('show-in-overview');
-        this._updateSearchEntryPaddingOrMargin();
+        this._updateSearchEntryPadding();
     }
 
-    _updateSearchEntryPaddingOrMargin() {
+    _updateSearchEntryPadding() {
         if (!_searchEntryBin) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
-        const offset = PanelBox.height / scale;
-        if (this._settings.get_boolean('show-padding')) {
-            _searchEntryBin.set_style(this._showInOverview ? `margin-top: 0px; padding-top: ${offset}px;` : null);
-        }
-        if (this._settings.get_boolean('show-margin')) {
-            _searchEntryBin.set_style(this._showInOverview ? `margin-top: ${offset}px; padding-top: 0px` : null);
-        }
+        const offset = PanelBox.height / scale; 
+        _searchEntryBin.set_style(this._showInOverview ? `padding-top: ${offset}px;` : null);
     }
 
     _updateIntellihideStatus() {
@@ -436,7 +431,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             [
                 PanelBox,
                 'notify::height',
-                this._updateSearchEntryPaddingOrMargin.bind(this)
+                this._updateSearchEntryPadding.bind(this)
             ],
             [
                 Main.layoutManager,
@@ -511,11 +506,6 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 this._settings,
                 'changed::enable-active-window',
                 this._updateIntellihideStatus.bind(this)
-            ],
-            [
-                this._settings,
-                'changed::show-padding',
-                this._updateSearchEntryPaddingOrMargin.bind(this)
             ]
         );
     }

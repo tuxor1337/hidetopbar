@@ -71,19 +71,6 @@ function buildPrefsWidget() {
         });
     });
 
-    ['show-padding', 
-     'show-margin'
-    ].forEach(function (s) {
-        let settings_radio = builder.get_object("check_" + s.replace(/-/g, "_"));
-        settings_radio.set_active(settings.get_boolean(s || false));
-        settings_radio.connect('notify::active', function (w) {
-            settings.set_boolean(s, w.active);
-        });
-        settings.connect('changed::' + s, function (k,b) {
-            settings_radio.set_active(settings.get_boolean(b));
-        });
-    });
-
     ['pressure-threshold',
      'pressure-timeout'
     ].forEach(function (s) {
