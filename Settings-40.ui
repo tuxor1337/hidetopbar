@@ -83,9 +83,12 @@
           </object>
         </child>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Show panel in overview</property>
             <layout>
               <property name="column">0</property>
               <property name="row">2</property>
@@ -98,33 +101,10 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel in overview</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">3</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">4</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
             <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">5</property>
+              <property name="row">3</property>
             </layout>
           </object>
         </child>
@@ -137,17 +117,7 @@
             <property name="label" translatable="yes">In the above case show overview, too</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">6</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">7</property>
+              <property name="row">4</property>
             </layout>
           </object>
         </child>
@@ -160,7 +130,7 @@
             <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">8</property>
+              <property name="row">5</property>
             </layout>
           </object>
         </child>
@@ -173,7 +143,7 @@
             <property name="label" translatable="yes">Pressure barrier's threshold:</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">9</property>
+              <property name="row">6</property>
             </layout>
           </object>
         </child>
@@ -186,7 +156,7 @@
             <property name="label" translatable="yes">Pressure barrier's timeout:</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">10</property>
+              <property name="row">7</property>
             </layout>
           </object>
         </child>
@@ -216,16 +186,6 @@
           </object>
         </child>
         <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">2</property>
-            </layout>
-          </object>
-        </child>
-        <child>
           <object class="GtkSwitch" id="toggle_show_in_overview">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
@@ -233,17 +193,7 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">3</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">4</property>
+              <property name="row">2</property>
             </layout>
           </object>
         </child>
@@ -255,7 +205,7 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">5</property>
+              <property name="row">3</property>
             </layout>
           </object>
         </child>
@@ -267,17 +217,7 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">6</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">7</property>
+              <property name="row">4</property>
             </layout>
           </object>
         </child>
@@ -289,7 +229,7 @@
             <property name="valign">center</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">8</property>
+              <property name="row">5</property>
             </layout>
           </object>
         </child>
@@ -302,7 +242,7 @@
             <property name="adjustment">adjust_pressure_threshold</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">9</property>
+              <property name="row">6</property>
             </layout>
           </object>
         </child>
@@ -315,7 +255,7 @@
             <property name="adjustment">adjust_pressure_timeout</property>
             <layout>
               <property name="column">1</property>
-              <property name="row">10</property>
+              <property name="row">7</property>
             </layout>
           </object>
         </child>

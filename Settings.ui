@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.40.0 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.24"/>
   <object class="GtkAdjustment" id="adjust_animation_time_autohide">
@@ -45,7 +45,7 @@
     <property name="visible">True</property>
     <property name="can-focus">True</property>
     <child>
-      <!-- n-columns=2 n-rows=11 -->
+      <!-- n-columns=2 n-rows=8 -->
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -91,7 +91,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">3</property>
+            <property name="top-attach">2</property>
           </packing>
         </child>
         <child>
@@ -104,7 +104,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">5</property>
+            <property name="top-attach">3</property>
           </packing>
         </child>
         <child>
@@ -117,7 +117,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">6</property>
+            <property name="top-attach">4</property>
           </packing>
         </child>
         <child>
@@ -130,7 +130,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">8</property>
+            <property name="top-attach">5</property>
           </packing>
         </child>
         <child>
@@ -143,7 +143,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">9</property>
+            <property name="top-attach">6</property>
           </packing>
         </child>
         <child>
@@ -156,7 +156,7 @@
           </object>
           <packing>
             <property name="left-attach">0</property>
-            <property name="top-attach">10</property>
+            <property name="top-attach">7</property>
           </packing>
         </child>
         <child>
@@ -193,7 +193,7 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">3</property>
+            <property name="top-attach">2</property>
           </packing>
         </child>
         <child>
@@ -205,7 +205,7 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">5</property>
+            <property name="top-attach">3</property>
           </packing>
         </child>
         <child>
@@ -217,7 +217,7 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">6</property>
+            <property name="top-attach">4</property>
           </packing>
         </child>
         <child>
@@ -229,7 +229,7 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">8</property>
+            <property name="top-attach">5</property>
           </packing>
         </child>
         <child>
@@ -242,7 +242,7 @@
           </object>
           <packing>
             <property name="left-attach">1</property>
-            <property name="top-attach">9</property>
+            <property name="top-attach">6</property>
           </packing>
         </child>
         <child>
@@ -252,66 +252,6 @@
             <property name="halign">end</property>
             <property name="valign">center</property>
             <property name="adjustment">adjust_pressure_timeout</property>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">10</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-          </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">7</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
           </object>
           <packing>
             <property name="left-attach">1</property>
@@ -433,8 +373,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
             <property name="wrap">True</property>
+            <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -448,8 +388,8 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
             <property name="wrap">True</property>
+            <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -463,9 +403,9 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
             <property name="wrap">True</property>
             <property name="xalign">0</property>
+            <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -565,9 +505,9 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
             <property name="wrap">True</property>
             <property name="xalign">0</property>
+            <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
@@ -581,9 +521,9 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Only when the active window takes the space</property>
             <property name="wrap">True</property>
             <property name="xalign">0</property>
+            <property name="label" translatable="yes">Only when the active window takes the space</property>
           </object>
           <packing>
             <property name="left-attach">0</property>
