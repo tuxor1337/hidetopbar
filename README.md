@@ -47,7 +47,8 @@ extensions directory, compile by running `make`, install and restart GNOME Shell
     gnome-extensions enable hidetopbar@mathieu.bidon.ca
     gnome-shell --replace &
 
-The last command restarts GNOME Shell.
+The last command restarts GNOME Shell in X11, but it won't work under Wayland. You might
+need to log off and on again for the install procedure to take effect under Wayland.
 
 
 Updating the language strings
