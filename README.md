@@ -87,7 +87,7 @@ This is an issue of the extension [Dash to Dock](https://github.com/micheleg/das
 License
 -------
 
-Copyright (c) 2013-2022 Thomas Vogt.
+Copyright (c) 2013-2023 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
