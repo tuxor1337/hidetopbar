@@ -172,12 +172,11 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _isHovering(x, y) {
-        DEBUG("PanelVisibilityManager _isHovering(" + x + ", " + y + ")");
         const result = (y >= this._staticBox.y1 &&
                         y < this._staticBox.y2 &&
                         x >= this._staticBox.x1 &&
                         x < this._staticBox.x2);
-        DEBUG("PanelVisibilityManager _isHovering => " + result);
+        DEBUG("PanelVisibilityManager _isHovering(" + x + ", " + y + ") => " + result);
         return result;
     }
 

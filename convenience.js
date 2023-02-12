@@ -29,7 +29,7 @@ var getCircularReplacer = () => {
             if (seen.has(value)) {
                 return;
             }
-                seen.add(value);
+            seen.add(value);
         }
         return value;
     };
