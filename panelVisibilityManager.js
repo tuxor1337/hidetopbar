@@ -372,15 +372,15 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     _updateSettingsShowInOverview() {
         DEBUG("PanelVisibilityManager _updateSettingsShowInOverview()");
         this._showInOverview = this._settings.get_boolean('show-in-overview');
-        this._updateSearchEntryMargin();
+        this._updateSearchEntryPadding();
     }
 
-    _updateSearchEntryMargin() {
+    _updateSearchEntryPadding() {
         DEBUG("PanelVisibilityManager _updateSearchEntryMargin()");
         if (!_searchEntryBin) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
-        const margin = PanelBox.height / scale;
-        _searchEntryBin.set_style(this._showInOverview ? `margin-top: ${margin}px;` : null);
+        const offset = PanelBox.height / scale; 
+        _searchEntryBin.set_style(this._showInOverview ? `padding-top: ${offset}px;` : null);
     }
 
     _updateIntellihideStatus() {
@@ -452,7 +452,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             [
                 PanelBox,
                 'notify::height',
-                this._updateSearchEntryMargin.bind(this)
+                this._updateSearchEntryPadding.bind(this)
             ],
             [
                 Main.layoutManager,

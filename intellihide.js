@@ -82,7 +82,7 @@ var Intellihide = class HideTopBar_Intellihide {
         this._topApp = null; // The application whose window is on top on the monitor with the dock.
 
         this._isEnabled = false;
-        this.status = OverlapStatus.UNDEFINED;
+        this._status = OverlapStatus.UNDEFINED;
         this._targetBox = null;
 
         this._checkOverlapTimeoutContinue = false;
@@ -380,6 +380,11 @@ var Intellihide = class HideTopBar_Intellihide {
         let metaWindow = wa.get_meta_window();
 
         if (!metaWindow)
+            return false;
+
+        const ignoreApps = [ "com.rastersoft.ding", "com.desktop.ding" ];
+        const wmApp = metaWindow.get_gtk_application_id();
+        if (ignoreApps.includes(wmApp) && metaWindow.is_skip_taskbar())
             return false;
 
         // The DropDownTerminal extension uses the POPUP_MENU window type hint

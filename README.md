@@ -5,7 +5,7 @@ This GNOME extension helps to hide GNOME's top bar when it gets into your way.
 
 In the extension's preferences, different behaviors can be specified: unhiding on mouse-over or on pressing a keyboard shortcut, or when no window requires the space.
 
-![clip](https://user-images.githubusercontent.com/1518387/115446545-a6201500-a217-11eb-84f9-abbcd3251a10.gif)
+![clip](./preview.gif)
 
 Installation from extensions.gnome.org
 --------------------------------------
@@ -40,14 +40,15 @@ The procedure to install from source is as follows: Check out the source code in
 extensions directory, compile by running `make`, install and restart GNOME Shell. For example:
 
     cd ~/.local/share/gnome-shell/extensions/
-    git clone https://github.com/tuxor1337/hidetopbar.git hidetopbar@mathieu.bidon.ca
+    git clone https://gitlab.gnome.org/tuxor1337/hidetopbar.git hidetopbar@mathieu.bidon.ca
     cd hidetopbar@mathieu.bidon.ca
     make
     cd ..
     gnome-extensions enable hidetopbar@mathieu.bidon.ca
     gnome-shell --replace &
 
-The last command restarts GNOME Shell.
+The last command restarts GNOME Shell in X11, but it won't work under Wayland. You might
+need to log off and on again for the install procedure to take effect under Wayland.
 
 
 Updating the language strings
@@ -73,7 +74,7 @@ Troubleshooting
 
 ### Can I assign a shortcut to temporally disable the autohiding altogether?
 
-Follow the [instructions to assign a system-wide shortcut that disables/enables the extension](https://github.com/tuxor1337/hidetopbar/issues/43#issuecomment-796583424).
+Follow the [instructions to assign a system-wide shortcut that disables/enables the extension](https://gitlab.gnome.org/tuxor1337/hidetopbar/issues/43#issuecomment-796583424).
 
 ### Notification pop-ups cause the top bar to hide.
 
@@ -86,7 +87,7 @@ This is an issue of the extension [Dash to Dock](https://github.com/micheleg/das
 License
 -------
 
-Copyright (c) 2013-2022 Thomas Vogt.
+Copyright (c) 2013-2023 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
