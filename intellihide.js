@@ -114,8 +114,8 @@ var Intellihide = class HideTopBar_Intellihide {
             'notify::focus-app',
             this._checkOverlap.bind(this)
         ], [
-            // update wne monitor changes, for instance in multimonitor when monitor are attached
-            Meta.MonitorManager.get(),
+            // updates when monitor changes, for instance in multimonitor, when monitors are attached
+            Convenience.getMonitorManager(),
             'monitors-changed',
             this._checkOverlap.bind(this)
         ]);
