@@ -361,7 +361,7 @@ var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     _updateSearchEntryPadding() {
         if (!_searchEntryBin) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
-        const offset = PanelBox.height / scale; 
+        const offset = this._showInOverview ? PanelBox.height / scale : 0; 
         _searchEntryBin.set_style(this._showInOverview ? `padding-top: ${offset}px;` : null);
     }
 
