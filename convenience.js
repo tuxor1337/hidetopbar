@@ -17,6 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const Meta = imports.gi.Meta;
+
 var DEBUG = function (message) {
     // Enable for debugging purposes.
     if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
