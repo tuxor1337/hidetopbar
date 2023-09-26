@@ -17,19 +17,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-const GLib = imports.gi.GLib;
-const Meta = imports.gi.Meta;
-const Shell = imports.gi.Shell;
-const Clutter = imports.gi.Clutter;
+import GLib from 'gi://GLib';
+import Meta from 'gi://Meta';
+import Shell from 'gi://Shell';
+import Clutter from 'gi://Clutter';
 
-const Main = imports.ui.main;
-const Layout = imports.ui.layout;
-const PointerWatcher = imports.ui.pointerWatcher;
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import * as Layout from 'resource:///org/gnome/shell/ui/layout.js';
+import * as PointerWatcher from 'resource:///org/gnome/shell/ui/pointerWatcher.js';
 
-const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
-const Intellihide = Me.imports.intellihide;
-const DesktopIconsIntegration = Me.imports.desktopIconsIntegration;
+import * as Convenience from './convenience.js';
+import * as Intellihide from './intellihide.js';
+import * as DesktopIconsIntegration from './desktopIconsIntegration.js';
 const DEBUG = Convenience.DEBUG;
 
 const MessageTray = Main.messageTray;
@@ -37,7 +36,7 @@ const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
 const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
 
-var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
+export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
     constructor(settings, monitorIndex) {
         this._monitorIndex = monitorIndex;

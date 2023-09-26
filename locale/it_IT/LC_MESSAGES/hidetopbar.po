@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-27 09:16+0200\n"
+"POT-Creation-Date: 2023-09-25 11:00-0300\n"
 "PO-Revision-Date: 2019-10-21 01:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,62 +18,68 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Settings-40.ui:64
+#: Settings-40.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Mostra il pannello quando il mouse si avvicina al bordo dello schermo"
 
-#: Settings-40.ui:77 Settings.ui:77
+#: Settings-40.ui:78 Settings.ui:77
 #, fuzzy
 #| msgid "In the above case show overview, too"
 msgid "In the above case, also show panel when fullscreen"
 msgstr "Nel caso superiore mostra anche la panoramica"
 
-#: Settings-40.ui:90 Settings.ui:90
+#: Settings-40.ui:91 Settings.ui:90
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings-40.ui:103 Settings.ui:103
+#: Settings-40.ui:104 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Mantieni l'hot corner sensibile, anche da nascosto"
 
-#: Settings-40.ui:116 Settings.ui:116
+#: Settings-40.ui:117 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "Nel caso superiore mostra anche la panoramica"
 
-#: Settings-40.ui:129 Settings.ui:129
+#: Settings-40.ui:130 Settings.ui:129
+#, fuzzy
+#| msgid "Keep hot corner sensitive, even in hidden state"
+msgid "Keep round corners when top bar is hidden"
+msgstr "Mantieni l'hot corner sensibile, anche da nascosto"
+
+#: Settings-40.ui:143 Settings.ui:142
 #, fuzzy
 #| msgid "Pressure barrier's threshold."
 msgid "Pressure barrier's threshold:"
 msgstr "Soglia di pressione della barriera."
 
-#: Settings-40.ui:142 Settings.ui:142
+#: Settings-40.ui:156 Settings.ui:155
 #, fuzzy
 #| msgid "Pressure barrier's timeout."
 msgid "Pressure barrier's timeout:"
 msgstr "Timeout di pressione della barriera."
 
-#: Settings-40.ui:242 Settings.ui:245
+#: Settings-40.ui:268 Settings.ui:270
 msgid "Sensitivity"
 msgstr "Sensibilità"
 
-#: Settings-40.ui:262 Settings.ui:268
+#: Settings-40.ui:288 Settings.ui:293
 #, fuzzy
 #| msgid "Slide animation time when entering/leaving overview."
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Tempo di animazione quando entri/esci dalla panoramica."
 
-#: Settings-40.ui:275 Settings.ui:281
+#: Settings-40.ui:301 Settings.ui:306
 #, fuzzy
 #| msgid "Slide animation time when mouse approaches edge of the screen."
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 "Tempo di animazione quando il mouse si avvicina al bordo dello schermo."
 
-#: Settings-40.ui:315 Settings.ui:326
+#: Settings-40.ui:341 Settings.ui:351
 msgid "Animation"
 msgstr "Animazione"
 
-#: Settings-40.ui:338 Settings.ui:352
+#: Settings-40.ui:364 Settings.ui:377
 #, fuzzy
 #| msgid "Key that triggers the bar to be shown."
 msgid ""
@@ -81,7 +87,7 @@ msgid ""
 "shortcut):"
 msgstr "Tasto che rende visibile la barra."
 
-#: Settings-40.ui:354 Settings.ui:367
+#: Settings-40.ui:380 Settings.ui:392
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
 msgid ""
@@ -90,25 +96,25 @@ msgid ""
 msgstr ""
 "Ritardo prima che la barra ritorni nascosta dopo la pressione del tasto."
 
-#: Settings-40.ui:370 Settings.ui:383
+#: Settings-40.ui:396 Settings.ui:408
 #, fuzzy
 #| msgid "Pressing the shortcut again rehides the panel."
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Premere la scorciatoia nuovamente ri-nasconde il pannello."
 
-#: Settings-40.ui:442 Settings.ui:458
+#: Settings-40.ui:468 Settings.ui:483
 msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da Tastiera"
 
-#: Settings-40.ui:465 Settings.ui:485
+#: Settings-40.ui:491 Settings.ui:510
 msgid "Only hide panel when a window takes the space"
 msgstr "Nascondi il pannello solo quando una finestra ne occupa lo spazio"
 
-#: Settings-40.ui:481 Settings.ui:501
+#: Settings-40.ui:507 Settings.ui:526
 msgid "Only when the active window takes the space"
 msgstr "Solo quando la finestra attiva occupa lo spazio"
 
-#: Settings-40.ui:518 Settings.ui:541
+#: Settings-40.ui:544 Settings.ui:566
 msgid "Intellihide"
 msgstr "Nascondi Automaticamente"
 

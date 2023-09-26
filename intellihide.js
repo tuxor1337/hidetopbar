@@ -22,26 +22,26 @@
 // modifications. Dash to Dock is distributed under the terms of the GNU
 // General Public License, version 2 or later.
 
-const GLib = imports.gi.GLib;
-const Meta = imports.gi.Meta;
-const Shell = imports.gi.Shell;
+import GLib from 'gi://GLib';
+import Meta from 'gi://Meta';
+import Shell from 'gi://Shell';
 
-const Main = imports.ui.main;
-const Signals = imports.signals;
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
-const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
+const {signals: Signals} = imports;
+
+import * as Convenience from './convenience.js';
 
 // A good compromise between reactivity and efficiency; to be tuned.
-const INTELLIHIDE_CHECK_INTERVAL = 100;
+export const INTELLIHIDE_CHECK_INTERVAL = 100;
 
-const OverlapStatus = {
+export const OverlapStatus = {
     UNDEFINED: -1,
     FALSE: 0,
     TRUE: 1
 };
 
-const IntellihideMode = {
+export const IntellihideMode = {
     ALL_WINDOWS: 0,
     FOCUS_APPLICATION_WINDOWS: 1,
     MAXIMIZED_WINDOWS : 2
@@ -49,7 +49,7 @@ const IntellihideMode = {
 
 // List of windows type taken into account. Order is important (keep the original
 // enum order).
-const handledWindowTypes = [
+export const handledWindowTypes = [
     Meta.WindowType.NORMAL,
     Meta.WindowType.DOCK,
     Meta.WindowType.DIALOG,
@@ -65,7 +65,7 @@ const handledWindowTypes = [
  * Intallihide object: emit 'status-changed' signal when the overlap of windows
  * with the provided targetBoxClutter.ActorBox changes;
  */
-var Intellihide = class HideTopBar_Intellihide {
+export var Intellihide = class HideTopBar_Intellihide {
 
     constructor(settings, monitorIndex) {
         // Load settings

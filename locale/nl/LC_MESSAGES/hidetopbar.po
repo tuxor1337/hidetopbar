@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hide Top Bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-22 22:48+0200\n"
+"POT-Creation-Date: 2023-09-25 11:00-0300\n"
 "PO-Revision-Date: 2022-03-05 17:13+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -18,51 +18,57 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: Settings-40.ui:64
+#: Settings-40.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Bovenbalk tonen als de muisaanwijzer de rand van het scherm raakt"
 
-#: Settings-40.ui:77 Settings.ui:77
+#: Settings-40.ui:78 Settings.ui:77
 msgid "In the above case, also show panel when fullscreen"
 msgstr "Bovenstaande optie ook hanteren in beeldvullende modus"
 
-#: Settings-40.ui:90 Settings.ui:90
+#: Settings-40.ui:91 Settings.ui:90
 msgid "Show panel in overview"
 msgstr "Bovenbalk tonen op overzicht"
 
-#: Settings-40.ui:103 Settings.ui:103
+#: Settings-40.ui:104 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
 
-#: Settings-40.ui:116 Settings.ui:116
+#: Settings-40.ui:117 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "Bovenstaande optie ook gebruiken om overzicht te tonen"
 
-#: Settings-40.ui:129 Settings.ui:129
+#: Settings-40.ui:130 Settings.ui:129
+#, fuzzy
+#| msgid "Keep hot corner sensitive, even in hidden state"
+msgid "Keep round corners when top bar is hidden"
+msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
+
+#: Settings-40.ui:143 Settings.ui:142
 msgid "Pressure barrier's threshold:"
 msgstr "Gevoeligheid van rand:"
 
-#: Settings-40.ui:142 Settings.ui:142
+#: Settings-40.ui:156 Settings.ui:155
 msgid "Pressure barrier's timeout:"
 msgstr "Gevoeligheid van rand (time-out):"
 
-#: Settings-40.ui:242 Settings.ui:245
+#: Settings-40.ui:268 Settings.ui:270
 msgid "Sensitivity"
 msgstr "Gevoeligheid"
 
-#: Settings-40.ui:262 Settings.ui:268
+#: Settings-40.ui:288 Settings.ui:293
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Duur van verschuifanimatie bij openen/sluiten van overzicht:"
 
-#: Settings-40.ui:275 Settings.ui:281
+#: Settings-40.ui:301 Settings.ui:306
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Duur van verschuifanimatie bij aanraken van schermrand:"
 
-#: Settings-40.ui:315 Settings.ui:326
+#: Settings-40.ui:341 Settings.ui:351
 msgid "Animation"
 msgstr "Animatie"
 
-#: Settings-40.ui:338 Settings.ui:352
+#: Settings-40.ui:364 Settings.ui:377
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
@@ -70,36 +76,34 @@ msgstr ""
 "De toets waarmee de balk kan worden getoond (druk op backspace om uit te "
 "schakelen):"
 
-#: Settings-40.ui:354 Settings.ui:367
+#: Settings-40.ui:380 Settings.ui:392
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr ""
-"Wachttijd alvorens de balk wordt verborgen na gebruik van de sneltoets "
-"(0 = uitschakelen):"
+"Wachttijd alvorens de balk wordt verborgen na gebruik van de sneltoets (0 = "
+"uitschakelen):"
 
-#: Settings-40.ui:370 Settings.ui:383
+#: Settings-40.ui:396 Settings.ui:408
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Sneltoets opnieuw indrukken om bovenbalk te verbergen"
 
-#: Settings-40.ui:442 Settings.ui:458
+#: Settings-40.ui:468 Settings.ui:483
 msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: Settings-40.ui:465 Settings.ui:485
+#: Settings-40.ui:491 Settings.ui:510
 msgid "Only hide panel when a window takes the space"
 msgstr "Bovenbalk alleen verbergen als een venster de ruimte opeist"
 
-#: Settings-40.ui:481 Settings.ui:501
+#: Settings-40.ui:507 Settings.ui:526
 msgid "Only when the active window takes the space"
-msgstr ""
-"Bovenbalk alleen verbergen als het huidige venster de ruimte opeist"
+msgstr "Bovenbalk alleen verbergen als het huidige venster de ruimte opeist"
 
-#: Settings-40.ui:518 Settings.ui:541
+#: Settings-40.ui:544 Settings.ui:566
 msgid "Intellihide"
 msgstr "Intelligent verbergen"
 
 #: Settings.ui:64
 msgid "Show panel when mouse approaches top edge of the screen"
-msgstr ""
-"Bovenbalk tonen als de muisaanwijzer de bovenkant van het scherm raakt"
+msgstr "Bovenbalk tonen als de muisaanwijzer de bovenkant van het scherm raakt"

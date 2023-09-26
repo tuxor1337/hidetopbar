@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-27 09:16+0200\n"
+"POT-Creation-Date: 2023-09-25 11:00-0300\n"
 "PO-Revision-Date: 2021-09-14 11:49+0200\n"
 "Last-Translator: Philipp Kiemle <philipp.kiemle@gmail.com>\n"
 "Language-Team: German <>\n"
@@ -20,58 +20,64 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Settings-40.ui:64
+#: Settings-40.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Panel anzeigen, wenn die Maus den oberen Bildschirmrand berührt"
 
-#: Settings-40.ui:77 Settings.ui:77
+#: Settings-40.ui:78 Settings.ui:77
 msgid "In the above case, also show panel when fullscreen"
 msgstr "In obigem Fall das Panel auch im Vollbildmodus anzeigen"
 
-#: Settings-40.ui:90 Settings.ui:90
+#: Settings-40.ui:91 Settings.ui:90
 msgid "Show panel in overview"
 msgstr "Panel in der Übersicht anzeigen"
 
-#: Settings-40.ui:103 Settings.ui:103
+#: Settings-40.ui:104 Settings.ui:103
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Funktionale Ecke aktiviert lassen, selbst wenn das Panel versteckt ist"
 
-#: Settings-40.ui:116 Settings.ui:116
+#: Settings-40.ui:117 Settings.ui:116
 msgid "In the above case show overview, too"
 msgstr "In obigem Fall auch in die Übersicht wechseln"
 
-#: Settings-40.ui:129 Settings.ui:129
+#: Settings-40.ui:130 Settings.ui:129
+#, fuzzy
+#| msgid "Keep hot corner sensitive, even in hidden state"
+msgid "Keep round corners when top bar is hidden"
+msgstr "Funktionale Ecke aktiviert lassen, selbst wenn das Panel versteckt ist"
+
+#: Settings-40.ui:143 Settings.ui:142
 msgid "Pressure barrier's threshold:"
 msgstr "Schwellenwert der Druckempfindlichkeit:"
 
-#: Settings-40.ui:142 Settings.ui:142
+#: Settings-40.ui:156 Settings.ui:155
 msgid "Pressure barrier's timeout:"
 msgstr "Time-Out der Druckempfindlichkeit:"
 
-#: Settings-40.ui:242 Settings.ui:245
+#: Settings-40.ui:268 Settings.ui:270
 msgid "Sensitivity"
 msgstr "Empfindlichkeit"
 
-#: Settings-40.ui:262 Settings.ui:268
+#: Settings-40.ui:288 Settings.ui:293
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Animationszeit beim Betreten/Verlassen der Übersicht:"
 
-#: Settings-40.ui:275 Settings.ui:281
+#: Settings-40.ui:301 Settings.ui:306
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Animationszeit, wenn die Maus den Bildschirmrand berührt:"
 
-#: Settings-40.ui:315 Settings.ui:326
+#: Settings-40.ui:341 Settings.ui:351
 msgid "Animation"
 msgstr "Animation"
 
-#: Settings-40.ui:338 Settings.ui:352
+#: Settings-40.ui:364 Settings.ui:377
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr ""
 "Taste, um die Leiste anzuzeigen (Rücktaste drücken um zu deaktivieren):"
 
-#: Settings-40.ui:354 Settings.ui:367
+#: Settings-40.ui:380 Settings.ui:392
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
@@ -79,23 +85,23 @@ msgstr ""
 "Zeit, nach der die Leiste nach dem Drücken der Taste wieder ausgeblendet "
 "wird (beim Wert 0 wird nicht automatisch ausgeblendet):"
 
-#: Settings-40.ui:370 Settings.ui:383
+#: Settings-40.ui:396 Settings.ui:408
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Erneutes Drücken des Tastenkürzels versteckt die Leiste wieder"
 
-#: Settings-40.ui:442 Settings.ui:458
+#: Settings-40.ui:468 Settings.ui:483
 msgid "Keyboard shortcuts"
 msgstr "Tastaturkürzel"
 
-#: Settings-40.ui:465 Settings.ui:485
+#: Settings-40.ui:491 Settings.ui:510
 msgid "Only hide panel when a window takes the space"
 msgstr "Panel nur verstecken, wenn ein Fenster im Weg ist"
 
-#: Settings-40.ui:481 Settings.ui:501
+#: Settings-40.ui:507 Settings.ui:526
 msgid "Only when the active window takes the space"
 msgstr "Nur wenn das aktive Fenster im Weg ist"
 
-#: Settings-40.ui:518 Settings.ui:541
+#: Settings-40.ui:544 Settings.ui:566
 msgid "Intellihide"
 msgstr "Intelligentes Ausblenden"
 
