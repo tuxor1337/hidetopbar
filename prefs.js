@@ -28,21 +28,15 @@ import {
 export default class HideTopBarPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         let settings = this.getSettings();
-        const isGtk4 = Gtk.get_major_version() >= '4';
 
         let frame = new Gtk.ScrolledWindow(
             { hscrollbar_policy: Gtk.PolicyType.NEVER });
         let builder = new Gtk.Builder();
         builder.set_translation_domain("hidetopbar");
-        let settingsPath = isGtk4 ? '/Settings-40.ui' : '/Settings.ui'
-        builder.add_from_file(this.path + settingsPath);
+        builder.add_from_file(this.path + '/Settings-45.ui');
 
         let notebook = builder.get_object("settings_notebook");
-        if (isGtk4) {
-            frame.set_child(notebook);
-        } else {
-            frame.add(notebook);
-        }
+        frame.set_child(notebook);
 
         /******************************************************************************
          ************************************** Section Sensitivity *******************
@@ -192,9 +186,6 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
              });
          });
 
-        if (!isGtk4) {
-            frame.show_all();
-        }
         const group = new Adw.PreferencesGroup();
         group.add(frame);
 

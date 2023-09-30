@@ -17,86 +17,82 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Settings-40.ui:65
+#: Settings-45.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 
-#: Settings-40.ui:78 Settings.ui:77
+#: Settings-45.ui:78
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 
-#: Settings-40.ui:91 Settings.ui:90
+#: Settings-45.ui:91
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings-40.ui:104 Settings.ui:103
+#: Settings-45.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 
-#: Settings-40.ui:117 Settings.ui:116
+#: Settings-45.ui:117
 msgid "In the above case show overview, too"
 msgstr ""
 
-#: Settings-40.ui:130 Settings.ui:129
+#: Settings-45.ui:130
 msgid "Keep round corners when top bar is hidden"
 msgstr ""
 
-#: Settings-40.ui:143 Settings.ui:142
+#: Settings-45.ui:143
 msgid "Pressure barrier's threshold:"
 msgstr ""
 
-#: Settings-40.ui:156 Settings.ui:155
+#: Settings-45.ui:156
 msgid "Pressure barrier's timeout:"
 msgstr ""
 
-#: Settings-40.ui:268 Settings.ui:270
+#: Settings-45.ui:268
 msgid "Sensitivity"
 msgstr ""
 
-#: Settings-40.ui:288 Settings.ui:293
+#: Settings-45.ui:288
 msgid "Slide animation time when entering/leaving overview:"
 msgstr ""
 
-#: Settings-40.ui:301 Settings.ui:306
+#: Settings-45.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 
-#: Settings-40.ui:341 Settings.ui:351
+#: Settings-45.ui:341
 msgid "Animation"
 msgstr ""
 
-#: Settings-40.ui:364 Settings.ui:377
+#: Settings-45.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr ""
 
-#: Settings-40.ui:380 Settings.ui:392
+#: Settings-45.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr ""
 
-#: Settings-40.ui:396 Settings.ui:408
+#: Settings-45.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr ""
 
-#: Settings-40.ui:468 Settings.ui:483
+#: Settings-45.ui:468
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: Settings-40.ui:491 Settings.ui:510
+#: Settings-45.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr ""
 
-#: Settings-40.ui:507 Settings.ui:526
+#: Settings-45.ui:507
 msgid "Only when the active window takes the space"
 msgstr ""
 
-#: Settings-40.ui:544 Settings.ui:566
+#: Settings-45.ui:544
 msgid "Intellihide"
-msgstr ""
-
-#: Settings.ui:64
-msgid "Show panel when mouse approaches top edge of the screen"
 msgstr ""

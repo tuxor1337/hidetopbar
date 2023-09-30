@@ -18,70 +18,70 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: Settings-40.ui:65
+#: Settings-45.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 "Afficher la barre supérieure quand la souris approche le bord de l'écran"
 
-#: Settings-40.ui:78 Settings.ui:77
+#: Settings-45.ui:78
 #, fuzzy
 #| msgid "In the above case show overview, too"
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 "Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
 
-#: Settings-40.ui:91 Settings.ui:90
+#: Settings-45.ui:91
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings-40.ui:104 Settings.ui:103
+#: Settings-45.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Conserver le coin actif, même si la barre supérieure est masquée"
 
-#: Settings-40.ui:117 Settings.ui:116
+#: Settings-45.ui:117
 msgid "In the above case show overview, too"
 msgstr ""
 "Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
 
-#: Settings-40.ui:130 Settings.ui:129
+#: Settings-45.ui:130
 #, fuzzy
 #| msgid "Keep hot corner sensitive, even in hidden state"
 msgid "Keep round corners when top bar is hidden"
 msgstr "Conserver le coin actif, même si la barre supérieure est masquée"
 
-#: Settings-40.ui:143 Settings.ui:142
+#: Settings-45.ui:143
 #, fuzzy
 #| msgid "Pressure barrier's threshold."
 msgid "Pressure barrier's threshold:"
 msgstr "Seuil de pression (force nécessaire à la souris pour déclencher)"
 
-#: Settings-40.ui:156 Settings.ui:155
+#: Settings-45.ui:156
 #, fuzzy
 #| msgid "Pressure barrier's timeout."
 msgid "Pressure barrier's timeout:"
 msgstr "Délai de pression "
 
-#: Settings-40.ui:268 Settings.ui:270
+#: Settings-45.ui:268
 msgid "Sensitivity"
 msgstr "Comportement, Sensibilité"
 
-#: Settings-40.ui:288 Settings.ui:293
+#: Settings-45.ui:288
 #, fuzzy
 #| msgid "Slide animation time when entering/leaving overview."
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Durée d'animation en entrant ou sortant de l'apercu"
 
-#: Settings-40.ui:301 Settings.ui:306
+#: Settings-45.ui:301
 #, fuzzy
 #| msgid "Slide animation time when mouse approaches edge of the screen."
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Durée d'animation du masquage de la barre supérieure"
 
-#: Settings-40.ui:341 Settings.ui:351
+#: Settings-45.ui:341
 msgid "Animation"
 msgstr "Animation"
 
-#: Settings-40.ui:364 Settings.ui:377
+#: Settings-45.ui:364
 #, fuzzy
 #| msgid "Key that triggers the bar to be shown."
 msgid ""
@@ -89,7 +89,7 @@ msgid ""
 "shortcut):"
 msgstr "Touche déclenchant l'affichage de la barre supérieure"
 
-#: Settings-40.ui:380 Settings.ui:392
+#: Settings-45.ui:380
 #, fuzzy
 #| msgid "Delay before the bar rehides after key press."
 msgid ""
@@ -98,31 +98,24 @@ msgid ""
 msgstr ""
 "Délai avant remasquage de la barre supérieure après appui sur la touche"
 
-#: Settings-40.ui:396 Settings.ui:408
+#: Settings-45.ui:396
 #, fuzzy
 #| msgid "Pressing the shortcut again rehides the panel."
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure"
 
-#: Settings-40.ui:468 Settings.ui:483
+#: Settings-45.ui:468
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
 
-#: Settings-40.ui:491 Settings.ui:510
+#: Settings-45.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "Masque uniquement quand une fenêtre couvre sa place"
 
-#: Settings-40.ui:507 Settings.ui:526
+#: Settings-45.ui:507
 msgid "Only when the active window takes the space"
 msgstr "Masque uniquement quand la fenêtre active couvre la barre supérieure"
 
-#: Settings-40.ui:544 Settings.ui:566
+#: Settings-45.ui:544
 msgid "Intellihide"
 msgstr "Masquage intelligent"
-
-#: Settings.ui:64
-#, fuzzy
-#| msgid "Show panel when mouse approaches edge of the screen"
-msgid "Show panel when mouse approaches top edge of the screen"
-msgstr ""
-"Afficher la barre supérieure quand la souris approche le bord de l'écran"
