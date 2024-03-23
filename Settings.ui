@@ -43,6 +43,7 @@
   </object>
   <object class="GtkNotebook" id="settings_notebook">
     <property name="visible">True</property>
+    <property name="vexpand">True</property>
     <property name="can-focus">True</property>
     <child>
       <!-- n-columns=2 n-rows=8 -->
@@ -61,12 +62,12 @@
             <property name="can-focus">False</property>
             <property name="halign">start</property>
             <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel when mouse approaches top edge of the screen</property>
+            <property name="label" translatable="yes">Show panel when mouse approaches edge of the screen</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -75,11 +76,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">In the above case, also show panel when fullscreen</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -88,11 +89,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Show panel in overview</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">2</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -101,11 +102,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">3</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">3</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -114,11 +115,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">In the above case show overview, too</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">4</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">4</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -127,11 +128,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">5</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">5</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -140,11 +141,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Pressure barrier's threshold:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">6</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">6</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -153,11 +154,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Pressure barrier's timeout:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">7</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">7</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_mouse_sensitive">
@@ -165,12 +166,12 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
-            <signal name="notify::active" handler="toggle_setting" swapped="no"/>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
+            <!-- <signal name="notify::active" handler="toggle_setting" swapped="no"/> -->
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_mouse_sensitive_fullscreen_window">
@@ -178,11 +179,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_show_in_overview">
@@ -190,11 +191,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">2</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_hot_corner">
@@ -202,11 +203,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">3</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">3</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_mouse_triggers_overview">
@@ -214,11 +215,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">4</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">4</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_keep_round_corners">
@@ -226,11 +227,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">5</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">5</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="spin_pressure_threshold">
@@ -239,11 +240,11 @@
             <property name="halign">end</property>
             <property name="valign">center</property>
             <property name="adjustment">adjust_pressure_threshold</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">6</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">6</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="spin_pressure_timeout">
@@ -252,16 +253,13 @@
             <property name="halign">end</property>
             <property name="valign">center</property>
             <property name="adjustment">adjust_pressure_timeout</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">7</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">7</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="tab-expand">True</property>
-      </packing>
     </child>
     <child type="tab">
       <object class="GtkLabel">
@@ -269,9 +267,6 @@
         <property name="can-focus">False</property>
         <property name="label" translatable="yes">Sensitivity</property>
       </object>
-      <packing>
-        <property name="tab-fill">False</property>
-      </packing>
     </child>
     <child>
       <!-- n-columns=2 n-rows=2 -->
@@ -291,11 +286,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Slide animation time when entering/leaving overview:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -304,11 +299,11 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="label" translatable="yes">Slide animation time when mouse approaches edge of the screen:</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="spin_animation_time_overview">
@@ -318,11 +313,11 @@
             <property name="valign">center</property>
             <property name="adjustment">adjust_animation_time_overview</property>
             <property name="digits">1</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="spin_animation_time_autohide">
@@ -331,18 +326,13 @@
             <property name="halign">end</property>
             <property name="valign">center</property>
             <property name="adjustment">adjust_animation_time_autohide</property>
-            <property name="digits">1</property>
+            <property name="digits">1</property><layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="position">1</property>
-        <property name="tab-expand">True</property>
-      </packing>
     </child>
     <child type="tab">
       <object class="GtkLabel">
@@ -350,10 +340,6 @@
         <property name="can-focus">False</property>
         <property name="label" translatable="yes">Animation</property>
       </object>
-      <packing>
-        <property name="position">1</property>
-        <property name="tab-fill">False</property>
-      </packing>
     </child>
     <child>
       <!-- n-columns=2 n-rows=3 -->
@@ -374,12 +360,13 @@
             <property name="valign">center</property>
             <property name="hexpand">True</property>
             <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -389,12 +376,13 @@
             <property name="valign">center</property>
             <property name="hexpand">True</property>
             <property name="wrap">True</property>
+            <property name="xalign">0</property>
             <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -406,11 +394,11 @@
             <property name="wrap">True</property>
             <property name="xalign">0</property>
             <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">2</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkTreeView">
@@ -420,13 +408,17 @@
             <property name="headers-visible">False</property>
             <property name="enable-search">False</property>
             <property name="show-expanders">False</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
             <child internal-child="selection">
               <object class="GtkTreeSelection"/>
             </child>
             <child>
               <object class="GtkTreeViewColumn">
                 <property name="min-width">200</property>
-                <property name="title">column</property>
+                <property name="title" translatable="no">column</property>
                 <property name="sort-column-id">0</property>
                 <child>
                   <object class="GtkCellRendererAccel" id="accel_shortcut_keybind">
@@ -440,10 +432,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="spin_shortcut_delay">
@@ -453,11 +441,11 @@
             <property name="valign">center</property>
             <property name="adjustment">adjust_shortcut_delay</property>
             <property name="digits">1</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_shortcut_toggles">
@@ -465,16 +453,13 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">2</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">2</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="position">2</property>
-      </packing>
     </child>
     <child type="tab">
       <object class="GtkLabel">
@@ -482,10 +467,6 @@
         <property name="can-focus">False</property>
         <property name="label" translatable="yes">Keyboard shortcuts</property>
       </object>
-      <packing>
-        <property name="position">3</property>
-        <property name="tab-fill">False</property>
-      </packing>
     </child>
     <child>
       <!-- n-columns=2 n-rows=2 -->
@@ -508,11 +489,11 @@
             <property name="wrap">True</property>
             <property name="xalign">0</property>
             <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -524,11 +505,11 @@
             <property name="wrap">True</property>
             <property name="xalign">0</property>
             <property name="label" translatable="yes">Only when the active window takes the space</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">0</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_enable_intellihide">
@@ -536,11 +517,11 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSwitch" id="toggle_enable_active_window">
@@ -548,16 +529,13 @@
             <property name="can-focus">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="left-attach">1</property>
-            <property name="top-attach">1</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="position">3</property>
-      </packing>
     </child>
     <child type="tab">
       <object class="GtkLabel">
@@ -565,10 +543,6 @@
         <property name="can-focus">False</property>
         <property name="label" translatable="yes">Intellihide</property>
       </object>
-      <packing>
-        <property name="position">3</property>
-        <property name="tab-fill">False</property>
-      </packing>
     </child>
   </object>
 </interface>

@@ -21,88 +21,82 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: Settings-40.ui:65
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "鼠标靠近屏幕边沿时显示面板"
 
-#: Settings-40.ui:78 Settings.ui:77
+#: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
 msgstr "在全屏时应用上一条设置"
 
-#: Settings-40.ui:91 Settings.ui:90
+#: Settings.ui:91
 msgid "Show panel in overview"
 msgstr "在活动概览中显示面板"
 
-#: Settings-40.ui:104 Settings.ui:103
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "面板隐藏时仍然保持热区敏感（可以呼出活动概览）"
 
-#: Settings-40.ui:117 Settings.ui:116
+#: Settings.ui:117
 msgid "In the above case show overview, too"
 msgstr "如果上一条设置打开，呼出面板时也显示活动概览"
 
-#: Settings-40.ui:130 Settings.ui:129
-#, fuzzy
-#| msgid "Keep hot corner sensitive, even in hidden state"
+#: Settings.ui:130
 msgid "Keep round corners when top bar is hidden"
-msgstr "在面板隐藏时保留圆角"
+msgstr ""
 
-#: Settings-40.ui:143 Settings.ui:142
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
 msgstr "边沿压力阈值："
 
-#: Settings-40.ui:156 Settings.ui:155
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
 msgstr "边沿压力超时时间："
 
-#: Settings-40.ui:268 Settings.ui:270
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr "敏感度"
 
-#: Settings-40.ui:288 Settings.ui:293
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "进入/离开活动概览时面板滑动的动画时长"
 
-#: Settings-40.ui:301 Settings.ui:306
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时长"
 
-#: Settings-40.ui:341 Settings.ui:351
+#: Settings.ui:341
 msgid "Animation"
 msgstr "动画效果"
 
-#: Settings-40.ui:364 Settings.ui:377
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "触发显示面板的快捷键（按Backspace键以禁用此快捷键）"
 
-#: Settings-40.ui:380 Settings.ui:392
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr "面板在按下快捷键后被重新隐藏的延时（设置为0以禁用此特性）"
 
-#: Settings-40.ui:396 Settings.ui:408
+#: Settings.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "再次按下快捷键时重新隐藏面板"
 
-#: Settings-40.ui:468 Settings.ui:483
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr "键盘快捷键"
 
-#: Settings-40.ui:491 Settings.ui:510
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "仅当有窗口占用面板空间时才隐藏面板"
 
-#: Settings-40.ui:507 Settings.ui:526
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr "仅当活动窗口占用面板空间时才隐藏面板"
 
-#: Settings-40.ui:544 Settings.ui:566
+#: Settings.ui:544
 msgid "Intellihide"
 msgstr "智能隐藏"
-
-#: Settings.ui:64
-msgid "Show panel when mouse approaches top edge of the screen"
-msgstr "鼠标靠近屏幕上边沿时显示面板"
