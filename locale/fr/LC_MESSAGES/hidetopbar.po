@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-27 09:16+0200\n"
+"POT-Creation-Date: 2023-09-25 11:00-0300\n"
 "PO-Revision-Date: 2015-12-30 20:22+0100\n"
 "Last-Translator: QD\n"
 "Language-Team: \n"
@@ -18,105 +18,83 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: Settings-40.ui:64
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
-msgstr ""
-"Afficher la barre supérieure quand la souris approche le bord de l'écran"
+msgstr "Afficher la barre supérieure quand la souris approche le bord de l'écran"
 
-#: Settings-40.ui:77 Settings.ui:77
-#, fuzzy
-#| msgid "In the above case show overview, too"
+#: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
-msgstr ""
-"Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
+msgstr "Dans le cas ci-dessus, afficher également le panneau en cas de plein écran"
 
-#: Settings-40.ui:90 Settings.ui:90
+#: Settings.ui:91
 msgid "Show panel in overview"
-msgstr ""
+msgstr "Afficher le panneau dans la vue d'ensemble"
 
-#: Settings-40.ui:103 Settings.ui:103
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Conserver le coin actif, même si la barre supérieure est masquée"
 
-#: Settings-40.ui:116 Settings.ui:116
+#: Settings.ui:117
 msgid "In the above case show overview, too"
-msgstr ""
-"Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
+msgstr "Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
 
-#: Settings-40.ui:129 Settings.ui:129
-#, fuzzy
-#| msgid "Pressure barrier's threshold."
+#: Settings.ui:130
+msgid "Keep round corners when top bar is hidden"
+msgstr "Conserver les coins arrondis, même si la barre supérieure est masquée"
+
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
-msgstr "Seuil de pression (force nécessaire à la souris pour déclencher)"
+msgstr "Seuil de pression (force nécessaire à la souris pour déclencher):"
 
-#: Settings-40.ui:142 Settings.ui:142
-#, fuzzy
-#| msgid "Pressure barrier's timeout."
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
-msgstr "Délai de pression "
+msgstr "Délai de pression:"
 
-#: Settings-40.ui:242 Settings.ui:245
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr "Comportement, Sensibilité"
 
-#: Settings-40.ui:262 Settings.ui:268
-#, fuzzy
-#| msgid "Slide animation time when entering/leaving overview."
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
-msgstr "Durée d'animation en entrant ou sortant de l'apercu"
+msgstr "Durée d'animation en entrant ou sortant de l'apercu:"
 
-#: Settings-40.ui:275 Settings.ui:281
-#, fuzzy
-#| msgid "Slide animation time when mouse approaches edge of the screen."
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "Durée d'animation du masquage de la barre supérieure"
+msgstr "Durée d'animation du masquage de la barre supérieure:"
 
-#: Settings-40.ui:315 Settings.ui:326
+#: Settings.ui:341
 msgid "Animation"
 msgstr "Animation"
 
-#: Settings-40.ui:338 Settings.ui:352
-#, fuzzy
-#| msgid "Key that triggers the bar to be shown."
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "Touche déclenchant l'affichage de la barre supérieure"
 
-#: Settings-40.ui:354 Settings.ui:367
-#, fuzzy
-#| msgid "Delay before the bar rehides after key press."
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr ""
 "Délai avant remasquage de la barre supérieure après appui sur la touche"
 
-#: Settings-40.ui:370 Settings.ui:383
-#, fuzzy
-#| msgid "Pressing the shortcut again rehides the panel."
-msgid "Pressing the shortcut again rehides the panel"
-msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure"
+#: Settings.ui:396
+msgid "Pressing the shortcut again rehides the panel."
+msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure."
 
-#: Settings-40.ui:442 Settings.ui:458
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr "Raccourcis clavier"
 
-#: Settings-40.ui:465 Settings.ui:485
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "Masque uniquement quand une fenêtre couvre sa place"
 
-#: Settings-40.ui:481 Settings.ui:501
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr "Masque uniquement quand la fenêtre active couvre la barre supérieure"
 
-#: Settings-40.ui:518 Settings.ui:541
+#: Settings.ui:544
 msgid "Intellihide"
 msgstr "Masquage intelligent"
-
-#: Settings.ui:64
-#, fuzzy
-#| msgid "Show panel when mouse approaches edge of the screen"
-msgid "Show panel when mouse approaches top edge of the screen"
-msgstr ""
-"Afficher la barre supérieure quand la souris approche le bord de l'écran"

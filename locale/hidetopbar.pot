@@ -1,5 +1,5 @@
 # <LANGUAGE> translation for the Hide Top Bar extension.
-# Copyright (C) 2022 Thomas Vogt
+# Copyright (C) 2024 Thomas Vogt
 # This file is distributed under the same license as the Hide Top Bar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hide Top Bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 17:18+0100\n"
+"POT-Creation-Date: 2024-03-23 20:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,82 +17,82 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Settings-40.ui:64
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr ""
 
-#: Settings-40.ui:77 Settings.ui:77
+#: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 
-#: Settings-40.ui:90 Settings.ui:90
+#: Settings.ui:91
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings-40.ui:103 Settings.ui:103
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 
-#: Settings-40.ui:116 Settings.ui:116
+#: Settings.ui:117
 msgid "In the above case show overview, too"
 msgstr ""
 
-#: Settings-40.ui:129 Settings.ui:129
+#: Settings.ui:130
+msgid "Keep round corners when top bar is hidden"
+msgstr ""
+
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
 msgstr ""
 
-#: Settings-40.ui:142 Settings.ui:142
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
 msgstr ""
 
-#: Settings-40.ui:242 Settings.ui:245
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr ""
 
-#: Settings-40.ui:262 Settings.ui:268
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
 msgstr ""
 
-#: Settings-40.ui:275 Settings.ui:281
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 
-#: Settings-40.ui:315 Settings.ui:326
+#: Settings.ui:341
 msgid "Animation"
 msgstr ""
 
-#: Settings-40.ui:338 Settings.ui:352
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr ""
 
-#: Settings-40.ui:354 Settings.ui:367
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr ""
 
-#: Settings-40.ui:370 Settings.ui:383
+#: Settings.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr ""
 
-#: Settings-40.ui:442 Settings.ui:458
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr ""
 
-#: Settings-40.ui:465 Settings.ui:485
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr ""
 
-#: Settings-40.ui:481 Settings.ui:501
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr ""
 
-#: Settings-40.ui:518 Settings.ui:541
+#: Settings.ui:544
 msgid "Intellihide"
-msgstr ""
-
-#: Settings.ui:64
-msgid "Show panel when mouse approaches top edge of the screen"
 msgstr ""

@@ -45,11 +45,14 @@ extensions directory, compile by running `make`, install and restart GNOME Shell
     make
     cd ..
     gnome-extensions enable hidetopbar@mathieu.bidon.ca
+
+You might need to log off and on again for the install procedure to take effect. Alternatively, you may want
+to try one of the following:
+
+    # If you are running a X11 session run the following command
     gnome-shell --replace &
-
-The last command restarts GNOME Shell in X11, but it won't work under Wayland. You might
-need to log off and on again for the install procedure to take effect under Wayland.
-
+    # If you are running a wayland session run the following command
+    dbus-run-session -- gnome-shell --nested --wayland
 
 Updating the language strings
 -----------------------------
