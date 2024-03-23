@@ -18,57 +18,55 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: Settings-45.ui:65
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Bovenbalk tonen als de muisaanwijzer de rand van het scherm raakt"
 
-#: Settings-45.ui:78
+#: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
 msgstr "Bovenstaande optie ook hanteren in beeldvullende modus"
 
-#: Settings-45.ui:91
+#: Settings.ui:91
 msgid "Show panel in overview"
 msgstr "Bovenbalk tonen op overzicht"
 
-#: Settings-45.ui:104
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
 
-#: Settings-45.ui:117
+#: Settings.ui:117
 msgid "In the above case show overview, too"
 msgstr "Bovenstaande optie ook gebruiken om overzicht te tonen"
 
-#: Settings-45.ui:130
-#, fuzzy
-#| msgid "Keep hot corner sensitive, even in hidden state"
+#: Settings.ui:130
 msgid "Keep round corners when top bar is hidden"
-msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
+msgstr "Ronde hoeken behouden, ook indien verborgen"
 
-#: Settings-45.ui:143
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
 msgstr "Gevoeligheid van rand:"
 
-#: Settings-45.ui:156
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
 msgstr "Gevoeligheid van rand (time-out):"
 
-#: Settings-45.ui:268
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr "Gevoeligheid"
 
-#: Settings-45.ui:288
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Duur van verschuifanimatie bij openen/sluiten van overzicht:"
 
-#: Settings-45.ui:301
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Duur van verschuifanimatie bij aanraken van schermrand:"
 
-#: Settings-45.ui:341
+#: Settings.ui:341
 msgid "Animation"
 msgstr "Animatie"
 
-#: Settings-45.ui:364
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
@@ -76,7 +74,7 @@ msgstr ""
 "De toets waarmee de balk kan worden getoond (druk op backspace om uit te "
 "schakelen):"
 
-#: Settings-45.ui:380
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
@@ -84,22 +82,22 @@ msgstr ""
 "Wachttijd alvorens de balk wordt verborgen na gebruik van de sneltoets (0 = "
 "uitschakelen):"
 
-#: Settings-45.ui:396
+#: Settings.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Sneltoets opnieuw indrukken om bovenbalk te verbergen"
 
-#: Settings-45.ui:468
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: Settings-45.ui:491
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "Bovenbalk alleen verbergen als een venster de ruimte opeist"
 
-#: Settings-45.ui:507
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr "Bovenbalk alleen verbergen als het huidige venster de ruimte opeist"
 
-#: Settings-45.ui:544
+#: Settings.ui:544
 msgid "Intellihide"
 msgstr "Intelligent verbergen"

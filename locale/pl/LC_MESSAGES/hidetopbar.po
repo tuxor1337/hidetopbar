@@ -19,100 +19,86 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: Settings-45.ui:65
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Wyświetlenie panelu przenosząc wskaźnik myszy do krawędzi ekranu"
 
-#: Settings-45.ui:78
+#: Settings.ui:78
 #, fuzzy
 #| msgid "In the above case show overview, too"
 msgid "In the above case, also show panel when fullscreen"
 msgstr "Wyświetlanie ekranu podglądu"
 
-#: Settings-45.ui:91
+#: Settings.ui:91
 msgid "Show panel in overview"
 msgstr ""
 
-#: Settings-45.ui:104
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Utrzymanie czułości naroża nawet przy ukrytym panelu"
 
-#: Settings-45.ui:117
+#: Settings.ui:117
 msgid "In the above case show overview, too"
 msgstr "Wyświetlanie ekranu podglądu"
 
-#: Settings-45.ui:130
+#: Settings.ui:130
 #, fuzzy
 #| msgid "Keep hot corner sensitive, even in hidden state"
 msgid "Keep round corners when top bar is hidden"
 msgstr "Utrzymanie czułości naroża nawet przy ukrytym panelu"
 
-#: Settings-45.ui:143
-#, fuzzy
-#| msgid "Pressure barrier's threshold."
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
-msgstr "Próg nacisku"
+msgstr "Próg nacisku:"
 
-#: Settings-45.ui:156
-#, fuzzy
-#| msgid "Pressure barrier's timeout."
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
-msgstr "Czas nacisku"
+msgstr "Czas nacisku:"
 
-#: Settings-45.ui:268
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr "Czułość"
 
-#: Settings-45.ui:288
-#, fuzzy
-#| msgid "Slide animation time when entering/leaving overview."
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
-msgstr "Czas animacji wysuwania przełączając ekran podglądu"
+msgstr "Czas animacji wysuwania przełączając ekran podglądu:"
 
-#: Settings-45.ui:301
-#, fuzzy
-#| msgid "Slide animation time when mouse approaches edge of the screen."
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "Czas animacji wysuwania przenosząc wskaźnik do krawędzi ekranu"
+msgstr "Czas animacji wysuwania przenosząc wskaźnik do krawędzi ekranu:"
 
-#: Settings-45.ui:341
+#: Settings.ui:341
 msgid "Animation"
 msgstr "Animacja"
 
-#: Settings-45.ui:364
-#, fuzzy
-#| msgid "Key that triggers the bar to be shown."
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
-msgstr "Przełączenie wyświetlania paska"
+msgstr "Przełączenie wyświetlania paska:"
 
-#: Settings-45.ui:380
-#, fuzzy
-#| msgid "Delay before the bar rehides after key press."
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
-msgstr "Opóźnienie ponownego ukrycia po wciśnięciu skrótu"
+msgstr "Opóźnienie ponownego ukrycia po wciśnięciu skrótu:"
 
-#: Settings-45.ui:396
-#, fuzzy
-#| msgid "Pressing the shortcut again rehides the panel."
+#: Settings.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Ponowne ukrywanie panelu wciśnięciem skrótu"
 
-#: Settings-45.ui:468
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr "Skróty klawiszowe"
 
-#: Settings-45.ui:491
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "Ukrywanie tylko przed oknami"
 
-#: Settings-45.ui:507
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr "Ukrywanie tylko przed uaktywnionymi oknami"
 
-#: Settings-45.ui:544
+#: Settings.ui:544
 msgid "Intellihide"
 msgstr "Inteligentne ukrywanie"

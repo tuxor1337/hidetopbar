@@ -19,87 +19,84 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 "X-Generator: Gtranslator 3.38.0\n"
 
-#: Settings-45.ui:65
+#: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Показывать панель, когда мышь приближается к краю экрана"
 
-#: Settings-45.ui:78
+#: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
 msgstr ""
 "В приведенном выше случае также показывать панель в полноэкранном режиме"
 
-#: Settings-45.ui:91
+#: Settings.ui:91
 msgid "Show panel in overview"
 msgstr "Показать панель в обзоре"
 
-#: Settings-45.ui:104
+#: Settings.ui:104
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr ""
 "Сохранять чувствительность к \"горячему углу\", даже в скрытом состоянии"
 
-#: Settings-45.ui:117
+#: Settings.ui:117
 msgid "In the above case show overview, too"
 msgstr "В приведенном выше случае также покажите обзор"
 
-#: Settings-45.ui:130
-#, fuzzy
-#| msgid "Keep hot corner sensitive, even in hidden state"
+#: Settings.ui:130
 msgid "Keep round corners when top bar is hidden"
 msgstr ""
-"Сохранять чувствительность к \"горячему углу\", даже в скрытом состоянии"
 
-#: Settings-45.ui:143
+#: Settings.ui:143
 msgid "Pressure barrier's threshold:"
 msgstr "Порог барьера давления:"
 
-#: Settings-45.ui:156
+#: Settings.ui:156
 msgid "Pressure barrier's timeout:"
 msgstr "Интервал барьера давления:"
 
-#: Settings-45.ui:268
+#: Settings.ui:268
 msgid "Sensitivity"
 msgstr "Чувствительность"
 
-#: Settings-45.ui:288
+#: Settings.ui:288
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Время анимации слайда при входе/выходе из обзора:"
 
-#: Settings-45.ui:301
+#: Settings.ui:301
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr "Время анимации слайда, когда мышь приближается к краю экрана:"
 
-#: Settings-45.ui:341
+#: Settings.ui:341
 msgid "Animation"
 msgstr "Анимация"
 
-#: Settings-45.ui:364
+#: Settings.ui:364
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "Ключ, запускающий отображение бара:"
 
-#: Settings-45.ui:380
+#: Settings.ui:380
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr "Задержка перед повторным скрытием бара после нажатия клавиши:"
 
-#: Settings-45.ui:396
+#: Settings.ui:396
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Нажатие клавиш скрывает панель заново"
 
-#: Settings-45.ui:468
+#: Settings.ui:468
 msgid "Keyboard shortcuts"
 msgstr "Горячие клавиши"
 
-#: Settings-45.ui:491
+#: Settings.ui:491
 msgid "Only hide panel when a window takes the space"
 msgstr "Скрывать панель только тогда, когда окно занимает пространство"
 
-#: Settings-45.ui:507
+#: Settings.ui:507
 msgid "Only when the active window takes the space"
 msgstr "Только когда активное окно занимает пространство"
 
-#: Settings-45.ui:544
+#: Settings.ui:544
 msgid "Intellihide"
 msgstr "Интеллектуальное скрытие"

@@ -27,8 +27,7 @@ import Meta from 'gi://Meta';
 import Shell from 'gi://Shell';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-
-const {signals: Signals} = imports;
+import * as Signals from 'resource:///org/gnome/shell/misc/signals.js';
 
 import * as Convenience from './convenience.js';
 
@@ -65,9 +64,11 @@ export const handledWindowTypes = [
  * Intallihide object: emit 'status-changed' signal when the overlap of windows
  * with the provided targetBoxClutter.ActorBox changes;
  */
-export var Intellihide = class HideTopBar_Intellihide {
+export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitter {
 
     constructor(settings, monitorIndex) {
+        super();
+
         // Load settings
         this._settings = settings;
         this._monitorIndex = monitorIndex;
@@ -350,5 +351,3 @@ export var Intellihide = class HideTopBar_Intellihide {
         return false;
     }
 };
-
-Signals.addSignalMethods(Intellihide.prototype);

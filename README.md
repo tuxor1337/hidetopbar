@@ -45,6 +45,10 @@ extensions directory, compile by running `make`, install and restart GNOME Shell
     make
     cd ..
     gnome-extensions enable hidetopbar@mathieu.bidon.ca
+
+You might need to log off and on again for the install procedure to take effect. Alternatively, you may want
+to try one of the following:
+
     # If you are running a X11 session run the following command
     gnome-shell --replace &
     # If you are running a wayland session run the following command
