@@ -46,8 +46,8 @@ export const IntellihideMode = {
     MAXIMIZED_WINDOWS : 2
 };
 
-// List of windows type taken into account. Order is important (keep the original
-// enum order).
+// List of windows type taken into account. Order is important (keep the
+// original enum order).
 export const handledWindowTypes = [
     Meta.WindowType.NORMAL,
     Meta.WindowType.DOCK,
@@ -64,7 +64,7 @@ export const handledWindowTypes = [
  * Intallihide object: emit 'status-changed' signal when the overlap of windows
  * with the provided targetBoxClutter.ActorBox changes;
  */
-export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitter {
+export class Intellihide extends Signals.EventEmitter {
 
     constructor(settings, monitorIndex) {
         super();
@@ -75,8 +75,12 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
 
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._tracker = Shell.WindowTracker.get_default();
-        this._focusApp = null; // The application whose window is focused.
-        this._topApp = null; // The application whose window is on top on the monitor with the dock.
+
+        // The application whose window is focused.
+        this._focusApp = null;
+
+        // The application whose window is on top on the monitor with the panel.
+        this._topApp = null;
 
         this._isEnabled = false;
         this._status = OverlapStatus.UNDEFINED;
@@ -110,12 +114,14 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
             this._checkOverlap.bind(this)
         ], [
             // when windows are alwasy on top, the focus window can change
-            // without the windows being restacked. Thus monitor window focus change.
+            // without the windows being restacked. Thus monitor window focus
+            // change.
             this._tracker,
             'notify::focus-app',
             this._checkOverlap.bind(this)
         ], [
-            // updates when monitor changes, for instance in multimonitor, when monitors are attached
+            // updates when monitor changes, for instance in multimonitor, when
+            // monitors are attached
             Convenience.getMonitorManager(),
             'monitors-changed',
             this._checkOverlap.bind(this)
@@ -160,7 +166,9 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
     _addWindowSignals(wa) {
         if (!this._handledWindow(wa))
             return;
-        let signalId = wa.connect('notify::allocation', this._checkOverlap.bind(this));
+        let signalId = wa.connect(
+            'notify::allocation', this._checkOverlap.bind(this)
+        );
         this._trackedWindows.set(wa, signalId);
         wa.connect('destroy', this._removeWindowSignals.bind(this));
     }
@@ -222,15 +230,19 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
         if (windows.length > 0) {
             /*
              * Get the top window on the monitor where the dock is placed.
-             * The idea is that we dont want to overlap with the windows of the topmost application,
-             * event is it's not the focused app -- for instance because in multimonitor the user
-             * select a window in the secondary monitor.
+             * The idea is that we dont want to overlap with the windows of the
+             * topmost application, event is it's not the focused app -- for
+             * instance because in multimonitor the user select a window in the
+             * secondary monitor.
              */
 
             let topWindow = null;
             for (let i = windows.length - 1; i >= 0; i--) {
                 let meta_win = windows[i].get_meta_window();
-                if (this._handledWindow(windows[i]) && (meta_win.get_monitor() == this._monitorIndex)) {
+                if (
+                    this._handledWindow(windows[i])
+                    && (meta_win.get_monitor() == this._monitorIndex)
+                ) {
                     topWindow = meta_win;
                     break;
                 }
@@ -241,7 +253,9 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
                 // If there isn't a focused app, use that of the window on top
                 this._focusApp = this._tracker.focus_app || this._topApp
 
-                windows = windows.filter(this._intellihideFilterInteresting, this);
+                windows = windows.filter(
+                    this._intellihideFilterInteresting, this,
+                );
 
                 for (let i = 0;  i < windows.length; i++) {
                     let win = windows[i].get_meta_window();
@@ -288,7 +302,9 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
         if (!this._handledWindow(wa))
             return false;
 
-        let currentWorkspace = global.workspace_manager.get_active_workspace_index();
+        let currentWorkspace = (
+            global.workspace_manager.get_active_workspace_index()
+        );
         let wksp = meta_win.get_workspace();
         let wksp_index = wksp.index();
 
@@ -296,8 +312,8 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
         if (this._settings.get_boolean('enable-active-window')) {
                 // Skip windows of other apps
                 if (this._focusApp) {
-                    // The DropDownTerminal extension is not an application per se
-                    // so we match its window by wm class instead
+                    // The DropDownTerminal extension is not an application per
+                    // se so we match its window by wm class instead
                     if (meta_win.get_wm_class() == 'DropDownTerminalWindow')
                         return true;
 
@@ -306,20 +322,35 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
 
                     // Consider half maximized windows side by side
                     // and windows which are alwayson top
-                    if((currentApp != this._focusApp) && (currentApp != this._topApp)
-                        && !((focusWindow && focusWindow.maximized_vertically && !focusWindow.maximized_horizontally)
-                              && (meta_win.maximized_vertically && !meta_win.maximized_horizontally)
-                              && meta_win.get_monitor() == focusWindow.get_monitor())
-                        && !meta_win.is_above())
+                    if(
+                        (currentApp != this._focusApp)
+                        && (currentApp != this._topApp)
+                        && !(
+                            focusWindow
+                            && focusWindow.maximized_vertically
+                            && !focusWindow.maximized_horizontally
+                            && meta_win.maximized_vertically
+                            && !meta_win.maximized_horizontally
+                            && (
+                                meta_win.get_monitor()
+                                == focusWindow.get_monitor()
+                            )
+                        )
+                        && !meta_win.is_above()
+                    ) {
                         return false;
+                    }
                 }
         }
 
-        if ( wksp_index == currentWorkspace && meta_win.showing_on_its_workspace() )
+        if (
+            wksp_index == currentWorkspace
+            && meta_win.showing_on_its_workspace()
+        ) {
             return true;
-        else
+        } else {
             return false;
-
+        }
     }
 
     // Filter windows by type
@@ -342,7 +373,7 @@ export var Intellihide = class HideTopBar_Intellihide extends Signals.EventEmitt
 
         let wtype = metaWindow.get_window_type();
         for (let i = 0; i < handledWindowTypes.length; i++) {
-            var hwtype = handledWindowTypes[i];
+            let hwtype = handledWindowTypes[i];
             if (hwtype == wtype)
                 return true;
             else if (hwtype > wtype)

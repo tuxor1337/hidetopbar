@@ -61,25 +61,31 @@ import { ExtensionState } from 'resource:///org/gnome/shell/misc/extensionUtils.
 
 const IDENTIFIER_UUID = "130cbc66-235c-4bd6-8571-98d2d8bba5e2";
 
-export var DesktopIconsUsableAreaClass = class {
+export class DesktopIconsUsableAreaClass {
     constructor(extension) {
         this.extension = extension;
         this._extensionManager = Main.extensionManager;
         this._timedMarginsID = 0;
         this._margins = {};
-        this._emID = this._extensionManager.connect('extension-state-changed', (_obj, extension) => {
-            if (!extension)
-                return;
+        this._emID = this._extensionManager.connect(
+            'extension-state-changed', (_obj, extension) => {
+                if (!extension)
+                    return;
 
-            // If an extension is being enabled and lacks the DesktopIconsUsableArea object, we can avoid launching a refresh
-            if (extension.state === ExtensionState.ENABLED) {
-                this._sendMarginsToExtension(extension);
-                return;
+                // If an extension is being enabled and lacks the
+                // DesktopIconsUsableArea object, we can avoid launching
+                // a refresh
+                if (extension.state === ExtensionState.ENABLED) {
+                    this._sendMarginsToExtension(extension);
+                    return;
+                }
+                // if the extension is being disabled, we must do a full
+                // refresh, because if there were other extensions originally
+                // loaded after that extension, those extensions will be
+                // disabled and enabled again without notification
+                this._changedMargins();
             }
-            // if the extension is being disabled, we must do a full refresh, because if there were other extensions originally
-            // loaded after that extension, those extensions will be disabled and enabled again without notification
-            this._changedMargins();
-        });
+        );
     }
 
     /**
@@ -105,8 +111,8 @@ export var DesktopIconsUsableAreaClass = class {
     }
 
     /**
-     * Clears the current margins. Must be called before configuring the monitors
-     * margins with setMargins().
+     * Clears the current margins. Must be called before configuring the
+     * monitors margins with setMargins().
      */
     resetMargins() {
         this._margins = {};
@@ -133,11 +139,13 @@ export var DesktopIconsUsableAreaClass = class {
         if (this._timedMarginsID) {
             GLib.source_remove(this._timedMarginsID);
         }
-        this._timedMarginsID = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, ()=> {
-            this._sendMarginsToAll();
-            this._timedMarginsID = 0;
-            return GLib.SOURCE_REMOVE;
-        });
+        this._timedMarginsID = GLib.timeout_add(
+            GLib.PRIORITY_DEFAULT, 100, () => {
+                this._sendMarginsToAll();
+                this._timedMarginsID = 0;
+                return GLib.SOURCE_REMOVE;
+            }
+        );
     }
 
     _sendMarginsToAll() {
@@ -153,6 +161,8 @@ export var DesktopIconsUsableAreaClass = class {
 
         const usableArea = extension?.stateObj?.DesktopIconsUsableArea;
          if (usableArea?.uuid === IDENTIFIER_UUID)
-            usableArea.setMarginsForExtension(this.extension.uuid, this._margins);
+            usableArea.setMarginsForExtension(
+                this.extension.uuid, this._margins,
+            );
     }
 }

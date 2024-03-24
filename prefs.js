@@ -38,9 +38,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
         let notebook = builder.get_object("settings_notebook");
         frame.set_child(notebook);
 
-        /******************************************************************************
-         ************************************** Section Sensitivity *******************
-         ******************************************************************************/
+        /**********************************************************************
+         ****************************** Section Sensitivity *******************
+         **********************************************************************/
 
         ['mouse-sensitive',
          'mouse-sensitive-fullscreen-window',
@@ -49,7 +49,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
          'mouse-triggers-overview',
          'keep-round-corners'
         ].forEach(function (s) {
-            let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+            let settings_onoff = builder.get_object(
+                "toggle_" + s.replace(/-/g, "_")
+            );
             settings_onoff.set_active(settings.get_boolean(s));
             settings_onoff.connect('notify::active', function (w) {
                 settings.set_boolean(s, w.active);
@@ -62,7 +64,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
         ['pressure-threshold',
          'pressure-timeout'
         ].forEach(function (s) {
-            let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+            let settings_spin = builder.get_object(
+                "spin_" + s.replace(/-/g, "_")
+            );
             settings_spin.set_value(settings.get_int(s));
             settings_spin.connect('value-changed', function (w) {
                 settings.set_int(s, w.get_value());
@@ -72,14 +76,16 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
             });
         });
 
-        /******************************************************************************
-         ************************************** Section Animation *********************
-         ******************************************************************************/
+        /**********************************************************************
+         ****************************** Section Animation *********************
+         **********************************************************************/
 
         ['animation-time-overview',
          'animation-time-autohide',
          ].forEach(function (s) {
-             let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+             let settings_spin = builder.get_object(
+                 "spin_" + s.replace(/-/g, "_")
+             );
              settings_spin.set_value(settings.get_double(s));
              settings_spin.connect('value-changed', function (w) {
                  settings.set_double(s, w.get_value());
@@ -89,9 +95,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
              });
          });
 
-        /******************************************************************************
-         ************************************** Section Shortcuts *********************
-         ******************************************************************************/
+        /**********************************************************************
+         ****************************** Section Shortcuts *********************
+         **********************************************************************/
 
         /* ++++++++++++++++++++++++++++++++++++ Keyboard accelerator +++++ */
 
@@ -118,7 +124,7 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
                 throw new Error("Error updating keybinding");
             }
 
-                             model.set(iterator, [0, 1], [binding_mods, binding_key]);
+            model.set(iterator, [0, 1], [binding_mods, binding_key]);
             settings.set_strv('shortcut-keybind', [value]);
         });
 
@@ -143,11 +149,13 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
             model.set(model_row, [0, 1], [binding_mods, binding_key]);
         });
 
-        /* ++++++++++++++++++++++++++++++++++++ End: Keyboard accelerator +++++ */
+        /* ++++++++++++++++++++++++++++++++++ End: Keyboard accelerator +++++ */
 
         ['shortcut-delay',
          ].forEach(function (s) {
-             let settings_spin = builder.get_object("spin_" + s.replace(/-/g, "_"));
+             let settings_spin = builder.get_object(
+                 "spin_" + s.replace(/-/g, "_")
+             );
              settings_spin.set_value(settings.get_double(s));
              settings_spin.connect('value-changed', function (w) {
                  settings.set_double(s, w.get_value());
@@ -159,7 +167,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
 
         ['shortcut-toggles',
          ].forEach(function (s) {
-             let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+             let settings_onoff = builder.get_object(
+                 "toggle_" + s.replace(/-/g, "_")
+             );
              settings_onoff.set_active(settings.get_boolean(s))
              settings_onoff.connect('notify::active', function (w) {
                  settings.set_boolean(s, w.active);
@@ -169,14 +179,16 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
              });
          });
 
-        /******************************************************************************
-         ************************************** Section Intellihide *******************
-         ******************************************************************************/
+        /**********************************************************************
+         ****************************** Section Intellihide *******************
+         **********************************************************************/
 
         ['enable-intellihide',
          'enable-active-window',
          ].forEach(function (s) {
-             let settings_onoff = builder.get_object("toggle_" + s.replace(/-/g, "_"));
+             let settings_onoff = builder.get_object(
+                 "toggle_" + s.replace(/-/g, "_")
+             );
              settings_onoff.set_active(settings.get_boolean(s))
              settings_onoff.connect('notify::active', function (w) {
                  settings.set_boolean(s, w.active);

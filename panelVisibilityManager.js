@@ -33,10 +33,12 @@ const DEBUG = Convenience.DEBUG;
 
 const MessageTray = Main.messageTray;
 const PanelBox = Main.layoutManager.panelBox;
-const ShellActionMode = (Shell.ActionMode)?Shell.ActionMode:Shell.KeyBindingMode;
+const ShellActionMode = (
+    Shell.ActionMode ? Shell.ActionMode : Shell.KeyBindingMode
+);
 const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
 
-export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
+export class PanelVisibilityManager {
 
     constructor(settings, monitorIndex) {
         this._monitorIndex = monitorIndex;
@@ -49,21 +51,25 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._animationActive = false;
         this._shortcutTimeout = null;
 
-        this._desktopIconsUsableArea = new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null);
+        this._desktopIconsUsableArea = (
+            new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null)
+        );
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
             affectsStruts: false,
             trackFullscreen: true
         });
 
-        // We lost the original notification's position because of PanelBox->affectsStruts = false
-        // and now it appears beneath the top bar, fix it
+        // We lost the original notification's position because of
+        // PanelBox->affectsStruts = false and now it appears beneath the
+        // top bar, fix it
         this._oldTween = MessageTray._tween;
-        MessageTray._tween = function(actor, statevar, value, params)
-        {
-            params.y += (PanelBox.y < 0 ? 0 : PanelBox.height);
-            this._oldTween.apply(MessageTray, arguments);
-        }.bind(this);
+        MessageTray._tween = (
+            function(actor, statevar, value, params) {
+                params.y += (PanelBox.y < 0 ? 0 : PanelBox.height);
+                this._oldTween.apply(MessageTray, arguments);
+            }
+        ).bind(this);
 
         this._pointerWatcher = PointerWatcher.getPointerWatcher();
         this._pointerListener = null;
@@ -72,12 +78,15 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
         this._updateSettingsShowInOverview();
-        this._intellihide = new Intellihide.Intellihide(this._settings, this._monitorIndex);
+        this._intellihide = new Intellihide.Intellihide(
+            this._settings, this._monitorIndex,
+        );
 
         this._updateHotCorner(false);
         this._updateStaticBox();
         this._bindTimeoutId = GLib.timeout_add(
-            GLib.PRIORITY_DEFAULT, 100, this._bindUIChanges.bind(this));
+            GLib.PRIORITY_DEFAULT, 100, this._bindUIChanges.bind(this),
+        );
     }
 
     hide(animationTime, trigger) {
@@ -207,7 +216,7 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     }
 
     _handleShortcut() {
-        var delay_time = this._settings.get_double('shortcut-delay');
+        let delay_time = this._settings.get_double('shortcut-delay');
         if(this._shortcutTimeout) {
             if(this._shortcutTimeout !== true) {
                 GLib.source_remove(this._shortcutTimeout);
@@ -283,8 +292,12 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
         this._panelPressure.connect(
             'trigger',
             (barrier) => {
-                if (Main.layoutManager.primaryMonitor.inFullscreen
-                    && (!this._settings.get_boolean('mouse-sensitive-fullscreen-window')) ) {
+                if (
+                    Main.layoutManager.primaryMonitor.inFullscreen
+                    && !this._settings.get_boolean(
+                        'mouse-sensitive-fullscreen-window'
+                    )
+                ) {
                     return;
                 }
                 this.show(
@@ -323,7 +336,7 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
 
     _updateHotCorner(panel_hidden) {
         let HotCorner = null;
-        for(var i = 0; i < Main.layoutManager.hotCorners.length; i++){
+        for(let i = 0; i < Main.layoutManager.hotCorners.length; i++){
           let hc = Main.layoutManager.hotCorners[i];
           if(hc){
             HotCorner = hc;
@@ -351,7 +364,7 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
             this._initPressureBarrier();
         } else this._disablePressureBarrier();
     }
-    
+
     _updateSettingsShowInOverview() {
         this._showInOverview = this._settings.get_boolean('show-in-overview');
         this._updateSearchEntryPadding();
@@ -360,8 +373,10 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
     _updateSearchEntryPadding() {
         if (!_searchEntryBin) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
-        const offset = PanelBox.height / scale; 
-        _searchEntryBin.set_style(this._showInOverview ? `padding-top: ${offset}px;` : null);
+        const offset = PanelBox.height / scale;
+        _searchEntryBin.set_style(
+            this._showInOverview ? `padding-top: ${offset}px;` : null
+        );
     }
 
     _updateIntellihideStatus() {
@@ -398,7 +413,9 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 () => {
                     if(this._showInOverview) {
                         this.show(
-                            this._settings.get_double('animation-time-overview'),
+                            this._settings.get_double(
+                                'animation-time-overview'
+                            ),
                             "showing-overview"
                         );
                     }
@@ -491,7 +508,7 @@ export var PanelVisibilityManager = class HideTopBar_PanelVisibilityManager {
                 'changed::pressure-threshold',
                 this._updateSettingsMouseSensitive.bind(this)
             ],
-            [ 
+            [
                 this._settings,
                 'changed::show-in-overview',
                 this._updateSettingsShowInOverview.bind(this)

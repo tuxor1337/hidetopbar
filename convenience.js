@@ -19,13 +19,13 @@
 
 import Meta from 'gi://Meta';
 
-export var DEBUG = function (message) {
+export const DEBUG = function (message) {
     // Enable for debugging purposes.
-    if(false) global.log(Date().substr(16,8) + " [hidetopbar]: " + message);
+    if(false) console.log(Date().substr(16,8) + " [hidetopbar]: " + message);
 }
 
 // try to simplify global signals handling
-export var GlobalSignalsHandler = class HideTopBar_GlobalSignalsHandler {
+export class GlobalSignalsHandler {
     constructor() {
         this._signals = new Object();
     }
@@ -61,7 +61,9 @@ export var GlobalSignalsHandler = class HideTopBar_GlobalSignalsHandler {
     disconnectWithLabel(label) {
         if(this._signals[label]) {
             for( let i = 0; i < this._signals[label].length; i++ ) {
-                this._signals[label][i][0].disconnect(this._signals[label][i][1]);
+                this._signals[label][i][0].disconnect(
+                    this._signals[label][i][1]
+                );
             }
             delete this._signals[label];
         }
