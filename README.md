@@ -36,23 +36,25 @@ If you insist on installing from source, the commands `xgettext` and `msgfmt`
 from the `gettext` package (package name may vary depending on your
 distribution) are required.
 
-The procedure to install from source is as follows: Check out the source code into your local
-extensions directory, compile by running `make`, install and restart GNOME Shell. For example:
+The procedure to install from source is as follows: Check out the source code, compile by
+running `make`, install and restart GNOME Shell. For example:
 
-    cd ~/.local/share/gnome-shell/extensions/
-    git clone https://gitlab.gnome.org/tuxor1337/hidetopbar.git hidetopbar@mathieu.bidon.ca
-    cd hidetopbar@mathieu.bidon.ca
+    git clone https://gitlab.gnome.org/tuxor1337/hidetopbar.git
+    cd hidetopbar
     make
-    cd ..
-    gnome-extensions enable hidetopbar@mathieu.bidon.ca
+    gnome-extensions install ./hidetopbar.zip
 
-You might need to log off and on again for the install procedure to take effect. Alternatively, you may want
+You then need to log off and on again for the install procedure to take effect. Alternatively, you may want
 to try one of the following:
 
     # If you are running a X11 session run the following command
     gnome-shell --replace &
     # If you are running a wayland session run the following command
     dbus-run-session -- gnome-shell --nested --wayland
+
+You can enable the extension through the interface on [extensions.gnome.org](https://extensions.gnome.org), the [gnome-extensions-app](https://apps.gnome.org/de/Extensions/), or the following command line:
+
+    gnome-extensions enable hidetopbar@mathieu.bidon.ca
 
 Updating the language strings
 -----------------------------
