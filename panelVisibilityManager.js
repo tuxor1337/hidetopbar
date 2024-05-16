@@ -55,7 +55,7 @@ export class PanelVisibilityManager {
         this._shortcutTimeout = null;
 
         this._desktopIconsUsableArea = (
-            new DesktopIconsIntegration.DesktopIconsUsableAreaClass(null)
+            new DesktopIconsIntegration.DesktopIconsUsableAreaClass()
         );
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
