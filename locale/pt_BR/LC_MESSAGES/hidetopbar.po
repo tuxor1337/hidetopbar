@@ -94,7 +94,7 @@ msgstr "Somente ocultar quando a janela ocupar o espaço"
 
 #: Settings.ui:507
 msgid "Only when the active window takes the space"
-msgstr "omente ocultar quando a janela ativa ocupar o espaço"
+msgstr "Somente ocultar quando a janela ativa ocupar o espaço"
 
 #: Settings.ui:544
 msgid "Intellihide"
