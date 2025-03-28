@@ -296,7 +296,7 @@ export class PanelVisibilityManager {
             'trigger',
             (barrier) => {
                 if (
-                    Main.layoutManager.primaryMonitor.inFullscreen
+                    Main.layoutManager.primaryMonitor?.inFullscreen
                     && !this._settings.get_boolean(
                         'mouse-sensitive-fullscreen-window'
                     )
@@ -375,6 +375,7 @@ export class PanelVisibilityManager {
 
     _updateSearchEntryPadding() {
         if (!_searchEntryBin) return;
+        if (!Main.layoutManager.primaryMonitor) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
         const offset = PanelBox.height / scale;
         _searchEntryBin.set_style(
