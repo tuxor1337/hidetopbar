@@ -283,6 +283,7 @@ export class PanelVisibilityManager {
         if(this._panelBarrier && this._panelPressure) {
             this._panelPressure.removeBarrier(this._panelBarrier);
             this._panelBarrier.destroy();
+            this._panelBarrier = null;
         }
     }
 
