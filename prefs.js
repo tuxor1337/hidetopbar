@@ -32,7 +32,7 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
         let frame = new Gtk.ScrolledWindow(
             { hscrollbar_policy: Gtk.PolicyType.NEVER });
         let builder = new Gtk.Builder();
-        builder.set_translation_domain("hidetopbar");
+        builder.set_translation_domain("hidetopbar@mathieu.bidon.ca");
         builder.add_from_file(this.path + '/Settings.ui');
 
         let notebook = builder.get_object("settings_notebook");
