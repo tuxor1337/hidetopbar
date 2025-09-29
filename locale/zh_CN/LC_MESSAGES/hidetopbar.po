@@ -43,7 +43,7 @@ msgstr "如果上一条设置打开，呼出面板时也显示活动概览"
 
 #: Settings.ui:130
 msgid "Keep round corners when top bar is hidden"
-msgstr ""
+msgstr "隐藏顶部栏时保持圆角"
 
 #: Settings.ui:143
 msgid "Pressure barrier's threshold:"
