@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"POT-Creation-Date: 2025-09-29 18:06+0200\n"
 "PO-Revision-Date: 2015-12-30 20:22+0100\n"
 "Last-Translator: QD\n"
 "Language-Team: \n"
@@ -20,11 +20,13 @@ msgstr ""
 
 #: Settings.ui:65
 msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Afficher la barre supérieure quand la souris approche le bord de l'écran"
+msgstr ""
+"Afficher la barre supérieure quand la souris approche le bord de l'écran"
 
 #: Settings.ui:78
 msgid "In the above case, also show panel when fullscreen"
-msgstr "Dans le cas ci-dessus, afficher également le panneau en cas de plein écran"
+msgstr ""
+"Dans le cas ci-dessus, afficher également le panneau en cas de plein écran"
 
 #: Settings.ui:91
 msgid "Show panel in overview"
@@ -36,7 +38,8 @@ msgstr "Conserver le coin actif, même si la barre supérieure est masquée"
 
 #: Settings.ui:117
 msgid "In the above case show overview, too"
-msgstr "Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
+msgstr ""
+"Lancer la vue d'ensemble quand la souris approche de la barre supérieure"
 
 #: Settings.ui:130
 msgid "Keep round corners when top bar is hidden"
@@ -80,7 +83,7 @@ msgstr ""
 "Délai avant remasquage de la barre supérieure après appui sur la touche"
 
 #: Settings.ui:396
-msgid "Pressing the shortcut again rehides the panel."
+msgid "Pressing the shortcut again rehides the panel"
 msgstr "Appuyer à nouveau sur la touche remasque la barre supérieure."
 
 #: Settings.ui:468

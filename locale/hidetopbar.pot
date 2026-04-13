@@ -1,5 +1,5 @@
 # <LANGUAGE> translation for the Hide Top Bar extension.
-# Copyright (C) 2024 Thomas Vogt
+# Copyright (C) 2026 Thomas Vogt
 # This file is distributed under the same license as the Hide Top Bar package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hide Top Bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 20:36+0100\n"
+"POT-Creation-Date: 2025-09-29 18:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
