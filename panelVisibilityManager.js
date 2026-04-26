@@ -39,7 +39,10 @@ const PanelBox = Main.layoutManager.panelBox;
 const ShellActionMode = (
     Shell.ActionMode ? Shell.ActionMode : Shell.KeyBindingMode
 );
-const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
+
+function getSearchEntryBin() {
+    return Main.overview?._overview?._controls?._searchEntryBin ?? null;
+}
 
 export class PanelVisibilityManager {
 
@@ -66,13 +69,15 @@ export class PanelVisibilityManager {
         // We lost the original notification's position because of
         // PanelBox->affectsStruts = false and now it appears beneath the
         // top bar, fix it
-        this._oldTween = MessageTray._tween;
-        MessageTray._tween = (
-            function(actor, statevar, value, params) {
-                params.y += (PanelBox.y < 0 ? 0 : PanelBox.height);
-                this._oldTween.apply(MessageTray, arguments);
-            }
-        ).bind(this);
+        this._oldTween = MessageTray._tween ?? null;
+        if (this._oldTween) {
+            MessageTray._tween = (
+                function(actor, statevar, value, params) {
+                    params.y += (PanelBox.y < 0 ? 0 : PanelBox.height);
+                    this._oldTween.apply(MessageTray, arguments);
+                }
+            ).bind(this);
+        }
 
         this._pointerWatcher = PointerWatcher.getPointerWatcher();
         this._pointerListener = null;
@@ -352,7 +357,8 @@ export class PanelVisibilityManager {
               HotCorner.setBarrierSize(PanelBox.height);
           } else {
               GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, function () {
-                  HotCorner.setBarrierSize(0)
+                  HotCorner.setBarrierSize(0);
+                  return GLib.SOURCE_REMOVE;
               });
           }
         }
@@ -375,11 +381,12 @@ export class PanelVisibilityManager {
     }
 
     _updateSearchEntryPadding() {
-        if (!_searchEntryBin) return;
+        const searchEntryBin = getSearchEntryBin();
+        if (!searchEntryBin) return;
         if (!Main.layoutManager.primaryMonitor) return;
         const scale = Main.layoutManager.primaryMonitor.geometry_scale;
         const offset = PanelBox.height / scale;
-        _searchEntryBin.set_style(
+        searchEntryBin.set_style(
             this._showInOverview ? `padding-top: ${offset}px;` : null
         );
     }
@@ -540,11 +547,14 @@ export class PanelVisibilityManager {
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
-        if (_searchEntryBin) {
-          _searchEntryBin.style = null;
+        const searchEntryBin = getSearchEntryBin();
+        if (searchEntryBin) {
+          searchEntryBin.style = null;
         }
 
-        MessageTray._tween = this._oldTween;
+        if (this._oldTween) {
+            MessageTray._tween = this._oldTween;
+        }
         this.show(0, "destroy");
 
         Main.layoutManager.removeChrome(PanelBox);
