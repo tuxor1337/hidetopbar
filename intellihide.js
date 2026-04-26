@@ -160,7 +160,7 @@ export class Intellihide extends Signals.EventEmitter {
     }
 
     _windowCreated(display, metaWindow) {
-        this._addWindowSignals(metaWindow.get_compositor_private());
+        this._addWindowSignals(metaWindow?.get_compositor_private());
     }
 
     _addWindowSignals(wa) {
@@ -278,7 +278,7 @@ export class Intellihide extends Signals.EventEmitter {
         }
 
         // Check if notification banner overlaps
-        if (Main.messageTray.visible) {
+        if (Main.messageTray.visible && Main.messageTray._bannerBin) {
             let rect = Main.messageTray._bannerBin.get_allocation_box();
             let test = (rect.x1 < this._targetBox.x2) &&
                     (rect.x2 > this._targetBox.x1) &&
@@ -356,6 +356,9 @@ export class Intellihide extends Signals.EventEmitter {
     // Filter windows by type
     // inspired by Opacify@gnome-shell.localdomain.pl
     _handledWindow(wa) {
+        if (!wa)
+            return false;
+
         let metaWindow = wa.get_meta_window();
 
         if (!metaWindow)

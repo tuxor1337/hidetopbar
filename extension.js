@@ -46,7 +46,7 @@ export default class HideTopBarExtension extends Extension {
 
     disable() {
         DEBUG("disable()");
-        mPVManager.destroy();
+        mPVManager?.destroy();
 
         mPVManager = null;
         mSettings = null;
