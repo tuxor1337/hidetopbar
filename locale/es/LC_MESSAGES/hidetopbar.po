@@ -1,0 +1,100 @@
+# Spanish translation for the Hide Top Bar extension.
+# Copyright (C) 2026 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
+# # Leandro Alegre, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hidetopbar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"PO-Revision-Date: 2026-07-13 00:00+0000\n"
+"Last-Translator: Leandro Alegre\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Settings.ui:65
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Mostrar la barra cuando el cursor se acerque al borde de la pantalla"
+
+#: Settings.ui:78
+msgid "In the above case, also show panel when fullscreen"
+msgstr "En el caso anterior, mostrar también la barra en pantalla completa"
+
+#: Settings.ui:91
+msgid "Show panel in overview"
+msgstr "Mostrar la barra en la vista de actividades"
+
+#: Settings.ui:104
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Mantener habilitada la esquina activa, incluso cuando la barra esté oculta"
+
+#: Settings.ui:117
+msgid "In the above case show overview, too"
+msgstr "En el caso anterior, mostrar también la vista de actividades"
+
+#: Settings.ui:130
+msgid "Keep round corners when top bar is hidden"
+msgstr "Mantener las esquinas redondeadas cuando la barra superior esté oculta"
+
+#: Settings.ui:143
+msgid "Pressure barrier's threshold:"
+msgstr "Sensibilidad del borde:"
+
+#: Settings.ui:156
+msgid "Pressure barrier's timeout:"
+msgstr "Tiempo de espera del borde:"
+
+#: Settings.ui:268
+msgid "Sensitivity"
+msgstr "Sensibilidad"
+
+#: Settings.ui:288
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Duración de la animación al entrar o salir de la vista de actividades:"
+
+#: Settings.ui:301
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Duración de la animación al acercar el cursor al borde de la pantalla:"
+
+#: Settings.ui:341
+msgid "Animation"
+msgstr "Animación"
+
+#: Settings.ui:364
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
+msgstr ""
+"Atajo para mostrar la barra (pulse Retroceso para desactivarlo):"
+
+#: Settings.ui:380
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
+msgstr ""
+"Retraso antes de volver a ocultar la barra tras usar el atajo (un valor de 0 desactiva el ocultamiento automático):"
+
+#: Settings.ui:396
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Volver a pulsar el atajo vuelve a ocultar la barra"
+
+#: Settings.ui:468
+msgid "Keyboard shortcuts"
+msgstr "Atajos de teclado"
+
+#: Settings.ui:491
+msgid "Only hide panel when a window takes the space"
+msgstr "Ocultar la barra solo cuando una ventana ocupe su espacio"
+
+#: Settings.ui:507
+msgid "Only when the active window takes the space"
+msgstr "Solo cuando la ventana activa ocupe su espacio"
+
+#: Settings.ui:544
+msgid "Intellihide"
+msgstr "Ocultación inteligente"
