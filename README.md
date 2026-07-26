@@ -68,8 +68,11 @@ following command:
 To then incorporate the changes to the actual translation files for each language,
 run one of the following commands:
 
-    make all-po                                 # For updating the files for all languages
-    make ./locale/XX/LC_MESSAGES/hidetopbar.po  # For updating one specific po file, where 'XX' is the language code
+    # for updating the files for all languages:
+    make all-po
+    
+    # for updating one specific po file, where 'XX' is the language code:
+    make ./locale/XX/LC_MESSAGES/hidetopbar@mathieu.bidon.ca.po
 
 As mentioned in the previous section, running `make` requires the `gettext` package
 to be installed (the package names may vary depending on your distribution).
@@ -92,7 +95,7 @@ This is an issue of the extension [Dash to Dock](https://github.com/micheleg/das
 License
 -------
 
-Copyright (c) 2013-2023 Thomas Vogt.
+Copyright (c) 2013-2026 Thomas Vogt.
 
 Copyright (c) 2012-2013 Mathieu Lutfy.
 
