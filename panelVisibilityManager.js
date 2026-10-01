@@ -25,7 +25,6 @@ import Clutter from 'gi://Clutter';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as Layout from 'resource:///org/gnome/shell/ui/layout.js';
 import * as Config from 'resource:///org/gnome/shell/misc/config.js';
-import * as PointerWatcher from 'resource:///org/gnome/shell/ui/pointerWatcher.js';
 const [major] = Config.PACKAGE_VERSION.split('.');
 const shellVersion = Number.parseInt(major);
 
@@ -76,7 +75,7 @@ export class PanelVisibilityManager {
             }
         ).bind(this);
 
-        this._pointerWatcher = PointerWatcher.getPointerWatcher();
+        this._cursorTracker = global.backend.get_cursor_tracker();
         this._pointerListener = null;
 
         // Load settings
@@ -104,10 +103,7 @@ export class PanelVisibilityManager {
         let mouse = global.get_pointer();
         if(trigger == "mouse-left" && this._isHovering(...mouse)) return;
 
-        if(this._pointerListener) {
-            this._pointerWatcher._removeWatch(this._pointerListener);
-            this._pointerListener = null;
-        }
+        this._stopWatchingPointer();
 
         if(this._animationActive) {
             PanelBox.remove_all_transitions();
@@ -173,9 +169,10 @@ export class PanelVisibilityManager {
                     {
                         // The cursor is still on the panel. Start watching the
                         // pointer so we know when it leaves the panel.
-                        this._pointerListener =
-                            this._pointerWatcher.addWatch
-                                (10, this._handlePointer.bind(this));
+                        this._pointerListener = this._cursorTracker.connect(
+                            'position-invalidated',
+                            () => this._handlePointer(...global.get_pointer()),
+                        );
                     }
                 }
             });
@@ -187,6 +184,13 @@ export class PanelVisibilityManager {
                     y < this._staticBox.y2 &&
                     x >= this._staticBox.x1 &&
                     x < this._staticBox.x2 );
+    }
+
+    _stopWatchingPointer() {
+        if(this._pointerListener) {
+            this._cursorTracker.disconnect(this._pointerListener);
+            this._pointerListener = null;
+        }
     }
 
     _handlePointer(x, y) {
@@ -277,10 +281,7 @@ export class PanelVisibilityManager {
     }
 
     _disablePressureBarrier() {
-        if(this._pointerListener) {
-            this._pointerWatcher._removeWatch(this._pointerListener);
-            this._pointerListener = null;
-        }
+        this._stopWatchingPointer();
 
         if(this._panelBarrier && this._panelPressure) {
             this._panelPressure.removeBarrier(this._panelBarrier);
