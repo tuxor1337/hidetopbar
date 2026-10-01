@@ -75,7 +75,11 @@ export class PanelVisibilityManager {
             }
         ).bind(this);
 
-        this._cursorTracker = global.backend.get_cursor_tracker();
+        this._cursorTracker = (
+            (typeof global.backend?.get_cursor_tracker === "function")
+            ? global.backend.get_cursor_tracker()
+            : Meta.CursorTracker.get_for_display(global.display)  // GNOME Shell 45-47
+        );
         this._pointerListener = null;
 
         // Load settings
