@@ -575,9 +575,12 @@ export class PanelVisibilityManager {
         this.show(0, "destroy");
         this._setUnredirectDisabled(false);
 
+        // The shell disables this extension while the screen is locked. Giving
+        // the top bar its strut back then shrinks the work area and pushes
+        // floating windows down.
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
-            affectsStruts: true,
+            affectsStruts: Main.sessionMode.currentMode !== 'unlock-dialog',
             trackFullscreen: true
         });
         this._desktopIconsUsableArea.destroy();
