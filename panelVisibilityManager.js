@@ -53,6 +53,7 @@ export class PanelVisibilityManager {
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
         this._shortcutTimeout = null;
+        this._unredirectDisabled = false;
 
         this._desktopIconsUsableArea = (
             new DesktopIconsIntegration.DesktopIconsUsableAreaClass()
@@ -125,8 +126,31 @@ export class PanelVisibilityManager {
                     PanelBox.hide();
                 }
                 this._updateHotCorner(true);
+                this._setUnredirectDisabled(false);
             }
         });
+    }
+
+    // While the panel is on screen above a window that covers the whole
+    // monitor, that window must not be unredirected (X11) or put on a
+    // direct-scanout plane (Wayland): the compositor would skip painting
+    // the stage and the panel would stay invisible although it still
+    // receives input. GNOME Shell does the same for its own notifications,
+    // OSDs and menus. The calls are counted by Mutter, so keep them paired.
+    _setUnredirectDisabled(disabled) {
+        if (disabled === this._unredirectDisabled) return;
+        if (shellVersion >= 48) {
+            if (disabled)
+                global.compositor.disable_unredirect();
+            else
+                global.compositor.enable_unredirect();
+        } else {
+            if (disabled)
+                Meta.disable_unredirect_for_display(global.display);
+            else
+                Meta.enable_unredirect_for_display(global.display);
+        }
+        this._unredirectDisabled = disabled;
     }
 
     show(animationTime, trigger) {
@@ -143,6 +167,7 @@ export class PanelVisibilityManager {
 
         this._updateHotCorner(false);
         PanelBox.show();
+        this._setUnredirectDisabled(trigger != "destroy");
         if(trigger == "destroy"
            || (
                trigger == "showing-overview"
@@ -548,6 +573,7 @@ export class PanelVisibilityManager {
 
         MessageTray._bannerBin.ease = this._oldEase;
         this.show(0, "destroy");
+        this._setUnredirectDisabled(false);
 
         Main.layoutManager.removeChrome(PanelBox);
         Main.layoutManager.addChrome(PanelBox, {
