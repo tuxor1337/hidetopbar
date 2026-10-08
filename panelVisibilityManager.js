@@ -90,8 +90,17 @@ export class PanelVisibilityManager {
 
         this._updateHotCorner(false);
         this._updateStaticBox();
+        // Wait until the panel has an allocation: after login this can take
+        // a second or two, and on unlock a relayout can still be queued.
+        // notify::allocation is not enough, it only fires if the box changes.
         this._bindTimeoutId = GLib.timeout_add(
-            GLib.PRIORITY_DEFAULT, 100, this._bindUIChanges.bind(this),
+            GLib.PRIORITY_DEFAULT, 100, () => {
+                if (!PanelBox.has_allocation())
+                    return GLib.SOURCE_CONTINUE;
+                this._bindTimeoutId = 0;
+                this._bindUIChanges();
+                return GLib.SOURCE_REMOVE;
+            }
         );
     }
 
@@ -503,18 +512,7 @@ export class PanelVisibilityManager {
             this._handleShortcut.bind(this)
         );
 
-        if (!PanelBox.has_allocation()) {
-          // after login, allocating the panel can take a second or two
-          let tmp_handle = PanelBox.connect("notify::allocation", () => {
-            this._updateIntellihideStatus();
-            PanelBox.disconnect(tmp_handle);
-          });
-        } else {
-          this._updateIntellihideStatus();
-        }
-
-        this._bindTimeoutId = 0;
-        return false;
+        this._updateIntellihideStatus();
     }
 
     _bindSettingsChanges() {
