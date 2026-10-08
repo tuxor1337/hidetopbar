@@ -437,7 +437,6 @@ export class PanelVisibilityManager {
     }
 
     _bindUIChanges() {
-        this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.add(
             [
                 Main.overview,
