@@ -502,6 +502,9 @@ export class PanelVisibilityManager {
                     this._base_y = PanelBox.y;
                     this._updateStaticBox();
                     this._updateSettingsMouseSensitive();
+                    // LayoutManager._updateBoxes() has just moved PanelBox
+                    // back on screen: hide it again unless it is held.
+                    this._handleMenus();
                 }
             ],
             [
