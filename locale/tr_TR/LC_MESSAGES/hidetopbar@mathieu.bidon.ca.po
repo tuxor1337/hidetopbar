@@ -1,0 +1,100 @@
+# Turkish translation for the Hide Top Bar extension.
+# Copyright (C) 2026 Thomas Vogt
+# This file is distributed under the same license as the Hide Top Bar package.
+msgid ""
+msgstr ""
+"Project-Id-Version: hidetopbar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-29 18:06+0200\n"
+"PO-Revision-Date: 2026-10-12 16:20+0300\n"
+"Last-Translator: Muha Aliss <muhaaliss@pm.me>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: Settings.ui:65
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Fare ekran kenarına yaklaştığında üst çubuğu göster"
+
+#: Settings.ui:78
+msgid "In the above case, also show panel when fullscreen"
+msgstr "Yukarıdaki durumda, tam ekranda da üst çubuğu göster"
+
+#: Settings.ui:91
+msgid "Show panel in overview"
+msgstr "Genel Görünüm'de üst çubuğu göster"
+
+#: Settings.ui:104
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Gizli durumda bile sıcak köşeyi etkin tut"
+
+#: Settings.ui:117
+msgid "In the above case show overview, too"
+msgstr "Yukarıdaki durumda genel görünümü de göster"
+
+#: Settings.ui:130
+msgid "Keep round corners when top bar is hidden"
+msgstr "Üst çubuk gizliyken yuvarlak köşeleri koru"
+
+#: Settings.ui:143
+msgid "Pressure barrier's threshold:"
+msgstr "Basınç bariyerinin eşiği:"
+
+#: Settings.ui:156
+msgid "Pressure barrier's timeout:"
+msgstr "Basınç bariyerinin zaman aşımı:"
+
+#: Settings.ui:268
+msgid "Sensitivity"
+msgstr "Duyarlılık"
+
+#: Settings.ui:288
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Genel görünüme girerken/çıkarken kayma animasyon süresi:"
+
+#: Settings.ui:301
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Fare ekran kenarına yaklaştığında kayma animasyon süresi:"
+
+#: Settings.ui:341
+msgid "Animation"
+msgstr "Animasyon"
+
+#: Settings.ui:364
+msgid ""
+"Key that triggers the bar to be shown (press backspace to deactivate the "
+"shortcut):"
+msgstr ""
+"Üst çubuğun gösterilmesini tetikleyen tuş (kısayolu devre dışı bırakmak "
+"için Backspace tuşuna basın):"
+
+#: Settings.ui:380
+msgid ""
+"Delay before the bar rehides after key press (a value of 0 disables the "
+"rehiding):"
+msgstr ""
+"Tuşa basıldıktan sonra üst çubuğun yeniden gizlenmesine kadar gecikme (0 "
+"değeri yeniden gizlenmeyi devre dışı bırakır):"
+
+#: Settings.ui:396
+msgid "Pressing the shortcut again rehides the panel"
+msgstr "Kısayola yeniden basmak üst çubuğu yeniden gizler"
+
+#: Settings.ui:468
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: Settings.ui:491
+msgid "Only hide panel when a window takes the space"
+msgstr "Üst çubuğu yalnızca bir pencere yer kapladığında gizle"
+
+#: Settings.ui:507
+msgid "Only when the active window takes the space"
+msgstr "Yalnızca etkin pencere yer kapladığında"
+
+#: Settings.ui:544
+msgid "Intellihide"
+msgstr "Akıllı gizleme"
