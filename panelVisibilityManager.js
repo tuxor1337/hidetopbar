@@ -53,6 +53,7 @@ export class PanelVisibilityManager {
         this._animationActive = false;
         this._shortcutTimeout = null;
         this._unredirectDisabled = false;
+        this._menuToggleId = 0;
 
         this._desktopIconsUsableArea = (
             new DesktopIconsIntegration.DesktopIconsUsableAreaClass()
@@ -75,6 +76,13 @@ export class PanelVisibilityManager {
                 this._oldEase.apply(MessageTray._bannerBin, arguments);
             }
         ).bind(this);
+
+        // Panel._toggleMenu() returns early while the panel is unmapped, so
+        // Super+S and Super+V do nothing with the bar hidden. Reveal it first.
+        this._oldToggleQuickSettings = this._wrapMenuToggle(
+            'toggleQuickSettings'
+        );
+        this._oldToggleCalendar = this._wrapMenuToggle('toggleCalendar');
 
         this._cursorTracker = (
             (typeof global.backend?.get_cursor_tracker === "function")
@@ -178,6 +186,7 @@ export class PanelVisibilityManager {
         PanelBox.show();
         this._setUnredirectDisabled(trigger != "destroy");
         if(trigger == "destroy"
+           || trigger == "menu-shortcut"
            || (
                trigger == "showing-overview"
                && global.get_pointer()[1] < PanelBox.height
@@ -215,6 +224,36 @@ export class PanelVisibilityManager {
                 }
             });
         }
+    }
+
+    _wrapMenuToggle(name) {
+        const original = Main.panel[name];
+        Main.panel[name] = (...args) => {
+            if (this._menuToggleId) return;
+            if (PanelBox.visible && PanelBox.y === this._base_y) {
+                original.apply(Main.panel, args);
+                return;
+            }
+            this.show(0, "menu-shortcut");
+            this._updateStaticBox();
+            // Open the menu only after the frame that picks the revealed
+            // panel under the pointer. If that pick came after the menu's
+            // grab, the panel button under the pointer would get an enter
+            // event and PopupMenuManager would switch to its menu.
+            this._menuToggleId = global.stage.connect(
+                'after-update', (stage, view) => {
+                    if (!PanelBox.peek_stage_views().includes(view)) return;
+                    global.stage.disconnect(this._menuToggleId);
+                    this._menuToggleId = 0;
+                    try {
+                        original.apply(Main.panel, args);
+                    } finally {
+                        this._handleMenus();
+                    }
+                }
+            );
+        };
+        return original;
     }
 
     _isHovering(x, y) {
@@ -576,7 +615,19 @@ export class PanelVisibilityManager {
           _searchEntryBin.style = null;
         }
 
+        if (this._menuToggleId) {
+            global.stage.disconnect(this._menuToggleId);
+            this._menuToggleId = 0;
+        }
+        if (this._blockerMenu) {
+            this._blockerMenu.disconnect(this._menuEvent);
+            this._blockerMenu = null;
+            this._menuEvent = null;
+        }
+
         MessageTray._bannerBin.ease = this._oldEase;
+        Main.panel.toggleQuickSettings = this._oldToggleQuickSettings;
+        Main.panel.toggleCalendar = this._oldToggleCalendar;
         this.show(0, "destroy");
         this._setUnredirectDisabled(false);
 
