@@ -66,12 +66,11 @@ export const handledWindowTypes = [
  */
 export class Intellihide extends Signals.EventEmitter {
 
-    constructor(settings, monitorIndex) {
+    constructor(settings) {
         super();
 
         // Load settings
         this._settings = settings;
-        this._monitorIndex = monitorIndex;
 
         this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._tracker = Shell.WindowTracker.get_default();
@@ -230,18 +229,21 @@ export class Intellihide extends Signals.EventEmitter {
         if (windows.length > 0) {
             /*
              * Get the top window on the monitor where the dock is placed.
+             * That is the primary monitor, read here and not stored: unplugging
+             * a monitor renumbers the rest.
              * The idea is that we dont want to overlap with the windows of the
              * topmost application, event is it's not the focused app -- for
              * instance because in multimonitor the user select a window in the
              * secondary monitor.
              */
 
+            const primaryIndex = Main.layoutManager.primaryIndex;
             let topWindow = null;
             for (let i = windows.length - 1; i >= 0; i--) {
                 let meta_win = windows[i].get_meta_window();
                 if (
                     this._handledWindow(windows[i])
-                    && (meta_win.get_monitor() == this._monitorIndex)
+                    && (meta_win.get_monitor() == primaryIndex)
                 ) {
                     topWindow = meta_win;
                     break;

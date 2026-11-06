@@ -17,7 +17,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
 import * as PanelVisibilityManager from './panelVisibilityManager.js';
 import * as Convenience from './convenience.js';
@@ -27,7 +26,6 @@ import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
 let mSettings = null;
 let mPVManager = null;
-let monitorIndex = null;
 
 export default class HideTopBarExtension extends Extension {
     constructor(metadata) {
@@ -38,9 +36,8 @@ export default class HideTopBarExtension extends Extension {
     enable() {
         DEBUG("enable()");
         mSettings = this.getSettings();
-        monitorIndex = Main.layoutManager.primaryIndex;
         mPVManager = new PanelVisibilityManager.PanelVisibilityManager(
-            mSettings, monitorIndex,
+            mSettings,
         );
     }
 
