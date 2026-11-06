@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import GLib from 'gi://GLib';
 import Meta from 'gi://Meta';
 
 export const DEBUG = function (message) {
@@ -24,18 +25,22 @@ export const DEBUG = function (message) {
     if(false) console.log(Date().substr(16,8) + " [hidetopbar]: " + message);
 }
 
-// try to simplify global signals handling
+// Central place for everything that has to be undone on destroy(): signal
+// connections, timeouts and arbitrary undo functions. Entries are grouped by
+// a label (any value, e.g. a string or a window actor).
 export class GlobalSignalsHandler {
     constructor() {
-        this._signals = new Object();
+        this._entries = new Map();
     }
 
     add(/*unlimited 3-long array arguments*/){
         this._addSignals('generic', arguments);
     }
 
+    // Labels are undone newest first, and so are the entries of one label.
+    // An undo that throws is logged and does not stop the others.
     destroy() {
-        for( let label in this._signals )
+        for( let label of [...this._entries.keys()].reverse() )
             this.disconnectWithLabel(label);
     }
 
@@ -47,25 +52,69 @@ export class GlobalSignalsHandler {
         this._addSignals(label, elements);
     }
 
+    // Like GLib.timeout_add(), the callback's return value is kept. The entry
+    // goes away when the source removes itself.
+    addTimeout(label, ms, callback) {
+        let entry = null;
+        const id = GLib.timeout_add(GLib.PRIORITY_DEFAULT, ms, () => {
+            let result = false;
+            try {
+                result = callback();
+            } finally {
+                if (!result)
+                    this._removeEntry(label, entry);
+            }
+            return result;
+        });
+        entry = () => GLib.source_remove(id);
+        this._pushEntry(label, entry);
+    }
+
+    addUndo(label, undo) {
+        this._pushEntry(label, undo);
+    }
+
+    has(label) {
+        return this._entries.has(label);
+    }
+
     _addSignals(label, elements) {
-        if(this._signals[label] == undefined)
-            this._signals[label] = new Array();
         for( let i = 0; i < elements.length; i++ ) {
             let object = elements[i][0];
             let event = elements[i][1];
             let id = object.connect(event, elements[i][2]);
-            this._signals[label].push( [ object , id ] );
+            this._pushEntry(label, () => object.disconnect(id));
         }
     }
 
+    _pushEntry(label, undo) {
+        if(!this._entries.has(label))
+            this._entries.set(label, new Array());
+        this._entries.get(label).push(undo);
+    }
+
+    _removeEntry(label, undo) {
+        const list = this._entries.get(label);
+        if(!list)
+            return;
+        const index = list.indexOf(undo);
+        if(index >= 0)
+            list.splice(index, 1);
+        if(list.length == 0)
+            this._entries.delete(label);
+    }
+
     disconnectWithLabel(label) {
-        if(this._signals[label]) {
-            for( let i = 0; i < this._signals[label].length; i++ ) {
-                this._signals[label][i][0].disconnect(
-                    this._signals[label][i][1]
-                );
+        const list = this._entries.get(label);
+        if(!list)
+            return;
+        this._entries.delete(label);
+        while(list.length > 0) {
+            try {
+                list.pop()();
+            } catch(e) {
+                logError(e, 'hidetopbar: undo failed');
             }
-            delete this._signals[label];
         }
     }
 };
