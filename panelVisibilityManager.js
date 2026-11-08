@@ -24,6 +24,7 @@ import Clutter from 'gi://Clutter';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as Layout from 'resource:///org/gnome/shell/ui/layout.js';
+import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as Config from 'resource:///org/gnome/shell/misc/config.js';
 const [major] = Config.PACKAGE_VERSION.split('.');
 const shellVersion = Number.parseInt(major);
@@ -277,27 +278,64 @@ export class PanelVisibilityManager {
 
     _handleMenus() {
         if(!Main.overview.visible) {
-            let blocker = Main.panel.menuManager.activeMenu;
+            let blocker = Main.panel.menuManager.activeMenu
+                ?? this._panelGrabMenu();
             if(blocker == null) {
+                this._releaseBlocker();
                 this.hide(
                     this._settings.get_double('animation-time-autohide'),
                     "mouse-left"
                 );
-            } else {
+            } else if(blocker !== this._blockerMenu) {
+                this._releaseBlocker();
                 this._blockerMenu = blocker;
                 this._menuEvent = this._blockerMenu.connect(
                     'open-state-changed',
                     (menu, open) => {
                         if(!open && this._blockerMenu !== null) {
-                            this._blockerMenu.disconnect(this._menuEvent);
-                            this._menuEvent=null;
-                            this._blockerMenu=null;
+                            this._releaseBlocker();
                             this._handleMenus();
                         }
                     }
                 );
             }
         }
+    }
+
+    _releaseBlocker() {
+        if(this._blockerMenu) {
+            try {
+                this._blockerMenu.disconnect(this._menuEvent);
+            } catch(e) {
+                // The menu's owner has already dropped its connections.
+            }
+            this._menuEvent = null;
+            this._blockerMenu = null;
+        }
+    }
+
+    // Menus of other extensions (ArcMenu, App Icons Taskbar) have their own
+    // PopupMenuManager. Find the open menu holding the input grab that was
+    // opened from the panel, directly or from such a menu: hiding the panel
+    // unmaps its source actor, and the menu closes.
+    _panelGrabMenu() {
+        let actor = global.stage.get_grab_actor();
+        let grabMenu = null;
+        const seen = new Set();
+        while(actor) {
+            if(PanelBox.contains(actor))
+                return grabMenu?.isOpen ? grabMenu : null;
+            const menu = actor._delegate;
+            if(menu instanceof PopupMenu.PopupMenuBase && menu.sourceActor
+               && !seen.has(menu)) {
+                seen.add(menu);
+                grabMenu ??= menu;
+                actor = menu.sourceActor;
+            } else {
+                actor = actor.get_parent();
+            }
+        }
+        return null;
     }
 
     _handleShortcut() {
@@ -610,6 +648,7 @@ export class PanelVisibilityManager {
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");
         this._disablePressureBarrier();
+        this._releaseBlocker();
         if (_searchEntryBin) {
           _searchEntryBin.style = null;
         }
@@ -617,11 +656,6 @@ export class PanelVisibilityManager {
         if (this._menuToggleId) {
             global.stage.disconnect(this._menuToggleId);
             this._menuToggleId = 0;
-        }
-        if (this._blockerMenu) {
-            this._blockerMenu.disconnect(this._menuEvent);
-            this._blockerMenu = null;
-            this._menuEvent = null;
         }
 
         MessageTray._bannerBin.ease = this._oldEase;
