@@ -90,6 +90,10 @@ export class PanelVisibilityManager {
         );
         this._pointerListener = null;
 
+        // store all signal and timeout handlers in one object to make sure that they are
+        // removed on destroy
+        this._signalsHandler = new Convenience.GlobalSignalsHandler();
+
         // Load settings
         this._bindSettingsChanges();
         this._updateSettingsMouseSensitive();
@@ -100,15 +104,17 @@ export class PanelVisibilityManager {
 
         this._updateHotCorner(false);
         this._updateStaticBox();
+
         // Wait until the panel has an allocation: after login this can take
         // a second or two, and on unlock a relayout can still be queued.
         // notify::allocation is not enough, it only fires if the box changes.
-        this._bindTimeoutId = GLib.timeout_add(
-            GLib.PRIORITY_DEFAULT, 100, () => {
+        this._signalsHandler.addTimeout(
+            'bindUiChangesTimeout', 100,
+            () => {
                 if (!PanelBox.has_allocation())
                     return GLib.SOURCE_CONTINUE;
-                this._bindTimeoutId = 0;
                 this._bindUIChanges();
+                this._signalsHandler.disconnectWithLabel("bindUiChangesTimeout");
                 return GLib.SOURCE_REMOVE;
             }
         );
@@ -598,7 +604,6 @@ export class PanelVisibilityManager {
     }
 
     _bindSettingsChanges() {
-        this._signalsHandler = new Convenience.GlobalSignalsHandler();
         this._signalsHandler.addWithLabel("settings",
             [
                 this._settings,
@@ -639,10 +644,6 @@ export class PanelVisibilityManager {
     }
 
     destroy() {
-        if (this._bindTimeoutId) {
-            GLib.source_remove(this._bindTimeoutId);
-            this._bindTimeoutId = 0;
-        }
         this._intellihide.destroy();
         this._signalsHandler.destroy();
         Main.wm.removeKeybinding("shortcut-keybind");

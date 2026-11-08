@@ -86,7 +86,6 @@ export class Intellihide extends Signals.EventEmitter {
         this._targetBox = null;
 
         this._checkOverlapTimeoutContinue = false;
-        this._checkOverlapTimeoutId = 0;
 
         // Handlers on window actors, labelled by the actor
         this._windowSignals = new Convenience.GlobalSignalsHandler();
@@ -150,10 +149,7 @@ export class Intellihide extends Signals.EventEmitter {
 
         this._windowSignals.destroy();
 
-        if (this._checkOverlapTimeoutId > 0) {
-            GLib.source_remove(this._checkOverlapTimeoutId);
-            this._checkOverlapTimeoutId = 0;
-        }
+        this._signalsHandler.disconnectWithLabel("checkOverlapTimeout");
     }
 
     _windowCreated(display, metaWindow) {
@@ -190,24 +186,26 @@ export class Intellihide extends Signals.EventEmitter {
             return;
 
         /* Limit the number of calls to the doCheckOverlap function */
-        if (this._checkOverlapTimeoutId) {
+        if (this._signalsHandler.has("checkOverlapTimeout")) {
             this._checkOverlapTimeoutContinue = true;
             return
         }
 
         this._doCheckOverlap();
 
-        this._checkOverlapTimeoutId = GLib.timeout_add(
-            GLib.PRIORITY_DEFAULT, INTELLIHIDE_CHECK_INTERVAL, () => {
-            this._doCheckOverlap();
-            if (this._checkOverlapTimeoutContinue) {
-                this._checkOverlapTimeoutContinue = false;
-                return GLib.SOURCE_CONTINUE;
-            } else {
-                this._checkOverlapTimeoutId = 0;
-                return GLib.SOURCE_REMOVE;
+        this._signalsHandler.addTimeout(
+            "checkOverlapTImeout", INTELLIHIDE_CHECK_INTERVAL,
+            () => {
+                this._doCheckOverlap();
+                if (this._checkOverlapTimeoutContinue) {
+                    this._checkOverlapTimeoutContinue = false;
+                    return GLib.SOURCE_CONTINUE;
+                } else {
+                    this._signalsHandler.disconnectWithLabel("checkOverlapTimeout");
+                    return GLib.SOURCE_REMOVE;
+                }
             }
-        });
+        );
     }
 
     _doCheckOverlap() {
