@@ -51,7 +51,6 @@ export class PanelVisibilityManager {
         this._intellihideBlock = false;
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
-        this._shortcutTimeout = null;
         this._unredirectDisabled = false;
         this._menuToggleId = 0;
 
@@ -289,7 +288,7 @@ export class PanelVisibilityManager {
             } else if(blocker !== this._blockerMenu) {
                 this._releaseBlocker();
                 this._blockerMenu = blocker;
-                this._menuEvent = this._blockerMenu.connect(
+                const menuEvent = blocker.connect(
                     'open-state-changed',
                     (menu, open) => {
                         if(!open && this._blockerMenu !== null) {
@@ -298,18 +297,21 @@ export class PanelVisibilityManager {
                         }
                     }
                 );
+                this._signalsHandler.addUndo('blocker', () => {
+                    try {
+                        blocker.disconnect(menuEvent);
+                    } catch(e) {
+                        // The menu's owner has already dropped its
+                        // connections.
+                    }
+                });
             }
         }
     }
 
     _releaseBlocker() {
         if(this._blockerMenu) {
-            try {
-                this._blockerMenu.disconnect(this._menuEvent);
-            } catch(e) {
-                // The menu's owner has already dropped its connections.
-            }
-            this._menuEvent = null;
+            this._signalsHandler.disconnectWithLabel('blocker');
             this._blockerMenu = null;
         }
     }
@@ -340,11 +342,8 @@ export class PanelVisibilityManager {
 
     _handleShortcut() {
         let delay_time = this._settings.get_double('shortcut-delay');
-        if(this._shortcutTimeout) {
-            if(this._shortcutTimeout !== true) {
-                GLib.source_remove(this._shortcutTimeout);
-            }
-            this._shortcutTimeout = null;
+        if(this._signalsHandler.has('shortcut')) {
+            this._signalsHandler.disconnectWithLabel('shortcut');
             if(delay_time < 0.05
                || this._settings.get_boolean('shortcut-toggles')) {
                 this._intellihideBlock = false;
@@ -369,13 +368,12 @@ export class PanelVisibilityManager {
                   Math.max(0.1, delay_time/5.0));
                 this.show(show_time, "shortcut");
 
-                this._shortcutTimeout = GLib.timeout_add(
-                    GLib.PRIORITY_DEFAULT, delay_time*1200,
+                this._signalsHandler.addTimeout(
+                    'shortcut', delay_time*1200,
                     () => {
                         this._preventHide = false;
                         this._intellihideBlock = false;
                         this._handleMenus();
-                        this._shortcutTimeout = null;
                         return false;
                     }
                 );
@@ -384,7 +382,8 @@ export class PanelVisibilityManager {
                     this._settings.get_double('animation-time-autohide'),
                     "shortcut"
                 );
-                this._shortcutTimeout = true;
+                // Nothing to undo, the entry marks the shortcut as pressed.
+                this._signalsHandler.addUndo('shortcut', () => {});
             }
             // Key-focus the "Activities" button
             //  Currently, this is deactivated because we can't make sure that
@@ -465,12 +464,15 @@ export class PanelVisibilityManager {
           }
         }
         if(HotCorner){
+          this._signalsHandler.disconnectWithLabel('hot-corner-barrier');
           if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
               HotCorner.setBarrierSize(PanelBox.height);
           } else {
-              GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, function () {
-                  HotCorner.setBarrierSize(0)
-              });
+              this._signalsHandler.addTimeout(
+                  'hot-corner-barrier', 100, function () {
+                      HotCorner.setBarrierSize(0)
+                  }
+              );
           }
         }
     }

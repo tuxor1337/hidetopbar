@@ -88,7 +88,8 @@ export class Intellihide extends Signals.EventEmitter {
         this._checkOverlapTimeoutContinue = false;
         this._checkOverlapTimeoutId = 0;
 
-        this._trackedWindows = new Map();
+        // Handlers on window actors, labelled by the actor
+        this._windowSignals = new Convenience.GlobalSignalsHandler();
 
         // Connect global signals
         this._signalsHandler.add([
@@ -147,10 +148,7 @@ export class Intellihide extends Signals.EventEmitter {
     disable() {
         this._isEnabled = false;
 
-        for (let wa of this._trackedWindows.keys()) {
-            this._removeWindowSignals(wa);
-        }
-        this._trackedWindows.clear();
+        this._windowSignals.destroy();
 
         if (this._checkOverlapTimeoutId > 0) {
             GLib.source_remove(this._checkOverlapTimeoutId);
@@ -165,18 +163,12 @@ export class Intellihide extends Signals.EventEmitter {
     _addWindowSignals(wa) {
         if (!this._handledWindow(wa))
             return;
-        let signalId = wa.connect(
-            'notify::allocation', this._checkOverlap.bind(this)
+        // enable() runs again when the settings change
+        this._windowSignals.disconnectWithLabel(wa);
+        this._windowSignals.addWithLabel(wa,
+            [wa, 'notify::allocation', this._checkOverlap.bind(this)],
+            [wa, 'destroy', () => this._windowSignals.disconnectWithLabel(wa)]
         );
-        this._trackedWindows.set(wa, signalId);
-        wa.connect('destroy', this._removeWindowSignals.bind(this));
-    }
-
-    _removeWindowSignals(wa) {
-        if (this._trackedWindows.get(wa)) {
-           wa.disconnect(this._trackedWindows.get(wa));
-           this._trackedWindows.delete(wa);
-        }
     }
 
     updateTargetBox(box) {
