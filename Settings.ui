@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.24"/>
-  <object class="GtkAdjustment" id="adjust_animation_time_autohide">
-    <property name="upper">1</property>
-    <property name="step-increment">0.10</property>
-    <property name="page-increment">0.10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjust_animation_time_overview">
-    <property name="upper">1</property>
-    <property name="step-increment">0.10</property>
-    <property name="page-increment">0.10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjust_pressure_threshold">
-    <property name="upper">10000</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjust_pressure_timeout">
-    <property name="upper">10000</property>
-    <property name="step-increment">1</property>
-    <property name="page-increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjust_shortcut_delay">
-    <property name="upper">10</property>
-    <property name="step-increment">0.10</property>
-    <property name="page-increment">1</property>
-  </object>
   <object class="GtkListStore" id="store_shortcut_keybind">
     <columns>
       <!-- column-name binding_mods -->
@@ -41,507 +14,213 @@
       </row>
     </data>
   </object>
-  <object class="GtkNotebook" id="settings_notebook">
-    <property name="visible">True</property>
-    <property name="vexpand">True</property>
-    <property name="can-focus">True</property>
+
+  <object class="AdwPreferencesPage" id="sensitivity">
+    <property name="name">sensitivity</property>
+    <property name="title" translatable="yes">Sensitivity</property>
+    <property name="icon-name">org.gnome.Settings-accessibility-pointing-symbolic</property>
+
     <child>
-      <!-- n-columns=2 n-rows=8 -->
-      <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
-        <property name="margin-top">10</property>
-        <property name="margin-bottom">5</property>
-        <property name="row-spacing">10</property>
-        <property name="column-spacing">10</property>
+      <object class="AdwPreferencesGroup" id="sensitivity_group">
+        <property name="title" translatable="yes">Sensitivity</property>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel when mouse approaches edge of the screen</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_mouse_sensitive">
+            <property name="title" translatable="yes">Show panel when mouse approaches edge of the screen</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">In the above case, also show panel when fullscreen</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">1</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_mouse_sensitive_fullscreen_window">
+            <property name="title" translatable="yes">In the above case, also show panel when fullscreen</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Show panel in overview</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">2</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_show_in_overview">
+            <property name="title" translatable="yes">Show panel in overview</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">3</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_hot_corner">
+            <property name="title" translatable="yes">Keep hot corner sensitive, even in hidden state</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">In the above case show overview, too</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">4</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_mouse_triggers_overview">
+            <property name="title" translatable="yes">In the above case show overview, too</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Keep round corners when top bar is hidden</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">5</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_keep_round_corners">
+            <property name="title" translatable="yes">Keep round corners when top bar is hidden</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Pressure barrier's threshold:</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">6</property>
-            </layout>
+          <object class="AdwSpinRow" id="row_pressure_threshold">
+            <property name="title" translatable="yes">Pressure barrier's threshold:</property>
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="upper">10000</property>
+                <property name="step-increment">1</property>
+                <property name="page-increment">10</property>
+              </object>
+            </property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Pressure barrier's timeout:</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">7</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_mouse_sensitive">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-            </layout>
-            <!-- <signal name="notify::active" handler="toggle_setting" swapped="no"/> -->
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_mouse_sensitive_fullscreen_window">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_show_in_overview">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">2</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_hot_corner">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">3</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_mouse_triggers_overview">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">4</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_keep_round_corners">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">5</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="spin_pressure_threshold">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <property name="adjustment">adjust_pressure_threshold</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">6</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="spin_pressure_timeout">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <property name="adjustment">adjust_pressure_timeout</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">7</property>
-            </layout>
+          <object class="AdwSpinRow" id="row_pressure_timeout">
+            <property name="title" translatable="yes">Pressure barrier's timeout:</property>
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="upper">10000</property>
+                <property name="step-increment">1</property>
+                <property name="page-increment">10</property>
+              </object>
+            </property>
           </object>
         </child>
       </object>
     </child>
-    <child type="tab">
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Sensitivity</property>
-      </object>
-    </child>
+  </object>
+
+  <object class="AdwPreferencesPage" id="animation">
+    <property name="name">animation</property>
+    <property name="title" translatable="yes">Animation</property>
+    <property name="icon-name">video-x-generic-symbolic</property>
+
     <child>
-      <!-- n-columns=2 n-rows=2 -->
-      <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
-        <property name="margin-top">10</property>
-        <property name="margin-bottom">5</property>
-        <property name="row-spacing">10</property>
-        <property name="column-spacing">10</property>
+      <object class="AdwPreferencesGroup" id="animation_group">
+        <property name="title" translatable="yes">Animation</property>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Slide animation time when entering/leaving overview:</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-            </layout>
+          <object class="AdwSpinRow" id="row_animation_time_overview">
+            <property name="title" translatable="yes">Slide animation time when entering/leaving overview:</property>
+            <property name="digits">2</property>
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="upper">1.0</property>
+                <property name="step-increment">0.10</property>
+                <property name="page-increment">0.10</property>
+              </object>
+            </property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Slide animation time when mouse approaches edge of the screen:</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="spin_animation_time_overview">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <property name="adjustment">adjust_animation_time_overview</property>
-            <property name="digits">1</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="spin_animation_time_autohide">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <property name="adjustment">adjust_animation_time_autohide</property>
-            <property name="digits">1</property><layout>
-              <property name="column">1</property>
-              <property name="row">1</property>
-            </layout>
+          <object class="AdwSpinRow" id="row_animation_time_autohide">
+            <property name="title" translatable="yes">Slide animation time when mouse approaches edge of the screen:</property>
+            <property name="digits">2</property>
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="upper">1.0</property>
+                <property name="step-increment">0.10</property>
+                <property name="page-increment">0.10</property>
+              </object>
+            </property>
           </object>
         </child>
       </object>
     </child>
-    <child type="tab">
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Animation</property>
-      </object>
-    </child>
+  </object>
+
+  <object class="AdwPreferencesPage" id="shortcuts">
+    <property name="name">shortcuts</property>
+    <property name="title" translatable="yes">Keyboard shortcuts</property>
+    <property name="icon-name">preferences-desktop-keyboard-shortcuts-symbolic</property>
+
     <child>
-      <!-- n-columns=2 n-rows=3 -->
-      <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
-        <property name="margin-top">10</property>
-        <property name="margin-bottom">5</property>
-        <property name="row-spacing">10</property>
-        <property name="column-spacing">10</property>
+      <object class="AdwPreferencesGroup" id="shortcuts_group">
+        <property name="title" translatable="yes">Keyboard shortcuts</property>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="wrap">True</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="wrap">True</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">1</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="wrap">True</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Pressing the shortcut again rehides the panel</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">2</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkTreeView">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="model">store_shortcut_keybind</property>
-            <property name="headers-visible">False</property>
-            <property name="enable-search">False</property>
-            <property name="show-expanders">False</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-            </layout>
-            <child internal-child="selection">
-              <object class="GtkTreeSelection"/>
-            </child>
+          <object class="AdwActionRow" id="row_shortcut_keybind">
+            <property name="title" translatable="yes">Key that triggers the bar to be shown (press backspace to deactivate the shortcut):</property>
+            <property name="activatable-widget">accel_shortcut_keybind</property>
             <child>
-              <object class="GtkTreeViewColumn">
-                <property name="min-width">200</property>
-                <property name="title" translatable="no">column</property>
-                <property name="sort-column-id">0</property>
+              <object class="GtkTreeView">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="model">store_shortcut_keybind</property>
+                <property name="headers-visible">False</property>
+                <property name="enable-search">False</property>
+                <property name="show-expanders">False</property>
+                <layout>
+                  <property name="column">1</property>
+                  <property name="row">0</property>
+                </layout>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection"/>
+                </child>
                 <child>
-                  <object class="GtkCellRendererAccel" id="accel_shortcut_keybind">
-                    <property name="editable">True</property>
+                  <object class="GtkTreeViewColumn">
+                    <property name="min-width">200</property>
+                    <property name="title" translatable="no">column</property>
+                    <property name="sort-column-id">0</property>
+                    <child>
+                      <object class="GtkCellRendererAccel" id="accel_shortcut_keybind">
+                        <property name="editable">True</property>
+                      </object>
+                      <attributes>
+                        <attribute name="accel-key">1</attribute>
+                        <attribute name="accel-mods">0</attribute>
+                      </attributes>
+                    </child>
                   </object>
-                  <attributes>
-                    <attribute name="accel-key">1</attribute>
-                    <attribute name="accel-mods">0</attribute>
-                  </attributes>
                 </child>
               </object>
             </child>
           </object>
         </child>
+
         <child>
-          <object class="GtkSpinButton" id="spin_shortcut_delay">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <property name="adjustment">adjust_shortcut_delay</property>
-            <property name="digits">1</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">1</property>
-            </layout>
+          <object class="AdwSpinRow" id="row_shortcut_delay">
+            <property name="title" translatable="yes">Delay before the bar rehides after key press (a value of 0 disables the rehiding):</property>
+            <property name="digits">2</property>
+            <property name="adjustment">
+              <object class="GtkAdjustment">
+                <property name="upper">10</property>
+                <property name="step-increment">0.10</property>
+                <property name="page-increment">1.0</property>
+              </object>
+            </property>
           </object>
         </child>
+
         <child>
-          <object class="GtkSwitch" id="toggle_shortcut_toggles">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">2</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_shortcut_toggles">
+            <property name="title" translatable="yes">Pressing the shortcut again rehides the panel</property>
           </object>
         </child>
       </object>
     </child>
-    <child type="tab">
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Keyboard shortcuts</property>
-      </object>
-    </child>
+  </object>
+
+  <object class="AdwPreferencesPage" id="intellihide">
+    <property name="name">intellihide</property>
+    <property name="title" translatable="yes">Intellihide</property>
+    <property name="icon-name">focus-windows-symbolic</property>
+
     <child>
-      <!-- n-columns=2 n-rows=2 -->
-      <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">5</property>
-        <property name="margin-end">5</property>
-        <property name="margin-top">10</property>
-        <property name="margin-bottom">5</property>
-        <property name="row-spacing">10</property>
-        <property name="column-spacing">10</property>
+      <object class="AdwPreferencesGroup" id="intellihide_group">
+        <property name="title" translatable="yes">Intellihide</property>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="wrap">True</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Only hide panel when a window takes the space</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">0</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_enable_intellihide">
+            <property name="title" translatable="yes">Only hide panel when a window takes the space</property>
           </object>
         </child>
+
         <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="wrap">True</property>
-            <property name="xalign">0</property>
-            <property name="label" translatable="yes">Only when the active window takes the space</property>
-            <layout>
-              <property name="column">0</property>
-              <property name="row">1</property>
-            </layout>
+          <object class="AdwSwitchRow" id="row_enable_active_window">
+            <property name="title" translatable="yes">Only when the active window takes the space</property>
           </object>
         </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_enable_intellihide">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">0</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSwitch" id="toggle_enable_active_window">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="halign">end</property>
-            <property name="valign">center</property>
-            <layout>
-              <property name="column">1</property>
-              <property name="row">1</property>
-            </layout>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child type="tab">
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Intellihide</property>
       </object>
     </child>
   </object>

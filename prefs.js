@@ -29,14 +29,9 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         let settings = this.getSettings();
 
-        let frame = new Gtk.ScrolledWindow(
-            { hscrollbar_policy: Gtk.PolicyType.NEVER });
         let builder = new Gtk.Builder();
         builder.set_translation_domain("hidetopbar@mathieu.bidon.ca");
         builder.add_from_file(this.path + '/Settings.ui');
-
-        let notebook = builder.get_object("settings_notebook");
-        frame.set_child(notebook);
 
         /**********************************************************************
          ****************************** Section Sensitivity *******************
@@ -50,7 +45,7 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
          'keep-round-corners'
         ].forEach(function (s) {
             let settings_onoff = builder.get_object(
-                "toggle_" + s.replace(/-/g, "_")
+                "row_" + s.replace(/-/g, "_")
             );
             settings_onoff.set_active(settings.get_boolean(s));
             settings_onoff.connect('notify::active', function (w) {
@@ -65,10 +60,10 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
          'pressure-timeout'
         ].forEach(function (s) {
             let settings_spin = builder.get_object(
-                "spin_" + s.replace(/-/g, "_")
+                "row_" + s.replace(/-/g, "_")
             );
             settings_spin.set_value(settings.get_int(s));
-            settings_spin.connect('value-changed', function (w) {
+            settings_spin.connect('changed', function (w) {
                 settings.set_int(s, w.get_value());
             });
             settings.connect('changed::' + s, function (k,b) {
@@ -84,10 +79,10 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
          'animation-time-autohide',
          ].forEach(function (s) {
              let settings_spin = builder.get_object(
-                 "spin_" + s.replace(/-/g, "_")
+                 "row_" + s.replace(/-/g, "_")
              );
              settings_spin.set_value(settings.get_double(s));
-             settings_spin.connect('value-changed', function (w) {
+             settings_spin.connect('changed', function (w) {
                  settings.set_double(s, w.get_value());
              });
              settings.connect('changed::' + s, function (k,b) {
@@ -154,10 +149,10 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
         ['shortcut-delay',
          ].forEach(function (s) {
              let settings_spin = builder.get_object(
-                 "spin_" + s.replace(/-/g, "_")
+                 "row_" + s.replace(/-/g, "_")
              );
              settings_spin.set_value(settings.get_double(s));
-             settings_spin.connect('value-changed', function (w) {
+             settings_spin.connect('changed', function (w) {
                  settings.set_double(s, w.get_value());
              });
              settings.connect('changed::' + s, function (k,b) {
@@ -168,7 +163,7 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
         ['shortcut-toggles',
          ].forEach(function (s) {
              let settings_onoff = builder.get_object(
-                 "toggle_" + s.replace(/-/g, "_")
+                 "row_" + s.replace(/-/g, "_")
              );
              settings_onoff.set_active(settings.get_boolean(s))
              settings_onoff.connect('notify::active', function (w) {
@@ -187,7 +182,7 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
          'enable-active-window',
          ].forEach(function (s) {
              let settings_onoff = builder.get_object(
-                 "toggle_" + s.replace(/-/g, "_")
+                 "row_" + s.replace(/-/g, "_")
              );
              settings_onoff.set_active(settings.get_boolean(s))
              settings_onoff.connect('notify::active', function (w) {
@@ -198,12 +193,8 @@ export default class HideTopBarPreferences extends ExtensionPreferences {
              });
          });
 
-        const group = new Adw.PreferencesGroup();
-        group.add(frame);
-
-        const page = new Adw.PreferencesPage();
-        page.add(group);
-
-        window.add(page);
+        for (const page of ["sensitivity", "animation", "shortcuts", "intellihide"]) {
+            window.add(builder.get_object(page));
+        }
     }
 }
