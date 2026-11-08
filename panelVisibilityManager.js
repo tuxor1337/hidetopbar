@@ -495,11 +495,8 @@ export class PanelVisibilityManager {
 
     _updateSearchEntryPadding() {
         if (!_searchEntryBin) return;
-        if (!Main.layoutManager.primaryMonitor) return;
-        const scale = Main.layoutManager.primaryMonitor.geometry_scale;
-        const offset = PanelBox.height / scale;
         _searchEntryBin.set_style(
-            this._showInOverview ? `padding-top: ${offset}px;` : null
+            this._showInOverview ? `padding-top: ${PanelBox.height}px;` : null
         );
     }
 
