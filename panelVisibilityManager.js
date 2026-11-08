@@ -42,8 +42,7 @@ const _searchEntryBin = Main.overview._overview._controls._searchEntryBin;
 
 export class PanelVisibilityManager {
 
-    constructor(settings, monitorIndex) {
-        this._monitorIndex = monitorIndex;
+    constructor(settings) {
         this._base_y = PanelBox.y;
         this._settings = settings;
         this._preventHide = false;
@@ -96,7 +95,7 @@ export class PanelVisibilityManager {
         this._updateSettingsMouseSensitive();
         this._updateSettingsShowInOverview();
         this._intellihide = new Intellihide.Intellihide(
-            this._settings, this._monitorIndex,
+            this._settings,
         );
 
         this._updateHotCorner(false);
