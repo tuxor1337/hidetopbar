@@ -52,7 +52,6 @@ export class PanelVisibilityManager {
         this._staticBox = new Clutter.ActorBox();
         this._animationActive = false;
         this._unredirectDisabled = false;
-        this._menuToggleId = 0;
 
         this._desktopIconsUsableArea = (
             new DesktopIconsIntegration.DesktopIconsUsableAreaClass()
@@ -76,11 +75,13 @@ export class PanelVisibilityManager {
             }
         ).bind(this);
 
+        // store all signal and timeout handlers in one object to make sure that they are
+        // removed on destroy
+        this._signalsHandler = new Convenience.GlobalSignalsHandler();
+
         // Panel._toggleMenu() returns early while the panel is unmapped, so
         // Super+S and Super+V do nothing with the bar hidden. Reveal it first.
-        this._oldToggleQuickSettings = this._wrapMenuToggle(
-            'toggleQuickSettings'
-        );
+        this._oldToggleQuickSettings = this._wrapMenuToggle('toggleQuickSettings');
         this._oldToggleCalendar = this._wrapMenuToggle('toggleCalendar');
 
         this._cursorTracker = (
@@ -88,11 +89,6 @@ export class PanelVisibilityManager {
             ? global.backend.get_cursor_tracker()
             : Meta.CursorTracker.get_for_display(global.display)  // GNOME Shell 45-47
         );
-        this._pointerListener = null;
-
-        // store all signal and timeout handlers in one object to make sure that they are
-        // removed on destroy
-        this._signalsHandler = new Convenience.GlobalSignalsHandler();
 
         // Load settings
         this._bindSettingsChanges();
@@ -114,7 +110,6 @@ export class PanelVisibilityManager {
                 if (!PanelBox.has_allocation())
                     return GLib.SOURCE_CONTINUE;
                 this._bindUIChanges();
-                this._signalsHandler.disconnectWithLabel("bindUiChangesTimeout");
                 return GLib.SOURCE_REMOVE;
             }
         );
@@ -217,13 +212,17 @@ export class PanelVisibilityManager {
                         // start hiding the panel immediately.
                         this._handleMenus();
                     }
-                    else if(!this._pointerListener)
+                    else if(!this._signalsHandler.has("pointerListener"))
                     {
                         // The cursor is still on the panel. Start watching the
                         // pointer so we know when it leaves the panel.
-                        this._pointerListener = this._cursorTracker.connect(
-                            'position-invalidated',
-                            () => this._handlePointer(...global.get_pointer()),
+                        this._signalsHandler.addWithLabel(
+                            "pointerListener",
+                            [
+                                this._cursorTracker,
+                                'position-invalidated',
+                                () => this._handlePointer(...global.get_pointer()),
+                            ],
                         );
                     }
                 }
@@ -234,7 +233,7 @@ export class PanelVisibilityManager {
     _wrapMenuToggle(name) {
         const original = Main.panel[name];
         Main.panel[name] = (...args) => {
-            if (this._menuToggleId) return;
+            if (this._signalsHandler.has("menuToggle")) return;
             if (PanelBox.visible && PanelBox.y === this._base_y) {
                 original.apply(Main.panel, args);
                 return;
@@ -245,17 +244,21 @@ export class PanelVisibilityManager {
             // panel under the pointer. If that pick came after the menu's
             // grab, the panel button under the pointer would get an enter
             // event and PopupMenuManager would switch to its menu.
-            this._menuToggleId = global.stage.connect(
-                'after-update', (stage, view) => {
-                    if (!PanelBox.peek_stage_views().includes(view)) return;
-                    global.stage.disconnect(this._menuToggleId);
-                    this._menuToggleId = 0;
-                    try {
-                        original.apply(Main.panel, args);
-                    } finally {
-                        this._handleMenus();
-                    }
-                }
+            this._signalsHandler.addWithLabel(
+                "menuToggle",
+                [
+                    global.stage,
+                    'after-update',
+                    (stage, view) => {
+                        if (!PanelBox.peek_stage_views().includes(view)) return;
+                        this._signalsHandler.disconnectWithLabel("menuToggle");
+                        try {
+                            original.apply(Main.panel, args);
+                        } finally {
+                            this._handleMenus();
+                        }
+                    },
+                ],
             );
         };
         return original;
@@ -269,10 +272,7 @@ export class PanelVisibilityManager {
     }
 
     _stopWatchingPointer() {
-        if(this._pointerListener) {
-            this._cursorTracker.disconnect(this._pointerListener);
-            this._pointerListener = null;
-        }
+        this._signalsHandler.disconnectWithLabel("pointerListener");
     }
 
     _handlePointer(x, y) {
@@ -294,30 +294,26 @@ export class PanelVisibilityManager {
             } else if(blocker !== this._blockerMenu) {
                 this._releaseBlocker();
                 this._blockerMenu = blocker;
-                const menuEvent = blocker.connect(
-                    'open-state-changed',
-                    (menu, open) => {
-                        if(!open && this._blockerMenu !== null) {
-                            this._releaseBlocker();
-                            this._handleMenus();
-                        }
-                    }
+                this._signalsHandler.addWithLabel(
+                    'blockerMenu',
+                    [
+                        blocker,
+                        'open-state-changed',
+                        (menu, open) => {
+                            if(!open && this._blockerMenu !== null) {
+                                this._releaseBlocker();
+                                this._handleMenus();
+                            }
+                        },
+                    ],
                 );
-                this._signalsHandler.addUndo('blocker', () => {
-                    try {
-                        blocker.disconnect(menuEvent);
-                    } catch(e) {
-                        // The menu's owner has already dropped its
-                        // connections.
-                    }
-                });
             }
         }
     }
 
     _releaseBlocker() {
         if(this._blockerMenu) {
-            this._signalsHandler.disconnectWithLabel('blocker');
+            this._signalsHandler.disconnectWithLabel('blockerMenu');
             this._blockerMenu = null;
         }
     }
@@ -348,8 +344,8 @@ export class PanelVisibilityManager {
 
     _handleShortcut() {
         let delay_time = this._settings.get_double('shortcut-delay');
-        if(this._signalsHandler.has('shortcut')) {
-            this._signalsHandler.disconnectWithLabel('shortcut');
+        if(this._signalsHandler.has('shortcutTimeout')) {
+            this._signalsHandler.disconnectWithLabel('shortcutTimeout');
             if(delay_time < 0.05
                || this._settings.get_boolean('shortcut-toggles')) {
                 this._intellihideBlock = false;
@@ -375,7 +371,7 @@ export class PanelVisibilityManager {
                 this.show(show_time, "shortcut");
 
                 this._signalsHandler.addTimeout(
-                    'shortcut', delay_time*1200,
+                    'shortcutTimeout', delay_time*1200,
                     () => {
                         this._preventHide = false;
                         this._intellihideBlock = false;
@@ -389,7 +385,7 @@ export class PanelVisibilityManager {
                     "shortcut"
                 );
                 // Nothing to undo, the entry marks the shortcut as pressed.
-                this._signalsHandler.addUndo('shortcut', () => {});
+                this._signalsHandler.addUndo('shortcutTimeout', () => {});
             }
             // Key-focus the "Activities" button
             //  Currently, this is deactivated because we can't make sure that
@@ -415,22 +411,24 @@ export class PanelVisibilityManager {
             this._settings.get_int('pressure-timeout'),
             ShellActionMode.NORMAL
         );
-        this._panelPressure.connect(
-            'trigger',
-            (barrier) => {
-                if (
-                    Main.layoutManager.primaryMonitor?.inFullscreen
-                    && !this._settings.get_boolean(
-                        'mouse-sensitive-fullscreen-window'
-                    )
-                ) {
-                    return;
-                }
-                this.show(
-                    this._settings.get_double('animation-time-autohide'),
-                    "mouse-enter"
-                );
-            }
+        this._signalsHandler.addWithLabel(
+            "panelPressure",
+            [
+                this._panelPressure,
+                'trigger',
+                (barrier) => {
+                    if (
+                        Main.layoutManager.primaryMonitor?.inFullscreen
+                        && !this._settings.get_boolean('mouse-sensitive-fullscreen-window')
+                    ) {
+                        return;
+                    }
+                    this.show(
+                        this._settings.get_double('animation-time-autohide'),
+                        "mouse-enter"
+                    );
+                },
+            ],
         );
         let anchor_y = PanelBox.get_pivot_point()[1],
             direction = Meta.BarrierDirection.POSITIVE_Y;
@@ -470,12 +468,12 @@ export class PanelVisibilityManager {
           }
         }
         if(HotCorner){
-          this._signalsHandler.disconnectWithLabel('hot-corner-barrier');
+          this._signalsHandler.disconnectWithLabel('hotCornerBarrierTimeout');
           if(!panel_hidden || this._settings.get_boolean('hot-corner')) {
               HotCorner.setBarrierSize(PanelBox.height);
           } else {
               this._signalsHandler.addTimeout(
-                  'hot-corner-barrier', 100, function () {
+                  'hotCornerBarrierTimeout', 100, function () {
                       HotCorner.setBarrierSize(0)
                   }
               );
@@ -651,11 +649,6 @@ export class PanelVisibilityManager {
         this._releaseBlocker();
         if (_searchEntryBin) {
           _searchEntryBin.style = null;
-        }
-
-        if (this._menuToggleId) {
-            global.stage.disconnect(this._menuToggleId);
-            this._menuToggleId = 0;
         }
 
         MessageTray._bannerBin.ease = this._oldEase;

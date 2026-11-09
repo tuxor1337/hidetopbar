@@ -194,7 +194,7 @@ export class Intellihide extends Signals.EventEmitter {
         this._doCheckOverlap();
 
         this._signalsHandler.addTimeout(
-            "checkOverlapTImeout", INTELLIHIDE_CHECK_INTERVAL,
+            "checkOverlapTimeout", INTELLIHIDE_CHECK_INTERVAL,
             () => {
                 this._doCheckOverlap();
                 if (this._checkOverlapTimeoutContinue) {

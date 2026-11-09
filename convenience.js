@@ -80,9 +80,8 @@ export class GlobalSignalsHandler {
 
     _addSignals(label, elements) {
         for( let i = 0; i < elements.length; i++ ) {
-            let object = elements[i][0];
-            let event = elements[i][1];
-            let id = object.connect(event, elements[i][2]);
+            const object = elements[i][0];
+            let id = object.connect(elements[i][1], elements[i][2]);
             this._pushEntry(label, () => object.disconnect(id));
         }
     }
