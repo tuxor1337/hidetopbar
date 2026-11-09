@@ -10,14 +10,11 @@ LOCALES_MO = $(patsubst %.po,%.mo,$(LOCALES_PO))
 
 all: hidetopbar.zip
 
-schemas/gschemas.compiled:
-	glib-compile-schemas --strict ./schemas/
-
-hidetopbar.zip: schemas/gschemas.compiled $(LOCALES_MO)
+hidetopbar.zip: $(LOCALES_MO)
 	zip hidetopbar.zip -r COPYING.txt $(JS_FILES) metadata.json $(LOCALES_MO) schemas Settings.ui
 
 clean:
-	rm -rf hidetopbar.zip schemas/gschemas.compiled ${LOCALES_MO}
+	rm -rf hidetopbar.zip ${LOCALES_MO}
 
 distclean: clean
 	rm -rf locale/hidetopbar.pot-stamp
