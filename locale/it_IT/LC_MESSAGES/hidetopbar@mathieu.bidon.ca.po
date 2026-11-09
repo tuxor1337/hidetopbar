@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"POT-Creation-Date: 2026-11-09 19:23+0100\n"
 "PO-Revision-Date: 2019-10-21 01:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,86 +18,86 @@ msgstr ""
 "X-Generator: Poedit 2.2.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Settings.ui:65
+#: Settings.ui:20 Settings.ui:25
+msgid "Sensitivity"
+msgstr "Sensibilità"
+
+#: Settings.ui:29
 msgid "Show panel when mouse approaches edge of the screen"
 msgstr "Mostra il pannello quando il mouse si avvicina al bordo dello schermo"
 
-#: Settings.ui:78
+#: Settings.ui:35
 msgid "In the above case, also show panel when fullscreen"
 msgstr "Nel caso superiore mostra anche il pannello a schermo interno"
 
-#: Settings.ui:91
+#: Settings.ui:41
 msgid "Show panel in overview"
 msgstr "Mostra il pannello nella panoramica"
 
-#: Settings.ui:104
+#: Settings.ui:47
 msgid "Keep hot corner sensitive, even in hidden state"
 msgstr "Mantieni l'hot corner sensibile, anche da nascosto"
 
-#: Settings.ui:117
+#: Settings.ui:53
 msgid "In the above case show overview, too"
 msgstr "Nel caso superiore mostra anche la panoramica"
 
-#: Settings.ui:130
+#: Settings.ui:59
 #, fuzzy
 #| msgid "Keep hot corner sensitive, even in hidden state"
 msgid "Keep round corners when top bar is hidden"
 msgstr "Mantieni gli angoli arrotondati, anche da nascosto"
 
-#: Settings.ui:143
+#: Settings.ui:65
 msgid "Pressure barrier's threshold:"
 msgstr "Soglia di pressione della barriera:"
 
-#: Settings.ui:156
+#: Settings.ui:78
 msgid "Pressure barrier's timeout:"
 msgstr "Timeout di pressione della barriera:"
 
-#: Settings.ui:268
-msgid "Sensitivity"
-msgstr "Sensibilità"
+#: Settings.ui:94 Settings.ui:99
+msgid "Animation"
+msgstr "Animazione"
 
-#: Settings.ui:288
+#: Settings.ui:103
 msgid "Slide animation time when entering/leaving overview:"
 msgstr "Tempo di animazione quando entri/esci dalla panoramica:"
 
-#: Settings.ui:301
+#: Settings.ui:117
 msgid "Slide animation time when mouse approaches edge of the screen:"
 msgstr ""
 "Tempo di animazione quando il mouse si avvicina al bordo dello schermo."
 
-#: Settings.ui:341
-msgid "Animation"
-msgstr "Animazione"
+#: Settings.ui:134 Settings.ui:139
+msgid "Keyboard shortcuts"
+msgstr "Scorciatoie da Tastiera"
 
-#: Settings.ui:364
+#: Settings.ui:143
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "Tasto che rende visibile la barra:"
 
-#: Settings.ui:380
+#: Settings.ui:183
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr ""
 "Ritardo prima che la barra ritorni nascosta dopo la pressione del tasto."
 
-#: Settings.ui:396
+#: Settings.ui:197
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Premere la scorciatoia nuovamente ri-nasconde il pannello."
 
-#: Settings.ui:468
-msgid "Keyboard shortcuts"
-msgstr "Scorciatoie da Tastiera"
+#: Settings.ui:206 Settings.ui:211
+msgid "Intellihide"
+msgstr "Nascondi Automaticamente"
 
-#: Settings.ui:491
+#: Settings.ui:215
 msgid "Only hide panel when a window takes the space"
 msgstr "Nascondi il pannello solo quando una finestra ne occupa lo spazio"
 
-#: Settings.ui:507
+#: Settings.ui:221
 msgid "Only when the active window takes the space"
 msgstr "Solo quando la finestra attiva occupa lo spazio"
-
-#: Settings.ui:544
-msgid "Intellihide"
-msgstr "Nascondi Automaticamente"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-26 18:45+0800\n"
+"POT-Creation-Date: 2026-11-09 19:23+0100\n"
 "PO-Revision-Date: 2022-03-26 19:15+0800\n"
 "Last-Translator: Rubicon Rowe <l1589002388@gmail.com>\n"
 "Language-Team: Chinese - China <>\n"
@@ -21,82 +21,82 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: Settings.ui:65
-msgid "Show panel when mouse approaches edge of the screen"
-msgstr "鼠标靠近屏幕边沿时显示面板"
-
-#: Settings.ui:78
-msgid "In the above case, also show panel when fullscreen"
-msgstr "在全屏时应用上一条设置"
-
-#: Settings.ui:91
-msgid "Show panel in overview"
-msgstr "在活动概览中显示面板"
-
-#: Settings.ui:104
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "面板隐藏时仍然保持热区敏感（可以呼出活动概览）"
-
-#: Settings.ui:117
-msgid "In the above case show overview, too"
-msgstr "如果上一条设置打开，呼出面板时也显示活动概览"
-
-#: Settings.ui:130
-msgid "Keep round corners when top bar is hidden"
-msgstr "隐藏顶部栏时保持圆角"
-
-#: Settings.ui:143
-msgid "Pressure barrier's threshold:"
-msgstr "边沿压力阈值："
-
-#: Settings.ui:156
-msgid "Pressure barrier's timeout:"
-msgstr "边沿压力超时时间："
-
-#: Settings.ui:268
+#: Settings.ui:20 Settings.ui:25
 msgid "Sensitivity"
 msgstr "敏感度"
 
-#: Settings.ui:288
-msgid "Slide animation time when entering/leaving overview:"
-msgstr "进入/离开活动概览时面板滑动的动画时长"
+#: Settings.ui:29
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "鼠标靠近屏幕边沿时显示面板"
 
-#: Settings.ui:301
-msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时长"
+#: Settings.ui:35
+msgid "In the above case, also show panel when fullscreen"
+msgstr "在全屏时应用上一条设置"
 
-#: Settings.ui:341
+#: Settings.ui:41
+msgid "Show panel in overview"
+msgstr "在活动概览中显示面板"
+
+#: Settings.ui:47
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "面板隐藏时仍然保持热区敏感（可以呼出活动概览）"
+
+#: Settings.ui:53
+msgid "In the above case show overview, too"
+msgstr "如果上一条设置打开，呼出面板时也显示活动概览"
+
+#: Settings.ui:59
+msgid "Keep round corners when top bar is hidden"
+msgstr "隐藏顶部栏时保持圆角"
+
+#: Settings.ui:65
+msgid "Pressure barrier's threshold:"
+msgstr "边沿压力阈值："
+
+#: Settings.ui:78
+msgid "Pressure barrier's timeout:"
+msgstr "边沿压力超时时间："
+
+#: Settings.ui:94 Settings.ui:99
 msgid "Animation"
 msgstr "动画效果"
 
-#: Settings.ui:364
+#: Settings.ui:103
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "进入/离开活动概览时面板滑动的动画时长"
+
+#: Settings.ui:117
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "鼠标靠近屏幕上边沿时面板滑动的动画时长"
+
+#: Settings.ui:134 Settings.ui:139
+msgid "Keyboard shortcuts"
+msgstr "键盘快捷键"
+
+#: Settings.ui:143
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "触发显示面板的快捷键（按Backspace键以禁用此快捷键）"
 
-#: Settings.ui:380
+#: Settings.ui:183
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr "面板在按下快捷键后被重新隐藏的延时（设置为0以禁用此特性）"
 
-#: Settings.ui:396
+#: Settings.ui:197
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "再次按下快捷键时重新隐藏面板"
 
-#: Settings.ui:468
-msgid "Keyboard shortcuts"
-msgstr "键盘快捷键"
+#: Settings.ui:206 Settings.ui:211
+msgid "Intellihide"
+msgstr "智能隐藏"
 
-#: Settings.ui:491
+#: Settings.ui:215
 msgid "Only hide panel when a window takes the space"
 msgstr "仅当有窗口占用面板空间时才隐藏面板"
 
-#: Settings.ui:507
+#: Settings.ui:221
 msgid "Only when the active window takes the space"
 msgstr "仅当活动窗口占用面板空间时才隐藏面板"
-
-#: Settings.ui:544
-msgid "Intellihide"
-msgstr "智能隐藏"

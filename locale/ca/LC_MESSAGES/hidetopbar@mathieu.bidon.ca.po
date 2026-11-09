@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"POT-Creation-Date: 2026-11-09 19:23+0100\n"
 "PO-Revision-Date: 2021-03-10 16:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,82 +18,82 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: Settings.ui:65
-msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Mostra la barra quan el ratolí s'apropi a la vora de la pantalla."
-
-#: Settings.ui:78
-msgid "In the above case, also show panel when fullscreen"
-msgstr "En el cas anterior, mostra també la barra en pantalla completa."
-
-#: Settings.ui:91
-msgid "Show panel in overview"
-msgstr "Mostra la barra a la vista general."
-
-#: Settings.ui:104
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "Mantén el cantó actiu sensible, fins i tot en mode ocult."
-
-#: Settings.ui:117
-msgid "In the above case show overview, too"
-msgstr "En el cas anterior, mostra també la vista general."
-
-#: Settings.ui:130
-msgid "Keep round corners when top bar is hidden"
-msgstr "Mantén els cantons arrodonits quan la barra estigui oculta."
-
-#: Settings.ui:143
-msgid "Pressure barrier's threshold:"
-msgstr "Llindar de la pressió:"
-
-#: Settings.ui:156
-msgid "Pressure barrier's timeout:"
-msgstr "Temps d'espera de la pressió:"
-
-#: Settings.ui:268
+#: Settings.ui:20 Settings.ui:25
 msgid "Sensitivity"
 msgstr "Sensibilitat"
 
-#: Settings.ui:288
-msgid "Slide animation time when entering/leaving overview:"
-msgstr "Durada de l'animació en entrar o sortir de la vista general:"
+#: Settings.ui:29
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Mostra la barra quan el ratolí s'apropi a la vora de la pantalla."
 
-#: Settings.ui:301
-msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "Durada de l'animació quan el ratolí s'apropi a la vora de la pantalla:"
+#: Settings.ui:35
+msgid "In the above case, also show panel when fullscreen"
+msgstr "En el cas anterior, mostra també la barra en pantalla completa."
 
-#: Settings.ui:341
+#: Settings.ui:41
+msgid "Show panel in overview"
+msgstr "Mostra la barra a la vista general."
+
+#: Settings.ui:47
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Mantén el cantó actiu sensible, fins i tot en mode ocult."
+
+#: Settings.ui:53
+msgid "In the above case show overview, too"
+msgstr "En el cas anterior, mostra també la vista general."
+
+#: Settings.ui:59
+msgid "Keep round corners when top bar is hidden"
+msgstr "Mantén els cantons arrodonits quan la barra estigui oculta."
+
+#: Settings.ui:65
+msgid "Pressure barrier's threshold:"
+msgstr "Llindar de la pressió:"
+
+#: Settings.ui:78
+msgid "Pressure barrier's timeout:"
+msgstr "Temps d'espera de la pressió:"
+
+#: Settings.ui:94 Settings.ui:99
 msgid "Animation"
 msgstr "Animació"
 
-#: Settings.ui:364
+#: Settings.ui:103
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Durada de l'animació en entrar o sortir de la vista general:"
+
+#: Settings.ui:117
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Durada de l'animació quan el ratolí s'apropi a la vora de la pantalla:"
+
+#: Settings.ui:134 Settings.ui:139
+msgid "Keyboard shortcuts"
+msgstr "Dreceres del teclat"
+
+#: Settings.ui:143
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "Tecla que fa que la barra es mostri:"
 
-#: Settings.ui:380
+#: Settings.ui:183
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr "Retard de l'ocultació de la barra després de prémer una tecla:"
 
-#: Settings.ui:396
+#: Settings.ui:197
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Tornar a prémer la drecera torna a ocultar la barra."
 
-#: Settings.ui:468
-msgid "Keyboard shortcuts"
-msgstr "Dreceres del teclat"
+#: Settings.ui:206 Settings.ui:211
+msgid "Intellihide"
+msgstr "Ocultació intel·ligent"
 
-#: Settings.ui:491
+#: Settings.ui:215
 msgid "Only hide panel when a window takes the space"
 msgstr "Oculta la barra només quan una finestra n'ocupi l'espai."
 
-#: Settings.ui:507
+#: Settings.ui:221
 msgid "Only when the active window takes the space"
 msgstr "Oculta la barra només quan la finestra activa n'ocupi l'espai."
-
-#: Settings.ui:544
-msgid "Intellihide"
-msgstr "Ocultació intel·ligent"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hide Top Bar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"POT-Creation-Date: 2026-11-09 19:23+0100\n"
 "PO-Revision-Date: 2022-03-05 17:13+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -18,55 +18,59 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: Settings.ui:65
-msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Bovenbalk tonen als de muisaanwijzer de rand van het scherm raakt"
-
-#: Settings.ui:78
-msgid "In the above case, also show panel when fullscreen"
-msgstr "Bovenstaande optie ook hanteren in beeldvullende modus"
-
-#: Settings.ui:91
-msgid "Show panel in overview"
-msgstr "Bovenbalk tonen op overzicht"
-
-#: Settings.ui:104
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
-
-#: Settings.ui:117
-msgid "In the above case show overview, too"
-msgstr "Bovenstaande optie ook gebruiken om overzicht te tonen"
-
-#: Settings.ui:130
-msgid "Keep round corners when top bar is hidden"
-msgstr "Ronde hoeken behouden, ook indien verborgen"
-
-#: Settings.ui:143
-msgid "Pressure barrier's threshold:"
-msgstr "Gevoeligheid van rand:"
-
-#: Settings.ui:156
-msgid "Pressure barrier's timeout:"
-msgstr "Gevoeligheid van rand (time-out):"
-
-#: Settings.ui:268
+#: Settings.ui:20 Settings.ui:25
 msgid "Sensitivity"
 msgstr "Gevoeligheid"
 
-#: Settings.ui:288
-msgid "Slide animation time when entering/leaving overview:"
-msgstr "Duur van verschuifanimatie bij openen/sluiten van overzicht:"
+#: Settings.ui:29
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Bovenbalk tonen als de muisaanwijzer de rand van het scherm raakt"
 
-#: Settings.ui:301
-msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "Duur van verschuifanimatie bij aanraken van schermrand:"
+#: Settings.ui:35
+msgid "In the above case, also show panel when fullscreen"
+msgstr "Bovenstaande optie ook hanteren in beeldvullende modus"
 
-#: Settings.ui:341
+#: Settings.ui:41
+msgid "Show panel in overview"
+msgstr "Bovenbalk tonen op overzicht"
+
+#: Settings.ui:47
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Snelhoek-gevoeligheid behouden, ook indien verborgen"
+
+#: Settings.ui:53
+msgid "In the above case show overview, too"
+msgstr "Bovenstaande optie ook gebruiken om overzicht te tonen"
+
+#: Settings.ui:59
+msgid "Keep round corners when top bar is hidden"
+msgstr "Ronde hoeken behouden, ook indien verborgen"
+
+#: Settings.ui:65
+msgid "Pressure barrier's threshold:"
+msgstr "Gevoeligheid van rand:"
+
+#: Settings.ui:78
+msgid "Pressure barrier's timeout:"
+msgstr "Gevoeligheid van rand (time-out):"
+
+#: Settings.ui:94 Settings.ui:99
 msgid "Animation"
 msgstr "Animatie"
 
-#: Settings.ui:364
+#: Settings.ui:103
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Duur van verschuifanimatie bij openen/sluiten van overzicht:"
+
+#: Settings.ui:117
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Duur van verschuifanimatie bij aanraken van schermrand:"
+
+#: Settings.ui:134 Settings.ui:139
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen"
+
+#: Settings.ui:143
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
@@ -74,7 +78,7 @@ msgstr ""
 "De toets waarmee de balk kan worden getoond (druk op backspace om uit te "
 "schakelen):"
 
-#: Settings.ui:380
+#: Settings.ui:183
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
@@ -82,22 +86,18 @@ msgstr ""
 "Wachttijd alvorens de balk wordt verborgen na gebruik van de sneltoets (0 = "
 "uitschakelen):"
 
-#: Settings.ui:396
+#: Settings.ui:197
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Sneltoets opnieuw indrukken om bovenbalk te verbergen"
 
-#: Settings.ui:468
-msgid "Keyboard shortcuts"
-msgstr "Sneltoetsen"
+#: Settings.ui:206 Settings.ui:211
+msgid "Intellihide"
+msgstr "Intelligent verbergen"
 
-#: Settings.ui:491
+#: Settings.ui:215
 msgid "Only hide panel when a window takes the space"
 msgstr "Bovenbalk alleen verbergen als een venster de ruimte opeist"
 
-#: Settings.ui:507
+#: Settings.ui:221
 msgid "Only when the active window takes the space"
 msgstr "Bovenbalk alleen verbergen als het huidige venster de ruimte opeist"
-
-#: Settings.ui:544
-msgid "Intellihide"
-msgstr "Intelligent verbergen"

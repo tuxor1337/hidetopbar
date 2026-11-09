@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hidetopbar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 11:00-0300\n"
+"POT-Creation-Date: 2026-11-09 19:23+0100\n"
 "PO-Revision-Date: 2021-03-07 22:29-0300\n"
 "Last-Translator: Marcos M Nascimento <wstl@bol.com.br>\n"
 "Language-Team: Portuguese <wstl@bol.com.br>\n"
@@ -20,82 +20,82 @@ msgstr ""
 "Plural-Forms: nplurals=2;plural=(n>1);\n"
 "X-Generator: Gtranslator 3.38.0\n"
 
-#: Settings.ui:65
-msgid "Show panel when mouse approaches edge of the screen"
-msgstr "Mostrar o painel quando o mouse aproximar da borda da tela"
-
-#: Settings.ui:78
-msgid "In the above case, also show panel when fullscreen"
-msgstr "No caso acima, também mostrar o painel quando em tela cheia"
-
-#: Settings.ui:91
-msgid "Show panel in overview"
-msgstr "Mostrar o painel em visão geral"
-
-#: Settings.ui:104
-msgid "Keep hot corner sensitive, even in hidden state"
-msgstr "Manter o canto responsivo, mesmo quando oculto"
-
-#: Settings.ui:117
-msgid "In the above case show overview, too"
-msgstr "No caso acima, também mostrar o panorama de atividades"
-
-#: Settings.ui:130
-msgid "Keep round corners when top bar is hidden"
-msgstr "Manter os cantos arredondados, mesmo quando oculto"
-
-#: Settings.ui:143
-msgid "Pressure barrier's threshold:"
-msgstr "Limiar da barreira de pressão:"
-
-#: Settings.ui:156
-msgid "Pressure barrier's timeout:"
-msgstr "Tempo limite da barreira de pressão:"
-
-#: Settings.ui:268
+#: Settings.ui:20 Settings.ui:25
 msgid "Sensitivity"
 msgstr "Sensibilidade"
 
-#: Settings.ui:288
-msgid "Slide animation time when entering/leaving overview:"
-msgstr "Tempo de animação ao entrar/sair do panorama de atividades:"
+#: Settings.ui:29
+msgid "Show panel when mouse approaches edge of the screen"
+msgstr "Mostrar o painel quando o mouse aproximar da borda da tela"
 
-#: Settings.ui:301
-msgid "Slide animation time when mouse approaches edge of the screen:"
-msgstr "Tempo de animação quando o mouse se aproximar da borda da tela:"
+#: Settings.ui:35
+msgid "In the above case, also show panel when fullscreen"
+msgstr "No caso acima, também mostrar o painel quando em tela cheia"
 
-#: Settings.ui:341
+#: Settings.ui:41
+msgid "Show panel in overview"
+msgstr "Mostrar o painel em visão geral"
+
+#: Settings.ui:47
+msgid "Keep hot corner sensitive, even in hidden state"
+msgstr "Manter o canto responsivo, mesmo quando oculto"
+
+#: Settings.ui:53
+msgid "In the above case show overview, too"
+msgstr "No caso acima, também mostrar o panorama de atividades"
+
+#: Settings.ui:59
+msgid "Keep round corners when top bar is hidden"
+msgstr "Manter os cantos arredondados, mesmo quando oculto"
+
+#: Settings.ui:65
+msgid "Pressure barrier's threshold:"
+msgstr "Limiar da barreira de pressão:"
+
+#: Settings.ui:78
+msgid "Pressure barrier's timeout:"
+msgstr "Tempo limite da barreira de pressão:"
+
+#: Settings.ui:94 Settings.ui:99
 msgid "Animation"
 msgstr "Animação"
 
-#: Settings.ui:364
+#: Settings.ui:103
+msgid "Slide animation time when entering/leaving overview:"
+msgstr "Tempo de animação ao entrar/sair do panorama de atividades:"
+
+#: Settings.ui:117
+msgid "Slide animation time when mouse approaches edge of the screen:"
+msgstr "Tempo de animação quando o mouse se aproximar da borda da tela:"
+
+#: Settings.ui:134 Settings.ui:139
+msgid "Keyboard shortcuts"
+msgstr "Atalhos do teclado"
+
+#: Settings.ui:143
 msgid ""
 "Key that triggers the bar to be shown (press backspace to deactivate the "
 "shortcut):"
 msgstr "Atalho para mostrar o painel:"
 
-#: Settings.ui:380
+#: Settings.ui:183
 msgid ""
 "Delay before the bar rehides after key press (a value of 0 disables the "
 "rehiding):"
 msgstr "Tempo até a barra ocultar após pressionar o atalho:"
 
-#: Settings.ui:396
+#: Settings.ui:197
 msgid "Pressing the shortcut again rehides the panel"
 msgstr "Pressionar o atalho novamente oculta o painel"
 
-#: Settings.ui:468
-msgid "Keyboard shortcuts"
-msgstr "Atalhos do teclado"
+#: Settings.ui:206 Settings.ui:211
+msgid "Intellihide"
+msgstr "Ação inteligente"
 
-#: Settings.ui:491
+#: Settings.ui:215
 msgid "Only hide panel when a window takes the space"
 msgstr "Somente ocultar quando a janela ocupar o espaço"
 
-#: Settings.ui:507
+#: Settings.ui:221
 msgid "Only when the active window takes the space"
 msgstr "Somente ocultar quando a janela ativa ocupar o espaço"
-
-#: Settings.ui:544
-msgid "Intellihide"
-msgstr "Ação inteligente"
